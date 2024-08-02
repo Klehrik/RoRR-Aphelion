@@ -11,31 +11,34 @@ mods.on_all_mods_loaded(function()
             Item = m.Item
             Net = m.Net
             Player = m.Player
+            Resources = m.Resources
+            Survivor = m.Survivor
             break
         end
     end
 end)
 
-
-local Sprites = {
-    ballisticVest   = gm.sprite_add(_ENV["!plugins_mod_folder_path"].."/plugins/ballisticVest.png", 1, false, false, 16, 16),
-    heartLocket     = gm.sprite_add(_ENV["!plugins_mod_folder_path"].."/plugins/heartLocket.png", 1, false, false, 16, 16),
-    ration          = gm.sprite_add(_ENV["!plugins_mod_folder_path"].."/plugins/ration.png", 1, false, false, 16, 16),
-    rationUsed      = gm.sprite_add(_ENV["!plugins_mod_folder_path"].."/plugins/rationUsed.png", 1, false, false, 16, 16),
-    sixShooter      = gm.sprite_add(_ENV["!plugins_mod_folder_path"].."/plugins/sixShooter.png", 1, false, false, 16, 16),
-    stiletto        = gm.sprite_add(_ENV["!plugins_mod_folder_path"].."/plugins/stiletto.png", 1, false, false, 16, 16)
-
-}
-
-local Sounds = {
-    ration          = gm.audio_create_stream(_ENV["!plugins_mod_folder_path"].."/plugins/ration.ogg")
-}
+local Sprites = {}
+local Sounds = {}
 
 
 
 -- ========== Main ==========
 
 function __initialize()
+
+    Sprites = {
+        ballisticVest   = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/ballisticVest.png", 1, false, false, 16, 16),
+        heartLocket     = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/heartLocket.png", 1, false, false, 16, 16),
+        ration          = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/ration.png", 1, false, false, 16, 16),
+        rationUsed      = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/rationUsed.png", 1, false, false, 16, 16),
+        sixShooter      = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/sixShooter.png", 1, false, false, 16, 16),
+        stiletto        = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/stiletto.png", 1, false, false, 16, 16)
+    }
+    
+    Sounds = {
+        ration          = gm.audio_create_stream(_ENV["!plugins_mod_folder_path"].."/plugins/ration.ogg")
+    }
 
     gm.translate_load_file(gm.variable_global_get("_language_map"), _ENV["!plugins_mod_folder_path"].."/plugins/language/english.json")
 
