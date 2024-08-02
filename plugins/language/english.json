@@ -20,8 +20,8 @@
         },
         "sixShooter" : {
             "name" : "Six Shooter",
-            "pickup" : "Every six attacks critically strike.",
-            "description" : "Every <b>6th attack</c> gains <y>+100% critical chance</c>. <c_stack>Increases 6th attack damage by 20% per stack.</c>",
+            "pickup" : "Every 6 basic attacks critically strike.",
+            "description" : "Every <b>6th basic attack</c> gains <y>+100% critical chance</c>. <c_stack>Increases 6th basic attack damage by 20% per stack.</c>",
             "destination" : "Apt. #302,\n12th District,\nNeo Metro,\nVenus",
             "date" : "8/13/2056",
             "story" : "An antique from days past. Still packs quite a punch, although black powder is pretty hard (and expensive!) to get nowadays.",

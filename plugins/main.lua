@@ -60,12 +60,15 @@ function __initialize()
         if not actor.aphelion_six_shooter then actor.aphelion_six_shooter = 0 end
     end)
 
-    Item.add_callback(item, "onShoot", function(actor, damager, stack)
-        -- Crit every 6 shots
-        -- Additional stacks increase the shot's damage by 20%
+    Item.add_callback(item, "onBasicUse", function(actor, stack)
         actor.aphelion_six_shooter = actor.aphelion_six_shooter + 1
+    end)
+
+    Item.add_callback(item, "onAttack", function(actor, damager, stack)
+        -- Crit every 6 basic attacks
+        -- Additional stacks increase the attack's damage by 20%
         if actor.aphelion_six_shooter >= 6 then
-            actor.aphelion_six_shooter = 0
+            actor.aphelion_six_shooter = actor.aphelion_six_shooter - 6
 
             -- Increases crit for the purposes of Stiletto
             actor.critical_chance = actor.critical_chance + 100.0
@@ -106,7 +109,7 @@ function __initialize()
         actor.critical_chance_base = actor.critical_chance_base - amount
     end)
 
-    Item.add_callback(item, "onShoot", function(actor, damager, stack)
+    Item.add_callback(item, "onAttack", function(actor, damager, stack)
         if actor.critical_chance <= 100.0 then return end
         if damager.critical then
             local excess = actor.critical_chance - 100.0
@@ -117,3 +120,25 @@ function __initialize()
     end)
 
 end
+
+
+
+-- local callbacks = {}
+-- gm.post_script_hook(gm.constants.callback_execute, function(self, other, result, args)
+--     if not Helper.table_has(callbacks, args[1].value) then
+--         log.info(args[1].value)
+--         table.insert(callbacks, args[1].value)
+--     end
+-- end)
+
+
+-- gm.post_script_hook(gm.constants.skill_util_update_heaven_cracker, function(self, other, result, args)
+--     log.info(gm.object_get_name(self.object_index))
+--     log.info(gm.object_get_name(other.object_index))
+--     log.info(result.value)
+--     for _, a in ipairs(args) do
+--         log.info(a.value)
+--     end
+--     log.info(gm.object_get_name(args[1].value.object_index))
+--     log.info("")
+-- end)
