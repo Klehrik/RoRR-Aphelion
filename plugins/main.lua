@@ -51,6 +51,66 @@ function __initialize()
     end)
 
 
+    local item = Item.create("aphelion", "ration")
+    Item.set_sprite(item, gm.sprite_add(_ENV["!plugins_mod_folder_path"].."/plugins/ration.png", 1, false, false, 16, 16))
+    Item.set_tier(item, Item.TIER.common)
+    Item.set_loot_tags(item, Item.LOOT_TAG.category_healing)
+
+    Item.add_callback(item, "onPickup", function(actor, stack)
+        -- Restore all used Rations
+        local item      = Item.find("aphelion-ration")
+        local item_used = Item.find("aphelion-rationUsed")
+        local normal    = Item.get_stack_count(actor, item_used, Item.TYPE.real)
+        local temp      = Item.get_stack_count(actor, item_used, Item.TYPE.temporary)
+        gm.item_take(actor, item_used, normal, false)
+        gm.item_take(actor, item_used, temp, true)
+        gm.item_give(actor, item, normal, false)
+        gm.item_give(actor, item, temp, true)
+    end)
+
+    Item.add_callback(item, "onStep", function(actor, stack)
+        -- Heal when at <= 25% health
+        if actor.hp <= actor.maxhp * 0.25 then
+            actor.hp = actor.hp + (actor.maxhp * 0.5)
+            --gm.audio_play_sound(Sounds.ration, 0, false)
+
+            -- Remove stacks and give used stacks
+            local item      = Item.find("aphelion-ration")
+            local item_used = Item.find("aphelion-rationUsed")
+            local normal    = Item.get_stack_count(actor, item, Item.TYPE.real)
+            local temp      = Item.get_stack_count(actor, item, Item.TYPE.temporary)
+            gm.item_take(actor, item, normal, false)
+            gm.item_take(actor, item, temp, true)
+            gm.item_give(actor, item_used, normal, false)
+            gm.item_give(actor, item_used, temp, true)
+        end
+    end)
+
+
+    local item = Item.create("aphelion", "rationUsed", true)
+    Item.set_sprite(item, gm.sprite_add(_ENV["!plugins_mod_folder_path"].."/plugins/rationUsed.png", 1, false, false, 16, 16))
+
+    Item.add_callback(item, "onPickup", function(actor, stack)
+        actor.aphelion_ration_cooldown = 120 * 60 * (1 - Helper.mixed_hyperbolic(stack, 0.2, 0))
+    end)
+
+    Item.add_callback(item, "onStep", function(actor, stack)
+        -- Tick down timer
+        if actor.aphelion_ration_cooldown > 0 then actor.aphelion_ration_cooldown = actor.aphelion_ration_cooldown - 1
+        else
+            -- Restore all used Rations
+            local item      = Item.find("aphelion-ration")
+            local item_used = Item.find("aphelion-rationUsed")
+            local normal    = Item.get_stack_count(actor, item_used, Item.TYPE.real)
+            local temp      = Item.get_stack_count(actor, item_used, Item.TYPE.temporary)
+            gm.item_take(actor, item_used, normal, false)
+            gm.item_take(actor, item_used, temp, true)
+            gm.item_give(actor, item, normal, false)
+            gm.item_give(actor, item, temp, true)
+        end
+    end)
+
+
     local item = Item.create("aphelion", "sixShooter")
     Item.set_sprite(item, gm.sprite_add(_ENV["!plugins_mod_folder_path"].."/plugins/sixShooter.png", 1, false, false, 16, 16))
     Item.set_tier(item, Item.TIER.uncommon)
@@ -58,6 +118,7 @@ function __initialize()
 
     Item.add_callback(item, "onPickup", function(actor, stack)
         if not actor.aphelion_six_shooter then actor.aphelion_six_shooter = 0 end
+        if not actor.aphelion_six_shooter_crit_boost then actor.aphelion_six_shooter_crit_boost = 0 end
     end)
 
     Item.add_callback(item, "onBasicUse", function(actor, stack)
@@ -70,7 +131,8 @@ function __initialize()
         if actor.aphelion_six_shooter >= 6 then
             actor.aphelion_six_shooter = actor.aphelion_six_shooter - 6
 
-            -- Increases crit for the purposes of Stiletto
+            -- Increases actor crit for the purposes of Stiletto
+            actor.aphelion_six_shooter_crit_boost = actor.aphelion_six_shooter_crit_boost + 1
             actor.critical_chance = actor.critical_chance + 100.0
 
             if not damager.critical then
@@ -84,8 +146,9 @@ function __initialize()
         end
     end)
 
-    Item.add_callback(item, "onPostShoot", function(actor, damager, stack)
-        if actor.aphelion_six_shooter == 0 then
+    Item.add_callback(item, "onPostAttack", function(actor, damager, stack)
+        if actor.aphelion_six_shooter_crit_boost > 0 then
+            actor.aphelion_six_shooter_crit_boost = actor.aphelion_six_shooter_crit_boost - 1
             actor.critical_chance = actor.critical_chance - 100.0
         end
     end)

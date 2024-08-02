@@ -18,6 +18,20 @@
             "story" : "A present, from me to you. A symbol of our friendship! Now you'll always think of me, no matter where you run off to. And maybe one day, you'll decide to come back.",
             "priority" : "Standard"
         },
+        "ration" : {
+            "name" : "Ration",
+            "pickup" : "Receive a large heal when in peril. Recharges over time.",
+            "description" : "Falling below <r>25% health</c> heals you for <g>50% health</c>. Has a <b>120</c> <c_stack>(-20% per stack, hyperbolic)</c> <b>second</c> cooldown.",
+            "destination" : "Fort Shell,\nManhattan, NY,\nEarth",
+            "date" : "4/30/2056",
+            "story" : "12 boxes of MREs for your boys, as requested. \n\nBe warned, they don't taste too good - it's basically a large bland cookie, loaded up with all the nutrients you'll ever need. \n\nStill beats my wife's cooking though, haha (don't tell her I said that).",
+            "priority" : "Standard"
+        },
+        "rationUsed" : {
+            "name" : "Ration",
+            "pickup" : "This item is recharging.",
+            "description" : "This item is recharging."
+        },
         "sixShooter" : {
             "name" : "Six Shooter",
             "pickup" : "Every 6 basic attacks critically strike.",
