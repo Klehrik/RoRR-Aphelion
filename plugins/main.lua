@@ -37,7 +37,7 @@ function __initialize()
     }
     
     Sounds = {
-        ration          = gm.audio_create_stream(_ENV["!plugins_mod_folder_path"].."/plugins/ration.ogg")
+        ration          = Resources.sfx_load(_ENV["!plugins_mod_folder_path"].."/plugins/ration.ogg")
     }
 
     gm.translate_load_file(gm.variable_global_get("_language_map"), _ENV["!plugins_mod_folder_path"].."/plugins/language/english.json")
@@ -65,7 +65,7 @@ function __initialize()
     Item.set_loot_tags(item, Item.LOOT_TAG.category_healing)
 
     Item.add_callback(item, "onInteract", function(actor, interactable, stack)
-        actor.hp = actor.hp + (actor.maxhp * Helper.mixed_hyperbolic(stack, 0.035, 0.07))
+        gm.actor_heal_networked(actor, actor.maxhp * Helper.mixed_hyperbolic(stack, 0.035, 0.07), false)
     end)
 
 
@@ -89,7 +89,7 @@ function __initialize()
     Item.add_callback(item, "onStep", function(actor, stack)
         -- Heal when at <= 25% health
         if actor.hp <= actor.maxhp * 0.25 then
-            actor.hp = actor.hp + (actor.maxhp * 0.5)
+            gm.actor_heal_networked(actor, actor.maxhp * 0.5, false)
             gm.audio_play_sound(Sounds.ration, 0, false)
 
             -- Remove stacks and give used stacks
