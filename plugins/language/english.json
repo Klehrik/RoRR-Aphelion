@@ -1,0 +1,40 @@
+{
+    "item" : {
+        "ballisticVest" : {
+            "name" : "Ballistic Vest",
+            "pickup" : "Reduce incoming damage by 5% and gain a small shield.",
+            "description" : "Increase <g>armor</c> by <g>5</c> <c_stack>(+5 per stack)</c> and <b>shield</c> by <b>10</c> <c_stack>(+10 per stack)</c>.",
+            "destination" : "1904,\nBaron County,\nMars",
+            "date" : "9/3/2056",
+            "story" : "Shipment of lightweight body armor, capable of absorbing up to 6 low caliber rounds. Anything larger would probably pierce right through them though.\n\nWe've tested it throughly this time before this batch was produced, so there shouldn't be another fatal incident.",
+            "priority" : "Standard"
+        },
+        "heartLocket" : {
+            "name" : "Heart Locket",
+            "pickup" : "Activating an interactable heals you.",
+            "description" : "Activating an interactable <g>heals you</c> for <g>7%</c> <c_stack>(+3.5% per stack, hyperbolic)</c> <g>health</c>.",
+            "destination" : "My friend",
+            "date" : "7/30/2056",
+            "story" : "A present, from me to you. A symbol of our friendship! Now you'll always think of me, no matter where you run off to. And maybe one day, you'll decide to come back.",
+            "priority" : "Standard"
+        },
+        "sixShooter" : {
+            "name" : "Six Shooter",
+            "pickup" : "Every six attacks critically strike.",
+            "description" : "Every <b>6th attack</c> gains <y>+100% critical chance</c>. <c_stack>Increases 6th attack damage by 20% per stack.</c>",
+            "destination" : "Apt. #302,\n12th District,\nNeo Metro,\nVenus",
+            "date" : "8/13/2056",
+            "story" : "An antique from days past. Still packs quite a punch, although black powder is pretty hard (and expensive!) to get nowadays.",
+            "priority" : "<g>Priority</c>"
+        },
+        "stiletto" : {
+            "name" : "Stiletto",
+            "pickup" : "Convert extra critical chance into critical damage.",
+            "description" : "Gain <y>5%</c> <c_stack>(+10% per stack)</c> <y>critical chance</c>. Every <r>1% extra critical chance above 100%</c> is converted into <y>1%</c> <c_stack>(+0.5% per stack)</c> <y>critical damage</c>.",
+            "destination" : "dest",
+            "date" : "3/1/2056",
+            "story" : "lore",
+            "priority" : "<r>High Priority</c>"
+        }
+    }
+}
