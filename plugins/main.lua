@@ -17,6 +17,21 @@ mods.on_all_mods_loaded(function()
 end)
 
 
+local Sprites = {
+    ballisticVest   = gm.sprite_add(_ENV["!plugins_mod_folder_path"].."/plugins/ballisticVest.png", 1, false, false, 16, 16),
+    heartLocket     = gm.sprite_add(_ENV["!plugins_mod_folder_path"].."/plugins/heartLocket.png", 1, false, false, 16, 16),
+    ration          = gm.sprite_add(_ENV["!plugins_mod_folder_path"].."/plugins/ration.png", 1, false, false, 16, 16),
+    rationUsed      = gm.sprite_add(_ENV["!plugins_mod_folder_path"].."/plugins/rationUsed.png", 1, false, false, 16, 16),
+    sixShooter      = gm.sprite_add(_ENV["!plugins_mod_folder_path"].."/plugins/sixShooter.png", 1, false, false, 16, 16),
+    stiletto        = gm.sprite_add(_ENV["!plugins_mod_folder_path"].."/plugins/stiletto.png", 1, false, false, 16, 16)
+
+}
+
+local Sounds = {
+    ration          = gm.audio_create_stream(_ENV["!plugins_mod_folder_path"].."/plugins/ration.ogg")
+}
+
+
 
 -- ========== Main ==========
 
@@ -26,7 +41,7 @@ function __initialize()
 
 
     local item = Item.create("aphelion", "ballisticVest")
-    Item.set_sprite(item, gm.sprite_add(_ENV["!plugins_mod_folder_path"].."/plugins/ballisticVest.png", 1, false, false, 16, 16))
+    Item.set_sprite(item, Sprites.ballisticVest)
     Item.set_tier(item, Item.TIER.common)
     Item.set_loot_tags(item, Item.LOOT_TAG.category_healing)
 
@@ -42,7 +57,7 @@ function __initialize()
 
 
     local item = Item.create("aphelion", "heartLocket")
-    Item.set_sprite(item, gm.sprite_add(_ENV["!plugins_mod_folder_path"].."/plugins/heartLocket.png", 1, false, false, 16, 16))
+    Item.set_sprite(item, Sprites.heartLocket)
     Item.set_tier(item, Item.TIER.common)
     Item.set_loot_tags(item, Item.LOOT_TAG.category_healing)
 
@@ -52,7 +67,7 @@ function __initialize()
 
 
     local item = Item.create("aphelion", "ration")
-    Item.set_sprite(item, gm.sprite_add(_ENV["!plugins_mod_folder_path"].."/plugins/ration.png", 1, false, false, 16, 16))
+    Item.set_sprite(item, Sprites.ration)
     Item.set_tier(item, Item.TIER.common)
     Item.set_loot_tags(item, Item.LOOT_TAG.category_healing)
 
@@ -72,7 +87,7 @@ function __initialize()
         -- Heal when at <= 25% health
         if actor.hp <= actor.maxhp * 0.25 then
             actor.hp = actor.hp + (actor.maxhp * 0.5)
-            --gm.audio_play_sound(Sounds.ration, 0, false)
+            gm.audio_play_sound(Sounds.ration, 0, false)
 
             -- Remove stacks and give used stacks
             local item      = Item.find("aphelion-ration")
@@ -88,7 +103,7 @@ function __initialize()
 
 
     local item = Item.create("aphelion", "rationUsed", true)
-    Item.set_sprite(item, gm.sprite_add(_ENV["!plugins_mod_folder_path"].."/plugins/rationUsed.png", 1, false, false, 16, 16))
+    Item.set_sprite(item, Sprites.rationUsed)
 
     Item.add_callback(item, "onPickup", function(actor, stack)
         actor.aphelion_ration_cooldown = 120 * 60 * (1 - Helper.mixed_hyperbolic(stack, 0.2, 0))
@@ -112,7 +127,7 @@ function __initialize()
 
 
     local item = Item.create("aphelion", "sixShooter")
-    Item.set_sprite(item, gm.sprite_add(_ENV["!plugins_mod_folder_path"].."/plugins/sixShooter.png", 1, false, false, 16, 16))
+    Item.set_sprite(item, Sprites.sixShooter)
     Item.set_tier(item, Item.TIER.uncommon)
     Item.set_loot_tags(item, Item.LOOT_TAG.category_damage)
 
@@ -155,7 +170,7 @@ function __initialize()
 
 
     local item = Item.create("aphelion", "stiletto")
-    Item.set_sprite(item, gm.sprite_add(_ENV["!plugins_mod_folder_path"].."/plugins/stiletto.png", 1, false, false, 16, 16))
+    Item.set_sprite(item, Sprites.stiletto)
     Item.set_tier(item, Item.TIER.rare)
     Item.set_loot_tags(item, Item.LOOT_TAG.category_damage)
 
