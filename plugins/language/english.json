@@ -41,6 +41,15 @@
             "story" : "An antique from days past. Still packs quite a punch, although black powder is pretty hard (and expensive!) to get nowadays.",
             "priority" : "<g>Priority</c>"
         },
+        "overloadedCapacitor" : {
+            "name" : "Overloaded Capacitor",
+            "pickup" : "Deal increased damage while you have barrier.",
+            "description" : "Leaving combat for <y>2</c> seconds grants <g>barrier</c> equal to <g>6% health</c>. While barrier is active, deal <y>+25%</c> <c_stack>(+15% per stack)</c> <y>damage</c>.",
+            "destination" : "Destination",
+            "date" : "8/31/2056",
+            "story" : "Lore",
+            "priority" : "<g>Priority</c>"
+        },
         "stiletto" : {
             "name" : "Stiletto",
             "pickup" : "Convert extra critical chance into critical damage.",

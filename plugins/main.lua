@@ -28,12 +28,13 @@ local Sounds = {}
 function __initialize()
 
     Sprites = {
-        ballisticVest   = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/ballisticVest.png", 1, false, false, 16, 16),
-        heartLocket     = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/heartLocket.png", 1, false, false, 16, 16),
-        ration          = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/ration.png", 1, false, false, 16, 16),
-        rationUsed      = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/rationUsed.png", 1, false, false, 16, 16),
-        sixShooter      = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/sixShooter.png", 1, false, false, 16, 16),
-        stiletto        = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/stiletto.png", 1, false, false, 16, 16)
+        ballisticVest       = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/ballisticVest.png", 1, false, false, 16, 16),
+        heartLocket         = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/heartLocket.png", 1, false, false, 16, 16),
+        ration              = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/ration.png", 1, false, false, 16, 16),
+        rationUsed          = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/rationUsed.png", 1, false, false, 16, 16),
+        sixShooter          = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/sixShooter.png", 1, false, false, 16, 16),
+        overloadedCapacitor = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/overloadedCapacitor.png", 1, false, false, 16, 16),
+        stiletto            = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/stiletto.png", 1, false, false, 16, 16)
     }
     
     Sounds = {
@@ -168,6 +169,25 @@ function __initialize()
         if actor.aphelion_six_shooter_crit_boost > 0 then
             actor.aphelion_six_shooter_crit_boost = actor.aphelion_six_shooter_crit_boost - 1
             actor.critical_chance = actor.critical_chance - 100.0
+        end
+    end)
+
+
+    local item = Item.create("aphelion", "overloadedCapacitor")
+    Item.set_sprite(item, Sprites.overloadedCapacitor)
+    Item.set_tier(item, Item.TIER.uncommon)
+    Item.set_loot_tags(item, Item.LOOT_TAG.category_damage)
+
+    Item.add_callback(item, "onStep", function(actor, stack)
+        if actor.hud_hp_frame - actor.in_combat_last_frame >= 2 *60 then
+            actor.barrier = math.max(actor.barrier, actor.maxbarrier * 0.06)
+        end
+    end)
+
+    Item.add_callback(item, "onAttack", function(actor, damager, stack)
+        if actor.barrier > 0 then
+            local bonus = 0.25 + (0.15 * (stack - 1))
+            damager.damage = damager.damage * (1 + bonus)
         end
     end)
 
