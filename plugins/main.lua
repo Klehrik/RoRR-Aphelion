@@ -5,6 +5,7 @@ log.info("Successfully loaded ".._ENV["!guid"]..".")
 mods.on_all_mods_loaded(function()
     for _, m in pairs(mods) do
         if type(m) == "table" and m.RoRR_Modding_Toolkit then
+            Buff = m.Buff
             Callback = m.Callback
             Helper = m.Helper
             Instance = m.Instance
@@ -182,14 +183,22 @@ function __initialize()
         if actor.hud_hp_frame - actor.in_combat_last_frame >= 2 *60 then
             actor.barrier = math.max(actor.barrier, actor.maxbarrier * 0.06)
         end
+
+        if actor.barrier > 0 then
+            Buff.apply(actor, Buff.find("aphelion-overloadedCapacitor"), 2)
+        end
     end)
 
     Item.add_callback(item, "onAttack", function(actor, damager, stack)
         if actor.barrier > 0 then
-            local bonus = 0.25 + (0.15 * (stack - 1))
+            local bonus = 0.2 + (0.1 * (stack - 1))
             damager.damage = damager.damage * (1 + bonus)
         end
     end)
+
+
+    local buff = Buff.create("aphelion", "overloadedCapacitor")
+    Buff.set_property(buff, Buff.PROPERTY.icon_sprite, Sprites.overloadedCapacitor)
 
 
     local item = Item.create("aphelion", "stiletto")
@@ -222,6 +231,37 @@ function __initialize()
 
 end
 
+
+
+gui.add_imgui(function()
+    if ImGui.Begin("Aphelion Debug") then
+
+
+        if ImGui.Button("Buff create") then
+            local buff = Buff.create("aphelion", "testBuff")
+
+            Buff.set_property(buff, Buff.PROPERTY.max_stack, 10)
+
+            Buff.add_callback(buff, "onApply", function(actor, stack)
+                actor.hp = 10.0 * stack
+            end)
+
+        elseif ImGui.Button("Apply customBuff") then
+            --log.info(Buff.find("aphelion-testBuff"))
+            Buff.apply(Player.get_client(), Buff.find("aphelion-testBuff"), 300.0, 5)
+            --Buff.apply(Player.get_client(), Buff.find("aphelion-overloadedCapacitor"), 2)
+
+        elseif ImGui.Button("Apply max Standoff") then
+            Buff.apply(Player.get_client(), 36, 300.0, 5)
+
+        elseif ImGui.Button("Remove Standoff") then
+            Buff.remove(Player.get_client(), 36)
+            
+
+        end
+    end
+    ImGui.End()
+end)
 
 
 -- local callbacks = {}

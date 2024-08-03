@@ -5,7 +5,7 @@
             "pickup" : "Reduce incoming damage by 5% and gain a small shield.",
             "description" : "Increase <g>armor</c> by <g>5</c> <c_stack>(+5 per stack)</c> and <b>shield</c> by <b>10</c> <c_stack>(+10 per stack)</c>.",
             "destination" : "1904,\nBaron County,\nMars",
-            "date" : "9/3/2056",
+            "date" : "9/03/2056",
             "story" : "Shipment of lightweight body armor, capable of absorbing up to 6 low caliber rounds. Anything larger would probably pierce right through them though.\n\nWe've tested it throughly this time before this batch was produced, so there shouldn't be another fatal incident.",
             "priority" : "Standard"
         },
@@ -44,19 +44,19 @@
         "overloadedCapacitor" : {
             "name" : "Overloaded Capacitor",
             "pickup" : "Deal increased damage while you have barrier.",
-            "description" : "Leaving combat for <y>2</c> seconds grants <g>barrier</c> equal to <g>6% health</c>. While barrier is active, deal <y>+25%</c> <c_stack>(+15% per stack)</c> <y>damage</c>.",
-            "destination" : "Destination",
-            "date" : "8/31/2056",
-            "story" : "Lore",
+            "description" : "Leaving combat for <y>2</c> seconds grants <g>barrier</c> equal to <g>6% health</c>. While barrier is active, deal <y>+20%</c> <c_stack>(+10% per stack)</c> <y>damage</c>.",
+            "destination" : "1803,\nCombat Zone,\nVenus",
+            "date" : "01/03/2057",
+            "story" : "I had to run to catch the train home from work last week; going to war with a century-old record player is not something a punctual man would do, but it was the first business the antique shop had in a while. \n\nThe train suddenly jolted forwards, and I ended up bumping into someone. He must've assumed that I wanted to fight, and so he took a swing at me. It felt like… a tap on the cheek. My confusion was quicky replaced with surprise once I swung a hook at him in return and sent him flying into the next car. \n\nI realized a tingling feeling in my pocket once the shock had partially subsided, and in it was an old capacitor I had removed from the player earlier that day. You could probably get a kick out of it, so take it for a spin! Keep note of anything interesting you observe, and when you're back, we can try to figure out what makes it tick. Like old times.",
             "priority" : "<g>Priority</c>"
         },
         "stiletto" : {
             "name" : "Stiletto",
             "pickup" : "Convert extra critical chance into critical damage.",
             "description" : "Gain <y>5%</c> <c_stack>(+10% per stack)</c> <y>critical chance</c>. Every <r>1% extra critical chance above 100%</c> is converted into <y>1%</c> <c_stack>(+0.5% per stack)</c> <y>critical damage</c>.",
-            "destination" : "dest",
-            "date" : "3/1/2056",
-            "story" : "lore",
+            "destination" : "Violet Heights,\nElderly Home,\nVenus",
+            "date" : "01/04/2057",
+            "story" : "I might know why you want this, and if I am correct, I pray you ordered the wrong kind.",
             "priority" : "<r>High Priority</c>"
         }
     }
