@@ -2,10 +2,12 @@
 -- Klehrik
 
 log.info("Successfully loaded ".._ENV["!guid"]..".")
-mods.on_all_mods_loaded(function() for _, m in pairs(mods) do if type(m) == "table" and m.RoRR_Modding_Toolkit then Buff = m.Buff Callback = m.Callback Helper = m.Helper Instance = m.Instance Item = m.Item Net = m.Net Player = m.Player Resources = m.Resources Survivor = m.Survivor break end end end)
+mods.on_all_mods_loaded(function() for _, m in pairs(mods) do if type(m) == "table" and m.RoRR_Modding_Toolkit then Actor = m.Actor Buff = m.Buff Callback = m.Callback Helper = m.Helper Instance = m.Instance Item = m.Item Net = m.Net Player = m.Player Resources = m.Resources Survivor = m.Survivor break end end end)
 
 local Sprites = {}
 local Sounds = {}
+
+-- local frame = 0
 
 
 
@@ -18,9 +20,12 @@ function __initialize()
         heartLocket         = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/heartLocket.png", 1, false, false, 16, 16),
         ration              = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/ration.png", 1, false, false, 16, 16),
         rationUsed          = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/rationUsed.png", 1, false, false, 16, 16),
+        skull               = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/skull.png", 1, false, false, 16, 16),
         sixShooter          = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/sixShooter.png", 1, false, false, 16, 16),
         overloadedCapacitor = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/overloadedCapacitor.png", 1, false, false, 16, 16),
-        stiletto            = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/stiletto.png", 1, false, false, 16, 16)
+        stiletto            = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/stiletto.png", 1, false, false, 16, 16),
+
+        buffSkull           = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/buffSkull.png", 1, false, false, 12, 12)
     }
     
     Sounds = {
@@ -112,6 +117,55 @@ function __initialize()
             gm.item_take(actor, item_used, temp, true)
             gm.item_give(actor, item, normal, false)
             gm.item_give(actor, item, temp, true)
+        end
+    end)
+
+
+    local item = Item.create("aphelion", "skull")
+    Item.set_sprite(item, Sprites.skull)
+    Item.set_tier(item, Item.TIER.common)
+    Item.set_loot_tags(item, Item.LOOT_TAG.category_healing)
+
+    Item.add_callback(item, "onHit", function(attacker, victim, damager, stack)
+        if Helper.chance(0.15 + (0.1 * (stack - 1))) then
+            Buff.apply(victim, Buff.find("aphelion-skull"), 180)
+            victim.aphelion_skull_attacker = attacker
+        end
+    end)
+
+
+    local buff = Buff.create("aphelion", "skull")
+    Buff.set_property(buff, Buff.PROPERTY.icon_sprite, Sprites.buffSkull)
+    Buff.set_property(buff, Buff.PROPERTY.icon_stack_subimage, false)
+    Buff.set_property(buff, Buff.PROPERTY.draw_stack_number, true)
+    Buff.set_property(buff, Buff.PROPERTY.max_stack, 100)
+    Buff.set_property(buff, Buff.PROPERTY.is_timed, false)
+    Buff.set_property(buff, Buff.PROPERTY.is_debuff, true)
+
+    Buff.add_callback(buff, "onApply", function(actor, stack)
+        if (not actor.aphelion_skull_timer) or stack == 1 then actor.aphelion_skull_timer = 0 end
+        actor.aphelion_skull_duration = math.ceil(240.0 / math.max(stack * 0.5, 1.0))
+    end)
+
+    Buff.add_callback(buff, "onStep", function(actor, stack)
+        actor.aphelion_skull_timer = actor.aphelion_skull_timer + 1
+        
+        if gm.instance_exists(actor.aphelion_skull_attacker) and actor.aphelion_skull_timer % 60 == 0 then
+            local damager = Actor.fire_bullet(actor.aphelion_skull_attacker, actor.x, actor.y, 0, 1, 0.25 * stack)
+            damager.proc = false
+            damager.knockback_kind = 0
+            
+            -- Prevent crits
+            if damager.critical then
+                damager.critical = false
+                damager.damage = damager.damage / 2.0
+            end
+        end
+
+        actor.aphelion_skull_duration = actor.aphelion_skull_duration - 1
+        if actor.aphelion_skull_duration <= 0 then
+            Buff.remove(actor, Buff.find("aphelion-skull"), 1)
+            actor.aphelion_skull_duration = math.ceil(240.0 / math.max((stack - 1) * 0.5, 1.0))
         end
     end)
 
@@ -236,17 +290,96 @@ gui.add_imgui(function()
             Buff.apply(Player.get_client(), Buff.find("aphelion-testBuff"), 300.0, 5)
             --Buff.apply(Player.get_client(), Buff.find("aphelion-overloadedCapacitor"), 2)
 
-        elseif ImGui.Button("Apply max Standoff") then
-            Buff.apply(Player.get_client(), 36, 300.0, 5)
+        elseif ImGui.Button("Apply 1 Standoff") then
+            Buff.apply(Player.get_client(), 36, 300.0)
 
-        elseif ImGui.Button("Remove Standoff") then
-            Buff.remove(Player.get_client(), 36)
-            
+        elseif ImGui.Button("Apply 1 Standoff shorter") then
+            Buff.apply(Player.get_client(), 36, 120.0)
+
+        elseif ImGui.Button("Remove 2 Standoff") then
+            Buff.remove(Player.get_client(), 36, 2)
+            --gm.remove_buff(Player.get_client(), 36, 2)
+
+        
+        elseif ImGui.Button("Log") then
+            local prop = Buff.get_property(38, Buff.PROPERTY.stack_number_col)
+            log.info(prop)
+            for _, a in ipairs(prop) do
+                log.info(a)
+            end
+            --gm.remove_buff(Player.get_client(), 36, 2)
+
+        
+        elseif ImGui.Button("Fire bullet") then
+            local player = Player.get_client()
+            --local damager = Actor.fire_bullet(player, player.x, player.y, 1.0, 400.0, 180.0, gm.constants.sSparks1)
+            local damager = Actor.fire_bullet(player, player.x, player.y, 180.0, 400.0, 1.0, true)
+            --local damager = player:fire_bullet(0, player.x, player.y, true, 1.0, 400.0, -1, 180.0, 1.0, 1.0, -1.0)
+
+            --damager.knockback_kind = 4
+
+            --damager.hit_number = 20
+            --damager.attack_flags = 1 << 1
+
+            -- attack_flags
+            -- 1 << 0 : ?
+            -- 1 << 1 : Acrid thing (deals extra damage)
+            -- 1 << 2 : ?
+            -- 1 << 3 : noticeable hit effect
+            -- 1 << 4 : Boxing Glove proc (deals extra damage)
+            -- 1 << 5 : Ukelele proc
+            -- 1 << 6 : pink number (Sniper perfect)
+            -- 1 << 7 : dark pink number (Sniper half)
+            -- 1 << 8 : ?
+            -- 1 << 9 : ?
+            -- 1 << 10 : Generates scrap
+            -- 1 << 11 : ?
+            -- 1 << 12 : ?
+            -- 1 << 13 : ?
+            -- 1 << 14 : Commando Wound debuff
+            -- 1 << 15 : ?
+            -- 1 << 16 : ?
+            -- 1 << 17 : ?
+            -- 1 << 18 : ?
+            -- 1 << 19 : ?
+            -- 1 << 20 : ?
+            -- 1 << 21 : debuff (weird Shustice)
+            -- 1 << 22 : arti burn (flamethrower)
+            -- 1 << 23 : ?
+            -- 1 << 24 : Pilot alt V
+            -- 1 << 25 : Pilot alt V upgraded
+            -- 1 << 26 : ?
+            -- 1 << 27 : arti burn (chakram)
+            -- 1 << 28 to 65 : ?
+
+            --gm.fire_bullet(0, player.x, player.y, 0, 1.0, 400.0, gm.constants.sSparks1, 180.0, 1.0, 1.0, -1.0)
+
+            --log.info(player)
+            --local damager = player:fire_bullet(0, player.x, player.y, 0, 10.0,   1400.0,    -1.0,   180.0, 1.0, 1.0, -1.0)
+            --                      x          y      ? damage  range(px)  spr(hit)    dir    ?    ?     ?
+            -- spr(hit) -1 to display no sprite
+
+            --log.info(gm.sprite_get_name(1632.0))
+            --log.info(damager.damage)
 
         end
     end
     ImGui.End()
 end)
+
+
+
+gm.pre_script_hook(gm.constants.fire_bullet, function(self, other, result, args)
+    Helper.log_hook(self, other, result, args)
+end)
+
+-- gm.pre_script_hook(gm.constants.run_create, function()
+--     frame = 0
+-- end)
+
+-- gm.pre_script_hook(gm.constants.__input_system_tick, function()
+--     frame = frame + 1
+-- end)
 
 
 -- local callbacks = {}

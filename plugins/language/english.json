@@ -24,13 +24,22 @@
             "description" : "Falling below <r>25% health</c> heals you for <g>50% health</c>. Has a <b>120</c> <c_stack>(-20% per stack, hyperbolic)</c> <b>second</c> cooldown.",
             "destination" : "Fort Shell,\nManhattan, NY,\nEarth",
             "date" : "4/30/2056",
-            "story" : "12 boxes of MREs for your boys, as requested. \n\nBe warned, they don't taste too good - it's basically a large bland cookie, loaded up with all the nutrients you'll ever need. \n\nStill beats my wife's cooking though, haha (don't tell her I said that).",
+            "story" : "12 boxes of MREs for your boys, as requested. \n\nBe warned, they don't taste too good - it's basically a large bland cookie, loaded up with all the nutrients you'll ever need.",
             "priority" : "Standard"
         },
         "rationUsed" : {
             "name" : "Ration",
             "pickup" : "This item is recharging.",
             "description" : "This item is recharging."
+        },
+        "skull" : {
+            "name" : "skull",
+            "pickup" : "Chance to wither enemies on hit.",
+            "description" : "<y>15%</c> <c_stack>(+10% per stack)</c> <y>chance</c> on hit to <r>wither</c> an enemy. Each stack of <r>wither</c> deals <y>25% damage per second</c>.",
+            "destination" : "Destination",
+            "date" : "Date",
+            "story" : "Placeholder name and sprite",
+            "priority" : "Standard"
         },
         "sixShooter" : {
             "name" : "Six Shooter",
@@ -44,7 +53,7 @@
         "overloadedCapacitor" : {
             "name" : "Overloaded Capacitor",
             "pickup" : "Deal increased damage while you have barrier.",
-            "description" : "Leaving combat for <y>2</c> seconds grants <g>barrier</c> equal to <g>6% health</c>. While barrier is active, deal <y>+20%</c> <c_stack>(+10% per stack)</c> <y>damage</c>.",
+            "description" : "Leaving combat for <y>2</c> seconds grants <g>barrier</c> equal to <g>6% health</c>. While barrier is active, your attacks deal <y>+20%</c> <c_stack>(+10% per stack)</c> <y>damage</c>.",
             "destination" : "1803,\nCombat Zone,\nVenus",
             "date" : "01/03/2057",
             "story" : "I had to run to catch the train home from work last week; going to war with a century-old record player is not something a punctual man would do, but it was the first business the antique shop had in a while. \n\nThe train suddenly jolted forwards, and I ended up bumping into someone. He must've assumed that I wanted to fight, and so he took a swing at me. It felt like… a tap on the cheek. My confusion was quicky replaced with surprise once I swung a hook at him in return and sent him flying into the next car. \n\nI realized a tingling feeling in my pocket once the shock had partially subsided, and in it was an old capacitor I had removed from the player earlier that day. You could probably get a kick out of it, so take it for a spin! Keep note of anything interesting you observe, and when you're back, we can try to figure out what makes it tick. Like old times.",
