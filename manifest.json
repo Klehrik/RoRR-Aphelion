@@ -1,10 +1,10 @@
 ﻿{
 	"name": "Aphelion",
 	"version_number": "1.0.0",
-	"website_url": "",
+	"website_url": "https://github.com/Klehrik/Klehrik-Aphelion",
 	"description": "",
 	"dependencies": [
 		"ReturnOfModding-ReturnOfModding-1.0.34",
-		"RoRRModdingToolkit-RoRR_Modding_Toolkit-1.0.0"
+		"RoRRModdingToolkit-RoRR_Modding_Toolkit-1.0.1"
 	]
 }

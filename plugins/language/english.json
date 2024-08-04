@@ -35,7 +35,7 @@
         "skull" : {
             "name" : "skull",
             "pickup" : "Chance to wither enemies on hit.",
-            "description" : "<y>15%</c> <c_stack>(+10% per stack)</c> <y>chance</c> on hit to <r>wither</c> an enemy. Each stack of <r>wither</c> deals <y>25% damage per second</c>.",
+            "description" : "<y>15%</c> <c_stack>(+10% per stack)</c> <y>chance</c> on hit to <r>wither</c> an enemy. Each stack of <r>wither</c> deals <y>12% damage per 0.5 seconds</c>.",
             "destination" : "Destination",
             "date" : "Date",
             "story" : "Placeholder name and sprite",

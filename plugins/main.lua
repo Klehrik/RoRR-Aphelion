@@ -29,7 +29,7 @@ function __initialize()
     }
     
     Sounds = {
-        ration          = Resources.sfx_load(_ENV["!plugins_mod_folder_path"].."/plugins/ration.ogg")
+        ration              = Resources.sfx_load(_ENV["!plugins_mod_folder_path"].."/plugins/ration.ogg")
     }
 
     gm.translate_load_file(gm.variable_global_get("_language_map"), _ENV["!plugins_mod_folder_path"].."/plugins/language/english.json")
@@ -57,7 +57,7 @@ function __initialize()
     Item.set_loot_tags(item, Item.LOOT_TAG.category_healing)
 
     Item.add_callback(item, "onInteract", function(actor, interactable, stack)
-        gm.actor_heal_networked(actor, actor.maxhp * Helper.mixed_hyperbolic(stack, 0.035, 0.07), false)
+        Actor.heal(actor, actor.maxhp * Helper.mixed_hyperbolic(stack, 0.035, 0.07))
     end)
 
 
@@ -81,8 +81,8 @@ function __initialize()
     Item.add_callback(item, "onStep", function(actor, stack)
         -- Heal when at <= 25% health
         if actor.hp <= actor.maxhp * 0.25 then
-            gm.actor_heal_networked(actor, actor.maxhp * 0.5, false)
-            gm.audio_play_sound(Sounds.ration, 0, false)
+            Actor.heal(actor, actor.maxhp * 0.5)
+            gm.audio_play_sound(Sounds.ration, 0, false, 1.2)
 
             -- Remove stacks and give used stacks
             local item      = Item.find("aphelion-ration")
@@ -144,28 +144,20 @@ function __initialize()
 
     Buff.add_callback(buff, "onApply", function(actor, stack)
         if (not actor.aphelion_skull_timer) or stack == 1 then actor.aphelion_skull_timer = 0 end
-        actor.aphelion_skull_duration = math.ceil(240.0 / math.max(stack * 0.5, 1.0))
+        actor.aphelion_skull_duration = math.ceil(210.0 / math.max(stack * 0.333, 1.0))
     end)
 
     Buff.add_callback(buff, "onStep", function(actor, stack)
         actor.aphelion_skull_timer = actor.aphelion_skull_timer + 1
         
-        if gm.instance_exists(actor.aphelion_skull_attacker) and actor.aphelion_skull_timer % 60 == 0 then
-            local damager = Actor.fire_bullet(actor.aphelion_skull_attacker, actor.x, actor.y, 0, 1, 0.25 * stack)
-            damager.proc = false
-            damager.knockback_kind = 0
-            
-            -- Prevent crits
-            if damager.critical then
-                damager.critical = false
-                damager.damage = damager.damage / 2.0
-            end
+        if gm.instance_exists(actor.aphelion_skull_attacker) and actor.aphelion_skull_timer % 30 == 0 then
+            Actor.damage(actor, actor.aphelion_skull_attacker, actor.aphelion_skull_attacker.damage * 0.12 * stack, actor.x - 26, actor.y - 36, 8421504)
         end
 
         actor.aphelion_skull_duration = actor.aphelion_skull_duration - 1
         if actor.aphelion_skull_duration <= 0 then
             Buff.remove(actor, Buff.find("aphelion-skull"), 1)
-            actor.aphelion_skull_duration = math.ceil(240.0 / math.max((stack - 1) * 0.5, 1.0))
+            actor.aphelion_skull_duration = math.ceil(210.0 / math.max((stack - 1) * 0.333, 1.0))
         end
     end)
 
@@ -309,17 +301,29 @@ gui.add_imgui(function()
             end
             --gm.remove_buff(Player.get_client(), 36, 2)
 
+
+        elseif ImGui.Button("Damage inflict to player") then
+            local player = Player.get_client()
+            --local target = Player.get_client()
+            --gm.damage_inflict(target, 10.0, 0.0, nil, target.x, target.y - 36, 0.0, 1.0, 255255.0, true)
+
+            Actor.damage(player, nil, 10.0, player.x - 26, player.y - 36)
         
         elseif ImGui.Button("Fire bullet") then
             local player = Player.get_client()
             --local damager = Actor.fire_bullet(player, player.x, player.y, 1.0, 400.0, 180.0, gm.constants.sSparks1)
-            local damager = Actor.fire_bullet(player, player.x, player.y, 180.0, 400.0, 1.0, true)
+            local damager = Actor.fire_bullet(player, player.x, player.y, 180.0, 400.0, 1.0)
             --local damager = player:fire_bullet(0, player.x, player.y, true, 1.0, 400.0, -1, 180.0, 1.0, 1.0, -1.0)
+            --damager.target_true = player
+
+            -- log.info((0.5 and 1) or 0)
+            -- log.info(("yes" and 1) or 0)
+            -- log.info((nil and 1) or 0)
 
             --damager.knockback_kind = 4
 
             --damager.hit_number = 20
-            --damager.attack_flags = 1 << 1
+            --damager.attack_flags = 1 << 5
 
             -- attack_flags
             -- 1 << 0 : ?
@@ -361,6 +365,32 @@ gui.add_imgui(function()
 
             --log.info(gm.sprite_get_name(1632.0))
             --log.info(damager.damage)
+        
+
+        elseif ImGui.Button("Heal 10 HP") then
+            local player = Instance.find(gm.constants.oP)
+            if player then
+                Actor.heal(player, 10.0)
+            end
+
+            -- local hud = Instance.find(gm.constants.oHUD)
+            -- if gm.is_struct(hud.player_hud_display_info[1].value) then
+            --     local names = gm.struct_get_names(hud.player_hud_display_info[1].value)
+            --     for j, name in ipairs(names) do
+            --         log.info("    "..name.." = "..tostring(gm.variable_struct_get(hud.player_hud_display_info[1].value, name)))
+            --     end
+            -- end
+
+            -- for k, v in ipairs(hud.player_hud_display_info) do
+            --     log.info(v)
+            --     if gm.is_struct(v) then
+            --         local names = gm.struct_get_names(v)
+            --         for j, name in ipairs(names) do
+            --             log.info("    "..name.." = "..tostring(gm.variable_struct_get(v, name)))
+            --         end
+            --     end
+            -- end
+
 
         end
     end
@@ -368,10 +398,68 @@ gui.add_imgui(function()
 end)
 
 
+-- local damage_real = 0.0
 
-gm.pre_script_hook(gm.constants.fire_bullet, function(self, other, result, args)
-    Helper.log_hook(self, other, result, args)
-end)
+-- local go = false
+
+-- gm.post_script_hook(gm.constants.actor_heal_networked, function(self, other, result, args)
+--     --Helper.log_hook(self, other, result, args)
+
+--     go = false
+
+--     local hud = Instance.find(gm.constants.oHUD)
+--     for k, v in ipairs(hud.player_hud_display_info) do
+--         log.info(v)
+--         if gm.is_struct(v) then
+--             local names = gm.struct_get_names(v)
+--             for j, name in ipairs(names) do
+--                 log.info("    "..name.." = "..tostring(gm.variable_struct_get(v, name)))
+--             end
+--         end
+--     end
+-- end)
+
+-- gm.pre_script_hook(gm.constants.__input_system_tick, function(self, other, result, args)
+--     if go then
+--         go = false
+
+--         local hud = Instance.find(gm.constants.oHUD)
+--         for k, v in ipairs(hud.player_hud_display_info) do
+--             log.info(v)
+--             if gm.is_struct(v) then
+--                 local names = gm.struct_get_names(v)
+--                 for j, name in ipairs(names) do
+--                     log.info("    "..name.." = "..tostring(gm.variable_struct_get(v, name)))
+--                 end
+--             end
+--         end
+--     end
+-- end)
+
+-- gm.pre_script_hook(gm.constants.damager_calculate_damage, function(self, other, result, args)
+--     -- log.info("")
+--     -- log.info("FIRST")
+--     -- -- log.info("BULLET")
+--     -- Helper.log_hook(self, other, result, args)
+
+--     -- log.info(self)
+
+--     damage_real = args[4].value
+
+--     -- if self.target then log.info(gm.object_get_name(self.target.object_index)) end
+--     -- if self.target_true then log.info("true") log.info(gm.object_get_name(self.target_true.object_index)) end
+
+--     --damage_real = result.value.damage_true
+
+--     --result.value.damage_fake = result.value.damage_true
+
+--     --result.damage_fake = result.damage_true
+-- end)
+
+-- gm.post_script_hook(gm.constants.fire_explosion, function(self, other, result, args)
+--     log.info("EXPLOSION")
+--     Helper.log_hook(self, other, result, args)
+-- end)
 
 -- gm.pre_script_hook(gm.constants.run_create, function()
 --     frame = 0
