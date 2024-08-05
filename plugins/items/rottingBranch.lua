@@ -24,7 +24,7 @@ local buff = Buff.create("aphelion", "rottingBranch")
 Buff.set_property(buff, Buff.PROPERTY.icon_sprite, sprite)
 Buff.set_property(buff, Buff.PROPERTY.icon_stack_subimage, false)
 Buff.set_property(buff, Buff.PROPERTY.draw_stack_number, true)
-Buff.set_property(buff, Buff.PROPERTY.max_stack, 100)
+Buff.set_property(buff, Buff.PROPERTY.max_stack, 999)
 Buff.set_property(buff, Buff.PROPERTY.is_timed, false)
 Buff.set_property(buff, Buff.PROPERTY.is_debuff, true)
 

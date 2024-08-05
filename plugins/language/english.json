@@ -62,7 +62,7 @@
         "crimsonScarf" : {
             "name" : "Crimson Scarf",
             "pickup" : "Critical strike chance is temporarily increased on kill.",
-            "description" : "Killing an enemy increases <y>critical chance</c> by <y>6%</c> for <b>5</c> <c_stack>(+1 per stack)</c> <b>seconds</c>, to a maximum of <y>25 stacks</c>.",
+            "description" : "Killing an enemy increases <y>critical chance</c> by <y>6%</c> for <b>5</c> <c_stack>(+1 per stack)</c> <b>seconds</c>.",
             "destination" : "destination",
             "date" : "02/27/2056",
             "story" : "lore",
