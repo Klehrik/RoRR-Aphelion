@@ -12,7 +12,7 @@
         "heartLocket" : {
             "name" : "Heart Locket",
             "pickup" : "Activating an interactable heals you.",
-            "description" : "Activating an interactable <g>heals you</c> for <g>8%</c> <c_stack>(+3.5% per stack, hyperbolic)</c> <g>health</c>.",
+            "description" : "Activating an interactable <g>heals you</c> for <g>9%</c> <c_stack>(+4.5% per stack, hyperbolic)</c> <g>health</c>.",
             "destination" : "My friend",
             "date" : "7/30/2056",
             "story" : "A present, from me to you. A symbol of our friendship! Now you'll always think of me, no matter where you run off to. And maybe one day, you'll decide to come back.",
