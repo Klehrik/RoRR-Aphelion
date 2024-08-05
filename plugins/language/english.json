@@ -63,17 +63,17 @@
             "name" : "Crimson Scarf",
             "pickup" : "Critical strike chance is temporarily increased on kill.",
             "description" : "Killing an enemy increases <y>critical chance</c> by <y>6%</c> for <b>5 <c_stack>(+1 per stack) <b>seconds</c>.",
-            "destination" : "destination",
+            "destination" : "Backalley Place,\nUnit 4-72,\nVenus",
             "date" : "02/27/2056",
-            "story" : "lore",
+            "story" : "Boss. Told you that this was the last job. Decided to grab a souvenir when the job was done. Ambushed on the way out. Did what had to be done. Casualties were unavoidable. Noticed my souvenir got sullied with blood. Started feeling... alive. Turns out one of the attacking party was still alive. Gave chase. It was.. easier? Sending in my \"souvenir\" for analysis. If you send it back, I'll do more jobs. This time, happily.",
             "priority" : "<g>Priority</c>"
         },
         "obeliskShard" : {
             "name" : "Obelisk Shard",
             "pickup" : "Standing still accelerates your equipment cooldown.",
             "description" : "Standing still for <y>2</c> seconds makes your <b>equipment cooldown</c> go down <b>40% <c_stack>(+30% per stack) <b>faster</c>.",
-            "destination" : "destination",
-            "date" : "3/16/2056",
+            "destination" : "CI Investigations\n224 Grove Way,\nEarth",
+            "date" : "3/19/2056",
             "story" : "You have no idea the lengths I had to go to so I could get my hands on one of these. The temple members are crazy enough to outsiders - I have no idea how you talked me into becoming an acolyte. The worst part is I had to walk around in that horrid garb in PUBLIC PLACES. What if SHE saw me? \n\nAnyways, after many trials and tribulations, here's one of those crystals they use. Try not to chant in [REDACTED] with it around; it starts glowing and making this god awful buzzing noise.",
             "priority" : "<g>Priority</c>"
         },
