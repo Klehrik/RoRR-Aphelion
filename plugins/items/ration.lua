@@ -1,7 +1,7 @@
 -- Ration
 
-local sprite = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/assets/sprites/ration.png", 1, false, false, 16, 16)
-local sound = Resources.sfx_load(_ENV["!plugins_mod_folder_path"].."/plugins/assets/sounds/ration.ogg")
+local sprite = Resources.sprite_load(PATH.."/assets/sprites/ration.png", 1, false, false, 16, 16)
+local sound = Resources.sfx_load(PATH.."/assets/sounds/ration.ogg")
 
 local item = Item.create("aphelion", "ration")
 Item.set_sprite(item, sprite)

@@ -1,6 +1,6 @@
 -- Heart Locket
 
-local sprite = Resources.sprite_load(_ENV["!plugins_mod_folder_path"].."/plugins/assets/sprites/heartLocket.png", 1, false, false, 16, 16)
+local sprite = Resources.sprite_load(PATH.."/assets/sprites/heartLocket.png", 1, false, false, 16, 16)
 
 local item = Item.create("aphelion", "heartLocket")
 Item.set_sprite(item, sprite)

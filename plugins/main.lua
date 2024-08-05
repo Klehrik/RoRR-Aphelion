@@ -4,15 +4,18 @@
 log.info("Successfully loaded ".._ENV["!guid"]..".")
 mods.on_all_mods_loaded(function() for _, m in pairs(mods) do if type(m) == "table" and m.RoRR_Modding_Toolkit then Actor = m.Actor Buff = m.Buff Callback = m.Callback Helper = m.Helper Instance = m.Instance Item = m.Item Net = m.Net Player = m.Player Resources = m.Resources Survivor = m.Survivor break end end end)
 
+PATH = _ENV["!plugins_mod_folder_path"].."/plugins"
+-- Remove "/plugins" from PATH when uploading to Thunderstore
+
 
 
 -- ========== Main ==========
 
 function __initialize()
-    gm.translate_load_file(gm.variable_global_get("_language_map"), _ENV["!plugins_mod_folder_path"].."/plugins/language/english.json")
+    gm.translate_load_file(gm.variable_global_get("_language_map"), PATH.."/language/english.json")
 
     -- Require all files in /plugins/items
-    local names = path.get_files(_ENV["!plugins_mod_folder_path"].."/plugins/items")
+    local names = path.get_files(PATH.."/items")
     for _, name in ipairs(names) do require(name) end
 end
 
@@ -158,9 +161,28 @@ gui.add_imgui(function()
             -- end
 
         elseif ImGui.Button("Heal 20 barrier") then
-            local player = Instance.find(gm.constants.oP)
+            local player = Player.get_client()
             if player then
                 Actor.heal_barrier(player, 20.0)
+            end
+
+
+        elseif ImGui.Button("Drop custom item") then
+            local player = Player.get_client()
+            if player then
+                --gm.item_drop_object(Item.get_data(Item.find("aphelion-ballisticVest")).object_id, player.x + 600, player.y, player, false)
+                Item.spawn_drop(Item.find("aphelion-ballisticVest"), player.x, player.y, player)
+            end
+
+
+        elseif ImGui.Button("Create custom object") then
+            local object = gm.object_add_w("test", "object", gm.constants.oCustomObject)
+            log.info(object)
+
+            local player = Player.get_client()
+            if player then
+                --local obj = gm.instance_create_depth(player.x, player.y, 0, gm.constants.oCustomObject_pInteractableCrate)
+                --local obj = gm.item_drop_object(object, player.x, player.y, player, false)
             end
 
 
@@ -173,6 +195,10 @@ end)
 -- local damage_real = 0.0
 
 -- local go = false
+
+gm.post_script_hook(gm.constants.item_drop_object, function(self, other, result, args)
+    Helper.log_hook(self, other, result, args)
+end)
 
 -- gm.post_script_hook(gm.constants.actor_heal_networked, function(self, other, result, args)
 --     --Helper.log_hook(self, other, result, args)
