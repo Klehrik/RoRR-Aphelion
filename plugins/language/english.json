@@ -12,7 +12,7 @@
         "heartLocket" : {
             "name" : "Heart Locket",
             "pickup" : "Activating an interactable heals you.",
-            "description" : "Activating an interactable <g>heals you</c> for <g>7%</c> <c_stack>(+3.5% per stack, hyperbolic)</c> <g>health</c>.",
+            "description" : "Activating an interactable <g>heals you</c> for <g>8%</c> <c_stack>(+3.5% per stack, hyperbolic)</c> <g>health</c>.",
             "destination" : "My friend",
             "date" : "7/30/2056",
             "story" : "A present, from me to you. A symbol of our friendship! Now you'll always think of me, no matter where you run off to. And maybe one day, you'll decide to come back.",
@@ -32,13 +32,13 @@
             "pickup" : "This item is recharging.",
             "description" : "This item is recharging."
         },
-        "skull" : {
-            "name" : "skull",
+        "rottingBranch" : {
+            "name" : "Rotting Branch",
             "pickup" : "Chance to wither enemies on hit.",
             "description" : "<y>15%</c> <c_stack>(+10% per stack)</c> <y>chance</c> on hit to <r>wither</c> an enemy. Each stack of <r>wither</c> deals <y>12% damage per 0.5 seconds</c>.",
-            "destination" : "Destination",
-            "date" : "Date",
-            "story" : "Placeholder name and sprite",
+            "destination" : "Saury Cosmo,\nBeacon Post,\nSpace",
+            "date" : "9/16/2056",
+            "story" : "Sample of a strange grouping of half-dead trees we found on Io. They were rotted quite badly, and when we checked it out again a few days later, the \"deadzone\" had gotten marginally bigger; we are making periodic observations now. \n\nI wouldn't recommend touching it bare -- seems to corrode organic matter in general, including skin.",
             "priority" : "Standard"
         },
         "sixShooter" : {
@@ -53,7 +53,7 @@
         "overloadedCapacitor" : {
             "name" : "Overloaded Capacitor",
             "pickup" : "Deal increased damage while you have barrier.",
-            "description" : "Leaving combat for <y>2</c> seconds grants <g>barrier</c> equal to <g>6% health</c>. While barrier is active, your attacks deal <y>+20%</c> <c_stack>(+10% per stack)</c> <y>damage</c>.",
+            "description" : "Leaving combat for <y>3</c> seconds grants <g>barrier</c> equal to <g>6% health</c>. While barrier is active, your attacks deal <y>+20%</c> <c_stack>(+15% per stack)</c> <y>damage</c>.",
             "destination" : "1803,\nCombat Zone,\nVenus",
             "date" : "01/03/2057",
             "story" : "I had to run to catch the train home from work last week; going to war with a century-old record player is not something a punctual man would do, but it was the first business the antique shop had in a while. \n\nThe train suddenly jolted forwards, and I ended up bumping into someone. He must've assumed that I wanted to fight, and so he took a swing at me. It felt like… a tap on the cheek. My confusion was quicky replaced with surprise once I swung a hook at him in return and sent him flying into the next car. \n\nI realized a tingling feeling in my pocket once the shock had partially subsided, and in it was an old capacitor I had removed from the player earlier that day. You could probably get a kick out of it, so take it for a spin! Keep note of anything interesting you observe, and when you're back, we can try to figure out what makes it tick. Like old times.",
