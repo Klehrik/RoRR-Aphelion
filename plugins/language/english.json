@@ -3,7 +3,7 @@
         "ballisticVest" : {
             "name" : "Ballistic Vest",
             "pickup" : "Reduce incoming damage by 5% and gain a small shield.",
-            "description" : "Increase <g>armor</c> by <g>5</c> <c_stack>(+5 per stack)</c> and <b>shield</c> by <b>10</c> <c_stack>(+10 per stack)</c>.",
+            "description" : "Increase <g>armor</c> by <g>5 <c_stack>(+5 per stack) and <b>shield</c> by <b>10 <c_stack>(+10 per stack)</c>.",
             "destination" : "1904,\nBaron County,\nMars",
             "date" : "9/03/2056",
             "story" : "Shipment of lightweight body armor, capable of absorbing up to 6 low caliber rounds. Anything larger would probably pierce right through them though.\n\nWe've tested it throughly this time before this batch was produced, so there shouldn't be another fatal incident.",
@@ -12,7 +12,7 @@
         "heartLocket" : {
             "name" : "Heart Locket",
             "pickup" : "Activating an interactable heals you.",
-            "description" : "Activating an interactable <g>heals you</c> for <g>9%</c> <c_stack>(+4.5% per stack, hyperbolic)</c> <g>health</c>.",
+            "description" : "Activating an interactable <g>heals you</c> for <g>9% <c_stack>(+4.5% per stack, hyperbolic) <g>health</c>.",
             "destination" : "My friend",
             "date" : "7/30/2056",
             "story" : "A present, from me to you. A symbol of our friendship! Now you'll always think of me, no matter where you run off to. And maybe one day, you'll decide to come back.",
@@ -21,7 +21,7 @@
         "ration" : {
             "name" : "Ration",
             "pickup" : "Receive a large heal when in peril. Recharges over time.",
-            "description" : "Falling below <r>25% health</c> heals you for <g>50% health</c>. Has a <b>120</c> <c_stack>(-20% per stack, hyperbolic)</c> <b>second</c> cooldown.",
+            "description" : "Falling below <r>25% health</c> heals you for <g>50% health</c>. Has a <b>120 <c_stack>(-20% per stack, hyperbolic) <b>second</c> cooldown.",
             "destination" : "Fort Shell,\nManhattan, NY,\nEarth",
             "date" : "4/30/2056",
             "story" : "12 boxes of MREs for your boys, as requested. \n\nBe warned, they don't taste too good - it's basically a large bland cookie, loaded up with all the nutrients you'll ever need.",
@@ -35,7 +35,7 @@
         "rottingBranch" : {
             "name" : "Rotting Branch",
             "pickup" : "Chance to wither enemies on hit.",
-            "description" : "<y>15%</c> <c_stack>(+10% per stack)</c> <y>chance</c> on hit to <r>wither</c> an enemy. Each stack of <r>wither</c> deals <y>12% damage per 0.5 seconds</c>.",
+            "description" : "<y>15% <c_stack>(+10% per stack) <y>chance</c> on hit to <r>wither</c> an enemy. Each stack of <r>wither</c> deals <y>12% damage per 0.5 seconds</c>.",
             "destination" : "Saury Cosmo,\nBeacon Post,\nSpace",
             "date" : "9/16/2056",
             "story" : "Sample of a strange grouping of half-dead trees we found on Io. They were rotted quite badly, and when we checked it out again a few days later, the \"deadzone\" had gotten marginally bigger; we are making periodic observations now. \n\nI wouldn't recommend touching it bare -- seems to corrode organic matter in general, including skin.",
@@ -53,7 +53,7 @@
         "overloadedCapacitor" : {
             "name" : "Overloaded Capacitor",
             "pickup" : "Deal increased damage while you have barrier.",
-            "description" : "Leaving combat for <y>2.5</c> seconds grants <g>barrier</c> equal to <g>6% health</c>. While barrier is active, your attacks deal <y>+20%</c> <c_stack>(+15% per stack)</c> <y>damage</c>.",
+            "description" : "Leaving combat for <y>2.5</c> seconds grants <g>barrier</c> equal to <g>6% health</c>. While barrier is active, your attacks deal <y>+20% <c_stack>(+15% per stack) <y>damage</c>.",
             "destination" : "1803,\nCombat Zone,\nVenus",
             "date" : "01/03/2057",
             "story" : "I had to run to catch the train home from work last week; going to war with a century-old record player is not something a punctual man would do, but it was the first business the antique shop had in a while. \n\nThe train suddenly jolted forwards, and I ended up bumping into someone. He must've assumed that I wanted to fight, and so he took a swing at me. It felt like… a tap on the cheek. My confusion was quicky replaced with surprise once I swung a hook at him in return and sent him flying into the next car. \n\nI realized a tingling feeling in my pocket once the shock had partially subsided, and in it was an old capacitor I had removed from the player earlier that day. You could probably get a kick out of it, so take it for a spin! Keep note of anything interesting you observe, and when you're back, we can try to figure out what makes it tick. Like old times.",
@@ -62,16 +62,25 @@
         "crimsonScarf" : {
             "name" : "Crimson Scarf",
             "pickup" : "Critical strike chance is temporarily increased on kill.",
-            "description" : "Killing an enemy increases <y>critical chance</c> by <y>6%</c> for <b>5</c> <c_stack>(+1 per stack)</c> <b>seconds</c>.",
+            "description" : "Killing an enemy increases <y>critical chance</c> by <y>6%</c> for <b>5 <c_stack>(+1 per stack) <b>seconds</c>.",
             "destination" : "destination",
             "date" : "02/27/2056",
             "story" : "lore",
             "priority" : "<g>Priority</c>"
         },
+        "obeliskShard" : {
+            "name" : "Obelisk Shard",
+            "pickup" : "Standing still accelerates your equipment cooldown.",
+            "description" : "Standing still for <y>2</c> seconds makes your <b>equipment cooldown</c> go down <b>40% <c_stack>(+30% per stack) <b>faster</c>.",
+            "destination" : "destination",
+            "date" : "3/16/2056",
+            "story" : "You have no idea the lengths I had to go to so I could get my hands on one of these. The temple members are crazy enough to outsiders - I have no idea how you talked me into becoming an acolyte. The worst part is I had to walk around in that horrid garb in PUBLIC PLACES. What if SHE saw me? \n\nAnyways, after many trials and tribulations, here's one of those crystals they use. Try not to chant in [REDACTED] with it around; it starts glowing and making this god awful buzzing noise.",
+            "priority" : "<g>Priority</c>"
+        },
         "stiletto" : {
             "name" : "Stiletto",
             "pickup" : "Convert extra critical chance into critical damage.",
-            "description" : "Gain <y>5%</c> <c_stack>(+10% per stack)</c> <y>critical chance</c>. Every <r>1% extra critical chance above 100%</c> is converted into <y>1%</c> <c_stack>(+0.5% per stack)</c> <y>critical damage</c>.",
+            "description" : "Gain <y>5% <c_stack>(+10% per stack) <y>critical chance</c>. Every <r>1% extra critical chance above 100%</c> is converted into <y>1% <c_stack>(+0.5% per stack) <y>critical damage</c>.",
             "destination" : "Violet Heights,\nElderly Home,\nVenus",
             "date" : "01/04/2057",
             "story" : "I might know why you want this, and if I am correct, I pray you ordered the wrong kind.",
