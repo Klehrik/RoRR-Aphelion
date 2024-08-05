@@ -9,7 +9,7 @@ Item.set_loot_tags(item, Item.LOOT_TAG.category_damage)
 
 Item.add_callback(item, "onHit", function(attacker, victim, damager, stack)
     if Helper.chance(0.15 + (0.1 * (stack - 1))) then
-        Buff.apply(victim, Buff.find("aphelion-rottingBranch"), 180)
+        Buff.apply(victim, Buff.find("aphelion-rottingBranch"), 1)
         victim.aphelion_rottingBranch_attacker = attacker
     end
 end)

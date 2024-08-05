@@ -51,24 +51,33 @@ gui.add_imgui(function()
 
         
         elseif ImGui.Button("Log") then
-            -- local prop = Buff.get_property(38, Buff.PROPERTY.stack_number_col)
-            -- log.info(prop)
-            -- for _, a in ipairs(prop) do
-            --     log.info(a)
-            -- end
+            local prop = Buff.get_property(Buff.find("ror-handDroneSpeed"), Buff.PROPERTY.stack_number_col)
+            log.info(prop)
+            for _, a in ipairs(prop) do
+                log.info(a)
+            end
+
+            log.info("")
+
+            local prop = Buff.get_property(Buff.find("aphelion-crimsonScarf"), Buff.PROPERTY.stack_number_col)
+            log.info(prop)
+            for _, a in ipairs(prop) do
+                log.info(a)
+            end
+
             --gm.remove_buff(Player.get_client(), 36, 2)
 
-            local item_log_order = gm.variable_global_get("item_log_display_list")
-            -- for i = 0, gm.ds_list_size(item_log_order) - 1 do
-            --     log.info(gm.ds_list_find_value(item_log_order, i))
-            -- end
-            -- log.info(gm.ds_list_find_index(item_log_order, 35))
+            -- local item_log_order = gm.variable_global_get("item_log_display_list")
+            -- -- for i = 0, gm.ds_list_size(item_log_order) - 1 do
+            -- --     log.info(gm.ds_list_find_value(item_log_order, i))
+            -- -- end
+            -- -- log.info(gm.ds_list_find_index(item_log_order, 35))
             
-            local num = Item.find("aphelion-overloadedCapacitor")
-            log.info(num)
-            log.info(gm.ds_list_find_index(item_log_order, num))
+            -- local num = Item.find("aphelion-overloadedCapacitor")
+            -- log.info(num)
+            -- log.info(gm.ds_list_find_index(item_log_order, num))
 
-            gm.ds_list_insert(item_log_order, 0, 100)
+            -- gm.ds_list_insert(item_log_order, 0, 100)
 
 
         elseif ImGui.Button("Damage inflict to player") then

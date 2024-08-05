@@ -59,6 +59,15 @@
             "story" : "I had to run to catch the train home from work last week; going to war with a century-old record player is not something a punctual man would do, but it was the first business the antique shop had in a while. \n\nThe train suddenly jolted forwards, and I ended up bumping into someone. He must've assumed that I wanted to fight, and so he took a swing at me. It felt like… a tap on the cheek. My confusion was quicky replaced with surprise once I swung a hook at him in return and sent him flying into the next car. \n\nI realized a tingling feeling in my pocket once the shock had partially subsided, and in it was an old capacitor I had removed from the player earlier that day. You could probably get a kick out of it, so take it for a spin! Keep note of anything interesting you observe, and when you're back, we can try to figure out what makes it tick. Like old times.",
             "priority" : "<g>Priority</c>"
         },
+        "crimsonScarf" : {
+            "name" : "Crimson Scarf",
+            "pickup" : "Critical strike chance is temporarily increased on kill.",
+            "description" : "Killing an enemy increases <y>critical chance</c> by <y>6%</c> for <b>5</c> <c_stack>(+1 per stack)</c> <b>seconds</c>, to a maximum of <y>25 stacks.</c>",
+            "destination" : "destination",
+            "date" : "02/27/2056",
+            "story" : "lore",
+            "priority" : "<g>Priority</c>"
+        },
         "stiletto" : {
             "name" : "Stiletto",
             "pickup" : "Convert extra critical chance into critical damage.",
