@@ -24,7 +24,7 @@ Item.add_callback(item, "onStep", function(actor, stack)
     -- Heal when at <= 25% health
     if actor.hp <= actor.maxhp * 0.25 then
         Actor.heal(actor, actor.maxhp * 0.5)
-        gm.audio_play_sound(sound, 0, false)
+        gm.sound_play_at(sound, 1.0, 1.0, actor.x, actor.y, 1.0)
 
         -- Remove stacks and give used stacks
         local item      = Item.find("aphelion-ration")
