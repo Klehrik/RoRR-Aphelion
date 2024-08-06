@@ -59,12 +59,21 @@ end)
 Item.add_callback(item, "onStep", function(actor, stack)
     if actor.aphelion_explosiveSpear_cooldown > 0 then
         actor.aphelion_explosiveSpear_cooldown = actor.aphelion_explosiveSpear_cooldown - 1
+    else
+        Buff.apply(actor, Buff.find("aphelion-explosiveSpearDisplay"), 2)
     end
 end)
 
 
 
--- Buff
+-- Buffs
+
+local sprite = Resources.sprite_load(PATH.."assets/sprites/buffExplosiveSpear.png", 1, false, false, 6, 7)
+
+local buff = Buff.create("aphelion", "explosiveSpearDisplay")
+Buff.set_property(buff, Buff.PROPERTY.icon_sprite, sprite)
+
+
 
 local buff = Buff.create("aphelion", "explosiveSpear")
 Buff.set_property(buff, Buff.PROPERTY.max_stack, 999)
@@ -98,7 +107,8 @@ Buff.add_callback(buff, "onStep", function(actor, stack)
     -- Remove and explode oldest stack if expired
     local array = gm.ds_list_find_value(actor.aphelion_explosiveSpear_timers, 0)
     if array[1] <= 0 then
-        local explosion = Actor.fire_explosion(array[2], actor.x, actor.y, 90, 90, array[3] * (1 + (array[4] * 2)), 2.0)
+        local raw_damage = array[3] * (1 + (array[4] * 2))
+        local explosion = Actor.fire_explosion(array[2], actor.x, actor.y, 90, 90, raw_damage / array[2].damage, 2.0)
         explosion.proc = false
         explosion.damage_color = 5046527
 
