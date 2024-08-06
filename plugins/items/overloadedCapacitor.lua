@@ -28,7 +28,7 @@ end)
 
 -- Buff
 
-local sprite = Resources.sprite_load(PATH.."assets/sprites/overloadedCapacitor.png", 1, false, false, 16, 16)
+local sprite = Resources.sprite_load(PATH.."assets/sprites/buffOverloadedCapacitor.png", 1, false, false, 7, 7)
 
 local buff = Buff.create("aphelion", "overloadedCapacitor")
 Buff.set_property(buff, Buff.PROPERTY.icon_sprite, sprite)
