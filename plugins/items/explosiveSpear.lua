@@ -15,7 +15,7 @@ Item.add_callback(item, "onHit", function(actor, victim, damager, stack)
     if not damager.aphelion_explosiveSpear then
         if actor.aphelion_explosiveSpear_cooldown > 0 then return end
 
-        actor.aphelion_explosiveSpear_cooldown = 2 *60  -- TODO: set to 10 later
+        actor.aphelion_explosiveSpear_cooldown = 10 *60
         actor.aphelion_explosiveSpear_thrown = true
 
         local dir = actor.image_xscale
