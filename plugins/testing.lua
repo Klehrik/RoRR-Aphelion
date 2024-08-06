@@ -93,9 +93,14 @@ gui.add_imgui(function()
         elseif ImGui.Button("Fire bullet") then
             local player = Player.get_client()
             --local damager = Actor.fire_bullet(player, player.x, player.y, 1.0, 400.0, 180.0, gm.constants.sSparks1)
-            local damager = Actor.fire_bullet(player, player.x, player.y, 180.0, 400.0, 1.0)
+            --local damager = Actor.fire_bullet(player, player.x, player.y, 180.0, 400.0, 1.0)
             --local damager = player:fire_bullet(0, player.x, player.y, true, 1.0, 400.0, -1, 180.0, 1.0, 1.0, -1.0)
             --damager.target_true = player
+
+            local damager = player:fire_explosion(0, player.x, player.y, 1.0, -1, 2, -1, 2.5, 23)
+            damager.stun = 2.0
+            -- increments of 32(?) radius x and 8(?) radius y
+            -- tile width/height then
 
             -- log.info((0.5 and 1) or 0)
             -- log.info(("yes" and 1) or 0)
@@ -202,6 +207,30 @@ gui.add_imgui(function()
     end
     ImGui.End()
 end)
+
+
+-- gm.pre_script_hook(gm.constants.fire_explosion, function(self, other, result, args)
+--     Helper.log_hook(self, other, result, args)
+-- end)
+
+-- gm.post_script_hook(gm.constants.instance_create, function(self, other, result, args)
+--     Helper.log_hook(self, other, result, args)
+-- end)
+
+-- gm.pre_script_hook(gm.constants.damage_inflict_raw, function(self, other, result, args)
+--     -- Helper.log_hook(self, other, result, args)
+
+--     local vars = gm.variable_instance_get_names(self)
+--     for _, n in ipairs(vars) do
+--         log.info(n.." = "..tostring(gm.variable_instance_get(self, n)))
+--     end
+--     log.info("")
+-- end)
+
+-- gm.pre_script_hook(gm.constants.damager_hit_process, function(self, other, result, args)
+--     Helper.log_hook(self, other, result, args)
+-- end)
+
 
 
 -- local damage_real = 0.0
