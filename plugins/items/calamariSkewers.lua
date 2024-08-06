@@ -33,7 +33,7 @@ local buff = Buff.create("aphelion", "calamariSkewers")
 Buff.set_property(buff, Buff.PROPERTY.icon_sprite, sprite)
 Buff.set_property(buff, Buff.PROPERTY.icon_stack_subimage, false)
 Buff.set_property(buff, Buff.PROPERTY.draw_stack_number, true)
-Buff.set_property(buff, Buff.PROPERTY.max_stack, 5)
+Buff.set_property(buff, Buff.PROPERTY.max_stack, 4)
 Buff.set_property(buff, Buff.PROPERTY.is_timed, false)
 
 Buff.add_callback(buff, "onApply", function(actor, stack)
@@ -55,9 +55,9 @@ Buff.add_callback(buff, "onStep", function(actor, stack)
     end
 
     -- Check if 5 kills within 1 second has been achieved
-    if gm.ds_list_size(actor.aphelion_calamariSkewers_timers) >= 5 then
+    if gm.ds_list_size(actor.aphelion_calamariSkewers_timers) >= 4 then
         local item_stack = Item.get_stack_count(actor, Item.find("aphelion-calamariSkewers"))
-        Actor.heal(actor, 10 + (item_stack * 20) + ((actor.maxhp - actor.hp) * 0.1))
+        Actor.heal(actor, (item_stack * 20) + ((actor.maxhp - actor.hp) * 0.1))
         actor.aphelion_calamariSkewers_cooldown = 3 *60
 
         gm.ds_list_destroy(actor.aphelion_calamariSkewers_timers)
