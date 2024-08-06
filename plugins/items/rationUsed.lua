@@ -6,7 +6,7 @@ local item = Item.create("aphelion", "rationUsed", true)
 Item.set_sprite(item, sprite)
 
 Item.add_callback(item, "onPickup", function(actor, stack)
-    actor.aphelion_ration_cooldown = 120 * 60 * (1 - Helper.mixed_hyperbolic(stack, 0.2, 0))
+    actor.aphelion_ration_cooldown = 180 * 60 * (1 - Helper.mixed_hyperbolic(stack, 0.2, 0))
 end)
 
 Item.add_callback(item, "onStep", function(actor, stack)

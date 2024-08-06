@@ -21,7 +21,7 @@
         "ration" : {
             "name" : "Ration",
             "pickup" : "Receive a large heal when in peril. Recharges over time.",
-            "description" : "Falling below <r>25% health</c> heals you for <g>50% health</c>. Has a <b>120 <c_stack>(-20% per stack, hyperbolic) <b>second</c> cooldown.",
+            "description" : "Falling below <r>25% health</c> heals you for <g>50% health</c>. Has a <b>180 <c_stack>(-20% per stack, hyperbolic) <b>second</c> cooldown.",
             "destination" : "Fort Shell,\nManhattan, NY,\nEarth",
             "date" : "4/30/2056",
             "story" : "12 boxes of MREs for your boys, as requested. \n\nBe warned, they don't taste too good - it's basically a large bland cookie, loaded up with all the nutrients you'll ever need.",
@@ -41,6 +41,16 @@
             "story" : "Sample of a strange grouping of half-dead trees we found on Io. They were rotted quite badly, and when we checked it out again a few days later, the \"deadzone\" had gotten marginally bigger; we are making periodic observations now. \n\nI wouldn't recommend touching it bare -- seems to corrode organic matter in general, including skin.",
             "priority" : "Standard"
         },
+        "calamariSkewers" : {
+            "name" : "Calamari Skewers",
+            "pickup" : "Receive a large heal after rapidly killing multiple enemies.",
+            "description" : "Killing <y>5</c> enemies within <y>1 second</c> heals you for <g>30 <c_stack>(+20 per stack) <g>health + <g>10% missing health</c>. Has a <b>3 second</c> cooldown.",
+            "destination" : "",
+            "date" : "",
+            "story" : "",
+            "priority" : "Standard"
+        },
+
         "sixShooter" : {
             "name" : "Six Shooter",
             "pickup" : "Every 6 basic attacks critically strike.",
@@ -77,6 +87,7 @@
             "story" : "You have no idea the lengths I had to go to so I could get my hands on one of these. The temple members are crazy enough to outsiders - I have no idea how you talked me into becoming an acolyte. The worst part is I had to walk around in that horrid garb in PUBLIC PLACES. What if SHE saw me? \n\nAnyways, after many trials and tribulations, here's one of those crystals they use. Try not to chant in [REDACTED] with it around; it starts glowing and making this god awful buzzing noise.",
             "priority" : "<g>Priority</c>"
         },
+
         "stiletto" : {
             "name" : "Stiletto",
             "pickup" : "Convert extra critical chance into critical damage.",

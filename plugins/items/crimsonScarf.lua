@@ -32,12 +32,13 @@ Buff.add_callback(buff, "onApply", function(actor, stack)
 end)
 
 Buff.add_callback(buff, "onStep", function(actor, stack)
+    -- Decrease stack timers
     for i = 0, gm.ds_list_size(actor.aphelion_crimsonScarf_timers) - 1 do
         local new_time = gm.ds_list_find_value(actor.aphelion_crimsonScarf_timers, i) - 1
         gm.ds_list_set(actor.aphelion_crimsonScarf_timers, i, new_time)
     end
 
-    -- Check if oldest stack has expired
+    -- Remove oldest stack if expired
     if gm.ds_list_find_value(actor.aphelion_crimsonScarf_timers, 0) <= 0 then
         gm.ds_list_delete(actor.aphelion_crimsonScarf_timers, 0)
         actor.critical_chance = actor.critical_chance - 6.0
