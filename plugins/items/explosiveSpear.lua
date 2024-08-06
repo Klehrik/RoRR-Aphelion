@@ -112,7 +112,7 @@ Buff.add_callback(buff, "onStep", function(actor, stack)
     local array = gm.ds_list_find_value(actor.aphelion_explosiveSpear_timers, 0)
     if array[1] <= 0 then
         local raw_damage = array[3] * (1.5 + (array[4] * 1.5))
-        local explosion = Actor.fire_explosion(array[2], actor.x, actor.y, 90, 90, raw_damage / array[2].damage, 2.0)
+        local explosion = Actor.fire_explosion(array[2], actor.x, actor.y, 100, 100, raw_damage / array[2].damage, 2.0)
         explosion.proc = false
         explosion.damage_color = 5046527
         gm.audio_play_sound(sound, 0, false)
