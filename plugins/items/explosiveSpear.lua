@@ -1,6 +1,7 @@
 -- Explosive Spear
 
 local sprite = Resources.sprite_load(PATH.."assets/sprites/explosiveSpear.png", 1, false, false, 16, 16)
+local sound = Resources.sfx_load(PATH.."assets/sounds/explosiveSpearThrow.ogg")
 
 local item = Item.create("aphelion", "explosiveSpear")
 Item.set_sprite(item, sprite)
@@ -28,6 +29,7 @@ Item.add_callback(item, "onHit", function(actor, victim, damager, stack)
         inst.vspeed = -2.0
         inst.gravity = 0.2
         inst.direction = 90.0 - (dir * 90.0)
+        gm.audio_play_sound(sound, 0, false)
 
         -- Calculate original damage coeff
         inst.damage_coeff = damager.damage / actor.damage
@@ -75,6 +77,8 @@ Buff.set_property(buff, Buff.PROPERTY.icon_sprite, sprite)
 
 
 
+local sound = Resources.sfx_load(PATH.."assets/sounds/explosiveSpearExplode.ogg")
+
 local buff = Buff.create("aphelion", "explosiveSpear")
 Buff.set_property(buff, Buff.PROPERTY.max_stack, 999)
 Buff.set_property(buff, Buff.PROPERTY.is_timed, false)
@@ -111,6 +115,7 @@ Buff.add_callback(buff, "onStep", function(actor, stack)
         local explosion = Actor.fire_explosion(array[2], actor.x, actor.y, 90, 90, raw_damage / array[2].damage, 2.0)
         explosion.proc = false
         explosion.damage_color = 5046527
+        gm.audio_play_sound(sound, 0, false)
 
         gm.ds_list_delete(actor.aphelion_explosiveSpear_timers, 0)
         Buff.remove(actor, Buff.find("aphelion-explosiveSpear"), 1)
