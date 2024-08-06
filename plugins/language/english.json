@@ -90,7 +90,7 @@
         "explosiveSpear" : {
             "name" : "Explosive Spear",
             "pickup" : "Throw out an explosive spear on hit. Recharges over time.",
-            "description" : "Throw an <r>explosive spear</c> on hit, <y>stunning</c> an enemy and <y>exploding</c> for <y>300% <c_stack>(+200% per stack) <y>TOTAL damage</c> after a short delay. Has a <b>10 second</c> cooldown.",
+            "description" : "Throw an <r>explosive spear</c> on hit, <y>stunning</c> an enemy and <y>exploding</c> for <y>300% <c_stack>(+150% per stack) <y>TOTAL damage</c> after a short delay. Has a <b>10 second</c> cooldown.",
             "destination" : "",
             "date" : "3/28/2056",
             "story" : "",
