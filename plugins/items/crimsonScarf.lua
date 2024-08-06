@@ -40,6 +40,7 @@ Buff.add_callback(buff, "onStep", function(actor, stack)
     -- Check if oldest stack has expired
     if gm.ds_list_find_value(actor.aphelion_crimsonScarf_timers, 0) <= 0 then
         gm.ds_list_delete(actor.aphelion_crimsonScarf_timers, 0)
+        actor.critical_chance = actor.critical_chance - 6.0
         actor.critical_chance_base = actor.critical_chance_base - 6.0
         Buff.remove(actor, Buff.find("aphelion-crimsonScarf"), 1)
     end
