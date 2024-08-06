@@ -33,7 +33,7 @@ end)
 
 -- Buff
 
-local sprite = Resources.sprite_load(PATH.."assets/sprites/buffObeliskShard.png", 1, false, false, 7, 7)
+local sprite = Resources.sprite_load(PATH.."assets/sprites/buffObeliskShard.png", 1, false, false, 7, 8)
 
 local buff = Buff.create("aphelion", "obeliskShard")
 Buff.set_property(buff, Buff.PROPERTY.icon_sprite, sprite)
