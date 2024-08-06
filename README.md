@@ -1,4 +1,4 @@
-Content mod that currently adds 10 new items.  
+Content mod that currently adds 11 new items.  
 
 ![Hidden showcase](https://github.com/Klehrik/Klehrik-Aphelion/blob/main/hiddenShowcase.png?raw=true)
 
@@ -12,4 +12,7 @@ Join the [Return of Modding server](https://discord.gg/VjS57cszMq) for support.
 
 
 ### Credits
-* 
+* Adam - Log entries
+* Ikesicle - Ideas, Art
+* Klehrik - Programming, Ideas, Art, Log entries
+* Pranav - Log entries
