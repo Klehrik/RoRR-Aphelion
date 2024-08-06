@@ -87,6 +87,15 @@
             "story" : "You have no idea the lengths I had to go to so I could get my hands on one of these. The temple members are crazy enough to outsiders - I have no idea how you talked me into becoming an acolyte. The worst part is I had to walk around in that horrid garb in PUBLIC PLACES. What if SHE saw me? \n\nAnyways, after many trials and tribulations, here's one of those crystals they use. Try not to chant in [REDACTED] with it around; it starts glowing and making this god awful buzzing noise.",
             "priority" : "<g>Priority</c>"
         },
+        "explosiveSpear" : {
+            "name" : "Explosive Spear",
+            "pickup" : "Throw out an explosive spear on hit. Recharges over time.",
+            "description" : "Throw an <r>explosive spear</c> on hit, <y>stunning</c> an enemy and <y>exploding</c> for <y>300% <c_stack>(+200% per stack) <y>TOTAL damage</c> after a short delay. Has a <b>10 second</c> cooldown.",
+            "destination" : "",
+            "date" : "3/28/2056",
+            "story" : "",
+            "priority" : "<g>Priority</c>"
+        },
 
         "stiletto" : {
             "name" : "Stiletto",
