@@ -36,6 +36,7 @@ Item.add_callback(item, "onHit", function(actor, victim, damager, stack)
 
         -- Encode the fact that the damage source is this item in the damage value itself (+1,000,000,000)
         -- I can't think of another way to pass info, as the actual damager is NOT oHuntressBolt1
+        -- NOTE (to fix): Bug where it occasionally deals this full value damage and I don't know why or how
         local encoding = 1000000000.0 / actor.damage
         inst.damage_coeff = inst.damage_coeff + encoding
 
