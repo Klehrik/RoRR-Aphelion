@@ -27,7 +27,7 @@ end)
 
 -- Buff
 
-local sprite = Resources.sprite_load(PATH.."assets/sprites/calamariSkewers.png", 1, false, false, 7, 9)
+local sprite = Resources.sprite_load(PATH.."assets/sprites/buffCalamariSkewers.png", 1, false, false, 6, 8)
 
 local buff = Buff.create("aphelion", "calamariSkewers")
 Buff.set_property(buff, Buff.PROPERTY.icon_sprite, sprite)
