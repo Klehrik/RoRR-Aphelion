@@ -1,6 +1,6 @@
 -- Crimson Scarf
 
-local sprite = Resources.sprite_load(PATH.."/assets/sprites/crimsonScarf.png", 1, false, false, 16, 16)
+local sprite = Resources.sprite_load(PATH.."assets/sprites/crimsonScarf.png", 1, false, false, 16, 16)
 
 local item = Item.create("aphelion", "crimsonScarf")
 Item.set_sprite(item, sprite)
@@ -15,7 +15,7 @@ end)
 
 -- Buff
 
-local sprite = Resources.sprite_load(PATH.."/assets/sprites/buffCrimsonScarf.png", 1, false, false, 7, 9)
+local sprite = Resources.sprite_load(PATH.."assets/sprites/buffCrimsonScarf.png", 1, false, false, 7, 9)
 
 local buff = Buff.create("aphelion", "crimsonScarf")
 Buff.set_property(buff, Buff.PROPERTY.icon_sprite, sprite)

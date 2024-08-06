@@ -1,6 +1,6 @@
 -- Obelisk Shard
 
-local sprite = Resources.sprite_load(PATH.."/assets/sprites/obeliskShard.png", 1, false, false, 16, 16)
+local sprite = Resources.sprite_load(PATH.."assets/sprites/obeliskShard.png", 1, false, false, 16, 16)
 
 local item = Item.create("aphelion", "obeliskShard")
 Item.set_sprite(item, sprite)
@@ -31,7 +31,7 @@ end)
 
 -- Buff
 
-local sprite = Resources.sprite_load(PATH.."/assets/sprites/obeliskShard.png", 1, false, false, 16, 16)
+local sprite = Resources.sprite_load(PATH.."assets/sprites/obeliskShard.png", 1, false, false, 16, 16)
 
 local buff = Buff.create("aphelion", "obeliskShard")
 Buff.set_property(buff, Buff.PROPERTY.icon_sprite, sprite)

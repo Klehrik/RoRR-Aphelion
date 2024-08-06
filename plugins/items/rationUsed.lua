@@ -1,6 +1,6 @@
 -- Ration (Used)
 
-local sprite = Resources.sprite_load(PATH.."/assets/sprites/rationUsed.png", 1, false, false, 16, 16)
+local sprite = Resources.sprite_load(PATH.."assets/sprites/rationUsed.png", 1, false, false, 16, 16)
 
 local item = Item.create("aphelion", "rationUsed", true)
 Item.set_sprite(item, sprite)

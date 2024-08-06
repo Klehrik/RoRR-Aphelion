@@ -1,6 +1,6 @@
 -- Rotting Branch
 
-local sprite = Resources.sprite_load(PATH.."/assets/sprites/rottingBranch.png", 1, false, false, 16, 16)
+local sprite = Resources.sprite_load(PATH.."assets/sprites/rottingBranch.png", 1, false, false, 16, 16)
 
 local item = Item.create("aphelion", "rottingBranch")
 Item.set_sprite(item, sprite)
@@ -18,7 +18,7 @@ end)
 
 -- Buff
 
-local sprite = Resources.sprite_load(PATH.."/assets/sprites/buffRottingBranch.png", 1, false, false, 12, 12)
+local sprite = Resources.sprite_load(PATH.."assets/sprites/buffRottingBranch.png", 1, false, false, 12, 12)
 
 local buff = Buff.create("aphelion", "rottingBranch")
 Buff.set_property(buff, Buff.PROPERTY.icon_sprite, sprite)
