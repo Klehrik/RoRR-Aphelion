@@ -1,6 +1,6 @@
-description
+Content mod that currently adds 10 new items.  
 
-Not tested in online multiplayer.
+Not tested in online multiplayer.  
 
 ---
 
