@@ -43,7 +43,7 @@
         },
         "calamariSkewers" : {
             "name" : "Calamari Skewers",
-            "pickup" : "Receive a large heal after rapidly killing multiple enemies.",
+            "pickup" : "Receive a large heal after rapidly killing 5 enemies.",
             "description" : "Killing <y>5</c> enemies within <y>1 second</c> heals you for <g>30 <c_stack>(+20 per stack) <g>health + <g>10% missing health</c>. Has a <b>3 second</c> cooldown.",
             "destination" : "",
             "date" : "",
