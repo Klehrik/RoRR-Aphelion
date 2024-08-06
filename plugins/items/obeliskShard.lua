@@ -17,13 +17,15 @@ Item.add_callback(item, "onStep", function(actor, stack)
     if actor.pHspeed ~= 0.0 then actor.aphelion_obeliskShard_stillTime = 0 end
 
     -- Not moving + out of combat
-    local still_time = math.min(actor.aphelion_obeliskShard_stillTime, actor.hud_hp_frame - actor.in_combat_last_frame)
+    local still_time = math.min(actor.aphelion_obeliskShard_stillTime, actor.hud_hp_frame - actor.in_combat_last_frame + 100)
 
     if still_time >= 2 *60.0 then
         Buff.apply(actor, Buff.find("aphelion-obeliskShard"), 2)
 
         -- Reduce equipment cooldown
-        gm.player_grant_equipment_cooldown_reduction(actor, (0.1 + (stack * 0.3)))
+        if gm.player_get_equipment_cooldown(actor) > 0 then
+            gm.player_grant_equipment_cooldown_reduction(actor, (0.1 + (stack * 0.3)))
+        end
     end
 end)
 
@@ -31,7 +33,7 @@ end)
 
 -- Buff
 
-local sprite = Resources.sprite_load(PATH.."assets/sprites/buffObeliskShard.png", 1, false, false, 16, 16)
+local sprite = Resources.sprite_load(PATH.."assets/sprites/buffObeliskShard.png", 1, false, false, 7, 7)
 
 local buff = Buff.create("aphelion", "obeliskShard")
 Buff.set_property(buff, Buff.PROPERTY.icon_sprite, sprite)
