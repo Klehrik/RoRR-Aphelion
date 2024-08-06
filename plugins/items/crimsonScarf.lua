@@ -15,12 +15,13 @@ end)
 
 -- Buff
 
-local sprite = Resources.sprite_load(PATH.."/assets/sprites/buffCrimsonScarf.png", 1, false, false, 11, 11)
+local sprite = Resources.sprite_load(PATH.."/assets/sprites/buffCrimsonScarf.png", 1, false, false, 7, 9)
 
 local buff = Buff.create("aphelion", "crimsonScarf")
 Buff.set_property(buff, Buff.PROPERTY.icon_sprite, sprite)
 Buff.set_property(buff, Buff.PROPERTY.icon_stack_subimage, false)
 Buff.set_property(buff, Buff.PROPERTY.draw_stack_number, true)
+Buff.set_property(buff, Buff.PROPERTY.stack_number_col, gm.array_create(1, 3937500))
 Buff.set_property(buff, Buff.PROPERTY.max_stack, 999)
 Buff.set_property(buff, Buff.PROPERTY.is_timed, false)
 
