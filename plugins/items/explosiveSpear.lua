@@ -97,6 +97,8 @@ Buff.add_callback(buff, "onApply", function(actor, stack)
 end)
 
 Buff.add_callback(buff, "onStep", function(actor, stack)
+    local lethal = false
+
     -- Decrease stack timers
     for i = 0, gm.ds_list_size(actor.aphelion_explosiveSpear_timers) - 1 do
         local array = gm.ds_list_find_value(actor.aphelion_explosiveSpear_timers, i)
@@ -104,14 +106,21 @@ Buff.add_callback(buff, "onStep", function(actor, stack)
         gm.array_set(array, 0, new_time)
 
         -- Pop every 20 frames
+        local damage = array[3] * 0.25
+        if damage >= actor.hp then
+            lethal = true
+            break
+        end
+
         if new_time % 20 == 0 and Instance.exists(array[2]) then
-            Actor.damage(actor, array[2], array[3] * 0.25, actor.x, actor.y - 36, 5046527)
+            Actor.damage(actor, array[2], damage, actor.x, actor.y - 36, 5046527)
         end
     end
 
     -- Remove and explode oldest stack if expired
+    -- or if about to die
     local array = gm.ds_list_find_value(actor.aphelion_explosiveSpear_timers, 0)
-    if array[1] <= 0 then
+    if array[1] <= 0 or lethal then
         local raw_damage = array[3] * (1.5 + (array[4] * 1.5))
         local explosion = Actor.fire_explosion(array[2], actor.x, actor.y, 90, 90, raw_damage / array[2].damage, 2.0)
         explosion.proc = false
