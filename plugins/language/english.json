@@ -61,7 +61,7 @@
         },
         "crimsonScarf" : {
             "name" : "Crimson Scarf",
-            "pickup" : "Critical strike chance is temporarily increased on kill.",
+            "pickup" : "Critical chance is temporarily increased on kill.",
             "description" : "Killing an enemy increases <y>critical chance</c> by <y>6%</c> for <b>5 <c_stack>(+1 per stack) <b>seconds</c>.",
             "destination" : "Backalley Place,\nUnit 4-72,\nVenus",
             "date" : "02/27/2056",
