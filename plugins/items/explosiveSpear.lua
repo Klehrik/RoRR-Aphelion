@@ -1,6 +1,7 @@
 -- Explosive Spear
 
 local sprite = Resources.sprite_load(PATH.."assets/sprites/explosiveSpear.png", 1, false, false, 16, 16)
+local spriteProj = Resources.sprite_load(PATH.."assets/sprites/explosiveSpearProjectile.png", 1, false, false, 23, 3)
 local sound = Resources.sfx_load(PATH.."assets/sounds/explosiveSpearThrow.ogg")
 
 local item = Item.create("aphelion", "explosiveSpear")
@@ -26,12 +27,13 @@ Item.add_callback(item, "onHit", function(actor, victim, damager, stack)
 
         -- Create oHuntressBolt1 as base object
         local inst = gm.instance_create_depth(actor.x + (dir * 24.0), actor.y - 4.0, 0, gm.constants.oHuntressBolt1)
+        inst.sprite_index = spriteProj
         inst.parent = actor
         inst.team = inst.parent.team
         inst.hspeed = inst.hspeed * 1.25 * dir
         inst.vspeed = -2.0
-        inst.gravity = 0.2
-        inst.direction = 90.0 - (dir * 90.0)
+        inst.gravity = 0.15
+        inst.image_yscale = dir     -- lmao they swapped xscale and yscale when drawing this object
         gm.sound_play_at(sound, 1.0, 1.0, actor.x, actor.y, 1.0)
 
         -- Calculate original damage coeff
@@ -132,5 +134,17 @@ Buff.add_callback(buff, "onStep", function(actor, stack)
 
         gm.ds_list_delete(actor.aphelion_explosiveSpear_timers, 0)
         Buff.remove(actor, Buff.find("aphelion-explosiveSpear"), 1)
+    end
+end)
+
+Buff.add_callback(buff, "onDraw", function(actor, stack)
+    if actor.aphelion_explosiveSpear_timers then
+        local array = gm.ds_list_find_value(actor.aphelion_explosiveSpear_timers, 0)
+        local radius = Helper.ease_out(1 - (math.min(array[1], 40.0) / 40.0)) * 90
+        gm.draw_set_circle_precision(64)
+        gm.draw_set_alpha(0.5)
+        gm.draw_circle(actor.x, actor.y, radius, true)
+        gm.draw_set_alpha(1)
+        gm.draw_set_circle_precision(24)
     end
 end)
