@@ -40,6 +40,10 @@ end)
 
 local projectiles = {
     -- TODO: Populate
+    gm.constants.oJellyMissile,
+    gm.constants.oSpiderBulletNoSync,
+    gm.constants.oGuardBulletNoSync,
+    gm.constants.oWurmMissile
 }
 
 local sprite = Resources.sprite_load(PATH.."assets/sprites/ration.png", 1, false, false, 16, 16)
@@ -54,7 +58,7 @@ Object.add_callback(obj, "Init", function(self)
     self.vsp = gm.random_range(-3.0, 3.0)
     self.cooldown = 0
     self.cooldown_max = 120
-    self.damage_coeff = 2.5
+    self.damage_coeff = 2.0
 end)
 
 Object.add_callback(obj, "Step", function(self)
