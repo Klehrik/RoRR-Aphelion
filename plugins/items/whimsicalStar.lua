@@ -38,6 +38,10 @@ end)
 
 -- Object
 
+local projectiles = {
+    -- TODO: Populate
+}
+
 local sprite = Resources.sprite_load(PATH.."assets/sprites/ration.png", 1, false, false, 16, 16)
 
 local obj = Object.create("aphelion", "whimsicalStar")
@@ -91,6 +95,28 @@ Object.add_callback(obj, "Step", function(self)
             Actor.damage(actor, self.parent, self.parent.damage * self.damage_coeff, actor.x, actor.y - 36)
             self.cooldown = self.cooldown_max
             break
+        end
+    end
+end)
+
+Object.add_callback(obj, "Step", function(self)
+    -- Reduce cooldown
+    if self.cooldown > 0 then
+        self.cooldown = self.cooldown - 1
+        return
+    end
+
+    -- Get all collisions with projectiles
+    for _, ind in ipairs(projectiles) do
+        local projs = Object.get_collisions(self, ind)
+
+        -- Destroy an enemy projectile
+        for _, proj in ipairs(projs) do
+            if proj.team and proj.team ~= self.parent.team then
+                gm.instance_destroy(proj)
+                self.cooldown = self.cooldown_max
+                break
+            end
         end
     end
 end)
