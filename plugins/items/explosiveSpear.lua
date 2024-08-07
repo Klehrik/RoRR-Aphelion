@@ -3,6 +3,7 @@
 local sprite = Resources.sprite_load(PATH.."assets/sprites/explosiveSpear.png", 1, false, false, 16, 16)
 local spriteProj = Resources.sprite_load(PATH.."assets/sprites/explosiveSpearProjectile.png", 1, false, false, 23, 3)
 local sound = Resources.sfx_load(PATH.."assets/sounds/explosiveSpearThrow.ogg")
+local soundHit = Resources.sfx_load(PATH.."assets/sounds/explosiveSpearHit.ogg")
 
 local item = Item.create("aphelion", "explosiveSpear")
 Item.set_sprite(item, sprite)
@@ -53,6 +54,7 @@ Item.add_callback(item, "onAttack", function(actor, damager, stack)
         damager.aphelion_explosiveSpear = true
         damager.aphelion_explosiveSpear_damage = damager.damage
         damager.damage = 1.0
+        gm.sound_play_at(soundHit, 1.0, 1.0, actor.x, actor.y, 1.0)
     end
 end)
 
