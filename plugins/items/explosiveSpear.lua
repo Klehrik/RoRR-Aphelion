@@ -9,18 +9,13 @@ Item.set_sprite(item, sprite)
 Item.set_tier(item, Item.TIER.uncommon)
 Item.set_loot_tags(item, Item.LOOT_TAG.category_damage)
 
-Item.add_callback(item, "onPickup", function(actor, stack)
-    if not actor.aphelion_explosiveSpear_cooldown then actor.aphelion_explosiveSpear_cooldown = 0 end
-end)
-
 Item.add_callback(item, "onHit", function(actor, victim, damager, stack)
     if not damager.aphelion_explosiveSpear then
-        if actor.aphelion_explosiveSpear_cooldown > 0 then return end
+        local cooldownBuff = Buff.find("aphelion-explosiveSpearDisplay")
+        if Buff.get_stack_count(actor, cooldownBuff) > 0 then return end
         
         -- Do not proc if the hit does not deal at least 200%
         if damager.damage < actor.damage * 2.0 then return end
-
-        actor.aphelion_explosiveSpear_cooldown = 10 *60
 
         local dir = actor.image_xscale
 
@@ -38,6 +33,9 @@ Item.add_callback(item, "onHit", function(actor, victim, damager, stack)
 
         -- Calculate original damage coeff
         inst.damage_coeff = damager.damage / actor.damage
+
+        -- Apply cooldown
+        Buff.apply(actor, cooldownBuff, 1, 10)
 
         
     -- Explosive Spear onHit
@@ -58,14 +56,6 @@ Item.add_callback(item, "onAttack", function(actor, damager, stack)
     end
 end)
 
-Item.add_callback(item, "onStep", function(actor, stack)
-    if actor.aphelion_explosiveSpear_cooldown > 0 then
-        actor.aphelion_explosiveSpear_cooldown = actor.aphelion_explosiveSpear_cooldown - 1
-    else
-        Buff.apply(actor, Buff.find("aphelion-explosiveSpearDisplay"), 2)
-    end
-end)
-
 
 
 -- Buffs
@@ -74,6 +64,25 @@ local sprite = Resources.sprite_load(PATH.."assets/sprites/buffExplosiveSpear.pn
 
 local buff = Buff.create("aphelion", "explosiveSpearDisplay")
 Buff.set_property(buff, Buff.PROPERTY.icon_sprite, sprite)
+Buff.set_property(buff, Buff.PROPERTY.icon_stack_subimage, false)
+Buff.set_property(buff, Buff.PROPERTY.draw_stack_number, true)
+Buff.set_property(buff, Buff.PROPERTY.stack_number_col, gm.array_create(1, 8421504))
+Buff.set_property(buff, Buff.PROPERTY.max_stack, 10)
+Buff.set_property(buff, Buff.PROPERTY.is_timed, false)
+Buff.set_property(buff, Buff.PROPERTY.is_debuff, true)
+
+Buff.add_callback(buff, "onApply", function(actor, stack)
+    actor.aphelion_explosiveSpear_cooldown = 60.0
+end)
+
+Buff.add_callback(buff, "onStep", function(actor, stack)
+    actor.aphelion_explosiveSpear_cooldown = actor.aphelion_explosiveSpear_cooldown - 1
+
+    if actor.aphelion_explosiveSpear_cooldown <= 0 then
+        actor.aphelion_explosiveSpear_cooldown = 60
+        Buff.remove(actor, Buff.find("aphelion-explosiveSpearDisplay"), 1)
+    end
+end)
 
 
 
