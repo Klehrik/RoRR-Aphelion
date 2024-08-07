@@ -12,10 +12,14 @@ Item.add_callback(item, "onPickup", function(actor, stack)
 
     local count = 3
     if stack >= 2 then count = 2 end
+    local prev = nil
     for i = 1, count do
         local inst = Object.spawn(Object.find("aphelion", "whimsicalStar"), actor.x, actor.y)
         inst.parent = actor
         inst.radius = 32 + (gm.ds_list_size(actor.aphelion_whimsicalStar_insts) * 2)
+        inst.prev = actor
+        if i > 1 then inst.prev = prev end
+        prev = inst
         gm.ds_list_add(actor.aphelion_whimsicalStar_insts, inst)
     end
 end)
@@ -34,61 +38,72 @@ end)
 
 -- Object
 
+local sprite = Resources.sprite_load(PATH.."assets/sprites/ration.png", 1, false, false, 16, 16)
+
 local obj = Object.create("aphelion", "whimsicalStar")
+Object.set_hitbox(obj, -8, -8, 8, 8)
 
 Object.add_callback(obj, "Init", function(self)
     self.persistent = true
-    self.vec_x = 0
-    self.vec_y = 0
-    self.dir_to = gm.irandom_range(0, 359)
-    self.force_new_dest = 120.0
+    self.sprite_index = sprite
+    self.hsp = gm.random_range(-3.0, 3.0)
+    self.vsp = gm.random_range(-3.0, 3.0)
+    self.cooldown = 0
+    self.cooldown_max = 120
+    self.damage_coeff = 2.5
 end)
 
 Object.add_callback(obj, "Step", function(self)
-    local x_to = gm.dcos(self.dir_to) * self.radius
-    local y_to = -gm.dsin(self.dir_to) * self.radius
+    -- Follow "previous" star
+    local acc = 0.2
 
-    local max_speed = math.max(gm.point_distance(self.x, self.y, self.parent.x, self.parent.y) / 12.0, 3.0)
-    
-    -- Move towards destination
-    local dir = gm.point_direction(self.x, self.y, self.parent.x + x_to, self.parent.y + y_to)
-    local vec_m = math.max(max_speed / 24.0, 0.2)  -- Acceleration value
-    local vec_x = gm.dcos(dir) * vec_m
-    local vec_y = -gm.dsin(dir) * vec_m
-
-    -- Add dir vector to current
-    self.vec_x = self.vec_x + vec_x
-    self.vec_y = self.vec_y + vec_y
-
-    -- Clamp max speed
-    local speed = gm.point_distance(0, 0, self.vec_x, self.vec_y)
-    if speed > max_speed then
-        speed = max_speed
-        local current_dir = gm.point_direction(0, 0, self.vec_x, self.vec_y)
-        self.vec_x = gm.dcos(current_dir) * max_speed
-        self.vec_y = -gm.dsin(current_dir) * max_speed
+    if self.prev.x < self.x then self.hsp = self.hsp - acc
+    else self.hsp = self.hsp + acc
     end
 
-    -- Move
-    self.x = self.x + self.vec_x
-    self.y = self.y + self.vec_y
+    if self.prev.y < self.y then self.vsp = self.vsp - acc
+    else self.vsp = self.vsp + acc
+    end
 
-    -- Pick new destination if reached
-    -- or when timer expires
-    self.force_new_dest = self.force_new_dest - 1
-    if gm.point_distance(self.x, self.y, self.parent.x + x_to, self.parent.y + y_to) <= math.max(speed, 2.0)
-    or self.force_new_dest <= 0 then
-        self.dir_to = self.dir_to + gm.irandom_range(90, 180)
-        self.force_new_dest = 120.0
+    -- Clamp max speed
+    local max_speed = gm.clamp(gm.point_distance(self.x, self.y, self.parent.x, self.parent.y) / 28.0, 4.0, 12.0)
+    if math.abs(self.hsp) > max_speed then self.hsp = max_speed * gm.sign(self.hsp) end
+    if math.abs(self.vsp) > max_speed then self.vsp = max_speed * gm.sign(self.vsp) end
+
+    -- Move
+    self.x = self.x + self.hsp
+    self.y = self.y + self.vsp
+end)
+
+Object.add_callback(obj, "Step", function(self)
+    -- Reduce cooldown
+    if self.cooldown > 0 then
+        self.cooldown = self.cooldown - 1
+        return
+    end
+
+    -- Get all collisions with pActors
+    local actors = Object.get_collisions(self, gm.constants.pActor)
+
+    -- Deal damage to an enemy
+    for _, actor in ipairs(actors) do
+        if actor.team and actor.team ~= self.parent.team then
+            Actor.damage(actor, self.parent, self.parent.damage * self.damage_coeff, actor.x, actor.y - 36)
+            self.cooldown = self.cooldown_max
+            break
+        end
     end
 end)
 
 Object.add_callback(obj, "Draw", function(self)
-    -- temp: draw a circle for now
-    gm.draw_circle(self.x, self.y, 6, false)
+    -- TEMP: draw a circle for now
+    --gm.draw_circle(self.x, self.y, 6, false)
+    local alpha = 1.0
+    if self.cooldown > 0 then alpha = 0.5 end
+    gm.draw_sprite_ext(self.sprite_index, 0, self.x, self.y, 1, 1, 0, 16777215, alpha)
 
-    -- DEBUG: Show destination
-    -- local x_to = gm.dcos(self.dir_to) * self.radius
-    -- local y_to = -gm.dsin(self.dir_to) * self.radius
-    -- gm.draw_circle(self.parent.x + x_to, self.parent.y + y_to, 6, true)
+    -- gm.draw_circle(self.x, self.y, 3, false)
+
+    -- local hitbox = Object.get_collision_box(self)
+    -- gm.draw_rectangle(hitbox.left, hitbox.top, hitbox.right, hitbox.bottom, true)
 end)
