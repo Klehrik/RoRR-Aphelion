@@ -132,7 +132,7 @@ Buff.add_callback(buff, "onStep", function(actor, stack)
     -- or if about to die
     local array = gm.ds_list_find_value(actor.aphelion_explosiveSpear_timers, 0)
     if array[1] <= 0 or lethal then
-        local raw_damage = array[3] * (0.75 + (array[4] * 0.75))
+        local raw_damage = array[3] * (0.9 + (array[4] * 0.9))
         local explosion = Actor.fire_explosion(array[2], actor.x, actor.y, 90, 90, raw_damage / array[2].damage, 2.0)
         explosion.proc = false
         explosion.damage_color = 5046527
