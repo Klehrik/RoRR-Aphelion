@@ -13,6 +13,6 @@ Join the [Return of Modding server](https://discord.gg/VjS57cszMq) for support.
 
 ### Credits
 * Adam - Log entries
-* Ikesicle - Ideas, Art
+* Ikesicle - Ideas, Art, Log entries
 * Klehrik - Programming, Ideas, Art, Log entries
 * Pranav - Log entries
