@@ -45,9 +45,9 @@
             "name" : "Calamari Skewers",
             "pickup" : "Receive a large heal after rapidly killing 4 enemies.",
             "description" : "Killing <y>4</c> enemies within <y>1 second</c> heals you for <g>20 <c_stack>(+20 per stack) <g>health + <g>10% missing health</c>. Has a <b>3 second</c> cooldown.",
-            "destination" : "",
-            "date" : "",
-            "story" : "",
+            "destination" : "Ichiban Izakaya,\nGassé Commercial Lattice,\nEarth",
+            "date" : "03/22/2056",
+            "story" : "These are only resin models of the real thing, to be used in display cases and whatnot. Current advancements in materials and aromatics tech allows them to not only look, but feel, smell, and even taste the part of actual food, but don't be fooled. THEY'RE NOT EDIBLE. The resin used is non-toxic, so you won't die if you do, but don't come asking for a refund after one of your regulars reports a stomachache or something like that.",
             "priority" : "Standard"
         },
 
