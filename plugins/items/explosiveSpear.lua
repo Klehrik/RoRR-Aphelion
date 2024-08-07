@@ -60,7 +60,7 @@ end)
 
 -- Buffs
 
-local sprite = Resources.sprite_load(PATH.."assets/sprites/buffExplosiveSpear.png", 1, false, false, 6, 7)
+local sprite = Resources.sprite_load(PATH.."assets/sprites/buffExplosiveSpear.png", 1, false, false, 7, 9)
 
 local buff = Buff.create("aphelion", "explosiveSpearDisplay")
 Buff.set_property(buff, Buff.PROPERTY.icon_sprite, sprite)
