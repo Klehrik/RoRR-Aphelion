@@ -33,17 +33,13 @@ Item.add_callback(item, "onHit", function(actor, victim, damager, stack)
         inst.vspeed = -2.0
         inst.gravity = 0.15
         inst.image_yscale = dir     -- lmao they swapped xscale and yscale when drawing this object
+        inst.aphelion_explosiveSpear_owner = actor
         gm.sound_play_at(sound, 1.0, 1.0, actor.x, actor.y, 1.0)
 
         -- Calculate original damage coeff
         inst.damage_coeff = damager.damage / actor.damage
 
-        -- Encode the fact that the damage source is this item in the damage value itself (+1,000,000,000)
-        -- I can't think of another way to pass info, as the actual damager is NOT oHuntressBolt1
-        -- NOTE (to fix): Bug where it occasionally deals this full value damage and I don't know why or how
-        local encoding = 1000000000.0 / actor.damage
-        inst.damage_coeff = inst.damage_coeff + encoding
-
+        
     -- Explosive Spear onHit
     else
         victim.aphelion_explosiveSpear_attacker = actor
@@ -54,10 +50,10 @@ Item.add_callback(item, "onHit", function(actor, victim, damager, stack)
 end)
 
 Item.add_callback(item, "onAttack", function(actor, damager, stack)
-    -- Check if this is from an Explosive Spear
-    if damager.damage >= 1000000000.0 then
+    if actor.aphelion_explosiveSpear_hit then
+        actor.aphelion_explosiveSpear_hit = nil
         damager.aphelion_explosiveSpear = true
-        damager.aphelion_explosiveSpear_damage = damager.damage - 1000000000.0
+        damager.aphelion_explosiveSpear_damage = damager.damage
         damager.damage = 1.0
     end
 end)
@@ -146,6 +142,18 @@ Buff.add_callback(buff, "onDraw", function(actor, stack)
             gm.draw_circle(actor.x, actor.y, radius, true)
             gm.draw_set_alpha(1)
             gm.draw_set_circle_precision(24)
+        end
+    end
+end)
+
+
+
+-- Hooks
+
+gm.pre_code_execute(function(self, other, code, result, flags)
+    if code.name:match("oHuntressBolt1_Collision_pActor") then
+        if self.aphelion_explosiveSpear_owner and Instance.exists(self.aphelion_explosiveSpear_owner) then
+            self.aphelion_explosiveSpear_owner.aphelion_explosiveSpear_hit = true
         end
     end
 end)
