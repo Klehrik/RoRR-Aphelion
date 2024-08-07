@@ -21,7 +21,6 @@ Item.add_callback(item, "onHit", function(actor, victim, damager, stack)
         if damager.damage < actor.damage * 2.0 then return end
 
         actor.aphelion_explosiveSpear_cooldown = 10 *60
-        actor.aphelion_explosiveSpear_thrown = true
 
         local dir = actor.image_xscale
 
@@ -56,8 +55,7 @@ end)
 
 Item.add_callback(item, "onAttack", function(actor, damager, stack)
     -- Check if this is from an Explosive Spear
-    if actor.aphelion_explosiveSpear_thrown and damager.damage >= 1000000000.0 then
-        actor.aphelion_explosiveSpear_thrown = nil
+    if damager.damage >= 1000000000.0 then
         damager.aphelion_explosiveSpear = true
         damager.aphelion_explosiveSpear_damage = damager.damage - 1000000000.0
         damager.damage = 1.0
