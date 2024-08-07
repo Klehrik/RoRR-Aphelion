@@ -1,4 +1,4 @@
-Content mod that currently adds 11 new items.  
+Content mod that currently adds 12 new items.  
 
 ![Hidden showcase](https://github.com/Klehrik/Klehrik-Aphelion/blob/main/hiddenShowcase.png?raw=true)
 
