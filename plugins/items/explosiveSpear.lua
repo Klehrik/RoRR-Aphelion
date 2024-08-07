@@ -14,8 +14,8 @@ Item.add_callback(item, "onHit", function(actor, victim, damager, stack)
         local cooldownBuff = Buff.find("aphelion-explosiveSpearDisplay")
         if Buff.get_stack_count(actor, cooldownBuff) > 0 then return end
         
-        -- Do not proc if the hit does not deal at least 210%
-        if damager.damage < actor.damage * 2.1 then return end
+        -- Do not proc if the hit does not deal at least 200%
+        if damager.damage < actor.damage * 2.0 then return end
 
         local dir = actor.image_xscale
 
