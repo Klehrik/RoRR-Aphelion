@@ -57,7 +57,7 @@ Object.add_callback(obj, "Init", function(self)
     self.hsp = gm.random_range(-3.0, 3.0)
     self.vsp = gm.random_range(-3.0, 3.0)
     self.cooldown = 0
-    self.cooldown_max = 120
+    self.cooldown_max = 90
     self.damage_coeff = 2.0
 end)
 
