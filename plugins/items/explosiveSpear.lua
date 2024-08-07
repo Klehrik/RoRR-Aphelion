@@ -168,3 +168,14 @@ gm.pre_code_execute(function(self, other, code, result, flags)
         end
     end
 end)
+
+
+gm.pre_script_hook(gm.constants.step_actor, function(self, other, result, args)
+    -- Allow the spear "buff" to affect worms/wurms
+    if (self.object_index == gm.constants.oWorm
+    or self.object_index == gm.constants.oWurmHead)
+    and not self.aphelion_explosiveSpear_remove_immunity then
+        self.aphelion_explosiveSpear_remove_immunity = true
+        gm.array_set(self.buff_immune, Buff.find("aphelion-explosiveSpear"), false)
+    end
+end)
