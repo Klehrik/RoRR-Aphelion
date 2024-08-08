@@ -1,6 +1,6 @@
 -- Whimsical Star
 
-local sprite = Resources.sprite_load(PATH.."assets/sprites/ballisticVest.png", 1, false, false, 16, 16)
+local sprite = Resources.sprite_load(PATH.."assets/sprites/whimsicalStar.png", 1, false, false, 16, 16)
 
 local item = Item.create("aphelion", "whimsicalStar")
 Item.set_sprite(item, sprite)
