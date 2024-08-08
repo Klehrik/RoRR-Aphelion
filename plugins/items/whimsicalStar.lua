@@ -16,8 +16,8 @@ Item.add_callback(item, "onPickup", function(actor, stack)
     for i = 1, count do
         local inst = Object.spawn(Object.find("aphelion", "whimsicalStar"), actor.x, actor.y)
         inst.parent = actor
-        inst.radius = 32 + (gm.ds_list_size(actor.aphelion_whimsicalStar_insts) * 2)
         inst.prev = actor
+        inst.number = gm.ds_list_size(actor.aphelion_whimsicalStar_insts)
         if i > 1 then inst.prev = prev end
         prev = inst
         gm.ds_list_add(actor.aphelion_whimsicalStar_insts, inst)
@@ -47,7 +47,7 @@ local projectiles = {
     gm.constants.oWurmMissile
 }
 
-local sprite = Resources.sprite_load(PATH.."assets/sprites/ration.png", 1, false, false, 16, 16)
+local sprite = Resources.sprite_load(PATH.."assets/sprites/whimsicalStarObject.png", 1, false, false, 98, 98)
 
 local obj = Object.create("aphelion", "whimsicalStar")
 Object.set_hitbox(obj, -8, -8, 8, 8)
@@ -55,13 +55,21 @@ Object.set_hitbox(obj, -8, -8, 8, 8)
 Object.add_callback(obj, "Init", function(self)
     self.persistent = true
     self.sprite_index = sprite
+
+    local px = (12 + (self.number * 4)) / 195.0
+    if self.number > 2 then px = gm.irandom_range(12, 20) / 195.0 end
+    self.image_xscale = px
+    self.image_yscale = px
+
     self.hsp = gm.random_range(-3.0, 3.0)
     self.vsp = gm.random_range(-3.0, 3.0)
+
     self.frame = 0
     self.damage_coeff = 0.75
     self.intercept_range = 350
     self.intercept_speed = 4.0
     self.intercept_target = -4
+
     self.cd_hit = 0
     self.cd_hit_max = 30
     self.cooldown = 0
@@ -152,7 +160,11 @@ Object.add_callback(obj, "Step", function(self)
 end)
 
 Object.add_callback(obj, "Draw", function(self)
+    local blend = 16777215
     local alpha = 1.0
-    if self.cooldown > 0 then alpha = 0.5 end
-    gm.draw_sprite_ext(self.sprite_index, 0, self.x, self.y, 1, 1, 0, 16777215, alpha)
+    if self.cooldown > 0 then
+        blend = 8421504
+        alpha = 0.5
+    end
+    gm.draw_sprite_ext(self.sprite_index, 0, self.x, self.y, self.image_xscale, self.image_yscale, self.image_angle, blend, alpha)
 end)
