@@ -167,8 +167,8 @@ Object.add_callback(obj, "Draw", function(self)
     local blend = 16777215
     local alpha = 1.0
     if self.cooldown > 0 then
-        blend = 8421504
-        alpha = 0.5
+        blend = 12632256
+        alpha = 0.6
     end
     gm.draw_sprite_ext(self.sprite_index, 0, self.x, self.y, self.image_xscale, self.image_yscale, self.image_angle, blend, alpha)
 end)
