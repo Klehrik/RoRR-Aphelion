@@ -54,11 +54,6 @@ Object.add_callback(obj, "Init", function(self)
     self.persistent = true
     self.sprite_index = sprite
 
-    local px = (12 + (self.number * 4)) / 195.0
-    if self.number > 2 then px = gm.irandom_range(12, 20) / 195.0 end
-    self.image_xscale = px
-    self.image_yscale = px
-
     self.hsp = gm.random_range(-3.0, 3.0)
     self.vsp = gm.random_range(-3.0, 3.0)
 
@@ -158,6 +153,17 @@ Object.add_callback(obj, "Step", function(self)
 end)
 
 Object.add_callback(obj, "Draw", function(self)
+    -- Set star size
+    if not self.size_set then
+        self.size_set = true
+
+        local px = (12 + (self.number * 4)) / 195.0
+        if self.number > 2 then px = gm.irandom_range(12, 20) / 195.0 end
+        self.image_xscale = px
+        self.image_yscale = px
+    end
+
+    -- Draw self
     local blend = 16777215
     local alpha = 1.0
     if self.cooldown > 0 then
