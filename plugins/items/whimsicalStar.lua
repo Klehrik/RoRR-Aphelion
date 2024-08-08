@@ -56,14 +56,20 @@ Object.add_callback(obj, "Init", function(self)
     self.sprite_index = sprite
     self.hsp = gm.random_range(-3.0, 3.0)
     self.vsp = gm.random_range(-3.0, 3.0)
+    self.frame = 0
+    self.damage_coeff = 0.75
+    self.intercept_range = 350
+    self.intercept_speed = 4.0
+    self.intercept_target = -4
+    self.cd_hit = 0
+    self.cd_hit_max = 30
     self.cooldown = 0
-    self.cooldown_max = 90
-    self.damage_coeff = 2.0
+    self.cooldown_max = 120
 end)
 
 Object.add_callback(obj, "Step", function(self)
     -- Follow "previous" star
-    local acc = 0.2
+    local acc = 0.25
 
     if self.prev.x < self.x then self.hsp = self.hsp - acc
     else self.hsp = self.hsp + acc
@@ -84,43 +90,63 @@ Object.add_callback(obj, "Step", function(self)
 end)
 
 Object.add_callback(obj, "Step", function(self)
-    -- Reduce cooldown
-    if self.cooldown > 0 then
-        self.cooldown = self.cooldown - 1
+    self.frame = self.frame + 1
+
+    -- Reduce hit cooldown
+    if self.cd_hit > 0 then
+        self.cd_hit = self.cd_hit - 1
         return
     end
 
     -- Get all collisions with pActors
     local actors = Object.get_collisions(self, gm.constants.pActor)
 
-    -- Deal damage to an enemy
+    -- Deal area damage on enemy collision
     for _, actor in ipairs(actors) do
         if actor.team and actor.team ~= self.parent.team then
-            Actor.damage(actor, self.parent, self.parent.damage * self.damage_coeff, actor.x, actor.y - 36)
-            self.cooldown = self.cooldown_max
+            --Actor.damage(actor, self.parent, self.parent.damage * self.damage_coeff, actor.x, actor.y - 36)
+            Actor.fire_explosion(self.parent, self.x, self.y, 8, 8, self.damage_coeff).proc = false
+            self.cd_hit = self.cd_hit_max
             break
         end
     end
 end)
 
 Object.add_callback(obj, "Step", function(self)
-    -- Reduce cooldown
+    -- Reduce intercept cooldown
     if self.cooldown > 0 then
         self.cooldown = self.cooldown - 1
         return
     end
 
-    -- Get all collisions with projectiles
-    for _, ind in ipairs(projectiles) do
-        local projs = Object.get_collisions(self, ind)
+    -- Get nearest projectile to intercept
+    if not Instance.exists(self.intercept_target) then
+        local dist = self.intercept_range
 
-        -- Destroy an enemy projectile
-        for _, proj in ipairs(projs) do
-            if proj.team and proj.team ~= self.parent.team then
-                gm.instance_destroy(proj)
-                self.cooldown = self.cooldown_max
-                break
+        -- Check one type of projectile every frame
+        -- and not all of them to reduce load
+        local ind = projectiles[(self.frame % #projectiles) + 1]
+        local projs = Instance.find_all(ind)
+        for _, p in ipairs(projs) do
+            local d = gm.point_distance(self.x, self.y, p.x, p.y)
+            if d <= dist then
+                self.intercept_target = p
+                dist = d
             end
+        end
+
+    -- Intercept projectile
+    else
+        local proj = self.intercept_target
+        
+        -- Move towards target
+        self.x = self.x + (self.intercept_speed * gm.sign(proj.x - self.x))
+        self.y = self.y + (self.intercept_speed * gm.sign(proj.y - self.y))
+
+        -- Check for collision
+        if Object.is_colliding(self, proj) then
+            gm.instance_destroy(proj)
+            self.cooldown = self.cooldown_max
         end
     end
 end)
