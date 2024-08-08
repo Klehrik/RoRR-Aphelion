@@ -12,14 +12,12 @@ Item.add_callback(item, "onPickup", function(actor, stack)
 
     local count = 3
     if stack >= 2 then count = 2 end
-    local prev = nil
     for i = 1, count do
         local inst = Object.spawn(Object.find("aphelion", "whimsicalStar"), actor.x, actor.y)
         inst.parent = actor
         inst.number = gm.ds_list_size(actor.aphelion_whimsicalStar_insts)
         inst.prev = actor
-        if i > 1 then inst.prev = prev end
-        prev = inst
+        if i > 1 then inst.prev = gm.ds_list_find_value(actor.aphelion_whimsicalStar_insts, gm.ds_list_size(actor.aphelion_whimsicalStar_insts) - 1) end
         gm.ds_list_add(actor.aphelion_whimsicalStar_insts, inst)
     end
 end)
