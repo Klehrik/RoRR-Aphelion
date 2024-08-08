@@ -65,7 +65,7 @@ Object.add_callback(obj, "Init", function(self)
     self.intercept_target = -4
 
     self.cd_hit = 0
-    self.cd_hit_max = 30
+    self.cd_hit_max = 40
     self.cooldown = 0
     self.cooldown_max = 90
 end)
