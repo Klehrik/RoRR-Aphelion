@@ -72,7 +72,7 @@
         "crimsonScarf" : {
             "name" : "Crimson Scarf",
             "pickup" : "Critical chance is temporarily increased on kill.",
-            "description" : "Killing an enemy increases <y>critical chance</c> by <y>6%</c> for <b>5 <c_stack>(+1 per stack) <b>seconds</c>.",
+            "description" : "Killing an enemy increases <y>critical chance</c> by <y>7%</c> for <b>5 <c_stack>(+1 per stack) <b>seconds</c>.",
             "destination" : "Backalley Place,\nUnit 4-72,\nVenus",
             "date" : "02/27/2056",
             "story" : "Boss. Told you that this was the last job. Decided to grab a souvenir when the job was done. Ambushed on the way out. Did what had to be done. Casualties were unavoidable. Noticed my souvenir got sullied with blood. Started feeling... alive. Turns out one of the attacking party was still alive. Gave chase. It was.. easier? Sending in my \"souvenir\" for analysis. If you send it back, I'll do more jobs. This time, happily.",

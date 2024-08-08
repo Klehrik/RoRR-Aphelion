@@ -28,7 +28,7 @@ Buff.set_property(buff, Buff.PROPERTY.is_timed, false)
 Buff.add_callback(buff, "onApply", function(actor, stack)
     if (not actor.aphelion_crimsonScarf_timers) or stack == 1 then actor.aphelion_crimsonScarf_timers = gm.ds_list_create() end
     gm.ds_list_add(actor.aphelion_crimsonScarf_timers, (4 + Item.get_stack_count(actor, Item.find("aphelion-crimsonScarf"))) * 60.0)
-    actor.critical_chance_base = actor.critical_chance_base + 6.0
+    actor.critical_chance_base = actor.critical_chance_base + 7.0
 end)
 
 Buff.add_callback(buff, "onStep", function(actor, stack)
@@ -41,8 +41,8 @@ Buff.add_callback(buff, "onStep", function(actor, stack)
     -- Remove oldest stack if expired
     if gm.ds_list_find_value(actor.aphelion_crimsonScarf_timers, 0) <= 0 then
         gm.ds_list_delete(actor.aphelion_crimsonScarf_timers, 0)
-        actor.critical_chance = actor.critical_chance - 6.0
-        actor.critical_chance_base = actor.critical_chance_base - 6.0
+        actor.critical_chance = actor.critical_chance - 7.0
+        actor.critical_chance_base = actor.critical_chance_base - 7.0
         Buff.remove(actor, Buff.find("aphelion-crimsonScarf"), 1)
     end
 end)
