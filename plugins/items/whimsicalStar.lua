@@ -42,7 +42,9 @@ local projectiles = {
     -- TODO: Populate
     gm.constants.oJellyMissile,
     gm.constants.oSpiderBulletNoSync,
+    gm.constants.oSpiderBullet,
     gm.constants.oGuardBulletNoSync,
+    gm.constants.oGuardBullet,
     gm.constants.oWurmMissile
 }
 
