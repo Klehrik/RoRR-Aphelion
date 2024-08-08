@@ -151,8 +151,8 @@ Object.add_callback(obj, "Step", function(self)
             self.cooldown = self.cooldown_max
         end
 
-        -- Unfocus target if it moves too far
-        if gm.point_distance(self.x, self.y, proj.x, proj.y) > self.intercept_range * 1.4 then
+        -- Unfocus target if it moves out of range
+        if gm.point_distance(self.x, self.y, proj.x, proj.y) > self.intercept_range then
             self.intercept_target = -4.0
         end
     end
