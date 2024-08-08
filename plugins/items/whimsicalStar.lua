@@ -42,7 +42,8 @@ local projectiles = {
     gm.constants.oSpiderBullet,
     gm.constants.oGuardBulletNoSync,
     gm.constants.oGuardBullet,
-    gm.constants.oWurmMissile
+    gm.constants.oWurmMissile,
+    gm.constants.oShamBMissile
 }
 
 local sprite = Resources.sprite_load(PATH.."assets/sprites/whimsicalStarObject.png", 1, false, false, 98, 98)
