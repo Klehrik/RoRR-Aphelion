@@ -104,7 +104,6 @@ Object.add_callback(obj, "Step", function(self)
     -- Deal area damage on enemy collision
     for _, actor in ipairs(actors) do
         if actor.team and actor.team ~= self.parent.team then
-            --Actor.damage(actor, self.parent, self.parent.damage * self.damage_coeff, actor.x, actor.y - 36)
             Actor.fire_explosion(self.parent, self.x, self.y, 8, 8, self.damage_coeff).proc = false
             self.cd_hit = self.cd_hit_max
             break
@@ -138,7 +137,7 @@ Object.add_callback(obj, "Step", function(self)
     -- Intercept projectile
     else
         local proj = self.intercept_target
-        
+
         -- Move towards target
         self.x = self.x + (self.intercept_speed * gm.sign(proj.x - self.x))
         self.y = self.y + (self.intercept_speed * gm.sign(proj.y - self.y))
@@ -152,14 +151,7 @@ Object.add_callback(obj, "Step", function(self)
 end)
 
 Object.add_callback(obj, "Draw", function(self)
-    -- TEMP: draw a circle for now
-    --gm.draw_circle(self.x, self.y, 6, false)
     local alpha = 1.0
     if self.cooldown > 0 then alpha = 0.5 end
     gm.draw_sprite_ext(self.sprite_index, 0, self.x, self.y, 1, 1, 0, 16777215, alpha)
-
-    -- gm.draw_circle(self.x, self.y, 3, false)
-
-    -- local hitbox = Object.get_collision_box(self)
-    -- gm.draw_rectangle(hitbox.left, hitbox.top, hitbox.right, hitbox.bottom, true)
 end)
