@@ -38,7 +38,7 @@
             "description" : "<y>15% <c_stack>(+10% per stack) <y>chance</c> on hit to <r>wither</c> an enemy. Each stack of <r>wither</c> deals <y>12% damage per 0.5 seconds</c>.",
             "destination" : "Saury Cosmo,\nBeacon Post,\nSpace",
             "date" : "9/16/2056",
-            "story" : "Sample of a strange grouping of half-dead trees we found on Io. They were rotted quite badly, and when we checked it out again a few days later, the \"deadzone\" had gotten marginally bigger; we are making periodic observations now. \n\nI wouldn't recommend touching it bare -- seems to corrode organic matter in general, including skin.",
+            "story" : "Sample from an infected tree in the Io Shield Plantation. The disease's spread is beginning to accelerate, and the locals are starting to get on edge. Make the analysis quick - we really want to nip this in the bud before it gets out of control, but we also can't burn out the entire plantation.",
             "priority" : "Standard"
         },
         "calamariSkewers" : {
