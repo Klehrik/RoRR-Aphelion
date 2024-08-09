@@ -38,10 +38,9 @@ end)
 
 local projectiles = {
     gm.constants.oJellyMissile,
-    gm.constants.oSpiderBulletNoSync,
-    gm.constants.oSpiderBullet,
-    gm.constants.oGuardBulletNoSync,
-    gm.constants.oGuardBullet,
+    gm.constants.oSpiderBulletNoSync, gm.constants.oSpiderBullet,
+    gm.constants.oGuardBulletNoSync, gm.constants.oGuardBullet,
+    gm.constants.oBugBulletNoSync, gm.constants.oBugBullet,
     gm.constants.oWurmMissile,
     gm.constants.oShamBMissile,
     gm.constants.oTurtleMissile
@@ -60,9 +59,9 @@ Object.add_callback(obj, "Init", function(self)
     self.vsp = gm.random_range(-3.0, 3.0)
 
     self.frame = 0
-    self.damage_coeff = 0.75
+    self.damage_coeff = 0.9
     self.intercept_range = 350
-    self.intercept_speed = 4.0
+    self.intercept_speed = 6.0
     self.intercept_target = -4
 
     self.cd_hit = 0
@@ -89,8 +88,10 @@ Object.add_callback(obj, "Step", function(self)
     if math.abs(self.vsp) > max_speed then self.vsp = max_speed * gm.sign(self.vsp) end
 
     -- Move
-    self.x = self.x + self.hsp
-    self.y = self.y + self.vsp
+    if not Instance.exists(self.intercept_target) then
+        self.x = self.x + self.hsp
+        self.y = self.y + self.vsp
+    end
 end)
 
 Object.add_callback(obj, "Step", function(self)
@@ -128,15 +129,17 @@ Object.add_callback(obj, "Step", function(self)
     if not Instance.exists(self.intercept_target) then
         local dist = self.intercept_range
 
-        -- Check one type of projectile every frame
+        -- Check two types of projectiles every frame
         -- and not all of them to reduce load
-        local ind = projectiles[(self.frame % #projectiles) + 1]
-        local projs = Instance.find_all(ind)
-        for _, p in ipairs(projs) do
-            local d = gm.point_distance(self.x, self.y, p.x, p.y)
-            if d <= dist then
-                self.intercept_target = p
-                dist = d
+        for i = 0, 1 do
+            local ind = projectiles[((self.frame % (#projectiles/2)) * 2) + 1 + i]
+            local projs = Instance.find_all(ind)
+            for _, p in ipairs(projs) do
+                local d = gm.point_distance(self.parent.x, self.parent.y, p.x, p.y)
+                if d <= dist then
+                    self.intercept_target = p
+                    dist = d
+                end
             end
         end
 
@@ -145,8 +148,9 @@ Object.add_callback(obj, "Step", function(self)
         local proj = self.intercept_target
 
         -- Move towards target
-        self.x = self.x + (self.intercept_speed * gm.sign(proj.x - self.x))
-        self.y = self.y + (self.intercept_speed * gm.sign(proj.y - self.y))
+        local dir = gm.point_direction(self.x, self.y, proj.x, proj.y)
+        self.x = self.x + (gm.dcos(dir) * self.intercept_speed)
+        self.y = self.y - (gm.dsin(dir) * self.intercept_speed)
 
         -- Check for collision
         if Object.is_colliding(self, proj) then
@@ -155,7 +159,8 @@ Object.add_callback(obj, "Step", function(self)
         end
 
         -- Unfocus target if it moves out of range
-        if gm.point_distance(self.x, self.y, proj.x, proj.y) > self.intercept_range then
+        if gm.point_distance(self.x, self.y, proj.x, proj.y) > self.intercept_range
+        and gm.point_distance(self.parent.x, self.parent.y, proj.x, proj.y) > self.intercept_range then
             self.intercept_target = -4.0
         end
     end
