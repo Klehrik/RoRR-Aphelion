@@ -37,7 +37,7 @@ Buff.add_callback(buff, "onStep", function(actor, stack)
     actor.aphelion_rottingBranch_timer = actor.aphelion_rottingBranch_timer + 1
     
     if gm.instance_exists(actor.aphelion_rottingBranch_attacker) and actor.aphelion_rottingBranch_timer % 30 == 0 then
-        Actor.damage(actor, actor.aphelion_rottingBranch_attacker, actor.aphelion_rottingBranch_attacker.damage * 0.12 * stack, actor.x - 26, actor.y - 36, 8421504)
+        Actor.damage(actor, actor.aphelion_rottingBranch_attacker, actor.aphelion_rottingBranch_attacker.damage * 0.12 * stack, actor.x - 26, actor.y - 36, 7964834)
     end
 
     actor.aphelion_rottingBranch_duration = actor.aphelion_rottingBranch_duration - 1
