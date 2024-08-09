@@ -108,7 +108,9 @@ Object.add_callback(obj, "Step", function(self)
     -- Deal area damage on enemy collision
     for _, actor in ipairs(actors) do
         if actor.team and actor.team ~= self.parent.team then
-            Actor.fire_explosion(self.parent, self.x, self.y, 8, 8, self.damage_coeff).proc = false
+            local damager = Actor.fire_explosion(self.parent, self.x, self.y, 8, 8, self.damage_coeff)
+            damager.proc = false
+            damager.damage_color = 9224869
             self.cd_hit = self.cd_hit_max
             break
         end
