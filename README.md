@@ -1,8 +1,8 @@
 Content mod that currently adds 12 new items.  
 
-![Hidden showcase](https://github.com/Klehrik/Klehrik-Aphelion/blob/main/hiddenShowcase.png?raw=true)
+Not tested in online multiplayer; support will come in a future update.  
 
-Not tested in online multiplayer.  
+![Hidden showcase](https://github.com/Klehrik/Klehrik-Aphelion/blob/main/hiddenShowcase.png?raw=true) 
 
 ---
 
