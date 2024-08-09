@@ -35,7 +35,7 @@
         "rottingBranch" : {
             "name" : "Withered Branch",
             "pickup" : "Chance to wither enemies on hit.",
-            "description" : "<y>15% <c_stack>(+10% per stack) <y>chance</c> on hit to <r>wither</c> an enemy. Each stack of <r>wither</c> deals <y>12% damage per 0.5 seconds</c>.",
+            "description" : "<y>15% <c_stack>(+10% per stack) <y>chance</c> on hit to <r>wither</c> an enemy. Each stack of <r>wither</c> deals <y>15% damage per 0.5 seconds</c>.",
             "destination" : "Saury Cosmo,\nBeacon Post,\nSpace",
             "date" : "9/16/2056",
             "story" : "Sample from an infected tree in the Io Shield Plantation. The disease's spread is beginning to accelerate, and the locals are starting to get on edge. Make the analysis quick - we really want to nip this in the bud before it gets out of control, but we also can't burn out the entire plantation.",
