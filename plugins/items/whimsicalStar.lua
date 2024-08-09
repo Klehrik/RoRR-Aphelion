@@ -60,9 +60,13 @@ Object.add_callback(obj, "Init", function(self)
 
     self.frame = 0
     self.damage_coeff = 0.85
+
     self.intercept_range = 350
-    self.intercept_speed = 6.0
     self.intercept_target = -4
+    self.intercept_x_start = 0
+    self.intercept_y_start = 0
+    self.intercept_frame = 0
+    self.intercept_frame_max = 15.0    -- Will lerp to target position in 8 frames
 
     self.cd_hit = 0
     self.cd_hit_max = 40
@@ -128,34 +132,40 @@ Object.add_callback(obj, "Step", function(self)
     -- Get nearest projectile to intercept
     --      Check two types of projectiles every frame
     --      and not all of them to reduce load
-    local dist = self.intercept_range
-    if Instance.exists(self.intercept_target) then
-        dist = gm.point_distance(self.parent.x, self.parent.y, self.intercept_target.x, self.intercept_target.y)
-    end
-    for i = 0, 1 do
-        local ind = projectiles[((self.frame % (#projectiles/2)) * 2) + 1 + i]  -- * Only works if even number
-        local projs = Instance.find_all(ind)
-        for _, p in ipairs(projs) do
-            if not p.aphelion_whimsicalStar_targetted then
-                local d = gm.point_distance(self.parent.x, self.parent.y, p.x, p.y)
-                if d <= dist then
-                    if Instance.exists(self.intercept_target) then self.intercept_target.aphelion_whimsicalStar_targetted = nil end
-                    self.intercept_target = p
-                    p.aphelion_whimsicalStar_targetted = true
-                    dist = d
+    if not Instance.exists(self.intercept_target) then
+        local found = false
+        local dist = self.intercept_range
+        for i = 0, 1 do
+            local ind = projectiles[((self.frame % (#projectiles/2)) * 2) + 1 + i]  -- * Only works if even number
+            local projs = Instance.find_all(ind)
+            for _, p in ipairs(projs) do
+                if not p.aphelion_whimsicalStar_targetted then
+                    local d = gm.point_distance(self.parent.x, self.parent.y, p.x, p.y)
+                    if d <= dist then
+                        found = true
+                        dist = d
+                        self.intercept_target = p
+                    end
                 end
             end
         end
-    end
+        if found then
+            self.intercept_target.aphelion_whimsicalStar_targetted = true
+            self.intercept_frame = 0
+            self.intercept_x_start = self.x
+            self.intercept_y_start = self.y
+        end
 
     -- Intercept projectile
-    if Instance.exists(self.intercept_target) then
+    else
+        if self.intercept_frame < self.intercept_frame_max then self.intercept_frame = self.intercept_frame + 1 end
+
         local proj = self.intercept_target
 
         -- Move towards target
-        local dir = gm.point_direction(self.x, self.y, proj.x, proj.y)
-        self.x = self.x + (gm.dcos(dir) * self.intercept_speed)
-        self.y = self.y - (gm.dsin(dir) * self.intercept_speed)
+        local interp = Helper.ease_out(self.intercept_frame / self.intercept_frame_max, 0.5)
+        self.x = self.intercept_x_start + ((proj.x - self.intercept_x_start) * interp)
+        self.y = self.intercept_y_start + ((proj.y - self.intercept_y_start) * interp)
 
         -- Check for collision
         if Object.is_colliding(self, proj) then
