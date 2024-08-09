@@ -59,7 +59,7 @@ Object.add_callback(obj, "Init", function(self)
     self.vsp = gm.random_range(-3.0, 3.0)
 
     self.frame = 0
-    self.damage_coeff = 0.9
+    self.damage_coeff = 0.85
     self.intercept_range = 350
     self.intercept_speed = 6.0
     self.intercept_target = -4
@@ -126,25 +126,30 @@ Object.add_callback(obj, "Step", function(self)
     end
 
     -- Get nearest projectile to intercept
-    if not Instance.exists(self.intercept_target) then
-        local dist = self.intercept_range
-
-        -- Check two types of projectiles every frame
-        -- and not all of them to reduce load
-        for i = 0, 1 do
-            local ind = projectiles[((self.frame % (#projectiles/2)) * 2) + 1 + i]
-            local projs = Instance.find_all(ind)
-            for _, p in ipairs(projs) do
+    --      Check two types of projectiles every frame
+    --      and not all of them to reduce load
+    local dist = self.intercept_range
+    if Instance.exists(self.intercept_target) then
+        dist = gm.point_distance(self.parent.x, self.parent.y, self.intercept_target.x, self.intercept_target.y)
+    end
+    for i = 0, 1 do
+        local ind = projectiles[((self.frame % (#projectiles/2)) * 2) + 1 + i]  -- * Only works if even number
+        local projs = Instance.find_all(ind)
+        for _, p in ipairs(projs) do
+            if not p.aphelion_whimsicalStar_targetted then
                 local d = gm.point_distance(self.parent.x, self.parent.y, p.x, p.y)
                 if d <= dist then
+                    if Instance.exists(self.intercept_target) then self.intercept_target.aphelion_whimsicalStar_targetted = nil end
                     self.intercept_target = p
+                    p.aphelion_whimsicalStar_targetted = true
                     dist = d
                 end
             end
         end
+    end
 
     -- Intercept projectile
-    else
+    if Instance.exists(self.intercept_target) then
         local proj = self.intercept_target
 
         -- Move towards target
@@ -156,12 +161,6 @@ Object.add_callback(obj, "Step", function(self)
         if Object.is_colliding(self, proj) then
             gm.instance_destroy(proj)
             self.cooldown = self.cooldown_max
-        end
-
-        -- Unfocus target if it moves out of range
-        if gm.point_distance(self.x, self.y, proj.x, proj.y) > self.intercept_range
-        and gm.point_distance(self.parent.x, self.parent.y, proj.x, proj.y) > self.intercept_range then
-            self.intercept_target = -4.0
         end
     end
 end)

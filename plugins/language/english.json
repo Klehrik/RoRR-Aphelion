@@ -109,7 +109,7 @@
         "whimsicalStar" : {
             "name" : "Whimsical Star",
             "pickup" : "Summon stars to protect you.",
-            "description" : "<y>3 <c_stack>(+2 per stack) <y>stars orbit erratically around you</c>, dealing <y>90% damage</c> on collision. Each star will also <b>intercept nearby projectiles</c>; this has a <b>1.5 second</c> cooldown.",
+            "description" : "<y>3 <c_stack>(+2 per stack) <y>stars orbit erratically around you</c>, dealing <y>85% damage</c> on collision. Each star will also <b>intercept nearby projectiles</c>; this has a <b>1.5 second</c> cooldown.",
             "destination" : "",
             "date" : "12/20/2056",
             "story" : "",
