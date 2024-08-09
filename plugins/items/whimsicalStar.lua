@@ -59,7 +59,7 @@ Object.add_callback(obj, "Init", function(self)
     self.vsp = gm.random_range(-3.0, 3.0)
 
     self.frame = 0
-    self.damage_coeff = 0.85
+    self.damage_coeff = 0.7
 
     self.intercept_range = 350
     self.intercept_target = -4
