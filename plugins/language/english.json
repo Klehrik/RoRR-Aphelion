@@ -33,7 +33,7 @@
             "description" : "This item is recharging."
         },
         "rottingBranch" : {
-            "name" : "Rotting Branch",
+            "name" : "Withered Branch",
             "pickup" : "Chance to wither enemies on hit.",
             "description" : "<y>15% <c_stack>(+10% per stack) <y>chance</c> on hit to <r>wither</c> an enemy. Each stack of <r>wither</c> deals <y>12% damage per 0.5 seconds</c>.",
             "destination" : "Saury Cosmo,\nBeacon Post,\nSpace",
