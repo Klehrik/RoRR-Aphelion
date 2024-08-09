@@ -63,7 +63,7 @@
         "overloadedCapacitor" : {
             "name" : "Overloaded Capacitor",
             "pickup" : "Deal increased damage while you have barrier.",
-            "description" : "Leaving combat for <y>2.5</c> seconds grants <g>barrier</c> equal to <g>6% health</c>. While barrier is active, your attacks deal <y>+20% <c_stack>(+15% per stack) <y>damage</c>.",
+            "description" : "Leaving combat for <y>3</c> seconds grants <g>barrier</c> equal to <g>6% health</c>. While barrier is active, your attacks deal <y>+20% <c_stack>(+10% per stack) <y>damage</c>.",
             "destination" : "1803,\nCombat Zone,\nVenus",
             "date" : "01/03/2057",
             "story" : "I had to run to catch the train home from work last week; going to war with a century-old record player is not something a punctual man would do, but it was the first business the antique shop had in a while. \n\nThe train suddenly jolted forwards, and I ended up bumping into someone. He must've assumed that I wanted to fight, and so he took a swing at me. It felt like… a tap on the cheek. My confusion was quicky replaced with surprise once I swung a hook at him in return and sent him flying into the next car. \n\nI realized a tingling feeling in my pocket once the shock had partially subsided, and in it was an old capacitor I had removed from the player earlier that day. You could probably get a kick out of it, so take it for a spin! Keep note of anything interesting you observe, and when you're back, we can try to figure out what makes it tick. Like old times.",
