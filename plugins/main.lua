@@ -14,7 +14,7 @@ PATH = _ENV["!plugins_mod_folder_path"].."/plugins/"
 function __initialize()
     gm.translate_load_file(gm.variable_global_get("_language_map"), PATH.."language/english.json")
 
-    -- Require all files in /plugins/items
+    -- Require all files in items folder
     local names = path.get_files(PATH.."items")
     for _, name in ipairs(names) do require(name) end
 end
