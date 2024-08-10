@@ -2,7 +2,11 @@ Content mod that currently adds 12 new items.
 
 Not tested in online multiplayer; support will come in a future update.  
 
-![Hidden showcase](https://github.com/Klehrik/Klehrik-Aphelion/blob/main/hiddenShowcase.png?raw=true) 
+![Hidden showcase](https://github.com/Klehrik/Klehrik-Aphelion/blob/main/hiddenShowcase.png?raw=true)  
+
+![Withered Branch](https://github.com/Klehrik/Klehrik-Aphelion/blob/main/showcaseWitheredBranch.gif?raw=true)  
+
+![Whimsical Star](https://github.com/Klehrik/Klehrik-Aphelion/blob/main/showcaseWhimsicalStar.gif?raw=true)  
 
 ---
 
