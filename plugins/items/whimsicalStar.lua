@@ -36,16 +36,6 @@ end)
 
 -- Object
 
-local projectiles = {
-    gm.constants.oJellyMissile,
-    gm.constants.oSpiderBulletNoSync, gm.constants.oSpiderBullet,
-    gm.constants.oGuardBulletNoSync, gm.constants.oGuardBullet,
-    gm.constants.oBugBulletNoSync, gm.constants.oBugBullet,
-    gm.constants.oWurmMissile,
-    gm.constants.oShamBMissile,
-    gm.constants.oTurtleMissile
-}
-
 local sprite = Resources.sprite_load(PATH.."assets/sprites/whimsicalStarObject.png", 1, false, false, 98, 98)
 
 local obj = Object.create("aphelion", "whimsicalStar")
@@ -57,10 +47,10 @@ Object.add_callback(obj, "Init", function(self)
 
     self.hsp = gm.random_range(-3.0, 3.0)
     self.vsp = gm.random_range(-3.0, 3.0)
-
-    self.frame = 0
+    
     self.damage_coeff = 0.7
 
+    self.proj_check = 0
     self.intercept_range = 350
     self.intercept_target = -4
     self.intercept_x_start = 0
@@ -99,8 +89,6 @@ Object.add_callback(obj, "Step", function(self)
 end)
 
 Object.add_callback(obj, "Step", function(self)
-    self.frame = self.frame + 1
-
     -- Reduce hit cooldown
     if self.cd_hit > 0 then
         self.cd_hit = self.cd_hit - 1
@@ -133,10 +121,14 @@ Object.add_callback(obj, "Step", function(self)
     --      Check two types of projectiles every frame
     --      and not all of them to reduce load
     if not Instance.exists(self.intercept_target) then
+        self.proj_check = self.proj_check + 2
+
         local found = false
         local dist = self.intercept_range
         for i = 0, 1 do
-            local ind = projectiles[((self.frame % (#projectiles/2)) * 2) + 1 + i]  -- * Only works if even number
+            local pos = ((self.proj_check + i) % #Instance.projectiles) + 1
+            log.info(pos)
+            local ind = Instance.projectiles[pos]
             local projs = Instance.find_all(ind)
             for _, p in ipairs(projs) do
                 if not p.aphelion_whimsicalStar_targetted then
