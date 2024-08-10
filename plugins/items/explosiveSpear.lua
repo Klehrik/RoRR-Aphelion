@@ -96,14 +96,16 @@ Buff.set_property(buff, Buff.PROPERTY.is_timed, false)
 Buff.set_property(buff, Buff.PROPERTY.is_debuff, true)
 
 Buff.add_callback(buff, "onApply", function(actor, stack)
-    if (not actor.aphelion_explosiveSpear_timers) or stack == 1 then actor.aphelion_explosiveSpear_timers = gm.ds_list_create() end
+    if not actor.aphelion_explosiveSpear_timers then actor.aphelion_explosiveSpear_timers = gm.ds_list_create() end
 
-    local array = gm.array_create(4)
-    gm.array_set(array, 0, 100.0)
-    gm.array_set(array, 1, actor.aphelion_explosiveSpear_attacker)
-    gm.array_set(array, 2, actor.aphelion_explosiveSpear_damage)
-    gm.array_set(array, 3, Item.get_stack_count(actor.aphelion_explosiveSpear_attacker, Item.find("aphelion-explosiveSpear")))
-    gm.ds_list_add(actor.aphelion_explosiveSpear_timers, array)
+    if actor.aphelion_explosiveSpear_attacker then
+        local array = gm.array_create(4)
+        gm.array_set(array, 0, 100.0)
+        gm.array_set(array, 1, actor.aphelion_explosiveSpear_attacker)
+        gm.array_set(array, 2, actor.aphelion_explosiveSpear_damage)
+        gm.array_set(array, 3, Item.get_stack_count(actor.aphelion_explosiveSpear_attacker, Item.find("aphelion-explosiveSpear")))
+        gm.ds_list_add(actor.aphelion_explosiveSpear_timers, array)
+    end
 end)
 
 Buff.add_callback(buff, "onStep", function(actor, stack)
@@ -130,10 +132,11 @@ Buff.add_callback(buff, "onStep", function(actor, stack)
 
     -- Remove and explode oldest stack if expired
     -- or if about to die
+    -- TODO for multiplayer later: explode ALL remaining stacks if about to die
     local array = gm.ds_list_find_value(actor.aphelion_explosiveSpear_timers, 0)
     if array[1] <= 0 or lethal then
         local raw_damage = array[3] * (1.0 + (array[4] * 1.5))
-        local explosion = Actor.fire_explosion(array[2], actor.x, actor.y, 90, 90, raw_damage / array[2].damage, 2.0)
+        local explosion = Actor.fire_explosion(array[2], actor.x, actor.y, 95, 95, raw_damage / array[2].damage, 2.0)
         explosion.proc = false
         explosion.damage_color = 5046527
         gm.sound_play_at(sound, 1.0, 1.0, actor.x, actor.y, 1.0)
@@ -147,7 +150,7 @@ Buff.add_callback(buff, "onDraw", function(actor, stack)
     if actor.aphelion_explosiveSpear_timers then
         local array = gm.ds_list_find_value(actor.aphelion_explosiveSpear_timers, 0)
         if array then
-            local radius = Helper.ease_out(math.min(100.0 - array[1], 50.0) / 50.0) * 95
+            local radius = Helper.ease_out(math.min(100.0 - array[1], 50.0) / 50.0) * 100
             gm.draw_set_circle_precision(64)
             gm.draw_set_alpha(0.5)
             gm.draw_circle(actor.x, actor.y, radius, true)
@@ -155,6 +158,11 @@ Buff.add_callback(buff, "onDraw", function(actor, stack)
             gm.draw_set_circle_precision(24)
         end
     end
+end)
+
+Buff.add_callback(buff, "onChange", function(actor, to, stack)
+    -- Pass timers array to new actor instance
+    to.aphelion_explosiveSpear_timers = actor.aphelion_explosiveSpear_timers
 end)
 
 

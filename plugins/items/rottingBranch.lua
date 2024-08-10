@@ -47,3 +47,8 @@ Buff.add_callback(buff, "onStep", function(actor, stack)
         actor.aphelion_rottingBranch_duration = math.ceil(210.0 / math.max((stack - 1) * 0.4, 1.0))
     end
 end)
+
+Buff.add_callback(buff, "onChange", function(actor, to, stack)
+    -- Pass attacker to new actor instance
+    to.aphelion_rottingBranch_attacker = actor.aphelion_rottingBranch_attacker
+end)
