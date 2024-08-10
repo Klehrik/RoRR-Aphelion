@@ -127,7 +127,6 @@ Object.add_callback(obj, "Step", function(self)
         local dist = self.intercept_range
         for i = 0, 1 do
             local pos = ((self.proj_check + i) % #Instance.projectiles) + 1
-            log.info(pos)
             local ind = Instance.projectiles[pos]
             local projs = Instance.find_all(ind)
             for _, p in ipairs(projs) do
