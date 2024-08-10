@@ -6,7 +6,7 @@
             "description" : "Increase <g>armor</c> by <g>5 <c_stack>(+5 per stack)</c> and <b>shield</c> by <b>15 <c_stack>(+10 per stack)</c>.",
             "destination" : "1904,\nBaron County,\nMars",
             "date" : "9/03/2056",
-            "story" : "Shipment of lightweight body armor, capable of absorbing up to 6 low caliber rounds. Anything larger would probably pierce right through them though.\n\nWe've tested it throughly this time before this batch was produced, so there shouldn't be another fatal incident.",
+            "story" : "Shipment of lightweight body armor, capable of absorbing on average up to twelve 9mm rounds. Anything larger will pierce right through them though.\n\nWe've tested it throughly this time before this batch was produced, so there shouldn't be another fatal incident.",
             "priority" : "Standard"
         },
         "heartLocket" : {
