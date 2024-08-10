@@ -21,7 +21,7 @@
         "ration" : {
             "name" : "Ration",
             "pickup" : "Receive a large heal when in peril. Recharges over time.",
-            "description" : "Falling below <r>25% health</c> heals you for <g>50% <c_stack>(+7% per stack, hyperbolic) <g>health</c>. Has a <b>180 <c_stack>(-20% per stack, hyperbolic) <b>second</c> cooldown.",
+            "description" : "Falling below <r>25% health</c> heals you for <g>50% <c_stack>(+7% per stack, hyperbolic) <g>health</c>. Has a <b>4 <c_stack>(-20% per stack, hyperbolic) <b>minute</c> cooldown.",
             "destination" : "Fort Shell,\nManhattan, NY,\nEarth",
             "date" : "4/30/2056",
             "story" : "12 boxes of MREs for your boys, as requested. \n\nBe warned, they don't taste too good - it's basically a large bland cookie, loaded up with all the nutrients you'll ever need.",
