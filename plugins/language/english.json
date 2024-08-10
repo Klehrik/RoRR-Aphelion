@@ -110,10 +110,10 @@
             "name" : "Whimsical Star",
             "pickup" : "Summon stars to protect you.",
             "description" : "<y>3 <c_stack>(+2 per stack) <y>stars orbit erratically around you</c>, dealing <y>70% damage</c> on collision. Each star will also <b>intercept nearby projectiles</c>; this has a <b>1.5 second</c> cooldown.",
-            "destination" : "",
+            "destination" : "Complex B Unit 56,\nSand Zone,\nMars",
             "date" : "12/20/2056",
-            "story" : "",
-            "priority" : "<r>High Priority</c>"
+            "story" : "Here's a trinket I got at the famous Jovian Marketplace; thought I should send a little something back to you, y'know? Apparently if you wish upon it, your needs will come true, or something like that. Maybe you could make a wish for him.",
+            "priority" : "Standard"
         }
     }
 }
