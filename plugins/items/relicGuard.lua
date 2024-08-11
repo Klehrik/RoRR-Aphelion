@@ -21,5 +21,6 @@ end)
 
 Item.add_callback(item, "onShieldBreak", function(actor, stack)
     -- TODO for later: Apply to all nearby allies
+    -- and change description wording
     actor.barrier = actor.barrier + actor.maxshield * (0.25 + (stack * 0.15))
 end)

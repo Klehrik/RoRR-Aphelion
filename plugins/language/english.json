@@ -98,8 +98,8 @@
         },
         "relicGuard" : {
             "name" : "Relic Guard",
-            "pickup" : "Fortify your allies temporarily when your shield breaks.",
-            "description" : "Gain <b>20 <c_stack>(+15 per stack) <b>shield</c>. On shield break, grant <g>barrier</c> to yourself and <y>nearby allies</c> equal to <g>40% <c_stack>(+15% per stack) <g>of your <b>maximum shield</c>.",
+            "pickup" : "Fortify yourself temporarily when your shield breaks.",
+            "description" : "Gain <b>20 <c_stack>(+15 per stack) <b>shield</c>. On shield break, gain <g>barrier</c> equal to <g>40% <c_stack>(+15% per stack) <g>of your <b>maximum shield</c>.",
             "destination" : "",
             "date" : "",
             "story" : "",
