@@ -16,7 +16,7 @@ Item.add_callback(item, "onPickup", function(actor, stack)
     local temp      = Item.get_stack_count(actor, item_used, Item.TYPE.temporary)
     gm.item_take(actor, item_used, normal, false)
     gm.item_take(actor, item_used, temp, true)
-    gm.item_give_internal(actor, item, normal, false)
+    gm.item_give_internal(actor, item, normal, false)   -- Check if this still works in MP when the time comes
     gm.item_give_internal(actor, item, temp, true)
 end)
 
