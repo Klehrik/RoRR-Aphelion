@@ -32,5 +32,5 @@ Item.add_callback(item, "onStep", function(actor, stack)
 end)
 
 Item.add_callback(item, "onShieldBreak", function(actor, stack)
-    
+    -- TODO: Make invul with cooldown (use a buff maybe like cape)
 end)
