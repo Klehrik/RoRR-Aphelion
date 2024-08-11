@@ -8,7 +8,10 @@ Item.set_tier(item, Item.TIER.rare)
 Item.set_loot_tags(item, Item.LOOT_TAG.category_healing)
 
 Item.add_callback(item, "onPickup", function(actor, stack)
-    if not actor.aphelion_superShield_increase then actor.aphelion_superShield_increase = 0.0 end
+    if not actor.aphelion_superShield_increase then
+        actor.aphelion_superShield_increase = 0
+        actor.aphelion_superShield_cooldown = 0
+    end
 end)
 
 Item.add_callback(item, "onRemove", function(actor, stack)
@@ -20,6 +23,7 @@ Item.add_callback(item, "onRemove", function(actor, stack)
 end)
 
 Item.add_callback(item, "onStep", function(actor, stack)
+    -- Scale shield increase with max health
     local goal = actor.maxhp * Helper.mixed_hyperbolic(stack, 0.15, 0.2)
 
     if actor.aphelion_superShield_increase ~= goal then
@@ -29,8 +33,16 @@ Item.add_callback(item, "onStep", function(actor, stack)
         actor.maxshield_base = actor.maxshield_base + diff
         actor.maxshield = actor.maxshield + diff
     end
+
+    -- Lower invulnerability cooldown
+    if actor.aphelion_superShield_cooldown > 0 then
+        actor.aphelion_superShield_cooldown = actor.aphelion_superShield_cooldown - 1
+    end
 end)
 
 Item.add_callback(item, "onShieldBreak", function(actor, stack)
-    -- TODO: Make invul with cooldown (use a buff maybe like cape)
+    if actor.aphelion_superShield_cooldown <= 0 then
+        actor.aphelion_superShield_cooldown = 20 *60
+        actor.invincible = math.max(actor.invincible, 2.5 *60)
+    end
 end)
