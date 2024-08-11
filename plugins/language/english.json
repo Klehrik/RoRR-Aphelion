@@ -127,7 +127,7 @@
         "superShield" : {
             "name" : "Super Shield",
             "pickup" : "Gain a large amount of shield. Become temporarily invincible when it breaks.",
-            "description" : "Gain a <b>shield</c> worth <b>20% <c_stack>(+10% per stack, hyperbolic) <b>of your <g>maximum health</c>. Become <b>invincible</c> for <b>2.5 seconds</c> when it breaks; this has a <b>20 second</c> cooldown.",
+            "description" : "Gain a <b>shield</c> worth <b>20% <c_stack>(+15% per stack, hyperbolic) <b>of your <g>maximum health</c>. Become <b>invincible</c> for <b>2.5 seconds</c> when it breaks; this has a <b>20 second</c> cooldown.",
             "destination" : "",
             "date" : "",
             "story" : "",
