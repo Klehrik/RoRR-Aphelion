@@ -19,6 +19,7 @@ Item.add_callback(item, "onRemove", function(actor, stack)
         actor.maxshield_base = actor.maxshield_base - actor.aphelion_superShield_increase
         actor.maxshield = actor.maxshield - actor.aphelion_superShield_increase
         actor.aphelion_superShield_increase = nil
+        actor.aphelion_superShield_cooldown = nil
     end
 end)
 
