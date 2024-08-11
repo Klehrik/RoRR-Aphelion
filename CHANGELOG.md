@@ -5,3 +5,4 @@
 * Overloaded Capacitor
     * First stack damage bonus: 20% -> 15%
 * Added Relic Guard
+* Added Super Shield (temp name)
