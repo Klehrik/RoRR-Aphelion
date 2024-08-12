@@ -1,4 +1,5 @@
 -- Super Shield
+-- temp name; rename to something later
 
 local sprite = Resources.sprite_load(PATH.."assets/sprites/ballisticVest.png", 1, false, false, 16, 16)
 

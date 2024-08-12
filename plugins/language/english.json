@@ -50,6 +50,15 @@
             "story" : "These are only resin models of the real thing, to be used in display cases and whatnot. Current advancements in materials and aromatics tech allows them to not only look, but feel, smell, and even taste the part of actual food, but don't be fooled. THEY'RE NOT EDIBLE. The resin used is non-toxic, so you won't die if you do, but don't come asking for a refund after one of your regulars reports a stomachache or something like that.",
             "priority" : "Standard"
         },
+        "healExp" : {
+            "name" : "Heal Exp",
+            "pickup" : "What doesn't kill you...",
+            "description" : "Gain <y>experience</c> equal to <g>100% <c_stack>(+50% per stack) <g>of life healed</c>.",
+            "destination" : "",
+            "date" : "",
+            "story" : "",
+            "priority" : "Standard"
+        },
 
         "sixShooter" : {
             "name" : "Six Shooter",
@@ -99,7 +108,7 @@
         "relicGuard" : {
             "name" : "Relic Guard",
             "pickup" : "Fortify yourself temporarily when your shield breaks.",
-            "description" : "Gain <b>20 <c_stack>(+15 per stack) <b>shield</c>. On shield break, gain <g>barrier</c> equal to <g>40% <c_stack>(+15% per stack) <g>of your <b>maximum shield</c>.",
+            "description" : "Gain <b>20 <c_stack>(+15 per stack) <b>shield</c>. On shield break, gain <g>barrier</c> equal to <y>40% <c_stack>(+15% per stack)</c> of your <b>maximum shield</c>.",
             "destination" : "",
             "date" : "",
             "story" : "",
@@ -127,7 +136,7 @@
         "superShield" : {
             "name" : "Super Shield",
             "pickup" : "Gain a large amount of shield. Become temporarily invincible when it breaks.",
-            "description" : "Gain a <b>shield</c> worth <b>20% <c_stack>(+15% per stack, hyperbolic) <b>of your <g>maximum health</c>. Become <b>invincible</c> for <b>2.5 seconds</c> when it breaks; this has a <b>20 second</c> cooldown.",
+            "description" : "Gain a <b>shield</c> worth <y>20% <c_stack>(+15% per stack, hyperbolic)</c> of your <g>maximum health</c>. Become <b>invincible</c> for <b>2.5 seconds</c> when it breaks; this has a <b>20 second</c> cooldown.",
             "destination" : "",
             "date" : "",
             "story" : "",
