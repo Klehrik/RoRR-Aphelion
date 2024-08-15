@@ -2,7 +2,7 @@
 	"name": "Aphelion",
 	"version_number": "1.0.2",
 	"website_url": "https://github.com/Klehrik/RoRR-Aphelion",
-	"description": "Content mod that currently adds 12 new items.",
+	"description": "Content mod that currently adds 14 new items.",
 	"dependencies": [
 		"ReturnOfModding-ReturnOfModding-1.0.34",
 		"RoRRModdingToolkit-RoRR_Modding_Toolkit-1.0.7"
