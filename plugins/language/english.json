@@ -3,7 +3,7 @@
         "ballisticVest" : {
             "name" : "Ballistic Vest",
             "pickup" : "Reduce incoming damage by 5% and gain a small shield.",
-            "description" : "Increase <g>armor</c> by <g>5 <c_stack>(+5 per stack)</c> and <b>shield</c> by <b>15 <c_stack>(+10 per stack)</c>.",
+            "description" : "Increase <g>armor</c> by <g>5 <c_stack>(+5 per stack)</c> and gain a <b>15 <c_stack>(+10 per stack)</c> <b>health shield</c>.",
             "destination" : "1904,\nBaron County,\nMars",
             "date" : "9/03/2056",
             "story" : "Shipment of lightweight body armor, capable of absorbing on average up to twelve 9mm rounds. Anything larger will pierce right through them though.\n\nWe've tested it throughly this time before this batch was produced, so there shouldn't be another fatal incident.",
@@ -72,7 +72,7 @@
         "overloadedCapacitor" : {
             "name" : "Overloaded Capacitor",
             "pickup" : "Deal increased damage while you have barrier.",
-            "description" : "Leaving combat for <y>3</c> seconds grants <g>barrier</c> equal to <g>6% health</c>. While barrier is active, your attacks deal <y>+15% <c_stack>(+10% per stack) <y>damage</c>.",
+            "description" : "Leaving combat for <y>5</c> seconds grants <g>barrier</c> equal to <g>8% health</c>. While barrier is active, your attacks deal <y>+15% <c_stack>(+10% per stack) <y>damage</c>.",
             "destination" : "1803,\nCombat Zone,\nVenus",
             "date" : "01/03/2057",
             "story" : "I had to run to catch the train home from work last week; going to war with a century-old record player is not something a punctual man would do, but it was the first business the antique shop had in a while. \n\nThe train suddenly jolted forwards, and I ended up bumping into someone. He must've assumed that I wanted to fight, and so he took a swing at me. It felt like… a tap on the cheek. My confusion was quicky replaced with surprise once I swung a hook at him in return and sent him flying into the next car. \n\nI realized a tingling feeling in my pocket once the shock had partially subsided, and in it was an old capacitor I had removed from the player earlier that day. You could probably get a kick out of it, so take it for a spin! Keep note of anything interesting you observe, and when you're back, we can try to figure out what makes it tick. Like old times.",
@@ -108,7 +108,7 @@
         "relicGuard" : {
             "name" : "Relic Guard",
             "pickup" : "Fortify yourself temporarily when your shield breaks.",
-            "description" : "Gain <b>20 <c_stack>(+15 per stack) <b>shield</c>. On shield break, gain <g>barrier</c> equal to <y>40% <c_stack>(+15% per stack)</c> of your <b>maximum shield</c>.",
+            "description" : "Gain a <b>20 <c_stack>(+20 per stack) <b>health shield</c>. On shield break, gain <g>barrier</c> equal to <y>40% <c_stack>(+15% per stack)</c> of your <b>maximum shield</c>.",
             "destination" : "",
             "date" : "",
             "story" : "",
@@ -135,8 +135,8 @@
         },
         "superShield" : {
             "name" : "Super Shield",
-            "pickup" : "Gain a large amount of shield. Become temporarily invincible when it breaks.",
-            "description" : "Gain a <b>shield</c> worth <y>20% <c_stack>(+15% per stack, hyperbolic)</c> of your <g>maximum health</c>. Become <b>invincible</c> for <b>2.5 seconds</c> when it breaks; this has a <b>20 second</c> cooldown.",
+            "pickup" : "Gain a large amount of shield. Fire chain lightning while you have shield.",
+            "description" : "Gain an <b>18% <c_stack>(+18% per stack, hyperbolic) <b>health shield</c>. While shield is active, fire <y>chain lightning</c> on hit for <y>33% <c_stack>(+33% per stack) <y>TOTAL damage</c> on up to <y>2</c> targets.",
             "destination" : "",
             "date" : "",
             "story" : "",
