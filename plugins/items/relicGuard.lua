@@ -23,7 +23,7 @@ Item.add_callback(item, "onShieldBreak", function(actor, stack)
     log.info("shieldbreak")
     -- TODO for later: Apply to all nearby allies
     -- and change description wording
-    Actor.add_barrier(actor, actor.maxshield * (0.35 + (stack * 0.15)))
+    Actor.add_barrier(actor, actor.maxshield * (0.25 + (stack * 0.25)))
 end)
 
 
