@@ -186,3 +186,29 @@ Object.add_callback(obj, "Draw", function(self)
     end
     gm.draw_sprite_ext(self.sprite_index, 0, self.x, self.y, self.image_xscale, self.image_yscale, self.image_angle, blend, alpha)
 end)
+
+
+
+-- Achievement
+Item.add_achievement(item)
+
+gm.pre_script_hook(gm.constants.skill_activate, function(self, other, result, args)
+    if args[1].value == 1.0 and self.skills[2].active_skill.skill_id == 2.0 then
+        self.aphelion_whimsicalStar_achievement_check = 2
+    end
+end)
+
+gm.pre_script_hook(gm.constants.step_actor, function(self, other, result, args)
+    if self.aphelion_whimsicalStar_achievement_check and self.aphelion_whimsicalStar_achievement_check > 0 then
+        self.aphelion_whimsicalStar_achievement_check = self.aphelion_whimsicalStar_achievement_check - 1
+        if self.aphelion_whimsicalStar_achievement_check <= 0 then self.aphelion_whimsicalStar_achievement_check = nil end
+    end
+end)
+
+Actor.add_callback("onPostAttack", function(actor, damager)
+    if not actor.aphelion_whimsicalStar_achievement_check then return end
+    log.info(damager.kill_number)
+    if damager.kill_number >= 7 then
+        Item.progress_achievement(Item.find("aphelion-whimsicalStar"))
+    end
+end)

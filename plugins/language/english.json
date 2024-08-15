@@ -50,15 +50,6 @@
             "story" : "These are only resin models of the real thing, to be used in display cases and whatnot. Current advancements in materials and aromatics tech allows them to not only look, but feel, smell, and even taste the part of actual food, but don't be fooled. THEY'RE NOT EDIBLE. The resin used is non-toxic, so you won't die if you do, but don't come asking for a refund after one of your regulars reports a stomachache or something like that.",
             "priority" : "Standard"
         },
-        "healExp" : {
-            "name" : "Heal Exp",
-            "pickup" : "What doesn't kill you...",
-            "description" : "Gain <y>experience</c> equal to <g>100% <c_stack>(+50% per stack) <g>of life healed</c>.",
-            "destination" : "",
-            "date" : "",
-            "story" : "",
-            "priority" : "Standard"
-        },
 
         "sixShooter" : {
             "name" : "Six Shooter",
@@ -136,11 +127,18 @@
         "superShield" : {
             "name" : "Super Shield",
             "pickup" : "Gain a large amount of shield. Fire chain lightning while you have shield.",
-            "description" : "Gain an <b>18% <c_stack>(+18% per stack, hyperbolic) <b>health shield</c>. While shield is active, fire <y>chain lightning</c> on hit for <y>33% <c_stack>(+33% per stack) <y>TOTAL damage</c> on up to <y>2</c> targets.",
+            "description" : "Gain an <b>18% <c_stack>(+18% per stack, hyperbolic) <b>health shield</c>. While shield is active, fire <y>chain lightning</c> on hit for <y>30% <c_stack>(+30% per stack) <y>TOTAL damage</c> on up to <y>2</c> targets.",
             "destination" : "",
             "date" : "",
             "story" : "",
             "priority" : "<r>High Priority</c>"
+        }
+    },
+
+    "achievement" : {
+        "whimsicalStar" : {
+            "name" : "Spur",
+            "description" : "Commando: Kill 7 enemies with a single use of Full Metal Jacket."
         }
     }
 }

@@ -410,9 +410,9 @@ end)
 -- self/other : 
 -- result (pre/post): 
 -- args[1] : 
-gm.post_script_hook(106209.0, function(self, other, result, args)
-    Helper.log_hook(self, other, result, args)
-end)
+-- gm.post_script_hook(106209.0, function(self, other, result, args)
+--     Helper.log_hook(self, other, result, args)
+-- end)
 
 -- selectMenu.ui_button_category_header_overlay
 -- self/other : 
