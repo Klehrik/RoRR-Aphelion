@@ -328,3 +328,104 @@ end)
 --     log.info(gm.object_get_name(args[1].value.object_index))
 --     log.info("")
 -- end)
+
+
+
+-- Testing
+gui.add_imgui(function()
+    if ImGui.Begin("Debug") then
+        local selectMenu = Instance.find(gm.constants.oSelectMenu)
+
+        
+        if ImGui.Button("Add Game Style") then
+            log.info(selectMenu.mode_dropdown_options)
+            log.info(gm.array_length(selectMenu.mode_dropdown_options))
+            local new = gm.array_create(2)
+            gm.array_set(new, 0, "TEST")
+            gm.array_set(new, 1, 3.0)
+            gm.array_push(selectMenu.mode_dropdown_options, new)
+
+
+        elseif ImGui.Button("Add Section") then
+            local section = gm.struct_create()
+            section.open_bump = 0.0
+            section.open_height = 200.0
+            section.opening = false
+            section.name = "TESTING"
+            section.open = true
+            section.index = 13.0    -- 13+ is empty section
+            section.open_window_percent = 1.0
+            section.opening_time = 0.0
+            section.force_scroll_to = false
+            section.closing = false
+            section.content_offset = 0.0
+            gm.array_push(selectMenu.sections, section)
+            selectMenu.section_number = selectMenu.section_number + 1
+
+        
+        elseif ImGui.Button("Init sections") then
+            --gm.call(selectMenu.init_sections)
+
+            --log.info(gm.ui_checkbox("test_button", 130, 400, 13.0))
+
+
+        elseif ImGui.Button("SelectMenu debug") then
+            log.info(gm.instance_number(gm.constants.oSelectMenu))
+            log.info(gm.instance_find(gm.constants.oSelectMenu, 0))
+            gm.api_instance_section("testing", "desc")
+
+
+        end
+    end
+    ImGui.End()
+end)
+
+
+gm.post_script_hook(gm.constants.__input_system_tick, function(self, other, result, args)
+    local selectMenu = Instance.find(gm.constants.oSelectMenu)
+
+    local gp_index = gm.array_create(4)
+    gm.array_set(gp_index, 3, 1)
+    selectMenu:ui_checkbox("test_button", 130, 200, gp_index, gm.variable_global_get("_ui_style_default"), 0.0)
+end)
+
+
+-- selectMenu.set_active_page
+-- self/other : oSelectMenu
+-- result (pre/post): nil / nil
+-- args[1] : 0.0 on page 1 and 1.0 on page 2
+-- gm.post_script_hook(106212.0, function(self, other, result, args)
+--     Helper.log_hook(self, other, result, args)
+-- end)
+
+-- gm.constants.ui_checkbox
+-- self/other : oSelectMenu
+-- result (pre/post) : nil / -2.0
+-- args : Discord
+-- gm.post_script_hook(gm.constants.ui_checkbox, function(self, other, result, args)
+--     Helper.log_hook(self, other, result, args)
+-- end)
+
+-- selectMenu.init_sections
+-- self/other : 
+-- result (pre/post): 
+-- args[1] : 
+gm.post_script_hook(106209.0, function(self, other, result, args)
+    Helper.log_hook(self, other, result, args)
+end)
+
+-- selectMenu.ui_button_category_header_overlay
+-- self/other : 
+-- result (pre/post): 
+-- args[1] : 
+-- gm.post_script_hook(106256.0, function(self, other, result, args)
+--     Helper.log_hook(self, other, result, args)
+-- end)
+
+-- selectMenu.init_sections
+-- self/other : 
+-- result (pre/post): 
+-- args[1] : 
+-- gm.post_script_hook(gm.constants._ui_draw_button, function(self, other, result, args)
+--     Helper.log_hook(self, other, result, args)
+-- end)
