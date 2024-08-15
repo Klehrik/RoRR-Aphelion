@@ -193,6 +193,7 @@ end)
 Item.add_achievement(item)
 
 Actor.add_callback("onSkillUse", function(actor)
+    if actor ~= Player.get_client() then return end
     actor.aphelion_whimsicalStar_achievement_check = 2
 end, Actor.find_skill_id("ror-commandoX"))
 

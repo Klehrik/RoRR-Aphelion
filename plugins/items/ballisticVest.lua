@@ -20,3 +20,13 @@ Item.add_callback(item, "onRemove", function(actor, stack)
     if stack > 1 then increase = 10 end
     actor.maxshield_base = actor.maxshield_base - increase
 end)
+
+
+
+-- Achievement
+Item.add_achievement(item, 2000, true)
+
+Actor.add_callback("onDamaged", function(actor, damager)
+    if actor ~= Player.get_client() then return end
+    Item.progress_achievement(Item.find("aphelion-ballisticVest"), damager.damage)
+end)

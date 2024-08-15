@@ -136,11 +136,20 @@
     },
 
     "achievement" : {
+        "ballisticVest" : {
+            "name" : "Die Hard",
+            "description" : "Take 2,000 damage in a single run."
+        },
+
         "relicGuard" : {
             "name" : "Bastion",
             "description" : "Reach 400 shield."
         },
 
+        "stiletto" : {
+            "name" : "Precision",
+            "description" : "Reach 100% critical chance."
+        },
         "whimsicalStar" : {
             "name" : "Spur",
             "description" : "Commando: Kill 7 enemies with a single use of Full Metal Jacket."

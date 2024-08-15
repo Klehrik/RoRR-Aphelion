@@ -29,3 +29,15 @@ Item.add_callback(item, "onAttack", function(actor, damager, stack)
         damager.damage = damager.damage + bonus
     end
 end)
+
+
+
+-- Achievement
+Item.add_achievement(item)
+
+Actor.add_callback("onPreStep", function(actor, damager)
+    if actor ~= Player.get_client() then return end
+    if actor.critical_chance >= 100.0 then
+        Item.progress_achievement(Item.find("aphelion-stiletto"))
+    end
+end)

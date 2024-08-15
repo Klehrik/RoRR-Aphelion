@@ -31,6 +31,7 @@ end)
 Item.add_achievement(item)
 
 Actor.add_callback("onPreStep", function(actor)
+    if actor ~= Player.get_client() then return end
     if actor.maxshield >= 400.0 then
         Item.progress_achievement(Item.find("aphelion-relicGuard"))
     end
