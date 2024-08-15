@@ -207,7 +207,6 @@ end)
 
 Actor.add_callback("onPostAttack", function(actor, damager)
     if not actor.aphelion_whimsicalStar_achievement_check then return end
-    log.info(damager.kill_number)
     if damager.kill_number >= 7 then
         Item.progress_achievement(Item.find("aphelion-whimsicalStar"))
     end
