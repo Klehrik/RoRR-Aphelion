@@ -196,7 +196,7 @@ Actor.add_callback("onSkillUse", function(actor)
     actor.aphelion_whimsicalStar_achievement_check = 2
 end, Actor.find_skill_id("ror-commandoX"))
 
-Actor.add_callback("onPreStep", function(actor, damager)
+Actor.add_callback("onPreStep", function(actor)
     if actor.aphelion_whimsicalStar_achievement_check and actor.aphelion_whimsicalStar_achievement_check > 0 then
         actor.aphelion_whimsicalStar_achievement_check = actor.aphelion_whimsicalStar_achievement_check - 1
         if actor.aphelion_whimsicalStar_achievement_check <= 0 then actor.aphelion_whimsicalStar_achievement_check = nil end
