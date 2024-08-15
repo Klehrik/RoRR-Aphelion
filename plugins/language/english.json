@@ -60,8 +60,8 @@
             "story" : "An antique from days past. The cylinder is somewhat damaged, and black powder is pretty hard (and expensive!) to get nowadays, but regardless it should be a nice addition to your collection if you aren't planning on firing it.",
             "priority" : "<g>Priority</c>"
         },
-        "overloadedCapacitor" : {
-            "name" : "Overloaded Capacitor",
+        "barrierDamage" : {
+            "name" : "??",
             "pickup" : "Deal increased damage while you have barrier.",
             "description" : "Leaving combat for <y>5</c> seconds grants <g>barrier</c> equal to <g>8% health</c>. While barrier is active, your attacks deal <y>+15% <c_stack>(+10% per stack) <y>damage</c>.",
             "destination" : "1803,\nCombat Zone,\nVenus",
@@ -99,11 +99,11 @@
         "relicGuard" : {
             "name" : "Relic Guard",
             "pickup" : "Fortify yourself temporarily when your shield breaks.",
-            "description" : "Gain a <b>20 <c_stack>(+20 per stack) <b>health shield</c>. On shield break, gain <g>barrier</c> equal to <y>40% <c_stack>(+15% per stack)</c> of your <b>maximum shield</c>.",
-            "destination" : "",
-            "date" : "",
-            "story" : "",
-            "priority" : "<g>Priority</c>"
+            "description" : "Gain a <b>20 <c_stack>(+20 per stack) <b>health shield</c>. On shield break, gain <g>barrier</c> equal to <y>50% <c_stack>(+15% per stack)</c> of your <b>maximum shield</c>.",
+            "destination" : "Bldg. 1\n3 Wry Ave.\nTheworl,\nTitan",
+            "date" : "11/14/2056",
+            "story" : "Found this stashed in Thorton's attic - somehow he managed to hide a shield of this size from the rest of us during that expedition. I didn't find anything else in there, but regardless he is no longer a part of the team. The shield itself is surprisingly solid, at least compared to the other one, but I would still be careful with handling it.",
+            "priority" : "<g>Priority/Fragile</c>"
         },
 
         "stiletto" : {
@@ -124,14 +124,14 @@
             "story" : "Here's a trinket I got at the famous Jovian Marketplace; thought I should send a little something back to you, y'know? Apparently if you wish upon it, your needs will come true, or something like that. Maybe you could make a wish for him.",
             "priority" : "Standard"
         },
-        "superShield" : {
-            "name" : "Super Shield",
+        "overloadedCapacitor" : {
+            "name" : "Overloaded Capacitor",
             "pickup" : "Gain a large amount of shield. Fire chain lightning while it's active.",
             "description" : "Gain an <b>18% <c_stack>(+18% per stack, hyperbolic) <b>health shield</c>. While shield is active, fire <y>chain lightning</c> on hit for <y>30% <c_stack>(+30% per stack) <y>TOTAL damage</c> on up to <y>2</c> targets.",
-            "destination" : "",
-            "date" : "",
-            "story" : "",
-            "priority" : "<r>High Priority</c>"
+            "destination" : "Ampère Weapons Lab,\nEarth",
+            "date" : "3/17/2056",
+            "story" : "This prototype VF-12 high-density supercapacitor is currently the most powerful one of its size in the galaxy right now. Should suit your needs. Do NOT let it build up charge once it reaches its cap; it has a stopping problem and WILL discharge any overflow.",
+            "priority" : "<r>High Priority/Fragile</c>"
         }
     },
 

@@ -1,6 +1,6 @@
 -- Relic Guard
 
-local sprite = Resources.sprite_load(PATH.."assets/sprites/ballisticVest.png", 1, false, false, 16, 16)
+local sprite = Resources.sprite_load(PATH.."assets/sprites/relicGuard.png", 1, false, false, 16, 16)
 
 local item = Item.create("aphelion", "relicGuard")
 Item.set_sprite(item, sprite)
@@ -20,9 +20,10 @@ Item.add_callback(item, "onRemove", function(actor, stack)
 end)
 
 Item.add_callback(item, "onShieldBreak", function(actor, stack)
+    log.info("shieldbreak")
     -- TODO for later: Apply to all nearby allies
     -- and change description wording
-    actor.barrier = actor.barrier + actor.maxshield * (0.25 + (stack * 0.15))
+    Actor.add_barrier(actor, actor.maxshield * (0.35 + (stack * 0.15)))
 end)
 
 
