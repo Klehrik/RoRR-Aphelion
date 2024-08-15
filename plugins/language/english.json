@@ -136,6 +136,11 @@
     },
 
     "achievement" : {
+        "relicGuard" : {
+            "name" : "Bastion",
+            "description" : "Reach 400 shield."
+        },
+
         "whimsicalStar" : {
             "name" : "Spur",
             "description" : "Commando: Kill 7 enemies with a single use of Full Metal Jacket."

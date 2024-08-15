@@ -24,3 +24,14 @@ Item.add_callback(item, "onShieldBreak", function(actor, stack)
     -- and change description wording
     actor.barrier = actor.barrier + actor.maxshield * (0.25 + (stack * 0.15))
 end)
+
+
+
+-- Achievement
+Item.add_achievement(item)
+
+Actor.add_callback("onPreStep", function(actor)
+    if actor.maxshield >= 400.0 then
+        Item.progress_achievement(Item.find("aphelion-relicGuard"))
+    end
+end)
