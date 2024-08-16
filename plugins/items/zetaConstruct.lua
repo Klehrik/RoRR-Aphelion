@@ -140,6 +140,12 @@ Object.add_callback(obj, "Step", function(self)
             if target_type == 0 then gm.instance_destroy(target)
             else Actor.damage(target, self.parent, self.parent.damage * self.damage_coeff, target.x, target.y - 36, blend)
             end
+
+        elseif self.charged then
+            -- Set sprite direction relative to player
+            self.image_xscale = 1
+            if self.parent.y > self.y then self.image_xscale = -1 end
+
         end
 
     else self.charge = 0
