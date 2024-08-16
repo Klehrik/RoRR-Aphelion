@@ -108,7 +108,7 @@
         "zetaConstruct" : {
             "name" : "Zeta Construct",
             "pickup" : "Gain a defensive construct while you have shield.",
-            "description" : "Gain a <b>20 <c_stack>(+20 per stack) <b>health shield</c>. While shield is active, a small <y>defensive construct</c> will <y>fire at nearby enemies and projectiles</c> for <y>75% damage</c> every <y>0.9</c> seconds; fire rate <b>scales with maximum shield</c>.",
+            "description" : "Gain a <b>20 <c_stack>(+20 per stack) <b>health shield</c>. While shield is active, a small <y>defensive construct</c> will <y>fire at nearby enemies</c> and <b>projectiles</c> for <y>75% damage</c> every <y>0.9</c> seconds; fire rate <b>scales with maximum shield</c>.",
             "destination" : "",
             "date" : "",
             "story" : "",
