@@ -105,6 +105,15 @@
             "story" : "Found this stashed in Thorton's attic - somehow he managed to hide a shield of this size from the rest of us during that expedition. I didn't find anything else in there, but regardless he is no longer a part of the team. The shield itself is surprisingly solid, at least compared to the other one, but I would still be careful with handling it.",
             "priority" : "<g>Priority/Fragile</c>"
         },
+        "zetaConstruct" : {
+            "name" : "Zeta Construct",
+            "pickup" : "Gain a defensive construct while you have shield.",
+            "description" : "Gain a <b>20 <c_stack>(+20 per stack) <b>health shield</c>. While shield is active, a small <y>defensive construct</c> will <y>fire at nearby enemies and projectiles</c> for <y>75% damage</c> every <y>0.9</c> seconds; fire rate <b>scales with maximum shield</c>.",
+            "destination" : "",
+            "date" : "",
+            "story" : "",
+            "priority" : ""
+        },
 
         "stiletto" : {
             "name" : "Stiletto",

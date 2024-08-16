@@ -429,3 +429,29 @@ end)
 -- gm.post_script_hook(gm.constants._ui_draw_button, function(self, other, result, args)
 --     Helper.log_hook(self, other, result, args)
 -- end)
+
+
+
+gui.add_imgui(function()
+    if ImGui.Begin("Debug") then
+        local selectMenu = Instance.find(gm.constants.oSelectMenu)
+
+        
+        if ImGui.Button("Create tracer") then
+            local p = Player.get_client()
+            local tracer = gm.instance_create_depth(p.x, p.y, 0, gm.constants.oEfLineTracer)
+            tracer.xend = tracer.x + 100
+            tracer.yend = tracer.y
+            tracer.bm = 1
+            tracer.rate = 0.15
+            tracer.sprite_index = 3682.0
+            tracer.image_blend = 4434400
+
+            local sparks = gm.instance_create_depth(p.x, p.y, 0, gm.constants.oEfSparks)
+            sparks.sprite_index = 1632.0
+
+
+        end
+    end
+    ImGui.End()
+end)

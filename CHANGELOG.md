@@ -6,13 +6,14 @@
 
 ### v1.0.2 (unreleased)
 * Six Shooter now works with Sniper's Snipe properly (fixed in RoRR Modding Toolkit).
-* Ballistic Vest : Is now achievement locked
 * Overloaded Capacitor
     * Renamed to Barrier Damage (temp name)
     * First stack damage bonus: 20% -> 15%
     * Barrier out-of-combat delay time: 3s -> 5s
     * Barrier out-of-combat gain: 6% -> 8%
+* Ballistic Vest : Is now achievement locked
 * Stiletto : Is now achievement locked
 * Whimsical Star : Is now achievement locked
 * Added Relic Guard
 * Added Overloaded Capacitor (new version)
+* Added Zeta Construct
