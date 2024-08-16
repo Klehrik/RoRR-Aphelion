@@ -136,7 +136,7 @@
         "overloadedCapacitor" : {
             "name" : "Overloaded Capacitor",
             "pickup" : "Gain a large amount of shield. Fire chain lightning while it's active.",
-            "description" : "Gain an <b>18% <c_stack>(+18% per stack, hyperbolic) <b>health shield</c>. While shield is active, all your <y>attacks fire chain lightning</c> for a bonus <y>30% <c_stack>(+30% per stack) <y>TOTAL damage</c> on up to <y>2</c> targets.",
+            "description" : "Gain an <b>18% <c_stack>(+18% per stack, hyperbolic) <b>health shield</c>. While shield is active, all your <y>attacks fire chain lightning</c> for a bonus <y>33% <c_stack>(+33% per stack) <y>TOTAL damage</c> on up to <y>2</c> targets.",
             "destination" : "Ampère Weapons Lab,\nEarth",
             "date" : "3/17/2056",
             "story" : "These prototype VF-12 high-density supercapacitors are currently the most powerful ones of their size in the solar system. Should suit your needs. Do NOT let them build up any charge past their cap; they have a stopping problem and WILL discharge any overflow.",

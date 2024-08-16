@@ -37,7 +37,7 @@ end)
 Item.add_callback(item, "onHit", function(actor, victim, damager, stack)
     if actor.shield > 0 then
         local lightning = gm.instance_create_depth(victim.x, victim.y, 0, gm.constants.oChainLightning)
-        lightning.damage = damager.damage * (stack * 0.3)
+        lightning.damage = damager.damage * (stack * 0.33)
         lightning.bounce = 2
     end
 end)
