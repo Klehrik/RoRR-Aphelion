@@ -8,8 +8,7 @@
 * Six Shooter now works with Sniper's Snipe properly (fixed in RoRR Modding Toolkit).
 * Ballistic Vest
     * Is now achievement locked
-    * First stack shield gain: 15 -> 20
-    * Extra stack shield gain: 10 -> 15
+    * Shield gain: +15 (+10) -> +20
 * Overloaded Capacitor
     * Renamed to Barrier Damage (temp name)
     * First stack damage bonus: 20% -> 15%
