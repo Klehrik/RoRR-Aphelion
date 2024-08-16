@@ -3,7 +3,7 @@
         "ballisticVest" : {
             "name" : "Ballistic Vest",
             "pickup" : "Reduce incoming damage by 5% and gain a small shield.",
-            "description" : "Increase <g>armor</c> by <g>5 <c_stack>(+5 per stack)</c> and gain a <b>15 <c_stack>(+10 per stack)</c> <b>health shield</c>.",
+            "description" : "Increase <g>armor</c> by <g>5 <c_stack>(+5 per stack)</c> and gain a <b>20 <c_stack>(+15 per stack)</c> <b>health shield</c>.",
             "destination" : "1904,\nBaron County,\nMars",
             "date" : "9/03/2056",
             "story" : "Shipment of lightweight body armor, capable of absorbing on average up to twelve 9mm rounds. Anything larger will pierce right through them though.\n\nWe've tested it throughly this time before this batch was produced, so there shouldn't be another fatal incident.",
