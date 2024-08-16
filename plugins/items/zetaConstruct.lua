@@ -43,7 +43,7 @@ Object.add_callback(obj, "Init", function(self)
 
     self.persistent = true
     self.sprite_index = sprite
-    self.image_speed = 0.5
+    self.image_speed = 0.4
 
     self.angle = gm.irandom_range(0, 359)
     self.angle_speed = 72   -- Per second
