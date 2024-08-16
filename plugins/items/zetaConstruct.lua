@@ -1,6 +1,6 @@
 -- Zeta Construct
 
-local sprite = Resources.sprite_load(PATH.."assets/sprites/whimsicalStar.png", 1, false, false, 16, 16)
+local sprite = Resources.sprite_load(PATH.."assets/sprites/zetaConstruct.png", 1, false, false, 16, 16)
 
 local item = Item.create("aphelion", "zetaConstruct")
 Item.set_sprite(item, sprite)
@@ -26,6 +26,7 @@ Item.add_callback(item, "onRemove", function(actor, stack)
 
     if stack <= 1 then
         if Instance.exists(actor.aphelion_zetaConstruct_inst) then gm.instance_destroy(actor.aphelion_zetaConstruct_inst) end
+        actor.aphelion_zetaConstruct_inst = nil
     end
 end)
 
@@ -33,7 +34,7 @@ end)
 
 -- Object
 
-local sprite = Resources.sprite_load(PATH.."assets/sprites/ration.png", 1, false, false, 16, 16)
+local sprite = Resources.sprite_load(PATH.."assets/sprites/zetaConstructObject.png", 4, false, false, 8, 8)
 
 local obj = Object.create("aphelion", "zetaConstruct")
 
@@ -42,6 +43,7 @@ Object.add_callback(obj, "Init", function(self)
 
     self.persistent = true
     self.sprite_index = sprite
+    self.image_speed = 0.5
 
     self.angle = gm.irandom_range(0, 359)
     self.angle_speed = 72   -- Per second
@@ -54,7 +56,9 @@ end)
 
 Object.add_callback(obj, "Step", function(self)
     -- Orbit around parent
-    self.angle = self.angle + self.angle_speed /60.0
+    local spd = self.angle_speed /60.0
+    if not self.active then spd = spd / 2.0 end
+    self.angle = self.angle + spd
     self.x = self.parent.x + (gm.dcos(self.angle) * self.radius)
     self.y = self.parent.y - (gm.dsin(self.angle) * self.radius)
 end)
@@ -113,9 +117,14 @@ Object.add_callback(obj, "Step", function(self)
         if target then
             self.charge = 0
 
+            -- Set sprite direction
+            self.image_xscale = 1
+            if target.x < self.x then self.image_xscale = -1 end
+
+            -- Create tracer line and sparks
             local blend = 13688896
 
-            local tracer = gm.instance_create_depth(self.x, self.y, -1, gm.constants.oEfLineTracer)
+            local tracer = gm.instance_create_depth(self.x + (self.image_xscale * 4), self.y, -1, gm.constants.oEfLineTracer)
             tracer.xend = target.x
             tracer.yend = target.y
             tracer.bm = 1
@@ -127,6 +136,7 @@ Object.add_callback(obj, "Step", function(self)
             sparks.sprite_index = 1632.0
             sparks.image_blend = blend
 
+            -- Act on target
             if target_type == 0 then gm.instance_destroy(target)
             else Actor.damage(target, self.parent, self.parent.damage * self.damage_coeff, target.x, target.y - 36, blend)
             end
@@ -141,8 +151,8 @@ Object.add_callback(obj, "Draw", function(self)
     local blend = 16777215
     local alpha = 1.0
     if not self.active then
-        blend = 12632256
+        blend = 6709272
         alpha = 0.6
     end
-    gm.draw_sprite_ext(self.sprite_index, 0, self.x, self.y, self.image_xscale, self.image_yscale, self.image_angle, blend, alpha)
+    gm.draw_sprite_ext(self.sprite_index, self.image_index, self.x, self.y, self.image_xscale, self.image_yscale, self.image_angle, blend, alpha)
 end)
