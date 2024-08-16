@@ -43,3 +43,22 @@ Item.add_callback(item, "onPostAttack", function(actor, damager, stack)
         actor.critical_chance = actor.critical_chance - 100.0
     end
 end)
+
+
+
+-- Achievement
+Item.add_achievement(item)
+
+Actor.add_callback("onPreStep", function(actor)
+    if actor ~= Player.get_client() then return end
+    if not actor.aphelion_sixShooter_achievement_counter then actor.aphelion_sixShooter_achievement_counter = 0 end
+
+    if Buff.get_stack_count(actor, Buff.find("ror-banditSkull")) >= 5.0 then
+        actor.aphelion_sixShooter_achievement_counter = actor.aphelion_sixShooter_achievement_counter + 1
+    else actor.aphelion_sixShooter_achievement_counter = 0
+    end
+
+    if actor.aphelion_sixShooter_achievement_counter >= 60 *60 then
+        Item.progress_achievement(Item.find("aphelion-sixShooter"))
+    end
+end)

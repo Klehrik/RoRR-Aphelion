@@ -12,6 +12,7 @@
     * Barrier out-of-combat delay time: 3s -> 5s
     * Barrier out-of-combat gain: 6% -> 8%
 * Ballistic Vest : Is now achievement locked
+* Six Shooter : Is now achievement locked
 * Stiletto : Is now achievement locked
 * Whimsical Star : Is now achievement locked
 * Added Relic Guard

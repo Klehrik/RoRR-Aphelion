@@ -38,6 +38,8 @@ local sprite = Resources.sprite_load(PATH.."assets/sprites/ration.png", 1, false
 local obj = Object.create("aphelion", "zetaConstruct")
 
 Object.add_callback(obj, "Init", function(self)
+    self.depth = -1
+
     self.persistent = true
     self.sprite_index = sprite
 
@@ -111,19 +113,22 @@ Object.add_callback(obj, "Step", function(self)
         if target then
             self.charge = 0
 
+            local blend = 13688896
+
             local tracer = gm.instance_create_depth(self.x, self.y, -1, gm.constants.oEfLineTracer)
             tracer.xend = target.x
             tracer.yend = target.y
             tracer.bm = 1
             tracer.rate = 0.15
             tracer.sprite_index = 3682.0
-            tracer.image_blend = 4434400
+            tracer.image_blend = blend
 
             local sparks = gm.instance_create_depth(target.x, target.y, -1, gm.constants.oEfSparks)
             sparks.sprite_index = 1632.0
+            sparks.image_blend = blend
 
             if target_type == 0 then gm.instance_destroy(target)
-            else Actor.damage(target, self.parent, self.parent.damage * self.damage_coeff, target.x, target.y - 36, 4434400)
+            else Actor.damage(target, self.parent, self.parent.damage * self.damage_coeff, target.x, target.y - 36, blend)
             end
         end
 

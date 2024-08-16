@@ -39,7 +39,7 @@
             "destination" : "Saury Cosmo,\nBeacon Post,\nSpace",
             "date" : "9/16/2056",
             "story" : "Sample from an infected tree in the Io Shield Plantation. The disease's spread is beginning to accelerate, and the locals are starting to get on edge. Make the analysis quick - we really want to nip this in the bud before it gets out of control, but we also can't burn out the entire plantation.",
-            "priority" : "Standard"
+            "priority" : "Standard/Biological"
         },
         "calamariSkewers" : {
             "name" : "Calamari Skewers",
@@ -112,7 +112,7 @@
             "destination" : "",
             "date" : "",
             "story" : "",
-            "priority" : ""
+            "priority" : "<g>Field-found</c>"
         },
 
         "stiletto" : {
@@ -131,7 +131,7 @@
             "destination" : "Complex B Unit 56,\nSand Zone,\nMars",
             "date" : "12/20/2056",
             "story" : "Here's a trinket I got at the famous Jovian Marketplace; thought I should send a little something back to you, y'know? Apparently if you wish upon it, your needs will come true, or something like that. Maybe you could make a wish for him.",
-            "priority" : "Standard"
+            "priority" : "<r>Standard</c>"
         },
         "overloadedCapacitor" : {
             "name" : "Overloaded Capacitor",
@@ -150,6 +150,10 @@
             "description" : "Take 2,000 damage in a single run."
         },
 
+        "sixShooter" : {
+            "name" : "High Noon",
+            "description" : "Bandit: Stay at the maximum level of Standoff for 60 seconds."
+        },
         "relicGuard" : {
             "name" : "Bastion",
             "description" : "Reach 400 shield."
