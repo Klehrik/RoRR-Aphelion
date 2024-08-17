@@ -25,8 +25,7 @@ Object.add_callback(obj, "Init", function(self)
     self.sprite_index = sprite
     self.image_index = 0
     self.image_speed = 0.18
-
-    self.image_alpha = 0.8
+    
     self.image_xscale = 3.0
     self.image_yscale = 2.0
 
@@ -39,8 +38,10 @@ Object.add_callback(obj, "Step", function(self)
     if (not self.hit) and self.image_index >= 1.5 then
         self.hit = true
 
-        local width = 174.0
-        local damager = Actor.fire_explosion(self.parent, self.x + (width /2.0 * gm.sign(self.image_xscale)), self.y, width, 141.0, self.damage_coeff, self.freeze_time + gm.random_range(0, 0.5))
+        local radius_x = 29 * self.image_xscale
+        local radius_y = 23 * self.image_yscale
+
+        local damager = Actor.fire_explosion(self.parent, self.x + (radius_x * gm.sign(self.image_xscale)), self.y, radius_x, radius_y, self.damage_coeff, self.freeze_time + gm.random_range(0, 0.5))
         damager.knockback_kind = 3
         damager.damage_color = 14064784
     end
