@@ -1,8 +1,8 @@
--- Zeta Construct
+-- Phi Construct
 
-local sprite = Resources.sprite_load(PATH.."assets/sprites/zetaConstruct.png", 1, false, false, 16, 16)
+local sprite = Resources.sprite_load(PATH.."assets/sprites/phiConstruct.png", 1, false, false, 16, 16)
 
-local item = Item.create("aphelion", "zetaConstruct")
+local item = Item.create("aphelion", "phiConstruct")
 Item.set_sprite(item, sprite)
 Item.set_tier(item, Item.TIER.uncommon)
 Item.set_loot_tags(item, Item.LOOT_TAG.category_utility)
@@ -12,10 +12,10 @@ Item.add_callback(item, "onPickup", function(actor, stack)
     if stack > 1 then increase = 20 end
     actor.maxshield_base = actor.maxshield_base + increase
 
-    if not actor.aphelion_zetaConstruct_inst then
-        local inst = Object.spawn(Object.find("aphelion", "zetaConstruct"), actor.x, actor.y)
+    if not actor.aphelion_phiConstruct_inst then
+        local inst = Object.spawn(Object.find("aphelion", "phiConstruct"), actor.x, actor.y)
         inst.parent = actor
-        actor.aphelion_zetaConstruct_inst = inst
+        actor.aphelion_phiConstruct_inst = inst
     end
 end)
 
@@ -25,8 +25,8 @@ Item.add_callback(item, "onRemove", function(actor, stack)
     actor.maxshield_base = actor.maxshield_base - increase
 
     if stack <= 1 then
-        if Instance.exists(actor.aphelion_zetaConstruct_inst) then gm.instance_destroy(actor.aphelion_zetaConstruct_inst) end
-        actor.aphelion_zetaConstruct_inst = nil
+        if Instance.exists(actor.aphelion_phiConstruct_inst) then gm.instance_destroy(actor.aphelion_phiConstruct_inst) end
+        actor.aphelion_phiConstruct_inst = nil
     end
 end)
 
@@ -34,9 +34,9 @@ end)
 
 -- Object
 
-local sprite = Resources.sprite_load(PATH.."assets/sprites/zetaConstructObject.png", 4, false, false, 8, 8)
+local sprite = Resources.sprite_load(PATH.."assets/sprites/phiConstructObject.png", 4, false, false, 8, 8)
 
-local obj = Object.create("aphelion", "zetaConstruct")
+local obj = Object.create("aphelion", "phiConstruct")
 
 Object.add_callback(obj, "Init", function(self)
     self.persistent = true

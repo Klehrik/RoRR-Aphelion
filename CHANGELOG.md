@@ -20,5 +20,5 @@
 * Whimsical Star : Is now achievement locked
 * Added Relic Guard
 * Added Overloaded Capacitor (new version)
-* Added Zeta Construct
+* Added Phi Construct
 * Added Magic Dagger

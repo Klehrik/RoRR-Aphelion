@@ -105,8 +105,8 @@
             "story" : "Found this stashed in Thorton's attic - somehow he managed to hide a shield of this size from the rest of us during that expedition. I didn't find anything else in there, but regardless he is no longer a part of the team. The shield itself is surprisingly solid, at least compared to the other one, but I would still be careful with handling it.",
             "priority" : "<g>Priority/Fragile</c>"
         },
-        "zetaConstruct" : {
-            "name" : "Zeta Construct",
+        "phiConstruct" : {
+            "name" : "Phi Construct",
             "pickup" : "Gain a defensive construct while you have shield.",
             "description" : "Gain a <b>20 <c_stack>(+20 per stack) <b>health shield</c>. While shield is active, a small <y>defensive construct</c> will <y>fire at nearby enemies</c> and <b>projectiles</c> for <y>75% damage</c> every <y>0.9</c> seconds; fire rate <b>scales with maximum shield</c>.",
             "destination" : "Complex 3B,\nSaturn,\n???",
@@ -149,7 +149,7 @@
             "description" : "Release a burst of <b>runic ice</c>, dealing <y>250% damage</c> and <b>freezing</c> <y>all enemies within a cone</c> in front of you for <b>6 seconds</c>. <b>Can activate on-hit items</c>.",
             "destination" : "",
             "date" : "3/16/2022",
-            "story" : ""
+            "story" : "I'm sorry that I left you the way I did. Even with everything that I've done, all the taboos and sins I've wrought, it was still wrong to run from you with my tail between my legs. I don't know what's going to happen to me now, so consider this my final gift.\n\nWhenever you feel threatened, hold this dagger close to your heart. Let your soul and being flow into it, and it will respond in turn, casting away the darkness you face. I pray that in times of crisis, it will give you hope and protect you from the chaos of the world, as it did for me.\n\nGoodbye."
         }
     },
 
