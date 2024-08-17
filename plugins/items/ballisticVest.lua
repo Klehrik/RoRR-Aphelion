@@ -24,5 +24,5 @@ Item.add_achievement(item, 2000, true)
 
 Actor.add_callback("onDamaged", function(actor, damager)
     if actor ~= Player.get_client() then return end
-    Item.progress_achievement(Item.find("aphelion-ballisticVest"), damager.damage)
+    if damager then Item.progress_achievement(Item.find("aphelion-ballisticVest"), damager.damage) end
 end)

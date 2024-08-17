@@ -8,10 +8,14 @@ Equipment.set_cooldown(equip, 45)
 Equipment.set_loot_tags(equip, Item.LOOT_TAG.category_damage, Item.LOOT_TAG.category_utility)
 
 Equipment.add_callback(equip, "onUse", function(actor)
+    local use_dir = actor:player_util_local_player_get_equipment_activation_direction()
+    if use_dir == true then use_dir = 1.0 end
+    if use_dir == false then use_dir = -1.0 end
+
     local inst = Object.spawn(Object.find("aphelion", "magicDaggerFreeze"), actor.x, actor.bbox_bottom + 1)
     inst.parent = actor
-    inst.image_xscale = inst.image_xscale * gm.sign(actor.image_xscale)
-    inst.x_offset = 32 * gm.sign(actor.image_xscale)
+    inst.image_xscale = inst.image_xscale * use_dir
+    inst.x_offset = 28 * use_dir
 end)
 
 
@@ -33,7 +37,7 @@ Object.add_callback(obj, "Init", function(self)
     self.image_yscale = 2.0
 
     self.damage_coeff = 2.5
-    self.freeze_time = 3.5
+    self.freeze_time = 4.1
 
     self.state = 0
     self.state_time = 0
@@ -63,7 +67,7 @@ Object.add_callback(obj, "Step", function(self)
         if (not self.hit) and self.image_index >= 1.5 then
             self.hit = true
 
-            local radius_x = 29 * math.abs(self.image_xscale)
+            local radius_x = 31 * math.abs(self.image_xscale)
             local radius_y = 18 * math.abs(self.image_yscale)
 
             local damager = Actor.fire_explosion(self.parent, self.x + (radius_x * gm.sign(self.image_xscale)), self.y - radius_y, radius_x, radius_y, self.damage_coeff, self.freeze_time)
