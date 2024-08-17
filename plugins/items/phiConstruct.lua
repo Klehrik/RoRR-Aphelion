@@ -47,7 +47,6 @@ Object.add_callback(obj, "Init", function(self)
     self.angle_speed = 72   -- Per second
     self.radius = 64
 
-    self.damage_coeff = 0.75
     self.fire_range = 250
     self.charge = 0
 end)
@@ -136,7 +135,9 @@ Object.add_callback(obj, "Step", function(self)
 
             -- Act on target
             if target_type == 0 then gm.instance_destroy(target)
-            else Actor.damage(target, self.parent, self.parent.damage * self.damage_coeff, target.x, target.y - 36, blend)
+            else
+                local damage_coeff = 0.6 + (0.1 * Item.get_stack_count(self.parent, Item.find("aphelion-phiConstruct")))
+                Actor.damage(target, self.parent, self.parent.damage * damage_coeff, target.x, target.y - 36, blend)
             end
 
         elseif self.charged then
