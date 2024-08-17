@@ -1,4 +1,5 @@
 - Change Obelisk Shard "buff" into something else visual to not take up a buff slot
     - Add display to Super Shield as well
 - Make Relic Guard affect allies
+- MDagger sfx (rip from game I guess)
 - Make E spear a custom object and have it visually stick into enemies
