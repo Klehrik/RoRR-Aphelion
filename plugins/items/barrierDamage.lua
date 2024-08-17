@@ -19,7 +19,7 @@ end)
 
 Item.add_callback(item, "onAttack", function(actor, damager, stack)
     if actor.barrier > 0 then
-        local bonus = 0.05 + (stack * 0.1)
+        local bonus = 0.09 + (stack * 0.09)
         damager.damage = damager.damage * (1 + bonus)
     end
 end)
