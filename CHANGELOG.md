@@ -21,6 +21,7 @@
     * Stack 6th shot bonus damage: +20% -> +25%
 * Stiletto : Is now achievement locked
 * Whimsical Star : Is now achievement locked
+* Added Silica Packet
 * Added Relic Guard
 * Added Overloaded Capacitor (new version)
 * Added Phi Construct

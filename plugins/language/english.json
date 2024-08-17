@@ -50,6 +50,15 @@
             "story" : "These are only resin models of the real thing, to be used in display cases and whatnot. Current advancements in materials and aromatics tech allows them to not only look, but feel, smell, and even taste the part of actual food, but don't be fooled. THEY'RE NOT EDIBLE. The resin used is non-toxic, so you won't die if you do, but don't come asking for a refund after one of your regulars reports a stomachache or something like that.",
             "priority" : "Standard"
         },
+        "silicaPacket" : {
+            "name" : "Silica Packet",
+            "pickup" : "Temporary items last longer.",
+            "description" : "<y>Temporary items</c> last for <b>16% <c_stack>(+12% per stack) <b>longer</c>.",
+            "destination" : " Suite 334,\nNautica Sector,\nNeptune",
+            "date" : "12/14/2056",
+            "story" : "I mean sure, I get having to preserve food, but stuffing a hundred of these in the package container ain't it. I can't even use any of this, but you sent so much that I can't bear to throw them out.",
+            "priority" : "Standard"
+        },
 
         "sixShooter" : {
             "name" : "Six Shooter",
@@ -157,6 +166,10 @@
         "ballisticVest" : {
             "name" : "Die Hard",
             "description" : "Take 2,000 damage in a single run."
+        },
+        "silicaPacket" : {
+            "name" : "Lack of Oxygen",
+            "description" : "Drifter: Suffocate 50 enemies."
         },
 
         "sixShooter" : {
