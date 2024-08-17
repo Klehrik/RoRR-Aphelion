@@ -5,6 +5,7 @@
 * Fixed a strange interaction between Ration and ItemDuplicator mod.
 
 ### v1.0.2 (unreleased)
+* Ration no longer triggers on the death screen when available.
 * Six Shooter now works with Sniper's Snipe properly (fixed in RoRR Modding Toolkit).
 * Ballistic Vest
     * Is now achievement locked
