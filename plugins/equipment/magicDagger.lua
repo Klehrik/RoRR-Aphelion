@@ -64,7 +64,7 @@ Object.add_callback(obj, "Step", function(self)
         if self.state_time == 1 then gm.sound_play_at(soundFreeze, 1.0, 1.0, self.x, self.y, 1.0) end
 
         -- Freeze
-        if (not self.hit) and self.image_index >= 1.5 then
+        if (not self.hit) and self.image_index >= 1.25 then
             self.hit = true
 
             local radius_x = 31 * math.abs(self.image_xscale)
@@ -90,6 +90,30 @@ Object.add_callback(obj, "Draw", function(self)
     -- Debug: Draw hitbox
     local box = Object.get_collision_box(self)
     gm.draw_rectangle(box.left, box.top, box.right, box.bottom, true)
+end)
+
+Actor.add_callback("onHit", function(actor, victim, damager)
+    if ((not victim.stun_immune) or (victim.stun_immune == false))
+    and damager and damager.knockback_kind == 3 and damager.damage_color == 14064784 then
+        Buff.apply(victim, Buff.find("aphelion-magicDaggerFreeze"), 6 * 60.0)
+    end
+end)
+
+
+
+-- Buff
+
+local buff = Buff.create("aphelion", "magicDaggerFreeze")
+Buff.set_property(buff, Buff.PROPERTY.show_icon, false)
+Buff.set_property(buff, Buff.PROPERTY.is_debuff, true)
+
+Buff.add_callback(buff, "onApply", function(actor, stack)
+    actor.aphelion_magicDagger_saved_x = actor.x
+end)
+
+Buff.add_callback(buff, "onStep", function(actor, stack)
+    actor.x = actor.aphelion_magicDagger_saved_x
+    actor.pHspeed = 0.0
 end)
 
 
