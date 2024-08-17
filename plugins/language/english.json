@@ -108,7 +108,7 @@
         "phiConstruct" : {
             "name" : "Phi Construct",
             "pickup" : "Gain a defensive construct while you have shield.",
-            "description" : "Gain a <b>20 <c_stack>(+20 per stack) <b>health shield</c>. While shield is active, a small <y>defensive construct</c> will <y>fire at nearby enemies</c> and <b>projectiles</c> for <y>70% <c_stack>(+10% per stack) <y>damage</c> every <y>0.9</c> seconds; fire rate <b>scales with maximum shield</c>.",
+            "description" : "Gain a <b>20 <c_stack>(+20 per stack) <b>health shield</c>. While shield is active, a small <y>defensive construct</c> will <y>fire at nearby enemies</c> and <b>projectiles</c> for <y>70% <c_stack>(+10% per stack) <y>damage</c> every <y>0.9</c> seconds; fire rate <b>scales with maximum shield <c_stack>(+0.5% per point past 20 shield)</c>.",
             "destination" : "Complex 3B,\nSaturn,\n???",
             "date" : "6/4/2056",
             "story" : "...?\n\nBOOTING...\n\nSCANNING SURROUNDINGS\n\nUNKNOWN PRESCENCE DETECTED\n\n...\n\nFAILED TO LOAD DIRECTIVES\n\n...\n\nRESETTING...\n\nESTABLISHING NEW DIRECTIVES\n\n...\n\nESCORTING FRIENDLY LIFEFORM",

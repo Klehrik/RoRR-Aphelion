@@ -68,7 +68,7 @@ Object.add_callback(obj, "Step", function(self)
 
     if self.active then
         -- Increment charge
-        local req = 60.0 / (1.111 * (0.9 + (0.1 * self.parent.maxshield /20.0)))
+        local req = 60.0 / (1.111 * (0.9 + (self.parent.maxshield /200.0)))
         if self.charge < req then
             self.charge = self.charge + 1
             self.charged = nil
