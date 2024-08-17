@@ -175,6 +175,11 @@
         "whimsicalStar" : {
             "name" : "Spur",
             "description" : "Commando: Kill 7 enemies with a single use of Full Metal Jacket."
+        },
+
+        "magicDagger" : {
+            "name" : "A SECRET",
+            "description" : "Enter the hidden stage from Ancient Valley."
         }
     }
 }

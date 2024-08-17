@@ -91,3 +91,14 @@ Object.add_callback(obj, "Draw", function(self)
     local box = Object.get_collision_box(self)
     gm.draw_rectangle(box.left, box.top, box.right, box.bottom, true)
 end)
+
+
+
+-- Achievement
+Equipment.add_achievement(equip)
+
+gm.pre_script_hook(gm.constants.__input_system_tick, function(self, other, result, args)
+    if gm.variable_global_get("stage_id") == 10.0 then
+        Item.progress_achievement(Item.find("aphelion-magicDagger"))
+    end
+end)
