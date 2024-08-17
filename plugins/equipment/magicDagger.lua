@@ -51,7 +51,7 @@ Object.add_callback(obj, "Step", function(self)
         self.y = self.parent.bbox_bottom + 1
 
         if self.state_time == 1 then gm.sound_play_at(soundWindup, 1.0, 1.0, self.x, self.y, 1.0) end
-        if self.state_time >= 27 then
+        if self.state_time >= 30 then
             self.state = 1
             self.state_time = 0
             self.image_speed = 0.15
@@ -86,10 +86,6 @@ end)
 
 Object.add_callback(obj, "Draw", function(self)
     gm.draw_sprite_ext(self.sprite_index, self.image_index, self.x, self.y, self.image_xscale, self.image_yscale, self.image_angle, 16777215, self.image_alpha)
-
-    -- Debug: Draw hitbox
-    local box = Object.get_collision_box(self)
-    gm.draw_rectangle(box.left, box.top, box.right, box.bottom, true)
 end)
 
 Actor.add_callback("onHit", function(actor, victim, damager)
