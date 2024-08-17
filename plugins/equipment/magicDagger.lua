@@ -1,6 +1,6 @@
 -- Magic Dagger
 
-local sprite = Resources.sprite_load(PATH.."assets/sprites/whimsicalStar.png", 1, false, false, 16, 16)
+local sprite = Resources.sprite_load(PATH.."assets/sprites/magicDagger.png", 2, false, false, 22, 22)
 
 local equip = Equipment.create("aphelion", "magicDagger")
 Equipment.set_sprite(equip, sprite)

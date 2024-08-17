@@ -145,8 +145,8 @@
 
         "magicDagger" : {
             "name" : "Magic Dagger",
-            "pickup" : "pickup desc",
-            "description" : "",
+            "pickup" : "Freeze enemies in front of you.",
+            "description" : "Release a burst of <b>runic ice</c>, dealing <y>400% damage</c> and <b>freezing</c> <y>all enemies within a cone</c> in front of you for <b>4 seconds</c>.",
             "destination" : "",
             "date" : "",
             "story" : ""
