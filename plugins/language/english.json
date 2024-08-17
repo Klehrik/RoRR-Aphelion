@@ -148,7 +148,7 @@
             "pickup" : "Freeze enemies in front of you.",
             "description" : "Release a burst of <b>runic ice</c>, dealing <y>250% damage</c> and <b>freezing</c> <y>all enemies within a cone</c> in front of you for <b>6 seconds</c>. <b>Can activate on-hit items</c>.",
             "destination" : "",
-            "date" : "",
+            "date" : "3/16/2022",
             "story" : ""
         }
     },
