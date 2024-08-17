@@ -8,9 +8,10 @@ Equipment.set_cooldown(equip, 45)
 Equipment.set_loot_tags(equip, Item.LOOT_TAG.category_damage, Item.LOOT_TAG.category_utility)
 
 Equipment.add_callback(equip, "onUse", function(actor)
-    local inst = Object.spawn(Object.find("aphelion", "magicDaggerFreeze"), actor.x + (32 * gm.sign(actor.image_xscale)), actor.bbox_bottom + 1)
+    local inst = Object.spawn(Object.find("aphelion", "magicDaggerFreeze"), actor.x, actor.bbox_bottom + 1)
     inst.parent = actor
     inst.image_xscale = inst.image_xscale * gm.sign(actor.image_xscale)
+    inst.x_offset = 32 * gm.sign(actor.image_xscale)
 end)
 
 
@@ -18,40 +19,64 @@ end)
 -- Object
 
 local sprite = gm.constants.sChefIce
+local soundWindup = Resources.sfx_load(PATH.."assets/sounds/magicDaggerWindup.ogg")
+local soundFreeze = Resources.sfx_load(PATH.."assets/sounds/magicDaggerFreeze.ogg")
 
 local obj = Object.create("aphelion", "magicDaggerFreeze")
 
 Object.add_callback(obj, "Init", function(self)
     self.sprite_index = sprite
     self.image_index = 0
-    self.image_speed = 0.15
 
-    self.image_alpha = 0.85
+    self.image_alpha = 0.0
     self.image_xscale = 4.0
     self.image_yscale = 2.0
 
     self.damage_coeff = 3.0
-    self.freeze_time = 2.6
+    self.freeze_time = 3.5
+
+    self.state = 0
+    self.state_time = 0
 end)
 
 Object.add_callback(obj, "Step", function(self)
-    -- Freeze
-    if (not self.hit) and self.image_index >= 1.5 then
-        self.hit = true
+    if self.state == 0 then
+        self.state_time = self.state_time + 1
 
-        local radius_x = 29 * math.abs(self.image_xscale)
-        local radius_y = 23 * math.abs(self.image_yscale)
+        self.x = self.parent.x + self.x_offset
+        self.y = self.parent.bbox_bottom + 1
 
-        local damager = Actor.fire_explosion(self.parent, self.x + (radius_x * gm.sign(self.image_xscale)), self.y - radius_y, radius_x, radius_y, self.damage_coeff, self.freeze_time + gm.random_range(0, 0.5))
-        damager.knockback_kind = 3
-        damager.damage_color = 14064784
-    end
+        if self.state_time == 1 then gm.sound_play_at(soundWindup, 1.0, 1.0, self.x, self.y, 1.0) end
+        if self.state_time >= 27 then
+            self.state = 1
+            self.state_time = 0
+            self.image_speed = 0.15
+            self.image_alpha = 0.85
+        end
 
-    -- Animate
-    if self.image_index >= 7 then
-        self.image_speed = 0.0
-        self.image_alpha = self.image_alpha - 0.02
-        if self.image_alpha <= 0 then gm.instance_destroy(self) end
+    elseif self.state == 1 then
+        self.state_time = self.state_time + 1
+
+        if self.state_time == 1 then gm.sound_play_at(soundFreeze, 1.0, 1.0, self.x, self.y, 1.0) end
+
+        -- Freeze
+        if (not self.hit) and self.image_index >= 1.5 then
+            self.hit = true
+
+            local radius_x = 29 * math.abs(self.image_xscale)
+            local radius_y = 18 * math.abs(self.image_yscale)
+
+            local damager = Actor.fire_explosion(self.parent, self.x + (radius_x * gm.sign(self.image_xscale)), self.y - radius_y, radius_x, radius_y, self.damage_coeff, self.freeze_time)
+            damager.knockback_kind = 3
+            damager.damage_color = 14064784
+        end
+
+        -- Animate
+        if self.image_index >= 7 then
+            self.image_speed = 0.0
+            self.image_alpha = self.image_alpha - 0.02
+            if self.image_alpha <= 0 then gm.instance_destroy(self) end
+        end
     end
 end)
 

@@ -21,3 +21,4 @@
 * Added Relic Guard
 * Added Overloaded Capacitor (new version)
 * Added Zeta Construct
+* Added Magic Dagger
