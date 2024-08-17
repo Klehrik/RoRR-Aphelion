@@ -32,7 +32,7 @@ Object.add_callback(obj, "Init", function(self)
     self.image_xscale = 4.0
     self.image_yscale = 2.0
 
-    self.damage_coeff = 3.0
+    self.damage_coeff = 2.5
     self.freeze_time = 3.5
 
     self.state = 0
