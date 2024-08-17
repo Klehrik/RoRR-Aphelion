@@ -20,3 +20,9 @@ function __initialize()
     local names = path.get_files(PATH.."equipment")
     for _, name in ipairs(names) do require(name) end
 end
+
+
+
+gm.pre_script_hook(gm.constants.actor_get_blue_temp_item_duration, function(self, other, result, args)
+    Helper.log_hook(self, other, result, args)
+end)

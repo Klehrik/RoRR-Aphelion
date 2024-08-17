@@ -32,7 +32,7 @@ Item.add_callback(item, "onAttack", function(actor, damager, stack)
         end
 
         if stack > 1 then
-            damager.damage = damager.damage * (0.8 + (0.2 * stack))
+            damager.damage = damager.damage * (0.75 + (0.25 * stack))
         end
     end
 end)

@@ -12,11 +12,13 @@
     * Shield gain: +15 (+10) -> +20
 * Overloaded Capacitor
     * Renamed to Barrier Damage (temp name)
-    * First stack damage bonus: 20% -> 18%
+    * First stack damage bonus: +20% -> +18%
     * Additional stack damage: +10% -> +9%
     * Barrier out-of-combat delay time: 3s -> 5s
     * Barrier out-of-combat gain: 6% -> 8%
-* Six Shooter : Is now achievement locked
+* Six Shooter
+    * Is now achievement locked
+    * Stack 6th shot bonus damage: +20% -> +25%
 * Stiletto : Is now achievement locked
 * Whimsical Star : Is now achievement locked
 * Added Relic Guard
