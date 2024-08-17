@@ -1,4 +1,4 @@
-Content mod that currently adds 12 new items.  
+Content mod that currently adds 15 items and 1 equipment.
 
 Not tested in online multiplayer; support will come in a future update.  
 
@@ -19,4 +19,4 @@ Join the [Return of Modding server](https://discord.gg/VjS57cszMq) for support.
 * Klehrik - Programming, Ideas, Art, Log entries
 * Ikesicle - Ideas, Art, Log entries
 * Adam - Log entries
-* Pranav - Log entries
+* peanutbuuter - Log entries
