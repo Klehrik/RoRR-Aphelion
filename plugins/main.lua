@@ -20,3 +20,24 @@ function __initialize()
     local names = path.get_files(PATH.."equipment")
     for _, name in ipairs(names) do require(name) end
 end
+
+
+
+gui.add_imgui(function()
+    if ImGui.Begin("Debug") then
+        local selectMenu = Instance.find(gm.constants.oSelectMenu)
+
+        
+        if ImGui.Button("Create equipment") then
+            local player = Player.get_client()
+            -- local damager = player:fire_explosion(0, player.x, player.y, 1.0, -1, 2, -1, 2.5, 23)
+            -- damager.stun = 2.0
+
+            local damager = Actor.fire_explosion(player, player.x, player.y, 100, 8, 1.0, 2.0)
+            damager.proc = true
+
+
+        end
+    end
+    ImGui.End()
+end)

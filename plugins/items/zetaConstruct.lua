@@ -39,8 +39,6 @@ local sprite = Resources.sprite_load(PATH.."assets/sprites/zetaConstructObject.p
 local obj = Object.create("aphelion", "zetaConstruct")
 
 Object.add_callback(obj, "Init", function(self)
-    self.depth = -1
-
     self.persistent = true
     self.sprite_index = sprite
     self.image_speed = 0.4
