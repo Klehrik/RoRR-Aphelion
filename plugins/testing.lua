@@ -455,3 +455,92 @@ gui.add_imgui(function()
     end
     ImGui.End()
 end)
+
+
+
+gui.add_imgui(function()
+    if ImGui.Begin("Debug") then
+        local selectMenu = Instance.find(gm.constants.oSelectMenu)
+
+        
+        if ImGui.Button("Create equipment") then
+            local equip = Equipment.create("rmt", "test")
+            Equipment.set_sprite(equip, Resources.sprite_load(PATH.."assets/sprites/relicGuard.png", 1, false, false, 16, 16))
+            Equipment.set_cooldown(equip, 30)
+            Equipment.set_loot_tags(equip, Item.LOOT_TAG.damage)
+
+            Equipment.add_callback(equip, "onUse", function(actor)
+                actor.hp = 1.0
+            end)
+
+        
+        elseif ImGui.Button("Find equipment") then
+            log.info(Equipment.find("ror-instantMinefield"))
+
+
+            -- local equip = gm.equipment_create(
+            --     "rmt",
+            --     "test",
+            --     gm.array_length(gm.variable_global_get("class_equipment")),
+            --     3.0,
+            --     gm.object_add_w("rmt", "test", gm.constants.pPickupItem),
+            --     1.0,    -- ?
+            --     104215.0,   -- ? (sprite maybe; nvm)
+            --     30.0,   -- ? (cd maybe but some have nil ?)
+            --     true,   -- ? (all)
+            --     6.0,    -- ? (all)
+            --     nil,    -- ? (all)
+            --     nil     -- ? (all)
+            -- )
+
+            -- local class_equipment = gm.variable_global_get("class_equipment")
+
+            -- local equip = gm.equipment_create(
+            --     "ror",
+            --     "rottenBrain2",
+            --     gm.array_length(class_equipment),   -- this is supposed to be class_equipment index but actually
+            --             -- appending to the end just turns the equip into Strange Battery,
+            --             -- but replacing existing number does not delete the previous equipment (???)
+            --     3.0,    -- tier (3 is equipment)
+            --     gm.object_add_w("rmt", "rottenBrain2", gm.constants.pPickupEquipment),  -- pickup object
+            --     Item.LOOT_TAG.category_damage,    -- loot tags
+            --     nil,    -- ? (sprite maybe; nvm might be an anon function call)
+            --     45.0,   -- ? (cd maybe but some have nil ?)
+            --     true,   -- ? (all)
+            --     6.0,    -- ? (all)
+            --     nil,    -- ? (all)
+            --     nil     -- ? (all)
+            -- )
+
+            -- local sprite = Resources.sprite_load(PATH.."assets/sprites/relicGuard.png", 1, false, false, 16, 16)
+
+            -- local array = class_equipment[equip + 1]
+            -- gm.array_set(array, 7, sprite)
+            -- gm.object_set_sprite_w(array[9], sprite)
+
+            -- local log_array = gm.variable_global_get("class_item_log")[array[10] + 1]
+            -- gm.array_set(log_array, 9, sprite)
+
+            -- gm.variable_global_set("count_equipment", gm.variable_global_get("count_equipment") + 1.0)
+
+            -- on_use is array[5]
+
+
+        end
+    end
+    ImGui.End()
+end)
+
+
+
+-- gm.pre_script_hook(gm.constants.equipment_create, function(self, other, result, args)
+--     Helper.log_hook(self, other, result, args)
+-- end)
+
+-- gm.pre_script_hook(gm.constants.object_add_w, function(self, other, result, args)
+--     Helper.log_hook(self, other, result, args)
+-- end)
+
+-- gm.post_script_hook(gm.constants.callback_execute, function(self, other, result, args)
+--     if args[1].value == 3239.0 then log.info("used!") end
+-- end)

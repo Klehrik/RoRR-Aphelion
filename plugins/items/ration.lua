@@ -20,7 +20,7 @@ Item.add_callback(item, "onPickup", function(actor, stack)
     gm.item_give_internal(actor, item, temp, true)
 end)
 
-Item.add_callback(item, "onStep", function(actor, stack)
+Item.add_callback(item, "onDamaged", function(actor, damager, stack)
     -- Heal when at <= 25% health
     if actor.hp <= actor.maxhp * 0.25 then
         Actor.heal(actor, actor.maxhp * Helper.mixed_hyperbolic(stack, 0.07, 0.5))
