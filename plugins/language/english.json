@@ -70,12 +70,12 @@
             "priority" : "<g>Priority</c>"
         },
         "barrierDamage" : {
-            "name" : "??",
-            "pickup" : "Deal increased damage while you have barrier.",
+            "name" : "Power Band",
+            "pickup" : "Gain barrier out of combat. Deal increased damage while you have barrier.",
             "description" : "Leaving combat for <y>5</c> seconds grants <g>barrier</c> equal to <g>8% health</c>. While barrier is active, your attacks deal <y>+18% <c_stack>(+9% per stack) <y>damage</c>.",
-            "destination" : "1803,\nCombat Zone,\nVenus",
+            "destination" : "",
             "date" : "01/03/2057",
-            "story" : "I had to run to catch the train home from work last week; going to war with a century-old record player is not something a punctual man would do, but it was the first business the antique shop had in a while. \n\nThe train suddenly jolted forwards, and I ended up bumping into someone. He must've assumed that I wanted to fight, and so he took a swing at me. It felt like… a tap on the cheek. My confusion was quicky replaced with surprise once I swung a hook at him in return and sent him flying into the next car. \n\nI realized a tingling feeling in my pocket once the shock had partially subsided, and in it was an old capacitor I had removed from the player earlier that day. You could probably get a kick out of it, so take it for a spin! Keep note of anything interesting you observe, and when you're back, we can try to figure out what makes it tick. Like old times.",
+            "story" : "Mechanical muscle enhancement accessory that powers up your punches. Goes on your good arm. Uses up a lot of energy per swing but charges super fast. Also comes with miniature solar panels for this.",
             "priority" : "<g>Priority</c>"
         },
         "crimsonScarf" : {
@@ -159,6 +159,14 @@
             "destination" : "The Far Shore,\n???",
             "date" : "3/16/2022",
             "story" : "I'm sorry that I left you the way I did. Even with everything that I've done, all the taboos and sins I've wrought, it was still wrong to run from you with my tail between my legs. I don't know what's going to happen to me now, so consider this my final gift.\n\nWhenever you feel threatened, hold this dagger close to your heart. Let your soul and being flow into it, and it will respond in turn, casting away the darkness you face. I pray that in times of crisis, it will give you hope and protect you from the chaos of the world, as it did for me.\n\nGoodbye."
+        },
+        "adrenaline" : {
+            "name" : "Adrenaline",
+            "pickup" : "Provides a temporary feeling of invincibility.",
+            "description" : "Gain <g>75% barrier</c> and <b>1.2 seconds of invulnerability</c>.",
+            "destination" : "",
+            "date" : "",
+            "story" : ""
         }
     },
 

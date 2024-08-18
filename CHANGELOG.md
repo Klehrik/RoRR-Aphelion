@@ -11,7 +11,7 @@
     * Is now achievement locked
     * Shield gain: +15 (+10) -> +20
 * Overloaded Capacitor
-    * Renamed to Barrier Damage (temp name)
+    * Renamed to Rapier
     * First stack damage bonus: +20% -> +18%
     * Additional stack damage: +10% -> +9%
     * Barrier out-of-combat delay time: 3s -> 5s
@@ -26,3 +26,4 @@
 * Added Overloaded Capacitor (new version)
 * Added Phi Construct
 * Added Magic Dagger
+* Added Adrenaline
