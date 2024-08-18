@@ -1,6 +1,6 @@
 -- Adrenaline
 
-local sprite = Resources.sprite_load(PATH.."assets/sprites/magicDagger.png", 2, false, false, 22, 22)
+local sprite = Resources.sprite_load(PATH.."assets/sprites/adrenaline.png", 2, false, false, 22, 22)
 
 local equip = Equipment.create("aphelion", "adrenaline")
 Equipment.set_sprite(equip, sprite)
