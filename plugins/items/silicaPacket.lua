@@ -21,7 +21,6 @@ gm.post_script_hook(gm.constants.actor_get_blue_temp_item_duration, function(sel
     if actor.aphelion_silicaPacket_increase then
         result.value = result.value * (1 + actor.aphelion_silicaPacket_increase)
     end
-    log.info(result.value)
 end)
 
 
