@@ -32,7 +32,6 @@ Item.add_achievement(item, 50)
 Actor.add_callback("onPostAttack", function(actor, damager)
     if actor ~= Player.get_client() then return end
     if (damager.attack_flags & (1 << 12)) > 0 then
-        log.info("Kills: "..damager.kill_number)
         Item.progress_achievement(Item.find("aphelion-silicaPacket"), damager.kill_number)
     end
 end)
