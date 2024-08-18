@@ -9,5 +9,6 @@ Equipment.set_loot_tags(equip, Item.LOOT_TAG.category_healing)
 
 Equipment.add_callback(equip, "onUse", function(actor)
     Actor.add_barrier(actor, actor.maxbarrier * 0.75)
+    if actor.invincible == false then actor.invincible = 0 end
     actor.invincible = math.max(actor.invincible, 1.2 *60)
 end)
