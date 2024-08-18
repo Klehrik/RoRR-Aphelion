@@ -29,22 +29,10 @@ end)
 -- Achievement
 Item.add_achievement(item, 50)
 
-local function attack_flags_to_table(value)
-    local flags = {}
-    for i = 1, 30 do flags[i] = 0 end
-    local pos = 1
-    while value > 0 do
-        flags[pos] = (value % 2)
-        pos = pos + 1
-        value = math.floor(value / 2.0)
-    end
-    return flags
-end
-
 Actor.add_callback("onPostAttack", function(actor, damager)
     if actor ~= Player.get_client() then return end
-    local flags = attack_flags_to_table(damager.attack_flags)
-    if flags[13] == 1.0 then
+    if (damager.attack_flags & (1 << 12)) > 0 then
+        log.info("Kills: "..damager.kill_number)
         Item.progress_achievement(Item.find("aphelion-silicaPacket"), damager.kill_number)
     end
 end)
