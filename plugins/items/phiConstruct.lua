@@ -125,8 +125,8 @@ Object.add_callback(obj, "Step", function(self)
             tracer.xend = target.x
             tracer.yend = target.y
             tracer.bm = 1
-            tracer.rate = 0.1
-            tracer.width = 3.0
+            tracer.rate = 0.12
+            tracer.width = 4.0
             --tracer.sprite_index = 3682.0
             tracer.image_blend = blend
 
