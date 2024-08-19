@@ -61,7 +61,7 @@ Object.add_callback(obj, "Init", function(self)
     self.cd_hit = 0
     self.cd_hit_max = 40
     self.cooldown = 0
-    self.cooldown_max = 90
+    self.cooldown_max = 75
 end)
 
 Object.add_callback(obj, "Step", function(self)

@@ -1,6 +1,6 @@
-Content mod that currently adds 16 items and 2 equipment.
+Content mod that currently adds 16 items and 2 equipment.  
 
-Not tested in online multiplayer; support will come in a future update.  
+Not tested in online multiplayer; support will come in a future update (possibly).  
 
 ![Hidden showcase](https://github.com/Klehrik/Klehrik-Aphelion/blob/main/hiddenShowcase.png?raw=true)  
 

@@ -44,7 +44,7 @@
         "calamariSkewers" : {
             "name" : "Calamari Skewers",
             "pickup" : "Receive a large heal after rapidly killing 4 enemies.",
-            "description" : "Killing <y>4</c> enemies within <y>1 second</c> heals you for <g>20 <c_stack>(+20 per stack) <g>health + <g>10% missing health</c>. Has a <b>3 second</c> cooldown.",
+            "description" : "Killing <y>4</c> enemies within <y>1 second</c> heals you for <g>20 <c_stack>(+20 per stack) <g>health + <g>10% missing health</c>. Has a <b>2 second</c> cooldown.",
             "destination" : "Ichiban Izakaya,\nGassé Commercial Lattice,\nEarth",
             "date" : "03/22/2056",
             "story" : "These are only resin models of the real thing, to be used in display cases and whatnot. Current advancements in materials and aromatics tech allows them to not only look, but feel, smell, and even taste the part of actual food, but don't be fooled. THEY'RE NOT EDIBLE. The resin used is non-toxic, so you won't die if you do, but don't come asking for a refund after one of your regulars reports a stomachache or something like that.",
@@ -70,7 +70,7 @@
             "priority" : "<g>Priority</c>"
         },
         "barrierDamage" : {
-            "name" : "??",
+            "name" : "Bandana",
             "pickup" : "Gain barrier out of combat. Deal increased damage while you have barrier.",
             "description" : "Leaving combat for <y>5</c> seconds grants <g>barrier</c> equal to <g>8% health</c>. While barrier is active, your attacks deal <y>+18% <c_stack>(+9% per stack) <y>damage</c>.",
             "destination" : "",
@@ -117,7 +117,7 @@
         "phiConstruct" : {
             "name" : "Phi Construct",
             "pickup" : "Gain a defensive construct while you have shield.",
-            "description" : "Gain a <b>20 <c_stack>(+20 per stack) <b>health shield</c>. While shield is active, a small <y>defensive construct</c> will <y>fire at nearby enemies</c> and <b>projectiles</c> for <y>70% <c_stack>(+10% per stack) <y>damage</c> every <y>0.9</c> seconds; fire rate <b>scales with maximum shield <c_stack>(+0.5% per point past 20 shield)</c>.",
+            "description" : "Gain a <b>20 <c_stack>(+20 per stack) <b>health shield</c>. While shield is active, a small <y>defensive construct</c> will <y>fire at nearby enemies</c> and <b>projectiles</c> for <y>60% <c_stack>(+10% per stack) <y>damage</c> every <y>0.8</c> seconds; fire rate <b>scales with maximum shield <c_stack>(+0.5% per point past 20 shield)</c>.",
             "destination" : "Complex 3B,\nSaturn,\n???",
             "date" : "6/4/2056",
             "story" : "...?\n\nBOOTING...\n\nSCANNING SURROUNDINGS\n\nUNKNOWN PRESCENCE DETECTED\n\n...\n\nFAILED TO LOAD DIRECTIVES\n\n...\n\nRESETTING...\n\nESTABLISHING NEW DIRECTIVES\n\n...\n\nESCORTING FRIENDLY LIFEFORM",
@@ -136,7 +136,7 @@
         "whimsicalStar" : {
             "name" : "Whimsical Star",
             "pickup" : "Summon stars to protect you.",
-            "description" : "<y>3 <c_stack>(+2 per stack) <y>stars orbit erratically around you</c>, dealing <y>70% damage</c> on collision. Each star will also <b>intercept nearby projectiles</c>; this has a <b>1.5 second</c> cooldown.",
+            "description" : "<y>3 <c_stack>(+2 per stack) <y>stars orbit erratically around you</c>, dealing <y>70% damage</c> on collision. Each star will also <b>intercept nearby projectiles</c>; this has a <b>1.25 second</c> cooldown.",
             "destination" : "Complex B Unit 56,\nSand Zone,\nMars",
             "date" : "12/20/2004",
             "story" : "Here's a trinket I got at the famous Jovian Marketplace; thought I should send a little something back to you, y'know? Apparently if you wish upon it, your needs will come true, or something like that. Maybe you could make a wish for him.",
