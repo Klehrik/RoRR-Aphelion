@@ -8,11 +8,11 @@ Item.set_tier(item, Item.TIER.common)
 Item.set_loot_tags(item, Item.LOOT_TAG.category_utility)
 
 Item.add_callback(item, "onPickup", function(actor, stack)
-    actor.aphelion_silicaPacket_increase = 0.04 + (0.12 * stack)
+    actor.aphelion_silicaPacket_increase = 0.06 + (0.12 * stack)
 end)
 
 Item.add_callback(item, "onRemove", function(actor, stack)
-    actor.aphelion_silicaPacket_increase = 0.04 + (0.12 * (stack - 1))
+    actor.aphelion_silicaPacket_increase = 0.06 + (0.12 * (stack - 1))
     if stack <= 1 then actor.aphelion_silicaPacket_increase = nil end
 end)
 

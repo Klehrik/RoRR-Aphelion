@@ -53,7 +53,7 @@
         "silicaPacket" : {
             "name" : "Silica Packet",
             "pickup" : "Temporary items last longer.",
-            "description" : "<y>Temporary items</c> last for <b>16% <c_stack>(+12% per stack) <b>longer</c>.",
+            "description" : "<y>Temporary items</c> last for <b>18% <c_stack>(+12% per stack) <b>longer</c>.",
             "destination" : "Suite 334,\nNautica Sector,\nNeptune",
             "date" : "12/14/2056",
             "story" : "I mean sure, I get having to preserve food, but stuffing a hundred of these in the package container ain't it. I can't even use any of this, but you sent so much that I can't bear to throw them out.",
@@ -73,9 +73,9 @@
             "name" : "Bandana",
             "pickup" : "Gain barrier out of combat. Deal increased damage while you have barrier.",
             "description" : "Leaving combat for <y>5</c> seconds grants <g>barrier</c> equal to <g>8% health</c>. While barrier is active, your attacks deal <y>+18% <c_stack>(+9% per stack) <y>damage</c>.",
-            "destination" : "",
+            "destination" : "1803\nCombat Zone\nVenus",
             "date" : "01/03/2057",
-            "story" : "",
+            "story" : "I return to you what is rightfully yours. Remember your training. The thrill of combat. Strike first, and hard - let your instincts guide you, to survival, to victory, and to bloodshed.",
             "priority" : "<g>Priority</c>"
         },
         "crimsonScarf" : {
