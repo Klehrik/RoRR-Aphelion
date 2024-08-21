@@ -74,7 +74,7 @@
             "pickup" : "Gain barrier out of combat. Deal increased damage while you have barrier.",
             "description" : "Leaving combat for <y>5</c> seconds grants <g>barrier</c> equal to <g>8% health</c>. While barrier is active, your attacks deal <y>+18% <c_stack>(+9% per stack) <y>damage</c>.",
             "destination" : "1803\nCombat Zone\nVenus",
-            "date" : "01/03/2057",
+            "date" : "8/9/2057",
             "story" : "I return to you what is rightfully yours. Remember your training. The thrill of combat. Strike first, and hard - let your instincts guide you, to survival, to victory, and to bloodshed.",
             "priority" : "<g>Priority</c>"
         },
