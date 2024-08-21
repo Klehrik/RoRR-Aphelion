@@ -75,7 +75,7 @@
             "description" : "Leaving combat for <y>5</c> seconds grants <g>barrier</c> equal to <g>8% health</c>. While barrier is active, your attacks deal <y>+18% <c_stack>(+9% per stack) <y>damage</c>.",
             "destination" : "1803\nCombat Zone\nVenus",
             "date" : "8/9/2057",
-            "story" : "I return to you what is rightfully yours. Remember your training. Strike first, and hard - let your instincts guide you, to survival, to victory, and to bloodshed.",
+            "story" : "I return to you what is rightfully yours. Remember your training, and the thrill of combat. Strike first, and hard - let your instincts guide you, to survival, to victory, and to bloodshed.",
             "priority" : "<g>Priority</c>"
         },
         "crimsonScarf" : {
