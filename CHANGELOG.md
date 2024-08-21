@@ -15,7 +15,7 @@
 * Withered Branch : Stack wearoff rate decreased for higher stack counts
 * Crimson Scarf : Fixed errors with buff stacks
 * Overloaded Capacitor
-    * Renamed to ??
+    * Renamed to Bandana
     * First stack damage bonus: +20% -> +18%
     * Additional stack damage: +10% -> +9%
     * Barrier out-of-combat delay time: 3s -> 5s
