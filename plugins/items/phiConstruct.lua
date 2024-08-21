@@ -137,7 +137,7 @@ Object.add_callback(obj, "Step", function(self)
             -- Act on target
             if target_type == 0 then gm.instance_destroy(target)
             else
-                local damage_coeff = 0.5 + (0.1 * Item.get_stack_count(self.parent, Item.find("aphelion-phiConstruct")))
+                local damage_coeff = 0.45 + (0.15 * Item.get_stack_count(self.parent, Item.find("aphelion-phiConstruct")))
                 Actor.damage(target, self.parent, self.parent.damage * damage_coeff, target.x, target.y - 36, blend)
             end
 
