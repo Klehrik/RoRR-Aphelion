@@ -34,4 +34,4 @@
 * Added Overloaded Capacitor (new version)
 * Added Phi Construct
 * Added Magic Dagger
-* Added Adrenaline
+* Added Stimulants
