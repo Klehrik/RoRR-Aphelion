@@ -48,7 +48,7 @@ Object.add_callback(obj, "Init", function(self)
     self.hsp = gm.random_range(-3.0, 3.0)
     self.vsp = gm.random_range(-3.0, 3.0)
     
-    self.damage_coeff = 0.7
+    self.damage_coeff = 0.75
 
     self.proj_check = 0
     self.intercept_range = 350
@@ -56,12 +56,12 @@ Object.add_callback(obj, "Init", function(self)
     self.intercept_x_start = 0
     self.intercept_y_start = 0
     self.intercept_frame = 0
-    self.intercept_frame_max = 15.0    -- Will lerp to target position in 8 frames
+    self.intercept_frame_max = 12.0    -- Will lerp to target position in 12 frames
 
     self.cd_hit = 0
     self.cd_hit_max = 40
     self.cooldown = 0
-    self.cooldown_max = 75
+    self.cooldown_max = 60
 end)
 
 Object.add_callback(obj, "Step", function(self)

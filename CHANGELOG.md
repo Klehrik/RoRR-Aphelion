@@ -27,7 +27,8 @@
 * Stiletto : Is now achievement locked
 * Whimsical Star
     * Is now achievement locked
-    * Projectile intercept cooldown: 1.5s -> 1.25s
+    * Projectile intercept cooldown: 1.5s -> 1s
+    * Collision damage: 70% -> 75%
 * Added Silica Packet
 * Added Relic Guard
 * Added Overloaded Capacitor (new version)
