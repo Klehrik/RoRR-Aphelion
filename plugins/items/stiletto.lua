@@ -35,7 +35,7 @@ end)
 -- Achievement
 Item.add_achievement(item)
 
-Actor.add_callback("onPreStep", function(actor, damager)
+Actor.add_callback("onPreStep", function(actor)
     if actor ~= Player.get_client() then return end
     if actor.critical_chance >= 100.0 then
         Item.progress_achievement(Item.find("aphelion-stiletto"))
