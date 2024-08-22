@@ -4,7 +4,7 @@
 ### v1.0.1
 * Fixed a strange interaction between Ration and ItemDuplicator mod.
 
-### v1.1.0 (unreleased)
+### v1.1.0
 This update adds 4 new items (3 are Shield-oriented) and 2 equipment, as well as locking a few behind achievements.
 * Ballistic Vest
     * Is now achievement locked
