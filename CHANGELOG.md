@@ -45,3 +45,6 @@ This update adds 4 new items (3 are Shield-oriented) and 2 equipment, as well as
 * Stiletto
     * Tweaked description to be more clear.
     * First stack crit bonus: +5% -> +20%
+
+### v1.1.2
+* Magic Dagger : Debuff no longer remains when an enemy becomes unstunned early.

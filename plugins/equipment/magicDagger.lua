@@ -110,6 +110,9 @@ end)
 Buff.add_callback(buff, "onStep", function(actor, stack)
     actor.x = actor.aphelion_magicDagger_saved_x
     actor.pHspeed = 0.0
+
+    -- Remove buff if no longer stunned
+    if actor.stunned == 0.0 then Buff.remove(actor, Buff.find("aphelion-magicDaggerFreeze")) end
 end)
 
 
