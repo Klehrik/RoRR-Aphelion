@@ -8,14 +8,14 @@ Item.set_tier(item, Item.TIER.rare)
 Item.set_loot_tags(item, Item.LOOT_TAG.category_damage)
 
 Item.add_callback(item, "onPickup", function(actor, stack)
-    -- Gain 5% crit on the first stack, and 10% on subsequent ones
-    local amount = 5.0
+    -- Gain 20% crit on the first stack, and 10% on subsequent ones
+    local amount = 20.0
     if stack > 1 then amount = 10.0 end
     actor.critical_chance_base = actor.critical_chance_base + amount
 end)
 
 Item.add_callback(item, "onRemove", function(actor, stack)
-    local amount = 5.0
+    local amount = 20.0
     if stack > 1 then amount = 10.0 end
     actor.critical_chance_base = actor.critical_chance_base - amount
 end)

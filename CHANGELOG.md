@@ -37,3 +37,11 @@ This update adds 4 new items (3 are Shield-oriented) and 2 equipment, as well as
 * Added Phi Construct
 * Added Magic Dagger
 * Added Stimulants
+
+### v1.1.1
+* Ballistic Vest : Additional stack shield gain: +20 -> +15
+* Crimson Scarf : Crit bonus per kill: 7% -> 6%
+* Phi Construct : No longer goes offline when shield is broken.
+* Stiletto
+    * Tweaked description to be more clear.
+    * First stack crit bonus: +5% -> +20%

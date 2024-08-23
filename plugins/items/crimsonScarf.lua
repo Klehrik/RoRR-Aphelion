@@ -15,7 +15,7 @@ end)
 
 -- Buff
 
-local chance = 7.0
+local crit = 6.0
 
 local sprite = Resources.sprite_load(PATH.."assets/sprites/buffCrimsonScarf.png", 1, false, false, 7, 9)
 
@@ -30,7 +30,7 @@ Buff.set_property(buff, Buff.PROPERTY.is_timed, false)
 Buff.add_callback(buff, "onApply", function(actor, stack)
     if not actor.aphelion_crimsonScarf_timers then actor.aphelion_crimsonScarf_timers = gm.ds_list_create() end
     gm.ds_list_add(actor.aphelion_crimsonScarf_timers, (4 + Item.get_stack_count(actor, Item.find("aphelion-crimsonScarf"))) * 60.0)
-    actor.critical_chance_base = actor.critical_chance_base + chance
+    actor.critical_chance_base = actor.critical_chance_base + crit
 end)
 
 Buff.add_callback(buff, "onStep", function(actor, stack)
@@ -51,7 +51,7 @@ Buff.add_callback(buff, "onStep", function(actor, stack)
     if stack > size then
         local diff = stack - size
         Buff.remove(actor, Buff.find("aphelion-crimsonScarf"), diff)
-        actor.critical_chance = actor.critical_chance - (chance * diff)
-        actor.critical_chance_base = actor.critical_chance_base - (chance * diff)
+        actor.critical_chance = actor.critical_chance - (crit * diff)
+        actor.critical_chance_base = actor.critical_chance_base - (crit * diff)
     end
 end)
