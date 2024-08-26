@@ -1,4 +1,4 @@
--- Bandit Unload
+-- Bandit : Unload
 
 local callbacks = {}
 
