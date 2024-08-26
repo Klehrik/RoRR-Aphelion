@@ -6,6 +6,12 @@
 
 ## v1.1.0
 This update adds 4 new items (3 are Shield-oriented) and 2 equipment, as well as locking a few behind achievements.
+* Added Silica Packet
+* Added Relic Guard
+* Added Overloaded Capacitor (new version)
+* Added Phi Construct
+* Added Magic Dagger
+* Added Stimulants
 * Ballistic Vest
     * Is now achievement locked
     * Shield gain: +15 (+10) -> +20
@@ -31,12 +37,6 @@ This update adds 4 new items (3 are Shield-oriented) and 2 equipment, as well as
     * Increased interception speed
     * Projectile intercept cooldown: 1.5s -> 1s
     * Collision damage: 70% -> 75%
-* Added Silica Packet
-* Added Relic Guard
-* Added Overloaded Capacitor (new version)
-* Added Phi Construct
-* Added Magic Dagger
-* Added Stimulants
 
 ### v1.1.1
 * Ballistic Vest : Additional stack shield gain: +20 -> +15
@@ -47,5 +47,6 @@ This update adds 4 new items (3 are Shield-oriented) and 2 equipment, as well as
     * First stack crit bonus: +5% -> +20%
 
 ## v1.2.0
-* Magic Dagger : Debuff no longer remains when an enemy becomes unstunned early.
+This update adds more alternate skills to a few characters.
 * Added skill Unload (Bandit secondary)
+* Magic Dagger : Debuff no longer remains when an enemy becomes unstunned early.
