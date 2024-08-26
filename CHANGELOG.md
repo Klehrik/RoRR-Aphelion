@@ -1,10 +1,10 @@
-### v1.0.0
+## v1.0.0
 * Initial release
 
 ### v1.0.1
 * Fixed a strange interaction between Ration and ItemDuplicator mod.
 
-### v1.1.0
+## v1.1.0
 This update adds 4 new items (3 are Shield-oriented) and 2 equipment, as well as locking a few behind achievements.
 * Ballistic Vest
     * Is now achievement locked
@@ -46,6 +46,6 @@ This update adds 4 new items (3 are Shield-oriented) and 2 equipment, as well as
     * Tweaked description to be more clear.
     * First stack crit bonus: +5% -> +20%
 
-### v1.2.0
+## v1.2.0
 * Magic Dagger : Debuff no longer remains when an enemy becomes unstunned early.
 * Added skill Unload (Bandit secondary)
