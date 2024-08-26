@@ -83,6 +83,11 @@ table.insert(callbacks, {class_actor_state[state + 1][5], function(self, other, 
         Actor.fire_bullet(self, self.x, self.y, 90 - (90 * gm.sign(self.image_xscale)), 1400.0, 3.0, nil, gm.constants.sSparks15)
     end
 
+    -- Skip end of animation if queueing another bullet
+    if self.x_skill and self.image_index >= 7 and self:actor_get_skill_slot(1).active_skill.stock >= 1.0 then
+        self.image_index = 9
+    end
+
     self:skill_util_apply_friction()
     self:skill_util_exit_state_on_anim_end()
 end})
