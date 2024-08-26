@@ -202,5 +202,12 @@
             "name" : "A SECRET",
             "description" : "Enter the hidden stage on Ancient Valley."
         }
+    },
+
+    "skill" : {
+        "banditUnload" : {
+            "name" : "Unload",
+            "description" : "Cycle through a cylinder for <y>300% damage per shot</c>. <b>Gain rounds by killing enemies or after 3 seconds. Hold up to 6.</c>"
+        }
     }
 }
