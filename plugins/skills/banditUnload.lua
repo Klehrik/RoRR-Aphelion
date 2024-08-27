@@ -80,7 +80,7 @@ table.insert(callbacks, {class_actor_state[state + 1][5], function(self, other, 
         self:sound_play_at(gm.constants.wGuardDeathOLD, 0.25, 1.85 + gm.random(0.15), self.x, self.y, nil)
         self:sound_play_at(gm.constants.wBullet2, 1.0, 1.0, self.x, self.y, nil)
 
-        Actor.fire_bullet(self, self.x, self.y, 90 - (90 * gm.sign(self.image_xscale)), 1400.0, 3.0, nil, gm.constants.sSparks15)
+        Actor.fire_bullet(self, self.x, self.y, 90 - (90 * gm.sign(self.image_xscale)), 1400.0, self:actor_get_skill_slot(1).active_skill.damage, nil, gm.constants.sSparks15)
     end
 
     -- Skip end of animation if queueing another bullet
@@ -102,11 +102,13 @@ end)
 
 Actor.add_callback("onKill", function(actor, damager)
     if actor:actor_get_skill_slot(1).active_skill.name == "skill.banditUnload.name" then
-        actor:actor_skill_add_stock(actor, 1, false, 1)     -- slot, ignore cap, raw value
+        actor:actor_skill_add_stock(actor, 1, false, 1)     -- actor, slot, ignore cap, raw value
     end
 end)
 
 
+
+-- ========== Hooks ==========
 
 gm.post_script_hook(gm.constants.callback_execute, function(self, other, result, args)
     for _, c in ipairs(callbacks) do

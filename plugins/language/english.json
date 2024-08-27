@@ -171,6 +171,15 @@
     },
 
     "skill" : {
+        "huntressStealth" : {
+            "name" : "Stealth Hunting",
+            "description" : "<b>Turn invisible</c> for <b>4</c> seconds, <y>increasing damage by 30%</c>."
+        },
+        "huntressStealthU" : {
+            "name" : "Stealth Stalking",
+            "description" : "<b>Turn invisible</c> for <b>4</c> seconds, <y>increasing damage, critical chance, and movement speed by 30%</c>."
+        },
+
         "banditUnload" : {
             "name" : "Unload",
             "description" : "Cycle through a cylinder for <y>300% damage per shot</c>. <b>Gain rounds by killing enemies or after 3 seconds. Hold up to 6.</c>"
