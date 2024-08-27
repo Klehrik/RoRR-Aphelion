@@ -70,17 +70,53 @@ end})
 table.insert(callbacks, {class_actor_state[state + 1][4], function(self, other, result, args)
     self.aphelion_banditUnload_just_used = 2
     self.aphelion_banditUnload_shot = nil
+
+    self:skill_util_unlock_cooldown(Actor.find_skill_id("aphelion-banditUnload"))
 end})
 
 -- State on_step
 table.insert(callbacks, {class_actor_state[state + 1][5], function(self, other, result, args)
+    self:skill_util_lock_cooldown(Actor.find_skill_id("aphelion-banditUnload"))
+
     if self.image_index >= 5 and not self.aphelion_banditUnload_shot then
         self.aphelion_banditUnload_shot = true
         self:sound_play_at(gm.constants.wBanditShoot4_2, 1.0, 1.0, self.x, self.y, nil)
         self:sound_play_at(gm.constants.wGuardDeathOLD, 0.25, 1.85 + gm.random(0.15), self.x, self.y, nil)
         self:sound_play_at(gm.constants.wBullet2, 1.0, 1.0, self.x, self.y, nil)
 
-        Actor.fire_bullet(self, self.x, self.y, 90 - (90 * gm.sign(self.image_xscale)), 1400.0, self:actor_get_skill_slot(1).active_skill.damage, nil, gm.constants.sSparks15)
+        Actor.fire_bullet(self, self.x, self.y - 8, 90 - (90 * gm.sign(self.image_xscale)), 1400.0, self:actor_get_skill_slot(1).active_skill.damage, nil, gm.constants.sSparks15)
+
+        local xstart = self.x + (16.0 * gm.sign(self.image_xscale))
+        local ystart = self.y - 8
+        local xend = self.x + (1400.0 * gm.sign(self.image_xscale))
+        local yend = self.y - 8
+        local hit = gm.collision_line_advanced_bullet(xstart, ystart, xend, yend, true, false)
+        if Instance.exists(hit) then
+            xend = hit.bbox_left
+            if self.x > hit.x then xend = hit.bbox_right end
+        end
+
+        local tracer = gm.instance_create_depth(xstart, ystart, -1, gm.constants.oEfLineTracer)
+        tracer.xend = xend
+        tracer.yend = yend
+        tracer.bm = 1.0
+        tracer.rate = 0.15
+        tracer.width = 1.0
+        tracer.sprite_index = 3682.0
+        tracer.image_blend = 4434400.0
+
+        local tracer = gm.instance_create_depth(xstart, ystart, -1, gm.constants.oEfBanditTracer)
+        tracer.xend = xend
+        tracer.yend = yend
+        tracer.sprite_index = gm.constants.sBanditTracer
+        tracer.blend_1 = 7719114.0
+        tracer.blend_2 = 8421504.0
+        tracer.blend_f = 1.0
+        tracer.blend_rate = 0.5
+        tracer.bm = 0.0
+        tracer.max_rate = 0.5
+        tracer.rate = 0.01
+        tracer.width = 2.0
     end
 
     -- Skip end of animation if queueing another bullet
