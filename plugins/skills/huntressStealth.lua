@@ -58,7 +58,8 @@ Buff.add_callback(buff, "onApply", function(actor, stack)
 
     local damage = actor.damage * 0.3
     actor.damage_base = actor.damage_base + damage
-    actor.aphelion_huntressStealth_damage_boost = damage
+    if not actor.aphelion_huntressStealth_damage_boost then actor.aphelion_huntressStealth_damage_boost = 0 end
+    actor.aphelion_huntressStealth_damage_boost = actor.aphelion_huntressStealth_damage_boost + damage
 end)
 
 Buff.add_callback(buff, "onRemove", function(actor, stack)

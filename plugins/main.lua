@@ -27,4 +27,10 @@ function __initialize()
         local names = path.get_files(PATH..folder)
         for _, name in ipairs(names) do require(name) end
     end
+
+    -- Huntress : Set Stealth Hunting upgrade
+    local class_skill = gm.variable_global_get("class_skill")
+    local skill = Actor.find_skill_id("aphelion-huntressStealth")
+    local skill_upg = Actor.find_skill_id("aphelion-huntressStealthBoosted")
+    gm.array_set(class_skill[skill + 1], 29, skill_upg)
 end
