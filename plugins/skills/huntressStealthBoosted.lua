@@ -44,6 +44,9 @@ end})
 
 -- Buff
 
+local crit_boost = 35.0
+local speed_boost = 2.8 * 0.35
+
 local buff = Buff.create("aphelion", "huntressStealthBoosted")
 Buff.set_property(buff, Buff.PROPERTY.show_icon, false)
 
@@ -53,20 +56,13 @@ Buff.add_callback(buff, "onApply", function(actor, stack)
     gm.instance_destroy(actor.target_marker)
     actor.target_marker = -4.0
 
-    local amount = actor.damage * 0.3
+    local amount = actor.damage * 0.35
     actor.damage_base = actor.damage_base + amount
     if not actor.aphelion_huntressStealth_damage_boost_2 then actor.aphelion_huntressStealth_damage_boost_2 = 0 end
     actor.aphelion_huntressStealth_damage_boost_2 = actor.aphelion_huntressStealth_damage_boost_2 + amount
 
-    local amount = actor.critical_chance * 0.3
-    actor.critical_chance_base = actor.critical_chance_base + amount
-    if not actor.aphelion_huntressStealth_critical_chance_boost then actor.aphelion_huntressStealth_critical_chance_boost = 0 end
-    actor.aphelion_huntressStealth_critical_chance_boost = actor.aphelion_huntressStealth_critical_chance_boost + amount
-
-    local amount = actor.pHmax * 0.3
-    actor.pHmax_base = actor.pHmax_base + amount
-    if not actor.aphelion_huntressStealth_pHmax_boost then actor.aphelion_huntressStealth_pHmax_boost = 0 end
-    actor.aphelion_huntressStealth_pHmax_boost = actor.aphelion_huntressStealth_pHmax_boost + amount
+    actor.critical_chance_base = actor.critical_chance_base + crit_boost
+    actor.pHmax_base = actor.pHmax_base + speed_boost
 end)
 
 Buff.add_callback(buff, "onRemove", function(actor, stack)
@@ -78,11 +74,8 @@ Buff.add_callback(buff, "onRemove", function(actor, stack)
     actor.damage_base = actor.damage_base - actor.aphelion_huntressStealth_damage_boost_2
     actor.aphelion_huntressStealth_damage_boost_2 = nil
 
-    actor.critical_chance_base = actor.critical_chance_base - actor.aphelion_huntressStealth_critical_chance_boost
-    actor.aphelion_huntressStealth_critical_chance_boost = nil
-
-    actor.pHmax_base = actor.pHmax_base - actor.aphelion_huntressStealth_pHmax_boost
-    actor.aphelion_huntressStealth_pHmax_boost = nil
+    actor.critical_chance_base = actor.critical_chance_base - crit_boost
+    actor.pHmax_base = actor.pHmax_base - speed_boost
 end)
 
 
