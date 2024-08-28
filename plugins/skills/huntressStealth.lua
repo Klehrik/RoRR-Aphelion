@@ -2,7 +2,7 @@
 
 local callbacks = {}
 
--- TODO: Add upgraded ver
+
 
 local class_survivor = gm.variable_global_get("class_survivor")
 local survivor_loadout_unlockables = gm.variable_global_get("survivor_loadout_unlockables")
