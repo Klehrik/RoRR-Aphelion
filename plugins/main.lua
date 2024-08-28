@@ -29,8 +29,7 @@ function __initialize()
     end
 
     -- Huntress : Set Stealth Hunting upgrade
-    local class_skill = gm.variable_global_get("class_skill")
     local skill = Actor.find_skill_id("aphelion-huntressStealth")
     local skill_upg = Actor.find_skill_id("aphelion-huntressStealthBoosted")
-    gm.array_set(class_skill[skill + 1], 29, skill_upg)
+    gm.array_set(gm.array_get(Class.SKILL, skill), 29, skill_upg)
 end
