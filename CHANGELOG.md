@@ -19,7 +19,7 @@ This update adds 4 new items (3 are Shield-oriented) and 2 equipment, as well as
     * Fixed errors with buff stacks
     * Cooldown: 3s -> 2s
 * Ration : No longer triggers on the death screen when available.
-* Withered Branch : Stack wearoff rate decreased for higher stack counts
+* Withered Branch : Stack wearoff rate decreased for higher stack counts.
 * Crimson Scarf : Fixed errors with buff stacks
 * Overloaded Capacitor
     * Renamed to Bandana
@@ -50,5 +50,6 @@ This update adds 4 new items (3 are Shield-oriented) and 2 equipment, as well as
 This update adds 2 alternate skills.
 * Added skill Stealth Hunting (Huntress special)
 * Added skill Unload (Bandit secondary)
-* Magic Dagger : Debuff no longer remains when an enemy becomes unstunned early.
+* Withered Branch : Stack wearoff rate decreased further for higher stack counts.
 * Overloaded Capacitor : Damage per stack: 33% -> 30%
+* Magic Dagger : Debuff no longer remains when an enemy becomes unstunned early.

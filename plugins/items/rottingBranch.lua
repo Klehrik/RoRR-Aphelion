@@ -44,7 +44,7 @@ Buff.add_callback(buff, "onStep", function(actor, stack)
     actor.aphelion_rottingBranch_duration = actor.aphelion_rottingBranch_duration - 1
     if actor.aphelion_rottingBranch_duration <= 0 then
         Buff.remove(actor, Buff.find("aphelion-rottingBranch"), 1)
-        actor.aphelion_rottingBranch_duration = math.ceil(210.0 / math.max((stack - 1) * 0.333, 1.0))
+        actor.aphelion_rottingBranch_duration = math.ceil(210.0 / math.max((stack - 1) * 0.25, 1.0))
     end
 end)
 
