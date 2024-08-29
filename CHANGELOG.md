@@ -51,3 +51,4 @@ This update adds 2 alternate skills.
 * Added skill Stealth Hunting (Huntress special)
 * Added skill Unload (Bandit secondary)
 * Magic Dagger : Debuff no longer remains when an enemy becomes unstunned early.
+* Overloaded Capacitor : Damage per stack: 33% -> 30%
