@@ -27,8 +27,8 @@ Survivor.setup_skill(skill,
     gm.constants.sBanditSkills,
     8,
     gm.constants.sBanditShoot4,
-    3 *60.0,
-    3.0,
+    4 *60.0,
+    2.5,
     false,
     new.skill_id + 1
 )
