@@ -151,9 +151,10 @@ Buff.add_callback(buff, "onDraw", function(actor, stack)
         local array = gm.ds_list_find_value(actor.aphelion_explosiveSpear_timers, 0)
         if array then
             local radius = Helper.ease_out(math.min(100.0 - gm.array_get(array, 0), 50.0) / 50.0) * 100
+            local c = 16777215
             gm.draw_set_circle_precision(64)
             gm.draw_set_alpha(0.5)
-            gm.draw_circle(actor.x, actor.y, radius, true)
+            gm.draw_circle(actor.x, actor.y, radius, c, c, true)
             gm.draw_set_alpha(1)
             gm.draw_set_circle_precision(24)
         end
