@@ -54,7 +54,7 @@ Buff.add_callback(buff, "onApply", function(actor, stack)
     gm.instance_destroy(actor.target_marker)
     actor.target_marker = -4.0
 
-    local damage = actor.damage * 0.35
+    local damage = actor.damage * 0.30
     actor.damage_base = actor.damage_base + damage
     if not actor.aphelion_huntressStealth_damage_boost then actor.aphelion_huntressStealth_damage_boost = 0 end
     actor.aphelion_huntressStealth_damage_boost = actor.aphelion_huntressStealth_damage_boost + damage

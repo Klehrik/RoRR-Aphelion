@@ -42,8 +42,8 @@ end})
 
 -- Buff
 
-local crit_boost = 35.0
-local speed_boost = 2.8 * 0.35
+local crit_boost = 30.0
+local speed_boost = 2.8 * 0.30
 
 local buff = Buff.create("aphelion", "huntressStealthBoosted")
 Buff.set_property(buff, Buff.PROPERTY.show_icon, false)
@@ -54,7 +54,7 @@ Buff.add_callback(buff, "onApply", function(actor, stack)
     gm.instance_destroy(actor.target_marker)
     actor.target_marker = -4.0
 
-    local amount = actor.damage * 0.35
+    local amount = actor.damage * 0.30
     actor.damage_base = actor.damage_base + amount
     if not actor.aphelion_huntressStealth_damage_boost_2 then actor.aphelion_huntressStealth_damage_boost_2 = 0 end
     actor.aphelion_huntressStealth_damage_boost_2 = actor.aphelion_huntressStealth_damage_boost_2 + amount
