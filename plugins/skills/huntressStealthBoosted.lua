@@ -24,7 +24,7 @@ Survivor.setup_skill(skill,
     gm.constants.sHuntressSkills,
     0,
     gm.constants.sBanditShoot4,
-    15 *60.0,
+    14 *60.0,
     0.0,
     false,
     new.skill_id + 1
@@ -36,7 +36,7 @@ skill.required_interrupt_priority = 2.0
 
 -- Skill on_activate
 table.insert(callbacks, {skill.on_activate, function(self, other, result, args)
-    Buff.apply(self, Buff.find("aphelion-huntressStealthBoosted"), 5 *60.0)
+    Buff.apply(self, Buff.find("aphelion-huntressStealthBoosted"), 4 *60.0)
 
     local smoke = gm.instance_create_depth(self.x, self.y, 0, gm.constants.oEfBullet2)
     smoke.sprite_index = gm.constants.sBanditShoot3

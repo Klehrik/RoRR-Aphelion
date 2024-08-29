@@ -173,11 +173,11 @@
     "skill" : {
         "huntressStealth" : {
             "name" : "Stealth Hunting",
-            "description" : "<b>Turn invisible</c> for <b>5</c> seconds, <y>increasing damage by 30%</c>."
+            "description" : "<b>Turn invisible</c> for <b>4</c> seconds, <y>increasing damage by 30%</c>."
         },
         "huntressStealthBoosted" : {
             "name" : "Stealth Stalking",
-            "description" : "<b>Turn invisible</c> for <b>5</c> seconds, <y>increasing damage, critical chance, and movement speed by 30%</c>."
+            "description" : "<b>Turn invisible</c> for <b>4</c> seconds, <y>increasing damage, critical chance, and movement speed by 30%</c>."
         },
 
         "banditUnload" : {
