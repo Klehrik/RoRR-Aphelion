@@ -35,10 +35,17 @@ Survivor.setup_skill(skill,
 skill.require_key_press = false
 skill.does_change_activity_state = false
 skill.is_utility = true
+skill.required_interrupt_priority = 2.0
 
 -- Skill on_activate
 table.insert(callbacks, {skill.on_activate, function(self, other, result, args)
     Buff.apply(self, Buff.find("aphelion-huntressStealth"), 5 *60.0)
+
+    local smoke = gm.instance_create_depth(self.x, self.y, 0, gm.constants.oEfBullet2)
+    smoke.sprite_index = gm.constants.sBanditShoot3
+    smoke.image_speed = 0.3
+    smoke.image_yscale = 1
+    gm.sound_play_at(gm.constants.wWispSpawn, 1.0, 1.5, self.x, self.y, nil)
 end})
 
 
@@ -68,6 +75,12 @@ Buff.add_callback(buff, "onRemove", function(actor, stack)
 
     actor.damage_base = actor.damage_base - actor.aphelion_huntressStealth_damage_boost
     actor.aphelion_huntressStealth_damage_boost = nil
+
+    local smoke = gm.instance_create_depth(actor.x, actor.y, 0, gm.constants.oEfBullet2)
+    smoke.sprite_index = gm.constants.sBanditShoot3
+    smoke.image_speed = 0.3
+    smoke.image_yscale = 1
+    gm.sound_play_at(gm.constants.wWispSpawn, 1.0, 1.5, actor.x, actor.y, nil)
 end)
 
 
