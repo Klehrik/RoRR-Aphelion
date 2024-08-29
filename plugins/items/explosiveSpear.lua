@@ -114,19 +114,19 @@ Buff.add_callback(buff, "onStep", function(actor, stack)
     -- Decrease stack timers
     for i = 0, gm.ds_list_size(actor.aphelion_explosiveSpear_timers) - 1 do
         local array = gm.ds_list_find_value(actor.aphelion_explosiveSpear_timers, i)
-        local new_time = array[1] - 1
+        local new_time = gm.array_get(array, 0) - 1
         gm.array_set(array, 0, new_time)
 
         -- Pop every 25 frames
         -- unless damage will be lethal
-        local damage = array[3] * (0.06 + (array[4] * 0.06))
+        local damage = gm.array_get(array, 2) * (0.06 + (gm.array_get(array, 3) * 0.06))
         if damage >= actor.hp then
             lethal = true
             break
         end
 
-        if new_time % 25 == 0 and Instance.exists(array[2]) then
-            Actor.damage(actor, array[2], damage, actor.x, actor.y - 36, 5046527)
+        if new_time % 25 == 0 and Instance.exists(gm.array_get(array, 1)) then
+            Actor.damage(actor, gm.array_get(array, 1), damage, actor.x, actor.y - 36, 5046527)
         end
     end
 
@@ -134,9 +134,9 @@ Buff.add_callback(buff, "onStep", function(actor, stack)
     -- or if about to die
     -- TODO for multiplayer later: explode ALL remaining stacks if about to die
     local array = gm.ds_list_find_value(actor.aphelion_explosiveSpear_timers, 0)
-    if array[1] <= 0 or lethal then
-        local raw_damage = array[3] * (1.0 + (array[4] * 1.5))
-        local explosion = Actor.fire_explosion(array[2], actor.x, actor.y, 95, 95, raw_damage / array[2].damage, 2.0)
+    if gm.array_get(array, 0) <= 0 or lethal then
+        local raw_damage = gm.array_get(array, 2) * (1.0 + (gm.array_get(array, 3) * 1.5))
+        local explosion = Actor.fire_explosion(gm.array_get(array, 1), actor.x, actor.y, 95, 95, raw_damage / gm.array_get(array, 1).damage, 2.0)
         explosion.proc = false
         explosion.damage_color = 5046527
         gm.sound_play_at(sound, 1.0, 1.0, actor.x, actor.y, 1.0)
@@ -150,7 +150,7 @@ Buff.add_callback(buff, "onDraw", function(actor, stack)
     if actor.aphelion_explosiveSpear_timers then
         local array = gm.ds_list_find_value(actor.aphelion_explosiveSpear_timers, 0)
         if array then
-            local radius = Helper.ease_out(math.min(100.0 - array[1], 50.0) / 50.0) * 100
+            local radius = Helper.ease_out(math.min(100.0 - gm.array_get(array, 0), 50.0) / 50.0) * 100
             gm.draw_set_circle_precision(64)
             gm.draw_set_alpha(0.5)
             gm.draw_circle(actor.x, actor.y, radius, true)
