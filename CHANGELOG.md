@@ -47,7 +47,7 @@ This update adds 4 new items (3 are Shield-oriented) and 2 equipment, as well as
     * First stack crit bonus: +5% -> +20%
 
 ## v1.2.0
-This update adds more alternate skills to a few characters.
+This update adds 2 alternate skills.
 * Added skill Stealth Hunting (Huntress special)
 * Added skill Unload (Bandit secondary)
 * Magic Dagger : Debuff no longer remains when an enemy becomes unstunned early.
