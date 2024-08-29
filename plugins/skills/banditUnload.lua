@@ -4,28 +4,19 @@ local callbacks = {}
 
 
 
--- Add new Bandit X skill
-local class_survivor = gm.variable_global_get("class_survivor")
+-- Skill
 local survivor_loadout_unlockables = gm.variable_global_get("survivor_loadout_unlockables")
-local class_actor_state = gm.variable_global_get("class_actor_state")
 
--- Array of SurvivorSkillLoadoutUnlockable
-local x_family = class_survivor[gm.survivor_find("ror-bandit") + 1][8].elements
+local survivor = gm.array_get(Class.SURVIVOR, gm.survivor_find("ror-bandit"))
+local x_family = gm.array_get(survivor, 7).elements
 
--- Create new struct
 local new = gm.struct_create()
-
--- Since we can't use GameMaker constructors, copy all static variables from a pre-existing SurvivorSkillLoadoutUnlockable
--- These static variables don't appear in ObjectBrowser
-gm.static_set(new, gm.static_get(x_family[1]))
-
--- Set normal struct variables
+gm.static_set(new, gm.static_get(gm.array_get(x_family, 0)))
 new.skill_id = gm.skill_create("aphelion", "banditUnload")
 new.achievement_id = -1.0
 new.save_flag_viewed = nil
 new.index = gm.array_length(survivor_loadout_unlockables)
 
--- Push to survivor skill array and global survivor_loadout_unlockables
 gm.array_push(survivor_loadout_unlockables, new)
 gm.array_push(x_family, new)
 
@@ -49,6 +40,7 @@ local state = gm.actor_state_create(
     "banditUnload",
     gm.array_length(actor_states)
 )
+local state_array = gm.array_get(Class.ACTOR_STATE, state)
 
 -- Skill on_activate
 table.insert(callbacks, {skill.on_activate, function(self, other, result, args)
@@ -56,7 +48,7 @@ table.insert(callbacks, {skill.on_activate, function(self, other, result, args)
 end})
 
 -- State on_enter
-table.insert(callbacks, {class_actor_state[state + 1][3], function(self, other, result, args)
+table.insert(callbacks, {gm.array_get(state_array, 2), function(self, other, result, args)
     self.sprite_index = gm.constants.sBanditShoot4
     self.image_index = 0
     self.image_speed = 0.22
@@ -67,7 +59,7 @@ table.insert(callbacks, {class_actor_state[state + 1][3], function(self, other, 
 end})
 
 -- State on_exit
-table.insert(callbacks, {class_actor_state[state + 1][4], function(self, other, result, args)
+table.insert(callbacks, {gm.array_get(state_array, 3), function(self, other, result, args)
     self.aphelion_banditUnload_just_used = 2
     self.aphelion_banditUnload_shot = nil
 
@@ -75,7 +67,7 @@ table.insert(callbacks, {class_actor_state[state + 1][4], function(self, other, 
 end})
 
 -- State on_step
-table.insert(callbacks, {class_actor_state[state + 1][5], function(self, other, result, args)
+table.insert(callbacks, {gm.array_get(state_array, 4), function(self, other, result, args)
     self:skill_util_lock_cooldown(Actor.find_skill_id("aphelion-banditUnload"))
 
     if self.image_index >= 5 and not self.aphelion_banditUnload_shot then

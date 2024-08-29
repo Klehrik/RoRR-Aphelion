@@ -4,16 +4,14 @@ local callbacks = {}
 
 
 
-local class_survivor = gm.variable_global_get("class_survivor")
+-- Skill
 local survivor_loadout_unlockables = gm.variable_global_get("survivor_loadout_unlockables")
-local class_actor_state = gm.variable_global_get("class_actor_state")
 
-local v_family = class_survivor[gm.survivor_find("ror-huntress") + 1][10].elements
+local survivor = gm.array_get(Class.SURVIVOR, gm.survivor_find("ror-huntress"))
+local v_family = gm.array_get(survivor, 9).elements
 
 local new = gm.struct_create()
-
-gm.static_set(new, gm.static_get(v_family[1]))
-
+gm.static_set(new, gm.static_get(gm.array_get(v_family, 0)))
 new.skill_id = gm.skill_create("aphelion", "huntressStealth")
 new.achievement_id = -1.0
 new.save_flag_viewed = nil
