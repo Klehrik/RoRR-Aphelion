@@ -17,12 +17,14 @@ new.achievement_id = -1.0
 new.save_flag_viewed = nil
 new.index = gm.array_length(survivor_loadout_unlockables)
 
+local sprite = Resources.sprite_load(PATH.."assets/sprites/huntress/skills.png", 2, false, false, 0, 0)
+
 local skill = survivor_setup.Skill(new.skill_id)
 Survivor.setup_skill(skill,
     "skill.huntressStealthBoosted.name",
     "skill.huntressStealthBoosted.description",
-    gm.constants.sHuntressSkills,
-    0,
+    sprite,
+    1,
     gm.constants.sBanditShoot4,
     14 *60.0,
     0.0,

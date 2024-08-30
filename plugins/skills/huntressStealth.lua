@@ -20,11 +20,13 @@ new.index = gm.array_length(survivor_loadout_unlockables)
 gm.array_push(survivor_loadout_unlockables, new)
 gm.array_push(v_family, new)
 
+local sprite = Resources.sprite_load(PATH.."assets/sprites/huntress/skills.png", 2, false, false, 0, 0)
+
 local skill = survivor_setup.Skill(new.skill_id)
 Survivor.setup_skill(skill,
     "skill.huntressStealth.name",
     "skill.huntressStealth.description",
-    gm.constants.sHuntressSkills,
+    sprite,
     0,
     gm.constants.sBanditShoot4,
     14 *60.0,
