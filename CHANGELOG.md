@@ -52,4 +52,4 @@ This update adds 2 alternate skills.
 * Added skill Unload (Bandit secondary)
 * Withered Branch : Stack wearoff rate decreased further for higher stack counts.
 * Overloaded Capacitor : Damage per stack: 33% -> 30%
-* Magic Dagger : Debuff no longer remains when an enemy becomes unstunned early.
+* Magic Dagger : Debuff no longer remains when an enemy becomes unfrozen early.
