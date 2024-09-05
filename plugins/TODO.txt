@@ -1,3 +1,5 @@
+! Test all achievement unlocks to see if they still work before publishing!
+
 - Change Obelisk Shard "buff" into something else visual to not take up a buff slot
     - Add display to Super Shield as well
 - Make Relic Guard affect allies
