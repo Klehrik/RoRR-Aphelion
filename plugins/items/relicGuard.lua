@@ -2,37 +2,35 @@
 
 local sprite = Resources.sprite_load(PATH.."assets/sprites/relicGuard.png", 1, false, false, 16, 16)
 
-local item = Item.create("aphelion", "relicGuard")
-Item.set_sprite(item, sprite)
-Item.set_tier(item, Item.TIER.uncommon)
-Item.set_loot_tags(item, Item.LOOT_TAG.category_healing)
+local item = Item.new("aphelion", "relicGuard")
+item:set_sprite(sprite)
+item:set_tier(Item.TIER.uncommon)
+item:set_loot_tags(Item.LOOT_TAG.category_healing)
 
-Item.add_callback(item, "onPickup", function(actor, stack)
+item:add_callback("onPickup", function(actor, stack)
     local increase = 20
-    if stack > 1 then increase = 20 end
     actor.maxshield_base = actor.maxshield_base + increase
 end)
 
-Item.add_callback(item, "onRemove", function(actor, stack)
+item:add_callback("onRemove", function(actor, stack)
     local increase = 20
-    if stack > 1 then increase = 20 end
     actor.maxshield_base = actor.maxshield_base - increase
 end)
 
-Item.add_callback(item, "onShieldBreak", function(actor, stack)
+item:add_callback("onShieldBreak", function(actor, stack)
     -- TODO for later: Apply to all nearby allies
     -- and change description wording
-    Actor.add_barrier(actor, actor.maxshield * (0.25 + (stack * 0.25)))
+    actor:add_barrier(actor.maxshield * (0.25 + (stack * 0.25)))
 end)
 
 
 
 -- Achievement
-Item.add_achievement(item)
+item:add_achievement()
 
 Actor.add_callback("onPreStep", function(actor)
-    if actor ~= Player.get_client() then return end
+    if not actor:same(Player.get_client()) then return end
     if actor.maxshield >= 400.0 then
-        Item.progress_achievement(Item.find("aphelion-relicGuard"))
+        item:progress_achievement()
     end
 end)

@@ -2,15 +2,15 @@
 
 local sprite = Resources.sprite_load(PATH.."assets/sprites/rottingBranch.png", 1, false, false, 16, 16)
 
-local item = Item.create("aphelion", "rottingBranch")
-Item.set_sprite(item, sprite)
-Item.set_tier(item, Item.TIER.common)
-Item.set_loot_tags(item, Item.LOOT_TAG.category_damage)
+local item = Item.new("aphelion", "rottingBranch")
+item:set_sprite(sprite)
+item:set_tier(Item.TIER.common)
+item:set_loot_tags(Item.LOOT_TAG.category_damage)
 
-Item.add_callback(item, "onHit", function(attacker, victim, damager, stack)
+item:add_callback("onHit", function(actor, victim, damager, stack)
     if Helper.chance(0.15 + (0.1 * (stack - 1))) then
-        Buff.apply(victim, Buff.find("aphelion-rottingBranch"), 1)
-        victim.aphelion_rottingBranch_attacker = attacker
+        victim:buff_apply(Buff.find("aphelion-rottingBranch"), 1)
+        victim.aphelion_rottingBranch_attacker = actor.value
     end
 end)
 
@@ -20,35 +20,35 @@ end)
 
 local sprite = Resources.sprite_load(PATH.."assets/sprites/buffRottingBranch.png", 1, false, false, 6, 7)
 
-local buff = Buff.create("aphelion", "rottingBranch")
-Buff.set_property(buff, Buff.PROPERTY.icon_sprite, sprite)
-Buff.set_property(buff, Buff.PROPERTY.icon_stack_subimage, false)
-Buff.set_property(buff, Buff.PROPERTY.draw_stack_number, true)
-Buff.set_property(buff, Buff.PROPERTY.stack_number_col, gm.array_create(1, 7964834))
-Buff.set_property(buff, Buff.PROPERTY.max_stack, 999)
-Buff.set_property(buff, Buff.PROPERTY.is_timed, false)
-Buff.set_property(buff, Buff.PROPERTY.is_debuff, true)
+local buff = Buff.new("aphelion", "rottingBranch")
+buff.icon_sprite = sprite
+buff.icon_stack_subimage = false
+buff.draw_stack_number = true
+buff.stack_number_col = gm.array_create(1, 7964834)
+buff.max_stack = 999
+buff.is_timed = false
+buff.is_debuff = true
 
-Buff.add_callback(buff, "onApply", function(actor, stack)
+buff:add_callback("onApply", function(actor, stack)
     if (not actor.aphelion_rottingBranch_timer) or stack == 1 then actor.aphelion_rottingBranch_timer = 0 end
     actor.aphelion_rottingBranch_duration = math.ceil(210.0 / math.max(stack * 0.4, 1.0))
 end)
 
-Buff.add_callback(buff, "onStep", function(actor, stack)
+buff:add_callback("onStep", function(actor, stack)
     actor.aphelion_rottingBranch_timer = actor.aphelion_rottingBranch_timer + 1
     
-    if gm.instance_exists(actor.aphelion_rottingBranch_attacker) and actor.aphelion_rottingBranch_timer % 30 == 0 then
-        Actor.damage(actor, actor.aphelion_rottingBranch_attacker, actor.aphelion_rottingBranch_attacker.damage * 0.15 * stack, actor.x - 26, actor.y - 36, 7964834)
+    if Instance.exists(actor.aphelion_rottingBranch_attacker) and actor.aphelion_rottingBranch_timer % 30 == 0 then
+        actor:take_damage(actor.aphelion_rottingBranch_attacker.damage * 0.15 * stack, actor.aphelion_rottingBranch_attacker, actor.x - 26, actor.y - 36, 7964834)
     end
 
     actor.aphelion_rottingBranch_duration = actor.aphelion_rottingBranch_duration - 1
     if actor.aphelion_rottingBranch_duration <= 0 then
-        Buff.remove(actor, Buff.find("aphelion-rottingBranch"), 1)
+        actor:buff_remove(buff, 1)
         actor.aphelion_rottingBranch_duration = math.ceil(210.0 / math.max((stack - 1) * 0.25, 1.0))
     end
 end)
 
-Buff.add_callback(buff, "onChange", function(actor, to, stack)
+buff:add_callback("onChange", function(actor, to, stack)
     -- Pass attacker to new actor instance
     to.aphelion_rottingBranch_attacker = actor.aphelion_rottingBranch_attacker
 end)

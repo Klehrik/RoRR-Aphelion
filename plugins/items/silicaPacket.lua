@@ -2,16 +2,16 @@
 
 local sprite = Resources.sprite_load(PATH.."assets/sprites/silicaPacket.png", 1, false, false, 16, 16)
 
-local item = Item.create("aphelion", "silicaPacket")
-Item.set_sprite(item, sprite)
-Item.set_tier(item, Item.TIER.common)
-Item.set_loot_tags(item, Item.LOOT_TAG.category_utility)
+local item = Item.new("aphelion", "silicaPacket")
+item:set_sprite(sprite)
+item:set_tier(Item.TIER.common)
+item:set_loot_tags(Item.LOOT_TAG.category_utility)
 
-Item.add_callback(item, "onPickup", function(actor, stack)
+item:add_callback("onPickup", function(actor, stack)
     actor.aphelion_silicaPacket_increase = 0.06 + (0.12 * stack)
 end)
 
-Item.add_callback(item, "onRemove", function(actor, stack)
+item:add_callback("onRemove", function(actor, stack)
     actor.aphelion_silicaPacket_increase = 0.06 + (0.12 * (stack - 1))
     if stack <= 1 then actor.aphelion_silicaPacket_increase = nil end
 end)
@@ -26,11 +26,11 @@ end)
 
 
 -- Achievement
-Item.add_achievement(item, 50)
+item:add_achievement(50)
 
 Actor.add_callback("onPostAttack", function(actor, damager)
-    if actor ~= Player.get_client() then return end
+    if not actor:same(Player.get_client()) then return end
     if (damager.attack_flags & (1 << 12)) > 0 then
-        Item.progress_achievement(Item.find("aphelion-silicaPacket"), damager.kill_number)
+        item:progress_achievement(damager.kill_number)
     end
 end)

@@ -3,37 +3,37 @@
 local sprite = Resources.sprite_load(PATH.."assets/sprites/ration.png", 1, false, false, 16, 16)
 local sound = Resources.sfx_load(PATH.."assets/sounds/ration.ogg")
 
-local item = Item.create("aphelion", "ration")
-Item.set_sprite(item, sprite)
-Item.set_tier(item, Item.TIER.common)
-Item.set_loot_tags(item, Item.LOOT_TAG.category_healing)
+local item = Item.new("aphelion", "ration")
+item:set_sprite(sprite)
+item:set_tier(Item.TIER.common)
+item:set_loot_tags(Item.LOOT_TAG.category_healing)
 
-Item.add_callback(item, "onPickup", function(actor, stack)
+item:add_callback("onPickup", function(actor, stack)
     -- Restore all used Rations
     local item      = Item.find("aphelion-ration")
     local item_used = Item.find("aphelion-rationUsed")
-    local normal    = Item.get_stack_count(actor, item_used, Item.TYPE.real)
-    local temp      = Item.get_stack_count(actor, item_used, Item.TYPE.temporary)
-    gm.item_take(actor, item_used, normal, false)
-    gm.item_take(actor, item_used, temp, true)
-    gm.item_give_internal(actor, item, normal, false)   -- Check if this still works in MP when the time comes
-    gm.item_give_internal(actor, item, temp, true)
+    local normal    = actor:item_stack_count(item_used, Item.TYPE.real)
+    local temp      = actor:item_stack_count(item_used, Item.TYPE.temporary)
+    actor:item_remove(item_used, normal, false)
+    actor:item_remove(item_used, temp, true)
+    gm.item_give_internal(actor.value, item.value, normal, false)   -- Check if this still works in MP when the time comes
+    gm.item_give_internal(actor.value, item.value, temp, true)
 end)
 
-Item.add_callback(item, "onDamaged", function(actor, damager, stack)
+item:add_callback("onDamaged", function(actor, damager, stack)
     -- Heal when at <= 25% health
     if actor.hp <= actor.maxhp * 0.25 then
-        Actor.heal(actor, actor.maxhp * Helper.mixed_hyperbolic(stack, 0.07, 0.5))
+        actor:heal(actor.maxhp * Helper.mixed_hyperbolic(stack, 0.07, 0.5))
         gm.sound_play_at(sound, 0.9, 1.0, actor.x, actor.y, 1.0)
 
         -- Remove stacks and give used stacks
         local item      = Item.find("aphelion-ration")
         local item_used = Item.find("aphelion-rationUsed")
-        local normal    = Item.get_stack_count(actor, item, Item.TYPE.real)
-        local temp      = Item.get_stack_count(actor, item, Item.TYPE.temporary)
-        gm.item_take(actor, item, normal, false)
-        gm.item_take(actor, item, temp, true)
-        gm.item_give_internal(actor, item_used, normal, false)
-        gm.item_give_internal(actor, item_used, temp, true)
+        local normal    = actor:item_stack_count(item, Item.TYPE.real)
+        local temp      = actor:item_stack_count(item, Item.TYPE.temporary)
+        actor:item_remove(item, normal, false)
+        actor:item_remove(item, temp, true)
+        gm.item_give_internal(actor.value, item_used.value, normal, false)
+        gm.item_give_internal(actor.value, item_used.value, temp, true)
     end
 end)

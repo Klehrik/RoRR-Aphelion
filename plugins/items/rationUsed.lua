@@ -2,25 +2,25 @@
 
 local sprite = Resources.sprite_load(PATH.."assets/sprites/rationUsed.png", 1, false, false, 16, 16)
 
-local item = Item.create("aphelion", "rationUsed", true)
-Item.set_sprite(item, sprite)
+local item = Item.new("aphelion", "rationUsed", true)
+item:set_sprite(sprite)
 
-Item.add_callback(item, "onPickup", function(actor, stack)
+item:add_callback("onPickup", function(actor, stack)
     actor.aphelion_ration_cooldown = 240 *60 * (1 - Helper.mixed_hyperbolic(stack, 0.2, 0))
 end)
 
-Item.add_callback(item, "onStep", function(actor, stack)
+item:add_callback("onStep", function(actor, stack)
     -- Tick down timer
     if actor.aphelion_ration_cooldown > 0 then actor.aphelion_ration_cooldown = actor.aphelion_ration_cooldown - 1
     else
-        -- Restore all used Rations
+         -- Restore all used Rations
         local item      = Item.find("aphelion-ration")
         local item_used = Item.find("aphelion-rationUsed")
-        local normal    = Item.get_stack_count(actor, item_used, Item.TYPE.real)
-        local temp      = Item.get_stack_count(actor, item_used, Item.TYPE.temporary)
-        gm.item_take(actor, item_used, normal, false)
-        gm.item_take(actor, item_used, temp, true)
-        gm.item_give_internal(actor, item, normal, false)
-        gm.item_give_internal(actor, item, temp, true)
+        local normal    = actor:item_stack_count(item_used, Item.TYPE.real)
+        local temp      = actor:item_stack_count(item_used, Item.TYPE.temporary)
+        actor:item_remove(item_used, normal, false)
+        actor:item_remove(item_used, temp, true)
+        gm.item_give_internal(actor.value, item.value, normal, false)
+        gm.item_give_internal(actor.value, item.value, temp, true)
     end
 end)

@@ -2,18 +2,18 @@
 
 local sprite = Resources.sprite_load(PATH.."assets/sprites/obeliskShard.png", 1, false, false, 16, 16)
 
-local item = Item.create("aphelion", "obeliskShard")
-Item.set_sprite(item, sprite)
-Item.set_tier(item, Item.TIER.uncommon)
-Item.set_loot_tags(item, Item.LOOT_TAG.category_utility)
+local item = Item.new("aphelion", "obeliskShard")
+item:set_sprite(sprite)
+item:set_tier(Item.TIER.uncommon)
+item:set_loot_tags(Item.LOOT_TAG.category_utility)
 
-Item.add_callback(item, "onStep", function(actor, stack)
+item:add_callback("onStep", function(actor, stack)
     if actor.still_timer >= 2 *60.0 then
-        Buff.apply(actor, Buff.find("aphelion-obeliskShard"), 2)
+        actor:buff_apply(Buff.find("aphelion-obeliskShard"), 2)
 
         -- Reduce equipment cooldown
-        if gm.player_get_equipment_cooldown(actor) > 0 then
-            gm.player_grant_equipment_cooldown_reduction(actor, (0.1 + (stack * 0.3)))
+        if actor:get_equipment_cooldown() > 0 then
+            actor:reduce_equipment_cooldown(0.1 + (stack * 0.3))
         end
     end
 end)
@@ -24,5 +24,5 @@ end)
 
 local sprite = Resources.sprite_load(PATH.."assets/sprites/buffObeliskShard.png", 1, false, false, 7, 8)
 
-local buff = Buff.create("aphelion", "obeliskShard")
-Buff.set_property(buff, Buff.PROPERTY.icon_sprite, sprite)
+local buff = Buff.new("aphelion", "obeliskShard")
+buff.icon_sprite = sprite
