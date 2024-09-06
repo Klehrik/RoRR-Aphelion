@@ -9,8 +9,7 @@ equip:set_cooldown(45)
 
 equip:add_callback("onUse", function(actor)
     actor:add_barrier(actor.maxbarrier * 0.75)
-    if actor.invincible == false then actor.invincible = 0 end
-    actor.invincible = math.max(actor.invincible, 1.2 *60)
+    actor:set_immune(1.2 *60)
     actor:buff_apply(Buff.find("aphelion-adrenaline"), 5 *60)
 end)
 

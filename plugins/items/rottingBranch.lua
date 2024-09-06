@@ -10,7 +10,7 @@ item:set_loot_tags(Item.LOOT_TAG.category_damage)
 item:add_callback("onHit", function(actor, victim, damager, stack)
     if Helper.chance(0.15 + (0.1 * (stack - 1))) then
         victim:buff_apply(Buff.find("aphelion-rottingBranch"), 1)
-        victim.aphelion_rottingBranch_attacker = actor.value
+        victim.aphelion_rottingBranch_attacker = actor
     end
 end)
 
@@ -37,7 +37,7 @@ end)
 buff:add_callback("onStep", function(actor, stack)
     actor.aphelion_rottingBranch_timer = actor.aphelion_rottingBranch_timer + 1
     
-    if Instance.exists(actor.aphelion_rottingBranch_attacker) and actor.aphelion_rottingBranch_timer % 30 == 0 then
+    if actor.aphelion_rottingBranch_attacker:exists() and actor.aphelion_rottingBranch_timer % 30 == 0 then
         actor:take_damage(actor.aphelion_rottingBranch_attacker.damage * 0.15 * stack, actor.aphelion_rottingBranch_attacker, actor.x - 26, actor.y - 36, 7964834)
     end
 

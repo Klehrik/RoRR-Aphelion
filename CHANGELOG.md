@@ -51,6 +51,11 @@ This update adds 2 alternate skills.
 * Added skill Stealth Hunting (Huntress special)
 * Added skill Unload (Bandit secondary)
 * Withered Branch : Stack wearoff rate decreased further for higher stack counts.
-* Explosive Spear : Now deals the correct amount of pre-explosion damage ticks (4 instead of 3)
+* Explosive Spear
+    * Now deals the correct amount of pre-explosion damage ticks (4 instead of 3).
+        * Now deals the correct amount of damage in general.
+    * The explosion can no longer crit.
+    * Now visually sticks into the hit enemy or surface.
+    * Now sticks into surfaces, allowing it to still explode on miss.
 * Overloaded Capacitor : Damage per stack: 33% -> 30%
 * Magic Dagger : Debuff no longer remains when an enemy becomes unfrozen early.

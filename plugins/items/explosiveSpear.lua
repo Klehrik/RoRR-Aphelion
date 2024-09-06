@@ -1,9 +1,7 @@
 -- Explosive Spear
 
 local sprite = Resources.sprite_load(PATH.."assets/sprites/explosiveSpear.png", 1, false, false, 16, 16)
-local spriteProj = Resources.sprite_load(PATH.."assets/sprites/explosiveSpearProjectile.png", 1, false, false, 23, 3)
 local sound = Resources.sfx_load(PATH.."assets/sounds/explosiveSpearThrow.ogg")
-local soundHit = Resources.sfx_load(PATH.."assets/sounds/explosiveSpearHit.ogg")
 
 local item = Item.new("aphelion", "explosiveSpear")
 item:set_sprite(sprite)
@@ -11,51 +9,123 @@ item:set_tier(Item.TIER.uncommon)
 item:set_loot_tags(Item.LOOT_TAG.category_damage)
 
 item:add_callback("onHit", function(actor, victim, damager, stack)
-    if not damager.aphelion_explosiveSpear then
-        local cooldownBuff = Buff.find("aphelion-explosiveSpearDisplay")
-        if actor:buff_stack_count(cooldownBuff) > 0 then return end
-        
-        -- Do not proc if the hit does not deal at least 200%
-        if damager.damage < actor.damage * 2.0 then return end
+    local cooldownBuff = Buff.find("aphelion-explosiveSpearDisplay")
+    if actor:buff_stack_count(cooldownBuff) > 0 then return end
+    
+    -- Do not proc if the hit does not deal at least 200%
+    if damager.damage < actor.damage * 2.0 then return end
 
-        local dir = actor.image_xscale
+    local dir = actor.image_xscale
 
-        -- Create oHuntressBolt1 as base object
-        local obj = Object.find("ror-huntressBolt1")
-        local inst = obj:create(actor.x + (dir * 24.0), actor.y - 4.0)
-        inst.sprite_index = spriteProj
-        inst.parent = actor.value
-        inst.team = inst.parent.team
-        inst.hspeed = inst.hspeed * 1.25 * dir
-        inst.vspeed = -2.0
-        inst.gravity = 0.15
-        inst.image_yscale = dir     -- lmao they swapped xscale and yscale when drawing this object
-        inst.aphelion_explosiveSpear_owner = actor.value
-        gm.sound_play_at(sound, 1.0, 1.0, actor.x, actor.y, 1.0)
+    -- Create object
+    local obj = Object.find("aphelion-explosiveSpearObject")
+    local inst = obj:create(actor.x + (dir * 36.0), actor.y - 4.0)
+    inst.parent = actor
+    inst.hsp = 20.0 * dir
+    gm.sound_play_at(sound, 1.0, 1.0, actor.x, actor.y, 1.0)
 
-        -- Calculate original damage coeff
-        inst.damage_coeff = damager.damage / actor.damage
+    -- Calculate damage
+    inst.pop_damage = damager.damage * (0.06 + (actor:item_stack_count(item) * 0.06))
+    inst.damage = damager.damage * (1.0 + (actor:item_stack_count(item) * 1.5))
 
-        -- Apply cooldown
-        actor:buff_apply(cooldownBuff, 1, 10)
+    -- Apply cooldown
+    actor:buff_apply(cooldownBuff, 1, 10)
+end)
 
-        
-    -- Explosive Spear onHit
-    else
-        victim.aphelion_explosiveSpear_attacker = actor.value
-        victim.aphelion_explosiveSpear_damage = damager.aphelion_explosiveSpear_damage
-        victim:buff_apply(Buff.find("aphelion-explosiveSpear"), 1)
 
+
+-- Object
+
+local sprite = Resources.sprite_load(PATH.."assets/sprites/explosiveSpearProjectile.png", 1, false, false, 36, 3, 1, -20, -5, -3, 3)
+local soundHit = Resources.sfx_load(PATH.."assets/sounds/explosiveSpearHit.ogg")
+local soundExplode = Resources.sfx_load(PATH.."assets/sounds/explosiveSpearExplode.ogg")
+
+local obj = Object.new("aphelion", "explosiveSpearObject")
+obj:set_sprite(sprite)
+obj:set_depth(-1)
+
+obj:add_callback("onCreate", function(self)
+    self.vsp = -2.0
+    self.grav = 0.18
+
+    self.hit = nil
+    self.hit_offset_x = 0
+    self.hit_offset_y = 0
+
+    self.tick = 85
+end)
+
+obj:add_callback("onStep", function(self)
+    if not self.flag_hit then
+        -- Move
+        self.x = self.x + self.hsp
+        self.y = self.y + self.vsp
+        self.vsp = self.vsp + self.grav
+
+        -- Actor collision
+        local actors = self:get_collisions(gm.constants.pActor)
+        for _, actor in ipairs(actors) do
+            if actor.team and actor.team ~= self.parent.team then
+                self.flag_hit = true
+                self.hit = actor
+                self.hit_offset_x = actor.x - self.x
+                self.hit_offset_y = actor.y - self.y
+                gm.sound_play_at(soundHit, 1.0, 1.0, self.x, self.y, 1.0)
+                break
+            end
+        end
+
+        -- Wall collision
+        if self:is_colliding(gm.constants.oB) then
+            self.flag_hit = true
+            gm.sound_play_at(soundHit, 1.0, 1.0, self.x, self.y, 1.0)
+        end
+
+        -- Set image_angle
+        self.image_angle = gm.point_direction(0, 0, self.hsp, self.vsp)
     end
 end)
 
-item:add_callback("onAttack", function(actor, damager, stack)
-    if actor.aphelion_explosiveSpear_hit then
-        actor.aphelion_explosiveSpear_hit = nil
-        damager.aphelion_explosiveSpear = true
-        damager.aphelion_explosiveSpear_damage = damager.damage
-        damager.damage = 1.0
-        gm.sound_play_at(soundHit, 1.0, 1.0, actor.x, actor.y, 1.0)
+obj:add_callback("onStep", function(self)
+    if self.flag_hit then
+        self.tick = self.tick - 1
+
+        if self.hit then
+            -- Embed into hit actor
+            self.x = self.hit.x - self.hit_offset_x
+            self.y = self.hit.y - self.hit_offset_y
+
+            -- Deal pop damage
+            if self.tick % 25 == 0 then
+                self.hit:take_damage(self.pop_damage, self.parent, self.hit.x, self.hit.y - 36, 5046527)
+            end
+        end
+
+        -- Explode
+        if self.tick <= -20 or (self.hit and not Instance.exists(self.hit)) then
+            local explosion = self.parent:fire_explosion(self.x, self.y, 95, 95, self.damage / self.parent.damage, 2.0)
+            explosion.proc = false
+            explosion.damage_color = 5046527
+            if explosion.critical then
+                explosion.critical = false
+                explosion.damage = explosion.damage / 2.0
+            end
+            gm.sound_play_at(soundExplode, 1.0, 1.0, self.x, self.y, 1.0)
+            self:destroy()
+        end
+    end
+end)
+
+obj:add_callback("onDraw", function(self)
+    if self.flag_hit then
+        -- Show explosion radius
+        local radius = Helper.ease_out(math.min(85.0 - self.tick, 45.0) / 45.0) * 110
+        gm.draw_set_circle_precision(64)
+        gm.draw_set_alpha(0.5)
+        local c = Color.WHITE
+        gm.draw_circle(self.x, self.y, radius, c, c, true)
+        gm.draw_set_alpha(1)
+        gm.draw_set_circle_precision(24)
     end
 end)
 
@@ -83,109 +153,6 @@ buff:add_callback("onStep", function(actor, stack)
 
     if actor.aphelion_explosiveSpear_cooldown <= 0 then
         actor.aphelion_explosiveSpear_cooldown = 60
-        actor:buff_remove(Buff.find("aphelion-explosiveSpearDisplay"), 1)
-    end
-end)
-
-
-
-local sound = Resources.sfx_load(PATH.."assets/sounds/explosiveSpearExplode.ogg")
-
-local buff = Buff.new("aphelion", "explosiveSpear")
-buff.max_stack = 999
-buff.is_timed = false
-buff.is_debuff = true
-
-buff:add_callback("onApply", function(actor, stack)
-    if not actor.aphelion_explosiveSpear_timers then actor.aphelion_explosiveSpear_timers = gm.ds_list_create() end
-
-    if Instance.exists(actor.aphelion_explosiveSpear_attacker) then
-        local array = gm.array_create(4)
-        gm.array_set(array, 0, 101.0)
-        gm.array_set(array, 1, actor.aphelion_explosiveSpear_attacker)
-        gm.array_set(array, 2, actor.aphelion_explosiveSpear_damage)
-        gm.array_set(array, 3, Instance.make_instance(actor.aphelion_explosiveSpear_attacker):item_stack_count(Item.find("aphelion-explosiveSpear")))
-        gm.ds_list_add(actor.aphelion_explosiveSpear_timers, array)
-    end
-end)
-
-buff:add_callback("onStep", function(actor, stack)
-    local lethal = false
-
-    -- Decrease stack timers
-    for i = 0, gm.ds_list_size(actor.aphelion_explosiveSpear_timers) - 1 do
-        local array = gm.ds_list_find_value(actor.aphelion_explosiveSpear_timers, i)
-        local new_time = gm.array_get(array, 0) - 1
-        gm.array_set(array, 0, new_time)
-
-        -- Pop every 25 frames
-        -- unless damage will be lethal
-        local damage = gm.array_get(array, 2) * (0.06 + (gm.array_get(array, 3) * 0.06))
-        if damage >= actor.hp then
-            lethal = true
-            break
-        end
-
-        if new_time % 25 == 0 and Instance.exists(gm.array_get(array, 1)) then
-            actor:take_damage(damage, gm.array_get(array, 1), actor.x, actor.y - 36, 5046527)
-        end
-    end
-
-    -- Remove and explode oldest stack if expired
-    -- or if about to die
-    -- TODO for multiplayer later: explode ALL remaining stacks if about to die
-    local array = gm.ds_list_find_value(actor.aphelion_explosiveSpear_timers, 0)
-    if gm.array_get(array, 0) <= 0 or lethal then
-        local raw_damage = gm.array_get(array, 2) * (1.0 + (gm.array_get(array, 3) * 1.5))
-        local explosion = Instance.make_instance(gm.array_get(array, 1)):fire_explosion(actor.x, actor.y, 95, 95, raw_damage / gm.array_get(array, 1).damage, 2.0)
-        explosion.proc = false
-        explosion.damage_color = 5046527
-        gm.sound_play_at(sound, 1.0, 1.0, actor.x, actor.y, 1.0)
-
-        gm.ds_list_delete(actor.aphelion_explosiveSpear_timers, 0)
-        actor:buff_remove(Buff.find("aphelion-explosiveSpear"), 1)
-    end
-end)
-
-buff:add_callback("onDraw", function(actor, stack)
-    if actor.aphelion_explosiveSpear_timers then
-        local array = gm.ds_list_find_value(actor.aphelion_explosiveSpear_timers, 0)
-        if array then
-            local radius = Helper.ease_out(math.min(100.0 - gm.array_get(array, 0), 50.0) / 50.0) * 100
-            local c = 16777215
-            gm.draw_set_circle_precision(64)
-            gm.draw_set_alpha(0.5)
-            gm.draw_circle(actor.x, actor.y, radius, c, c, true)
-            gm.draw_set_alpha(1)
-            gm.draw_set_circle_precision(24)
-        end
-    end
-end)
-
-buff:add_callback("onChange", function(actor, to, stack)
-    -- Pass timers array to new actor instance
-    to.aphelion_explosiveSpear_timers = actor.aphelion_explosiveSpear_timers
-end)
-
-
-
--- Hooks
-
-gm.pre_code_execute(function(self, other, code, result, flags)
-    if code.name:match("oHuntressBolt1_Collision_pActor") then
-        if self.aphelion_explosiveSpear_owner and Instance.exists(self.aphelion_explosiveSpear_owner) then
-            self.aphelion_explosiveSpear_owner.aphelion_explosiveSpear_hit = true
-        end
-    end
-end)
-
-
-gm.pre_script_hook(gm.constants.step_actor, function(self, other, result, args)
-    -- Allow the spear "buff" to affect worms/wurms
-    if (self.object_index == gm.constants.oWorm
-    or self.object_index == gm.constants.oWurmHead)
-    and not self.aphelion_explosiveSpear_remove_immunity then
-        self.aphelion_explosiveSpear_remove_immunity = true
-        gm.array_set(self.buff_immune, buff, false)
+        actor:buff_remove(buff, 1)
     end
 end)

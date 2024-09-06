@@ -4,3 +4,5 @@
     - Add display to Super Shield as well
 - Make Relic Guard affect allies
 - Make E spear a custom object and have it visually stick into enemies
+
+- Fix E spear not stunning
