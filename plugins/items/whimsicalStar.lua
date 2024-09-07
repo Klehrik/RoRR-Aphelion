@@ -8,19 +8,19 @@ item:set_tier(Item.TIER.rare)
 item:set_loot_tags(Item.LOOT_TAG.category_utility)
 
 item:onPickup(function(actor, stack)
-    if not actor.aphelion_whimsicalStar_insts then actor.aphelion_whimsicalStar_insts = List.new() end
+    if not actor.aphelion_whimsicalStar_insts then actor.aphelion_whimsicalStar_insts = Array.new() end
 
     local count = 3
     if stack >= 2 then count = 2 end
     for i = 1, count do
-        local list = List.wrap(actor.aphelion_whimsicalStar_insts)
+        local array = actor.aphelion_whimsicalStar_insts
         local obj = Object.find("aphelion", "whimsicalStarObject")
         local inst = obj:create(actor.x, actor.y)
         inst.parent = actor
-        inst.number = list:size()
+        inst.number = array:size()
         inst.prev = actor
-        if i > 1 then inst.prev = list:get(list:size() - 1) end
-        list:add(inst)
+        if i > 1 then inst.prev = array:get(array:size() - 1) end
+        array:push(inst)
     end
 end)
 
@@ -28,10 +28,10 @@ item:onRemove(function(actor, stack)
     local count = 3
     if stack >= 2 then count = 2 end
     for i = 1, count do
-        local list = List.wrap(actor.aphelion_whimsicalStar_insts)
-        local inst = list:get(list:size() - 1)
-        if Instance.exists(inst) then inst:destroy() end
-        list:delete(list:size() - 1)
+        local array = actor.aphelion_whimsicalStar_insts
+        local inst = array:get(array:size() - 1)
+        if inst:exists() then inst:destroy() end
+        array:delete(array:size() - 1)
     end
 end)
 

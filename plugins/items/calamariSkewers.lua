@@ -9,7 +9,7 @@ item:set_loot_tags(Item.LOOT_TAG.category_healing)
 
 item:add_callback("onPickup", function(actor, stack)
     actor.aphelion_calamariSkewers_cooldown = 0
-    if not actor.aphelion_calamariSkewers_timers then actor.aphelion_calamariSkewers_timers = List.new() end
+    if not actor.aphelion_calamariSkewers_timers then actor.aphelion_calamariSkewers_timers = Array.new() end
 end)
 
 item:add_callback("onKill", function(actor, victim, damager, stack)
@@ -38,28 +38,28 @@ buff.max_stack = 4
 buff.is_timed = false
 
 buff:onApply(function(actor, stack)
-    List.wrap(actor.aphelion_calamariSkewers_timers):add(60)
+    actor.aphelion_calamariSkewers_timers:push(60)
 end)
 
 buff:onStep(function(actor, stack)
     -- Decrease stack timers
-    local list = List.wrap(actor.aphelion_calamariSkewers_timers)
-    for i, time in ipairs(list) do
+    local array = actor.aphelion_calamariSkewers_timers
+    for i, time in ipairs(array) do
         time = time - 1
-        list[i] = time
+        array[i] = time
     end
 
     -- Remove oldest stack if expired
-    local time = list:get(0)
-    if time and time <= 0 then list:delete(0) end
+    local time = array:get(0)
+    if time and time <= 0 then array:delete(0) end
 
     -- Check if 4 kills within 1 second has been achieved
-    local size = list:size()
+    local size = array:size()
     if size >= 4 then
         local item_stack = actor:item_stack_count(Item.find("aphelion-calamariSkewers"))
         actor:heal((item_stack * 20) + ((actor.maxhp - actor.hp) * 0.1))
         actor.aphelion_calamariSkewers_cooldown = 2 *60
-        list:clear()
+        array:clear()
     end
 
     -- Remove buff stacks if more than ds_list size
