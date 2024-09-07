@@ -7,7 +7,7 @@ equip:set_sprite(sprite)
 equip:set_loot_tags(Item.LOOT_TAG.category_damage, Item.LOOT_TAG.category_utility)
 equip:set_cooldown(45)
 
-equip:add_callback("onUse", function(actor)
+equip:onUse(function(actor)
     local use_dir = actor.value:player_util_local_player_get_equipment_activation_direction()
     if use_dir == true then use_dir = 1.0 end
     if use_dir == false then use_dir = -1.0 end
@@ -31,7 +31,7 @@ local obj = Object.new("aphelion", "magicDaggerFreeze")
 obj:set_sprite(sprite)
 obj:set_depth(-1)
 
-obj:add_callback("onCreate", function(self)
+obj:onCreate(function(self)
     self.image_index = 0
     self.image_speed = 0
 
@@ -46,7 +46,7 @@ obj:add_callback("onCreate", function(self)
     self.state_time = 0
 end)
 
-obj:add_callback("onStep", function(self)
+obj:onStep(function(self)
     if self.state == 0 then
         self.state_time = self.state_time + 1
 
@@ -103,11 +103,11 @@ local buff = Buff.new("aphelion", "magicDaggerFreeze")
 buff.show_icon = false
 buff.is_debuff = true
 
-buff:add_callback("onApply", function(actor, stack)
+buff:onApply(function(actor, stack)
     actor.aphelion_magicDagger_saved_x = actor.x
 end)
 
-buff:add_callback("onStep", function(actor, stack)
+buff:onStep(function(actor, stack)
     actor.x = actor.aphelion_magicDagger_saved_x
     actor.pHspeed = 0.0
 

@@ -7,14 +7,14 @@ item:set_sprite(sprite)
 item:set_tier(Item.TIER.common)
 item:set_loot_tags(Item.LOOT_TAG.category_healing)
 
-item:add_callback("onPickup", function(actor, stack)
+item:onPickup(function(actor, stack)
     actor.armor_base = actor.armor_base + 5
     local increase = 20
     if stack > 1 then increase = 15 end
     actor.maxshield_base = actor.maxshield_base + increase
 end)
 
-item:add_callback("onRemove", function(actor, stack)
+item:onRemove(function(actor, stack)
     actor.armor_base = actor.armor_base - 5
     local increase = 20
     if stack > 1 then increase = 15 end

@@ -7,20 +7,20 @@ item:set_sprite(sprite)
 item:set_tier(Item.TIER.rare)
 item:set_loot_tags(Item.LOOT_TAG.category_damage)
 
-item:add_callback("onPickup", function(actor, stack)
+item:onPickup(function(actor, stack)
     -- Gain 20% crit on the first stack, and 10% on subsequent ones
     local amount = 20.0
     if stack > 1 then amount = 10.0 end
     actor.critical_chance_base = actor.critical_chance_base + amount
 end)
 
-item:add_callback("onRemove", function(actor, stack)
+item:onRemove(function(actor, stack)
     local amount = 20.0
     if stack > 1 then amount = 10.0 end
     actor.critical_chance_base = actor.critical_chance_base - amount
 end)
 
-item:add_callback("onAttack", function(actor, damager, stack)
+item:onAttack(function(actor, damager, stack)
     if actor.critical_chance <= 100.0 then return end
     if damager.critical then
         local excess = actor.critical_chance - 100.0

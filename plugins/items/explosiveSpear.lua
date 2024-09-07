@@ -8,7 +8,7 @@ item:set_sprite(sprite)
 item:set_tier(Item.TIER.uncommon)
 item:set_loot_tags(Item.LOOT_TAG.category_damage)
 
-item:add_callback("onHit", function(actor, victim, damager, stack)
+item:onHit(function(actor, victim, damager, stack)
     local cooldownBuff = Buff.find("aphelion-explosiveSpearDisplay")
     if actor:buff_stack_count(cooldownBuff) > 0 then return end
     
@@ -44,7 +44,7 @@ local obj = Object.new("aphelion", "explosiveSpearObject")
 obj:set_sprite(sprite)
 obj:set_depth(-1)
 
-obj:add_callback("onCreate", function(self)
+obj:onCreate(function(self)
     self.vsp = -2.0
     self.grav = 0.18
 
@@ -55,7 +55,7 @@ obj:add_callback("onCreate", function(self)
     self.tick = 85
 end)
 
-obj:add_callback("onStep", function(self)
+obj:onStep(function(self)
     if not self.flag_hit then
         -- Move
         self.x = self.x + self.hsp
@@ -86,7 +86,7 @@ obj:add_callback("onStep", function(self)
     end
 end)
 
-obj:add_callback("onStep", function(self)
+obj:onStep(function(self)
     if self.flag_hit then
         self.tick = self.tick - 1
 
@@ -116,7 +116,7 @@ obj:add_callback("onStep", function(self)
     end
 end)
 
-obj:add_callback("onDraw", function(self)
+obj:onDraw(function(self)
     if self.flag_hit then
         -- Show explosion radius
         local radius = Helper.ease_out(math.min(85.0 - self.tick, 45.0) / 45.0) * 110
@@ -144,11 +144,11 @@ buff.max_stack = 10
 buff.is_timed = false
 buff.is_debuff = true
 
-buff:add_callback("onApply", function(actor, stack)
+buff:onApply(function(actor, stack)
     actor.aphelion_explosiveSpear_cooldown = 60.0
 end)
 
-buff:add_callback("onStep", function(actor, stack)
+buff:onStep(function(actor, stack)
     actor.aphelion_explosiveSpear_cooldown = actor.aphelion_explosiveSpear_cooldown - 1
 
     if actor.aphelion_explosiveSpear_cooldown <= 0 then

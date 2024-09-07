@@ -7,13 +7,13 @@ item:set_sprite(sprite)
 item:set_tier(Item.TIER.rare)
 item:set_loot_tags(Item.LOOT_TAG.category_damage, Item.LOOT_TAG.category_healing)
 
-item:add_callback("onPickup", function(actor, stack)
+item:onPickup(function(actor, stack)
     if not actor.aphelion_overloadedCapacitor_increase then
         actor.aphelion_overloadedCapacitor_increase = 0
     end
 end)
 
-item:add_callback("onRemove", function(actor, stack)
+item:onRemove(function(actor, stack)
     if stack == 1 then
         actor.maxshield_base = actor.maxshield_base - actor.aphelion_overloadedCapacitor_increase
         actor.maxshield = actor.maxshield - actor.aphelion_overloadedCapacitor_increase
@@ -21,7 +21,7 @@ item:add_callback("onRemove", function(actor, stack)
     end
 end)
 
-item:add_callback("onStep", function(actor, stack)
+item:onStep(function(actor, stack)
     -- Scale shield increase with max health
     local goal = actor.maxhp * Helper.mixed_hyperbolic(stack, 0.18, 0.18)
 
@@ -34,7 +34,7 @@ item:add_callback("onStep", function(actor, stack)
     end
 end)
 
-item:add_callback("onHit", function(actor, victim, damager, stack)
+item:onHit(function(actor, victim, damager, stack)
     if actor.shield > 0 then
         local obj = Object.find("ror-chainLightning")
         local lightning = obj:create(victim.x, victim.y)

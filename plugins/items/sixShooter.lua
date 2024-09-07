@@ -7,16 +7,16 @@ item:set_sprite(sprite)
 item:set_tier(Item.TIER.uncommon)
 item:set_loot_tags(Item.LOOT_TAG.category_damage)
 
-item:add_callback("onPickup", function(actor, stack)
+item:onPickup(function(actor, stack)
     if not actor.aphelion_sixShooter then actor.aphelion_sixShooter = 0 end
     if not actor.aphelion_sixShooter_crit_boost then actor.aphelion_sixShooter_crit_boost = 0 end
 end)
 
-item:add_callback("onBasicUse", function(actor, stack)
+item:onBasicUse(function(actor, stack)
     actor.aphelion_sixShooter = actor.aphelion_sixShooter + 1
 end)
 
-item:add_callback("onAttack", function(actor, damager, stack)
+item:onAttack(function(actor, damager, stack)
     -- Crit every 6 basic attacks
     -- Additional stacks increase the attack's damage by 20%
     if actor.aphelion_sixShooter >= 6 then
@@ -37,7 +37,7 @@ item:add_callback("onAttack", function(actor, damager, stack)
     end
 end)
 
--- item:add_callback("onPostAttack", function(actor, damager, stack)
+-- item:onPostAttack(function(actor, damager, stack)
 --     if actor.aphelion_sixShooter_crit_boost > 0 then
 --         actor.aphelion_sixShooter_crit_boost = actor.aphelion_sixShooter_crit_boost - 1
 --         actor.critical_chance = actor.critical_chance - 100.0

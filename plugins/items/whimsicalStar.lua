@@ -7,7 +7,7 @@ item:set_sprite(sprite)
 item:set_tier(Item.TIER.rare)
 item:set_loot_tags(Item.LOOT_TAG.category_utility)
 
-item:add_callback("onPickup", function(actor, stack)
+item:onPickup(function(actor, stack)
     if not actor.aphelion_whimsicalStar_insts then actor.aphelion_whimsicalStar_insts = List.new() end
 
     local count = 3
@@ -24,7 +24,7 @@ item:add_callback("onPickup", function(actor, stack)
     end
 end)
 
-item:add_callback("onRemove", function(actor, stack)
+item:onRemove(function(actor, stack)
     local count = 3
     if stack >= 2 then count = 2 end
     for i = 1, count do
@@ -45,7 +45,7 @@ local obj = Object.new("aphelion", "whimsicalStarObject")
 obj:set_sprite(sprite)
 obj:set_depth(-1)
 
-obj:add_callback("onCreate", function(self)
+obj:onCreate(function(self)
     self.persistent = true
 
     self.hsp = gm.random_range(-3.0, 3.0)
@@ -67,7 +67,7 @@ obj:add_callback("onCreate", function(self)
     self.cooldown_max = 60
 end)
 
-obj:add_callback("onStep", function(self)
+obj:onStep(function(self)
     -- Follow "previous" star
     local acc = 0.25
 
@@ -91,7 +91,7 @@ obj:add_callback("onStep", function(self)
     end
 end)
 
-obj:add_callback("onStep", function(self)
+obj:onStep(function(self)
     -- Reduce hit cooldown
     if self.cd_hit > 0 then
         self.cd_hit = self.cd_hit - 1
@@ -113,7 +113,7 @@ obj:add_callback("onStep", function(self)
     end
 end)
 
-obj:add_callback("onStep", function(self)
+obj:onStep(function(self)
     -- Reduce intercept cooldown
     if self.cooldown > 0 then
         self.cooldown = self.cooldown - 1
@@ -171,7 +171,7 @@ obj:add_callback("onStep", function(self)
     end
 end)
 
-obj:add_callback("onStep", function(self)
+obj:onStep(function(self)
     -- Set star size
     if not self.size_set then
         self.size_set = true

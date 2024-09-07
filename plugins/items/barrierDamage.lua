@@ -7,7 +7,7 @@ item:set_sprite(sprite)
 item:set_tier(Item.TIER.uncommon)
 item:set_loot_tags(Item.LOOT_TAG.category_damage)
 
-item:add_callback("onStep", function(actor, stack)
+item:onStep(function(actor, stack)
     if actor.hud_hp_frame - actor.in_combat_last_frame + 120 >= 5 *60.0 then
         actor:set_barrier(math.max(actor.barrier, actor.maxbarrier * 0.08))
     end
@@ -17,7 +17,7 @@ item:add_callback("onStep", function(actor, stack)
     end
 end)
 
-item:add_callback("onAttack", function(actor, damager, stack)
+item:onAttack(function(actor, damager, stack)
     if actor.barrier > 0 then
         local bonus = 0.09 + (stack * 0.09)
         damager.damage = damager.damage * (1 + bonus)

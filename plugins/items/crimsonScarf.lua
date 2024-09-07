@@ -27,13 +27,13 @@ buff.stack_number_col = Array.new(1, 3937500)
 buff.max_stack = 999
 buff.is_timed = false
 
-buff:add_callback("onApply", function(actor, stack)
+buff:onApply(function(actor, stack)
     if not actor.aphelion_crimsonScarf_timers then actor.aphelion_crimsonScarf_timers = List.new() end
     List.wrap(actor.aphelion_crimsonScarf_timers):add((4 + actor:item_stack_count(item)) * 60.0)
     actor.critical_chance_base = actor.critical_chance_base + crit
 end)
 
-buff:add_callback("onStep", function(actor, stack)
+buff:onStep(function(actor, stack)
     -- Decrease stack timers
     local list = List.wrap(actor.aphelion_crimsonScarf_timers)
     for i, time in ipairs(list) do

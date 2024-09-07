@@ -7,17 +7,17 @@ item:set_sprite(sprite)
 item:set_tier(Item.TIER.uncommon)
 item:set_loot_tags(Item.LOOT_TAG.category_healing)
 
-item:add_callback("onPickup", function(actor, stack)
+item:onPickup(function(actor, stack)
     local increase = 20
     actor.maxshield_base = actor.maxshield_base + increase
 end)
 
-item:add_callback("onRemove", function(actor, stack)
+item:onRemove(function(actor, stack)
     local increase = 20
     actor.maxshield_base = actor.maxshield_base - increase
 end)
 
-item:add_callback("onShieldBreak", function(actor, stack)
+item:onShieldBreak(function(actor, stack)
     -- TODO for later: Apply to all nearby allies
     -- and change description wording
     actor:add_barrier(actor.maxshield * (0.25 + (stack * 0.25)))

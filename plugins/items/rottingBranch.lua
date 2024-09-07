@@ -7,7 +7,7 @@ item:set_sprite(sprite)
 item:set_tier(Item.TIER.common)
 item:set_loot_tags(Item.LOOT_TAG.category_damage)
 
-item:add_callback("onHit", function(actor, victim, damager, stack)
+item:onHit(function(actor, victim, damager, stack)
     if Helper.chance(0.15 + (0.1 * (stack - 1))) then
         victim:buff_apply(Buff.find("aphelion-rottingBranch"), 1)
         victim.aphelion_rottingBranch_attacker = actor
@@ -29,12 +29,12 @@ buff.max_stack = 999
 buff.is_timed = false
 buff.is_debuff = true
 
-buff:add_callback("onApply", function(actor, stack)
+buff:onApply(function(actor, stack)
     if (not actor.aphelion_rottingBranch_timer) or stack == 1 then actor.aphelion_rottingBranch_timer = 0 end
     actor.aphelion_rottingBranch_duration = math.ceil(210.0 / math.max(stack * 0.4, 1.0))
 end)
 
-buff:add_callback("onStep", function(actor, stack)
+buff:onStep(function(actor, stack)
     actor.aphelion_rottingBranch_timer = actor.aphelion_rottingBranch_timer + 1
     
     if actor.aphelion_rottingBranch_attacker:exists() and actor.aphelion_rottingBranch_timer % 30 == 0 then
@@ -48,7 +48,7 @@ buff:add_callback("onStep", function(actor, stack)
     end
 end)
 
-buff:add_callback("onChange", function(actor, to, stack)
+buff:onChange(function(actor, to, stack)
     -- Pass attacker to new actor instance
     to.aphelion_rottingBranch_attacker = actor.aphelion_rottingBranch_attacker
 end)

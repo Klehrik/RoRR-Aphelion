@@ -9,7 +9,7 @@ item:set_loot_tags(Item.LOOT_TAG.category_utility)
 
 local increase = 20
 
-item:add_callback("onPickup", function(actor, stack)
+item:onPickup(function(actor, stack)
     actor.maxshield_base = actor.maxshield_base + increase
 
     if not actor.aphelion_phiConstruct_inst then
@@ -20,7 +20,7 @@ item:add_callback("onPickup", function(actor, stack)
     end
 end)
 
-item:add_callback("onRemove", function(actor, stack)
+item:onRemove(function(actor, stack)
     actor.maxshield_base = actor.maxshield_base - increase
 
     if stack <= 1 then
@@ -39,7 +39,7 @@ local obj = Object.new("aphelion", "phiConstructObject")
 obj:set_sprite(sprite)
 obj:set_depth(-1)
 
-obj:add_callback("onCreate", function(self)
+obj:onCreate(function(self)
     self.persistent = true
     self.image_speed = 0.4
 
@@ -51,7 +51,7 @@ obj:add_callback("onCreate", function(self)
     self.charge = 0
 end)
 
-obj:add_callback("onStep", function(self)
+obj:onStep(function(self)
     -- Orbit around parent
     local spd = self.angle_speed /60.0
     self.angle = self.angle + spd
@@ -59,7 +59,7 @@ obj:add_callback("onStep", function(self)
     self.y = self.parent.y - (gm.dsin(self.angle) * self.radius)
 end)
 
-obj:add_callback("onStep", function(self)
+obj:onStep(function(self)
     -- Increment charge
     local req = 60.0 / (1.25 * (0.9 + (self.parent.maxshield /200.0)))
     if self.charge < req then

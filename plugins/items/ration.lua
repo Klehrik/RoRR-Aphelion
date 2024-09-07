@@ -8,7 +8,7 @@ item:set_sprite(sprite)
 item:set_tier(Item.TIER.common)
 item:set_loot_tags(Item.LOOT_TAG.category_healing)
 
-item:add_callback("onPickup", function(actor, stack)
+item:onPickup(function(actor, stack)
     -- Restore all used Rations
     local item      = Item.find("aphelion-ration")
     local item_used = Item.find("aphelion-rationUsed")
@@ -20,7 +20,7 @@ item:add_callback("onPickup", function(actor, stack)
     gm.item_give_internal(actor.value, item.value, temp, true)
 end)
 
-item:add_callback("onDamaged", function(actor, damager, stack)
+item:onDamaged(function(actor, damager, stack)
     -- Heal when at <= 25% health
     if actor.hp <= actor.maxhp * 0.25 then
         actor:heal(actor.maxhp * Helper.mixed_hyperbolic(stack, 0.07, 0.5))

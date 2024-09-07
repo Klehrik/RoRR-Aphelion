@@ -37,11 +37,11 @@ buff.draw_stack_number = true
 buff.max_stack = 4
 buff.is_timed = false
 
-buff:add_callback("onApply", function(actor, stack)
+buff:onApply(function(actor, stack)
     List.wrap(actor.aphelion_calamariSkewers_timers):add(60)
 end)
 
-buff:add_callback("onStep", function(actor, stack)
+buff:onStep(function(actor, stack)
     -- Decrease stack timers
     local list = List.wrap(actor.aphelion_calamariSkewers_timers)
     for i, time in ipairs(list) do
