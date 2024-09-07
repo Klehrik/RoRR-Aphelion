@@ -57,8 +57,6 @@ This update adds 2 alternate skills.
     * The explosion can no longer crit.
     * Now visually sticks into the hit enemy or surface.
     * Now sticks into surfaces, allowing it to still explode on miss.
-* Six Shooter
-    * Changed +100% crit chance to just setting critical flag to true, as the former was somewhat hacky and could apply to other attacks.
-        * Additionally, the brief moment of 100% crit stat was enough to unlock Stiletto.
+* Six Shooter : Fixed guaranteed crit applying to other attacks in some cases.
 * Overloaded Capacitor : Damage per stack: 33% -> 30%
 * Magic Dagger : Debuff no longer remains when an enemy becomes unfrozen early.

@@ -15,8 +15,6 @@ end)
 
 -- Buff
 
-local crit = 6.0
-
 local sprite = Resources.sprite_load(PATH.."assets/sprites/buffCrimsonScarf.png", 1, false, false, 7, 9)
 
 local buff = Buff.new("aphelion", "crimsonScarf")
@@ -31,7 +29,6 @@ buff:onApply(function(actor, stack)
     if not actor.aphelion_crimsonScarf_timers then actor.aphelion_crimsonScarf_timers = Array.new() end
     log.info(actor.aphelion_crimsonScarf_timers)
     actor.aphelion_crimsonScarf_timers:push((4 + actor:item_stack_count(item)) * 60.0)
-    actor.critical_chance_base = actor.critical_chance_base + crit
 end)
 
 buff:onStep(function(actor, stack)
@@ -51,7 +48,10 @@ buff:onStep(function(actor, stack)
     if stack > size then
         local diff = stack - size
         actor:buff_remove(buff, diff)
-        actor.critical_chance = actor.critical_chance - (crit * diff)
-        actor.critical_chance_base = actor.critical_chance_base - (crit * diff)
+        actor:recalculate_stats()
     end
+end)
+
+buff:onStatRecalc(function(actor, stack)
+    actor.critical_chance = actor.critical_chance + (6 * stack)
 end)

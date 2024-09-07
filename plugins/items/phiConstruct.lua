@@ -7,11 +7,7 @@ item:set_sprite(sprite)
 item:set_tier(Item.TIER.uncommon)
 item:set_loot_tags(Item.LOOT_TAG.category_utility)
 
-local increase = 20
-
 item:onPickup(function(actor, stack)
-    actor.maxshield_base = actor.maxshield_base + increase
-
     if not actor.aphelion_phiConstruct_inst then
         local obj = Object.find("aphelion", "phiConstructObject")
         local inst = obj:create(actor.x, actor.y)
@@ -21,12 +17,14 @@ item:onPickup(function(actor, stack)
 end)
 
 item:onRemove(function(actor, stack)
-    actor.maxshield_base = actor.maxshield_base - increase
-
     if stack <= 1 then
         if Instance.exists(actor.aphelion_phiConstruct_inst) then actor.aphelion_phiConstruct_inst:destroy() end
         actor.aphelion_phiConstruct_inst = nil
     end
+end)
+
+item:onStatRecalc(function(actor, stack)
+    actor.maxshield = actor.maxshield + (20 * stack)
 end)
 
 

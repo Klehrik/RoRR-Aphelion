@@ -21,9 +21,12 @@ item:onRemove(function(actor, stack)
 end)
 
 item:onAttack(function(actor, damager, stack)
-    if actor.critical_chance <= 100.0 then return end
+    local total_crit = actor.critical_chance
+    if damager.bonus_crit then total_crit = total_crit + damager.bonus_crit end
+
+    if total_crit <= 100.0 then return end
     if damager.critical then
-        local excess = actor.critical_chance - 100.0
+        local excess = total_crit - 100.0
         if stack > 1 then excess = excess * (0.5 + (stack * 0.5)) end   -- Increase overcrit damage with stacks
         local bonus = (damager.damage / 2.0) * (excess / 100.0)
         damager.damage = damager.damage + bonus

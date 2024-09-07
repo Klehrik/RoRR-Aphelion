@@ -22,9 +22,9 @@ item:onAttack(function(actor, damager, stack)
     if actor.aphelion_sixShooter >= 6 then
         actor.aphelion_sixShooter = actor.aphelion_sixShooter - 6
 
-        -- Increases actor crit for the purposes of Stiletto
-        -- actor.aphelion_sixShooter_crit_boost = actor.aphelion_sixShooter_crit_boost + 1
-        -- actor.critical_chance = actor.critical_chance + 100.0
+        -- For Stiletto
+        if not damager.bonus_crit then damager.bonus_crit = 0 end
+        damager.bonus_crit = damager.bonus_crit + 100
 
         if not damager.critical then
             damager.critical = true
@@ -36,13 +36,6 @@ item:onAttack(function(actor, damager, stack)
         end
     end
 end)
-
--- item:onPostAttack(function(actor, damager, stack)
---     if actor.aphelion_sixShooter_crit_boost > 0 then
---         actor.aphelion_sixShooter_crit_boost = actor.aphelion_sixShooter_crit_boost - 1
---         actor.critical_chance = actor.critical_chance - 100.0
---     end
--- end)
 
 
 
