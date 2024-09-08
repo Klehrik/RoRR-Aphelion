@@ -116,6 +116,13 @@ obj:onStep(function(self)
     end
 end)
 
+obj:onStep(function(self)
+    -- Destroy when falling out of map
+    if self.y >= gm.variable_global_get("room_height") then
+        self:destroy()
+    end
+end)
+
 obj:onDraw(function(self)
     if self.flag_hit then
         -- Show explosion radius
