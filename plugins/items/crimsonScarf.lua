@@ -26,27 +26,24 @@ buff.max_stack = 999
 buff.is_timed = false
 
 buff:onApply(function(actor, stack)
-    if not actor.aphelion_crimsonScarf_timers then actor.aphelion_crimsonScarf_timers = Array.new() end
-    log.info(actor.aphelion_crimsonScarf_timers)
-    actor.aphelion_crimsonScarf_timers:push((4 + actor:item_stack_count(item)) * 60.0)
+    local actor_data = actor:get_data("aphelion-crimsonScarf")
+    if not actor_data.timers then actor_data.timers = {} end
+    table.insert(actor_data.timers, (4 + actor:item_stack_count(item)) * 60.0)
 end)
 
 buff:onStep(function(actor, stack)
+    local actor_data = actor:get_data("aphelion-crimsonScarf")
+
     -- Decrease stack timers
-    local array = actor.aphelion_crimsonScarf_timers
-    for i, time in ipairs(array) do
-        time = time - 1
-        array[i] = time
+    -- and remove if expired
+    for i, time in ipairs(actor_data.timers) do
+        actor_data.timers[i] = time - 1
+        if time <= 0 then table.remove(actor_data.timers, i) end
     end
 
-    -- Remove oldest stack if expired
-    local time = array:get(0)
-    if time and time <= 0 then array:delete(0) end
-
     -- Remove buff stacks if more than ds_list size
-    local size = array:size()
-    if stack > size then
-        local diff = stack - size
+    if stack > #actor_data.timers then
+        local diff = stack - #actor_data.timers
         actor:buff_remove(buff, diff)
         actor:recalculate_stats()
     end

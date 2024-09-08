@@ -152,14 +152,17 @@ buff.is_timed = false
 buff.is_debuff = true
 
 buff:onApply(function(actor, stack)
-    actor.aphelion_explosiveSpear_cooldown = 60.0
+    local actor_data = actor:get_data("aphelion-explosiveSpear")
+    actor_data.cooldown = 60.0
 end)
 
 buff:onStep(function(actor, stack)
-    actor.aphelion_explosiveSpear_cooldown = actor.aphelion_explosiveSpear_cooldown - 1
+    local actor_data = actor:get_data("aphelion-explosiveSpear")
 
-    if actor.aphelion_explosiveSpear_cooldown <= 0 then
-        actor.aphelion_explosiveSpear_cooldown = 60
+    actor_data.cooldown = actor_data.cooldown - 1
+
+    if actor_data.cooldown <= 0 then
+        actor_data.cooldown = 60
         actor:buff_remove(buff, 1)
     end
 end)

@@ -8,9 +8,10 @@ item:set_tier(Item.TIER.common)
 item:set_loot_tags(Item.LOOT_TAG.category_damage)
 
 item:onHit(function(actor, victim, damager, stack)
+    local victim_data = victim:get_data("aphelion-rottingBranch")
     if Helper.chance(0.15 + (0.1 * (stack - 1))) then
         victim:buff_apply(Buff.find("aphelion-rottingBranch"), 1)
-        victim.aphelion_rottingBranch_attacker = actor
+        victim_data.attacker = actor
     end
 end)
 
@@ -30,25 +31,28 @@ buff.is_timed = false
 buff.is_debuff = true
 
 buff:onApply(function(actor, stack)
-    if (not actor.aphelion_rottingBranch_timer) or stack == 1 then actor.aphelion_rottingBranch_timer = 0 end
-    actor.aphelion_rottingBranch_duration = math.ceil(210.0 / math.max(stack * 0.4, 1.0))
+    local actor_data = actor:get_data("aphelion-rottingBranch")
+    if (not actor_data.timer) or stack == 1 then actor_data.timer = 0 end
+    actor_data.duration = math.ceil(210.0 / math.max(stack * 0.4, 1.0))
 end)
 
 buff:onStep(function(actor, stack)
-    actor.aphelion_rottingBranch_timer = actor.aphelion_rottingBranch_timer + 1
+    local actor_data = actor:get_data("aphelion-rottingBranch")
+
+    actor_data.timer = actor_data.timer + 1
     
-    if actor.aphelion_rottingBranch_attacker:exists() and actor.aphelion_rottingBranch_timer % 30 == 0 then
-        actor:take_damage(actor.aphelion_rottingBranch_attacker.damage * 0.15 * stack, actor.aphelion_rottingBranch_attacker, actor.x - 26, actor.y - 36, 7964834)
+    if actor_data.attacker:exists() and actor_data.timer % 30 == 0 then
+        actor:take_damage(actor_data.attacker.damage * 0.15 * stack, actor_data.attacker, actor.x - 26, actor.y - 36, 7964834)
     end
 
-    actor.aphelion_rottingBranch_duration = actor.aphelion_rottingBranch_duration - 1
-    if actor.aphelion_rottingBranch_duration <= 0 then
+    actor_data.duration = actor_data.duration - 1
+    if actor_data.duration <= 0 then
         actor:buff_remove(buff, 1)
-        actor.aphelion_rottingBranch_duration = math.ceil(210.0 / math.max((stack - 1) * 0.25, 1.0))
+        actor_data.duration = math.ceil(210.0 / math.max((stack - 1) * 0.25, 1.0))
     end
 end)
 
-buff:onChange(function(actor, to, stack)
-    -- Pass attacker to new actor instance
-    to.aphelion_rottingBranch_attacker = actor.aphelion_rottingBranch_attacker
-end)
+-- buff:onChange(function(actor, to, stack)
+--     -- Pass attacker to new actor instance
+--     to.aphelion_rottingBranch_attacker = actor.aphelion_rottingBranch_attacker
+-- end)

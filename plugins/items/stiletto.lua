@@ -7,17 +7,8 @@ item:set_sprite(sprite)
 item:set_tier(Item.TIER.rare)
 item:set_loot_tags(Item.LOOT_TAG.category_damage)
 
-item:onPickup(function(actor, stack)
-    -- Gain 20% crit on the first stack, and 10% on subsequent ones
-    local amount = 20.0
-    if stack > 1 then amount = 10.0 end
-    actor.critical_chance_base = actor.critical_chance_base + amount
-end)
-
-item:onRemove(function(actor, stack)
-    local amount = 20.0
-    if stack > 1 then amount = 10.0 end
-    actor.critical_chance_base = actor.critical_chance_base - amount
+item:onStatRecalc(function(actor, stack)
+    actor.critical_chance = actor.critical_chance + 10 + (10 * stack)
 end)
 
 item:onAttack(function(actor, damager, stack)

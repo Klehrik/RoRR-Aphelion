@@ -8,18 +8,20 @@ item:set_tier(Item.TIER.uncommon)
 item:set_loot_tags(Item.LOOT_TAG.category_utility)
 
 item:onPickup(function(actor, stack)
-    if not actor.aphelion_phiConstruct_inst then
+    local actor_data = actor:get_data("aphelion-phiConstruct")
+    if not actor_data.inst then
         local obj = Object.find("aphelion", "phiConstructObject")
         local inst = obj:create(actor.x, actor.y)
         inst.parent = actor
-        actor.aphelion_phiConstruct_inst = inst
+        actor_data.inst = inst
     end
 end)
 
 item:onRemove(function(actor, stack)
+    local actor_data = actor:get_data("aphelion-phiConstruct")
     if stack <= 1 then
-        if Instance.exists(actor.aphelion_phiConstruct_inst) then actor.aphelion_phiConstruct_inst:destroy() end
-        actor.aphelion_phiConstruct_inst = nil
+        if actor_data.inst:exists() then actor_data.inst:destroy() end
+        actor_data.inst = nil
     end
 end)
 
