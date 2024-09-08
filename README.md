@@ -1,3 +1,6 @@
+**The code on this repo is currently not the same as on Thunderstore.**  
+**If you need to reference the original code, download the Thunderstore version.**  
+
 Content mod that currently adds 16 items, 2 equipment, and 2 skills.  
 Includes unlockable achievements for some of them.  
 
