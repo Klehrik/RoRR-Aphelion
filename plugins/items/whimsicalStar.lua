@@ -53,7 +53,6 @@ obj:onCreate(function(self)
     
     self.damage_coeff = 0.75
 
-    self.proj_check = 0
     self.intercept_range = 350
     self.intercept_target = -4
     self.intercept_x_start = 0
@@ -121,25 +120,17 @@ obj:onStep(function(self)
     end
 
     -- Get nearest projectile to intercept
-    --      Check two types of projectiles every frame
-    --      and not all of them to reduce load
     if not Instance.exists(self.intercept_target) then
-        self.proj_check = self.proj_check + 2
-
         local found = false
         local dist = self.intercept_range
-        for i = 0, 1 do
-            local pos = ((self.proj_check + i) % #Instance.projectiles) + 1
-            local ind = Instance.projectiles[pos]
-            local projs = Instance.find_all(ind)
-            for _, p in ipairs(projs) do
-                if not p.aphelion_whimsicalStar_targetted then
-                    local d = gm.point_distance(self.parent.x, self.parent.y, p.x, p.y)
-                    if d <= dist then
-                        found = true
-                        dist = d
-                        self.intercept_target = p
-                    end
+        local projs = Instance.find_all(Instance.projectiles)
+        for _, p in ipairs(projs) do
+            if not p.aphelion_whimsicalStar_targetted then
+                local d = gm.point_distance(self.parent.x, self.parent.y, p.x, p.y)
+                if d <= dist then
+                    found = true
+                    dist = d
+                    self.intercept_target = p
                 end
             end
         end
