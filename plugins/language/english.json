@@ -155,7 +155,7 @@
         "magicDagger" : {
             "name" : "Magic Dagger",
             "pickup" : "Freeze enemies in front of you for 6 seconds.",
-            "description" : "Release a burst of <b>runic ice</c>, dealing <y>250% damage</c> and <b>freezing</c> <y>all enemies in front of you</c> for <b>6 seconds</c>. <b>Can activate on-hit items</c>.",
+            "description" : "Release a burst of <b>runic ice</c>, dealing <y>250% damage</c> and <b>freezing</c> <y>all enemies in front of you</c> for <b>6 seconds</c>.",
             "destination" : "The Far Shore,\n???",
             "date" : "3/16/2022",
             "story" : "I'm sorry that I left you the way I did. Even with everything that I've done, all the taboos and sins I've wrought, it was still wrong to run from you with my tail between my legs. I don't know what's going to happen to me now, so consider this my final gift.\n\nWhenever you feel threatened, hold this dagger close to your heart. Let your soul and being flow into it, and it will respond in turn, casting away the darkness you face. I pray that in times of crisis, it will give you hope and protect you from the chaos of the world, as it did for me.\n\nGoodbye."

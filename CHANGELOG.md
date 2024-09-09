@@ -59,4 +59,6 @@ This update adds 2 alternate skills.
     * Now sticks into surfaces, allowing it to still explode on miss.
 * Six Shooter : Fixed guaranteed crit applying to other attacks in some cases.
 * Overloaded Capacitor : Damage per stack: 33% -> 30%
-* Magic Dagger : Debuff no longer remains when an enemy becomes unfrozen early.
+* Magic Dagger
+    * Debuff no longer remains when an enemy becomes unfrozen early.
+    * Can no longer proc items (this was only required because I couldn't find another way to apply freeze otherwise).
