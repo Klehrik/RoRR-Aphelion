@@ -76,8 +76,10 @@ obj:onStep(function(self)
             local damager = self.parent:fire_explosion(self.x + (radius_x * gm.sign(self.image_xscale)), self.y - radius_y, radius_x, radius_y, self.damage_coeff)
             damager.aphelion_magicDagger_ice = true
             damager.proc = false
-            -- damager.knockback_kind = 3
-            damager.damage_color = 14064784
+            damager.allow_stun = true
+            damager.stun = self.freeze_time
+            damager.knockback_kind = 3
+            damager.damage_color = Color(0x909CD6)
         end
 
         -- Animate
@@ -92,7 +94,6 @@ end)
 Actor:onHit(function(actor, victim, damager)
     if ((not victim.stun_immune) or (victim.stun_immune == false))
     and damager and damager.aphelion_magicDagger_ice then
-        victim:apply_knockback(Actor.KNOCKBACK_KIND.deepfreeze, gm.attack_get_knockback_direction(damager, victim.value), 6)
         victim:buff_apply(Buff.find("aphelion-magicDaggerFreeze"), 6 * 60.0)
     end
 end, true)
