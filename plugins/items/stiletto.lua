@@ -1,6 +1,6 @@
 -- Stiletto
 
-local sprite = Resources.sprite_load(PATH.."assets/sprites/stiletto.png", 1, false, false, 16, 16)
+local sprite = Resources.sprite_load(PATH.."assets/sprites/stiletto.png", 1, 16, 16)
 
 local item = Item.new("aphelion", "stiletto")
 item:set_sprite(sprite)

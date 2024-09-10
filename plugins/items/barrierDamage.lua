@@ -1,6 +1,6 @@
 -- Barrier Damage
 
-local sprite = Resources.sprite_load(PATH.."assets/sprites/bandana.png", 1, false, false, 16, 16)
+local sprite = Resources.sprite_load(PATH.."assets/sprites/bandana.png", 1, 16, 16)
 
 local item = Item.new("aphelion", "barrierDamage")
 item:set_sprite(sprite)
@@ -28,7 +28,7 @@ end)
 
 -- Buff
 
-local sprite = Resources.sprite_load(PATH.."assets/sprites/buffBandana.png", 1, false, false, 7, 7)
+local sprite = Resources.sprite_load(PATH.."assets/sprites/buffBandana.png", 1, 7, 7)
 
 local buff = Buff.new("aphelion", "barrierDamage")
 buff.icon_sprite = sprite

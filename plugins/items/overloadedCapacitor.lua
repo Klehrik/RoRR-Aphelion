@@ -1,6 +1,6 @@
 -- Overloaded Capacitor
 
-local sprite = Resources.sprite_load(PATH.."assets/sprites/overloadedCapacitor.png", 1, false, false, 16, 16)
+local sprite = Resources.sprite_load(PATH.."assets/sprites/overloadedCapacitor.png", 1, 16, 16)
 
 local item = Item.new("aphelion", "overloadedCapacitor")
 item:set_sprite(sprite)
