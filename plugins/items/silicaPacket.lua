@@ -1,6 +1,6 @@
 -- Silica Packet
 
-local sprite = Resources.sprite_load(PATH.."assets/sprites/silicaPacket.png", 1, 16, 16)
+local sprite = Resources.sprite_load("aphelion", "silicaPacket", PATH.."assets/sprites/silicaPacket.png", 1, 16, 16)
 
 local item = Item.new("aphelion", "silicaPacket")
 item:set_sprite(sprite)

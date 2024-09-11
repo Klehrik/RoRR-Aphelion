@@ -1,6 +1,6 @@
 -- Heart Locket
 
-local sprite = Resources.sprite_load(PATH.."assets/sprites/heartLocket.png", 1, 16, 16)
+local sprite = Resources.sprite_load("aphelion", "heartLocket", PATH.."assets/sprites/heartLocket.png", 1, 16, 16)
 
 local item = Item.new("aphelion", "heartLocket")
 item:set_sprite(sprite)

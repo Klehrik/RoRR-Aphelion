@@ -1,6 +1,6 @@
 -- Barrier Damage
 
-local sprite = Resources.sprite_load(PATH.."assets/sprites/bandana.png", 1, 16, 16)
+local sprite = Resources.sprite_load("aphelion", "barrierDamage", PATH.."assets/sprites/bandana.png", 1, 16, 16)
 
 local item = Item.new("aphelion", "barrierDamage")
 item:set_sprite(sprite)

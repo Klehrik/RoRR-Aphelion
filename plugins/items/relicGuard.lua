@@ -1,6 +1,6 @@
 -- Relic Guard
 
-local sprite = Resources.sprite_load(PATH.."assets/sprites/relicGuard.png", 1, 16, 16)
+local sprite = Resources.sprite_load("aphelion", "relicGuard", PATH.."assets/sprites/relicGuard.png", 1, 16, 16)
 
 local item = Item.new("aphelion", "relicGuard")
 item:set_sprite(sprite)

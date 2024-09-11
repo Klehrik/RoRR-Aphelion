@@ -1,6 +1,6 @@
 -- Six Shooter
 
-local sprite = Resources.sprite_load(PATH.."assets/sprites/sixShooter.png", 1, 16, 16)
+local sprite = Resources.sprite_load("aphelion", "sixShooter", PATH.."assets/sprites/sixShooter.png", 1, 16, 16)
 
 local item = Item.new("aphelion", "sixShooter")
 item:set_sprite(sprite)

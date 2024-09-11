@@ -1,6 +1,6 @@
 -- Calamari Skewers
 
-local sprite = Resources.sprite_load(PATH.."assets/sprites/calamariSkewers.png", 1, 16, 16)
+local sprite = Resources.sprite_load("aphelion", "calamariSkewers", PATH.."assets/sprites/calamariSkewers.png", 1, 16, 16)
 
 local item = Item.new("aphelion", "calamariSkewers")
 item:set_sprite(sprite)
@@ -31,7 +31,7 @@ end)
 
 -- Buff
 
-local sprite = Resources.sprite_load(PATH.."assets/sprites/buffCalamariSkewers.png", 1, 6, 8)
+local sprite = Resources.sprite_load("aphelion", "buffCalamariSkewers", PATH.."assets/sprites/buffCalamariSkewers.png", 1, 6, 8)
 
 local buff = Buff.new("aphelion", "calamariSkewers")
 buff.icon_sprite = sprite

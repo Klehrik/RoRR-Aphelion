@@ -1,6 +1,6 @@
 -- Ballistic Vest
 
-local sprite = Resources.sprite_load(PATH.."assets/sprites/ballisticVest.png", 1, 16, 16)
+local sprite = Resources.sprite_load("aphelion", "ballisticVest", PATH.."assets/sprites/ballisticVest.png", 1, 16, 16)
 
 local item = Item.new("aphelion", "ballisticVest")
 item:set_sprite(sprite)
