@@ -28,7 +28,7 @@ end)
 
 -- Buff
 
-local sprite = Resources.sprite_load(PATH.."assets/sprites/buffBandana.png", 1, 7, 7)
+local sprite = Resources.sprite_load("aphelion", "buffBarrierDamage", PATH.."assets/sprites/buffBandana.png", 1, 7, 7)
 
 local buff = Buff.new("aphelion", "barrierDamage")
 buff.icon_sprite = sprite
