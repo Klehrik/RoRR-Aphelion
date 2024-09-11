@@ -54,6 +54,7 @@ This update adds 2 alternate skills.
 * Explosive Spear
     * Now deals the correct amount of pre-explosion damage ticks (4 instead of 3).
         * Now deals the correct amount of damage in general.
+    * Now inflicts stun properly as described.
     * The explosion can no longer crit.
     * Now visually sticks into the hit enemy or surface.
     * Now sticks into surfaces, allowing it to still explode on miss.

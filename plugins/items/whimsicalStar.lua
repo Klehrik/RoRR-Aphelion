@@ -103,9 +103,10 @@ obj:onStep(function(self)
     -- Deal area damage on enemy collision
     for _, actor in ipairs(actors) do
         if actor.team and actor.team ~= self.parent.team then
-            local damager = self.parent:fire_explosion(self.x, self.y, self.bbox_right - self.x, self.bbox_bottom - self.y, self.damage_coeff)
-            damager.proc = false
-            damager.damage_color = 9224869
+            self.parent:fire_explosion(self.x, self.y, self.bbox_right - self.bbox_left, self.bbox_bottom - self.bbox_top, self.damage_coeff, nil, Color(0xA5C28C), nil, nil, {
+                Actor.DAMAGER.no_crit,
+                Actor.DAMAGER.no_proc
+            })
             self.cd_hit = self.cd_hit_max
             break
         end

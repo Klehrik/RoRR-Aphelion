@@ -112,7 +112,7 @@ obj:onStep(function(self)
         if target.x < self.x then self.image_xscale = -1 end
 
         -- Create tracer line and sparks
-        local blend = 13688896
+        local blend = Color(0x40E0D0)
 
         local obj = Object.find("ror-efLineTracer")
         local tracer = obj:create(self.x + (self.image_xscale * 4), self.y)
@@ -132,7 +132,10 @@ obj:onStep(function(self)
         if target_type == 0 then Instance.destroy(target)
         else
             local damage_coeff = 0.45 + (0.15 * self.parent:item_stack_count(item))
-            target:take_damage(self.parent.damage * damage_coeff, self.parent, target.x, target.y - 36, blend)
+            target:take_damage(damage_coeff, self.parent, nil, blend, nil, nil, {
+                Actor.DAMAGER.no_crit,
+                Actor.DAMAGER.no_proc
+            })
         end
 
     elseif self.charged then

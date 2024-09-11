@@ -73,13 +73,13 @@ obj:onStep(function(self)
             local radius_x = 31 * math.abs(self.image_xscale)
             local radius_y = 18 * math.abs(self.image_yscale)
 
-            local damager = self.parent:fire_explosion(self.x + (radius_x * gm.sign(self.image_xscale)), self.y - radius_y, radius_x, radius_y, self.damage_coeff)
+            local damager = self.parent:fire_explosion(self.x + (radius_x * gm.sign(self.image_xscale)), self.y - radius_y, radius_x * 2, radius_y * 2, self.damage_coeff, self.freeze_time, Color(0x909CD6), nil, nil, {
+                Actor.DAMAGER.no_crit,
+                Actor.DAMAGER.no_proc,
+                Actor.DAMAGER.allow_stun
+            })
             damager.aphelion_magicDagger_ice = true
-            damager.proc = false
-            damager.allow_stun = true
-            damager.stun = self.freeze_time
             damager.knockback_kind = 3
-            damager.damage_color = Color(0x909CD6)
         end
 
         -- Animate

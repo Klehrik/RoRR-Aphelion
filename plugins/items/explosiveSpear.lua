@@ -90,6 +90,8 @@ obj:onStep(function(self)
     if self.flag_hit then
         self.tick = self.tick - 1
 
+        local c_red = Color(0xFF004D)
+
         if self.hit then
             -- Embed into hit actor
             self.x = self.hit.x - self.hit_offset_x
@@ -97,19 +99,23 @@ obj:onStep(function(self)
 
             -- Deal pop damage
             if self.tick % 25 == 0 then
-                self.hit:take_damage(self.pop_damage, self.parent, self.hit.x, self.hit.y - 36, 5046527)
+                self.hit:take_damage(self.pop_damage, self.parent, gm.sign(self.hsp), c_red, 0.66, nil, {
+                    Actor.DAMAGER.no_crit,
+                    Actor.DAMAGER.no_proc,
+                    Actor.DAMAGER.allow_stun,
+                    Actor.DAMAGER.raw_damage
+                })
             end
         end
 
         -- Explode
         if self.tick <= -20 or (self.hit and not Instance.exists(self.hit)) then
-            local explosion = self.parent:fire_explosion(self.x, self.y, 95, 95, self.damage / self.parent.damage, 2.0)
-            explosion.proc = false
-            explosion.damage_color = 5046527
-            if explosion.critical then
-                explosion.critical = false
-                explosion.damage = explosion.damage / 2.0
-            end
+            self.parent:fire_explosion(self.x, self.y, 200, 200, self.damage, 1.66, c_red, nil, nil, {
+                Actor.DAMAGER.no_crit,
+                Actor.DAMAGER.no_proc,
+                Actor.DAMAGER.allow_stun,
+                Actor.DAMAGER.raw_damage
+            })
             gm.sound_play_at(soundExplode, 1.0, 1.0, self.x, self.y, 1.0)
             self:destroy()
         end
@@ -126,7 +132,7 @@ end)
 obj:onDraw(function(self)
     if self.flag_hit then
         -- Show explosion radius
-        local radius = Helper.ease_out(math.min(85.0 - self.tick, 45.0) / 45.0) * 110
+        local radius = Helper.ease_out(math.min(85.0 - self.tick, 45.0) / 45.0) * 100
         gm.draw_set_circle_precision(64)
         gm.draw_set_alpha(0.5)
         local c = Color.WHITE

@@ -42,7 +42,11 @@ buff:onStep(function(actor, stack)
     actor_data.timer = actor_data.timer + 1
     
     if actor_data.attacker:exists() and actor_data.timer % 30 == 0 then
-        actor:take_damage(actor_data.attacker.damage * 0.15 * stack, actor_data.attacker, actor.x - 26, actor.y - 36, 7964834)
+        local coeff = 0.15 * stack
+        actor:take_damage(coeff, actor_data.attacker, nil, Color(0xA28879), nil, nil, {
+            Actor.DAMAGER.no_crit,
+            Actor.DAMAGER.no_proc
+        })
     end
 
     actor_data.duration = actor_data.duration - 1
