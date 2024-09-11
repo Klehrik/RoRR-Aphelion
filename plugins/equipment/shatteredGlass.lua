@@ -5,7 +5,7 @@ local sprite = Resources.sprite_load("aphelion", "shatteredGlass", PATH.."assets
 local equip = Equipment.new("aphelion", "shatteredGlass")
 equip:set_sprite(sprite)
 equip:set_loot_tags(Item.LOOT_TAG.category_damage)
-equip:set_cooldown(30)
+equip:set_passive(true)
 
 equip:onPostStatRecalc(function(actor)
     actor.damage = actor.damage * 1.5
