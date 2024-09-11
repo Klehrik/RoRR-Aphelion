@@ -167,6 +167,14 @@
             "destination" : "Backalley Place,\nUnit 4-72,\nVenus",
             "date" : "7/6/2056",
             "story" : "Fresh out of the sketchy labs we raided on [REDACTED]'s second moon, this unsettling mix of fluids really makes you feel bulletproof! Well, mostly. Barrett was left with a hell of a bruise; he might as well have gained a new birthmark."
+        },
+        "shatteredGlass" : {
+            "name" : "Shattered Glass",
+            "pickup" : "Gain strength and fragility while held.",
+            "description" : "<y>Increase damage by 25%</c> but <r>decrease maximum health by 25%</c> while held.",
+            "destination" : "",
+            "date" : "",
+            "story" : ""
         }
     },
 
