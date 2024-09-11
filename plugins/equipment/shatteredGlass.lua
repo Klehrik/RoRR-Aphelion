@@ -8,7 +8,7 @@ equip:set_loot_tags(Item.LOOT_TAG.category_damage)
 equip:set_cooldown(30)
 
 equip:onPostStatRecalc(function(actor)
-    actor.damage = actor.damage * 1.25
+    actor.damage = actor.damage * 1.5
 
     -- Prevent health farming from quickly swapping equipment
     local percent_33 = actor.maxhp * 0.33
