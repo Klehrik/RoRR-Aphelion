@@ -170,7 +170,7 @@
         },
         "shatteredGlass" : {
             "name" : "Shattered Glass",
-            "pickup" : "Gain strength and fragility while held.",
+            "pickup" : "Gain strength and fragility when held.",
             "description" : "<y>Increase damage by 25%</c> but <r>decrease maximum health by 25%</c> while held.",
             "destination" : "",
             "date" : "",
