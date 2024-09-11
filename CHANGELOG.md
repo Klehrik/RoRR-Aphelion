@@ -50,6 +50,7 @@ This update adds 4 new items (3 are Shield-oriented) and 2 equipment, as well as
 This update adds 2 alternate skills.
 * Added skill Stealth Hunting (Huntress special)
 * Added skill Unload (Bandit secondary)
+* Added equipment Shattered Glass
 * Withered Branch : Stack wearoff rate decreased further for higher stack counts.
 * Explosive Spear
     * Now deals the correct amount of pre-explosion damage ticks (4 instead of 3).

@@ -11,7 +11,7 @@ equip:onPostStatRecalc(function(actor)
     actor.damage = actor.damage * 1.25
 
     -- Prevent health farming from quickly swapping equipment
-    local percent_25 = actor.maxhp * 0.25
-    actor.maxhp = gm.round(actor.maxhp * 0.75)
-    actor.hp = actor.hp - percent_25
+    local percent_33 = actor.maxhp * 0.33
+    actor.maxhp = gm.round(actor.maxhp * 0.67)
+    actor.hp = actor.hp - percent_33
 end)
