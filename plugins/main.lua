@@ -16,8 +16,6 @@ PATH = _ENV["!plugins_mod_folder_path"].."/plugins/"
 -- ========== Main ==========
 
 function __initialize()
-    gm.translate_load_file(gm.variable_global_get("_language_map"), PATH.."language/english.json")
-
     -- Require all files in content folders
     local folders = {
         "items",

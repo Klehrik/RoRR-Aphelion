@@ -4,7 +4,7 @@
 	"website_url": "https://github.com/Klehrik/RoRR-Aphelion",
 	"description": "Content mod that currently adds 16 items, 2 equipment, and 2 skills.",
 	"dependencies": [
-		"ReturnOfModding-ReturnOfModding-1.0.37",
+		"ReturnOfModding-ReturnOfModding-1.0.38",
 		"RoRRModdingToolkit-RoRR_Modding_Toolkit-1.1.0"
 	]
 }
