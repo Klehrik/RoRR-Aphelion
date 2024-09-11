@@ -14,4 +14,6 @@ equip:onPostStatRecalc(function(actor)
     local percent_33 = actor.maxhp * 0.33
     actor.maxhp = gm.round(actor.maxhp * 0.67)
     actor.hp = actor.hp - percent_33
+
+    -- TODO: Make health bar blue maybe
 end)
