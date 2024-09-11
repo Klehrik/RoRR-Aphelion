@@ -125,8 +125,10 @@ obj:onStep(function(self)
 
         local obj = Object.find("ror-efSparks")
         local sparks = obj:create(target.x, target.y)
-        sparks.sprite_index = 1632.0
+        sparks.sprite_index = gm.constants.sSparks1
         sparks.image_blend = blend
+        -- NOTE: actor:take_damage can now accept a hit sprite,
+        -- however you cannot apply color blend to it like the above
 
         -- Act on target
         if target_type == 0 then Instance.destroy(target)
