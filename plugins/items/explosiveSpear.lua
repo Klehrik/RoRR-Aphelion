@@ -100,8 +100,6 @@ obj:onStep(function(self)
             -- Deal pop damage
             if self.tick % 25 == 0 then
                 self.hit:take_damage(self.pop_damage, self.parent, gm.sign(self.hsp), c_red, 0.66, nil, {
-                    Actor.DAMAGER.no_crit,
-                    Actor.DAMAGER.no_proc,
                     Actor.DAMAGER.allow_stun,
                     Actor.DAMAGER.raw_damage
                 })

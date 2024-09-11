@@ -132,10 +132,7 @@ obj:onStep(function(self)
         if target_type == 0 then Instance.destroy(target)
         else
             local damage_coeff = 0.45 + (0.15 * self.parent:item_stack_count(item))
-            target:take_damage(damage_coeff, self.parent, nil, blend, nil, nil, {
-                Actor.DAMAGER.no_crit,
-                Actor.DAMAGER.no_proc
-            })
+            target:take_damage(damage_coeff, self.parent, nil, blend)
         end
 
     elseif self.charged then
