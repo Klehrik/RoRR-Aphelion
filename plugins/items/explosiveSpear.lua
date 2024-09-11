@@ -36,7 +36,7 @@ end)
 
 -- Object
 
-local sprite = Resources.sprite_load("aphelion", "explosiveSpearProjectile", PATH.."assets/sprites/explosiveSpearProjectile.png", 1, 36, 3, false, false, 1, -20, -5, -3, 3)
+local sprite = Resources.sprite_load("aphelion", "explosiveSpearProjectile", PATH.."assets/sprites/explosiveSpearProjectile.png", 1, 36, 3, 1, -20, -5, -3, 3)
 local soundHit = Resources.sfx_load(PATH.."assets/sounds/explosiveSpearHit.ogg")
 local soundExplode = Resources.sfx_load(PATH.."assets/sounds/explosiveSpearExplode.ogg")
 
