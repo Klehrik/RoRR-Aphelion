@@ -98,11 +98,12 @@ obj:onStep(function(self)
     end
 
     -- Get all collisions with pActors
-    local actors = self:get_collisions(gm.constants.pActor)
+    local actors = self:get_collisions(gm.constants.pActor, gm.constants.oWormBody, gm.constants.oWurmBody)
 
     -- Deal area damage on enemy collision
     for _, actor in ipairs(actors) do
-        if actor.team and actor.team ~= self.parent.team then
+        if (actor.team and actor.team ~= self.parent.team)
+        or (actor.parent and actor.parent.team and actor.parent.team ~= self.parent.team) then
             self.parent:fire_explosion(self.x, self.y, self.bbox_right - self.bbox_left, self.bbox_bottom - self.bbox_top, self.damage_coeff, nil, Color(0xA5C28C), nil, nil, {
                 Actor.DAMAGER.no_crit,
                 Actor.DAMAGER.no_proc

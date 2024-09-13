@@ -63,9 +63,10 @@ obj:onStep(function(self)
         self.vsp = self.vsp + self.grav
 
         -- Actor collision
-        local actors = self:get_collisions(gm.constants.pActor)
+        local actors = self:get_collisions(gm.constants.pActor, gm.constants.oWormBody, gm.constants.oWurmBody)
         for _, actor in ipairs(actors) do
-            if actor.team and actor.team ~= self.parent.team then
+            if (actor.team and actor.team ~= self.parent.team)
+            or (actor.parent and actor.parent.team and actor.parent.team ~= self.parent.team) then
                 self.flag_hit = true
                 self.hit = actor
                 self.hit_offset_x = actor.x - self.x
@@ -99,7 +100,9 @@ obj:onStep(function(self)
 
             -- Deal pop damage
             if self.tick % 25 == 0 then
-                self.hit:take_damage(self.pop_damage, self.parent, gm.sign(self.hsp), c_red, 0.66, nil, {
+                local actor = self.hit
+                if actor.RMT_wrapper ~= "Actor" then actor = actor.parent end
+                actor:take_damage(self.pop_damage, self.parent, gm.sign(self.hsp), c_red, 0.66, nil, {
                     Actor.DAMAGER.allow_stun,
                     Actor.DAMAGER.raw_damage
                 })
@@ -122,7 +125,7 @@ end)
 
 obj:onStep(function(self)
     -- Destroy when falling out of map
-    if self.y >= gm.variable_global_get("room_height") then
+    if self.y >= gm.variable_global_get("room_height") and not self.hit then
         self:destroy()
     end
 end)
