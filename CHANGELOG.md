@@ -59,8 +59,11 @@ This update adds 2 alternate skills.
     * The explosion can no longer crit.
     * Now visually sticks into the hit enemy or surface.
     * Now sticks into surfaces, allowing it to still explode on miss.
-* Six Shooter : Fixed guaranteed crit applying to other attacks in some cases.
+* Six Shooter
+    * Fixed guaranteed crit applying to other attacks in some cases.
+    * No longer unlocks Stiletto instantly.
 * Overloaded Capacitor : Damage per stack: 33% -> 30%
+* Whimsical Star : Can now hit worm bodies.
 * Magic Dagger
     * Debuff no longer remains when an enemy becomes unfrozen early.
     * Can no longer proc items (this was only required because I couldn't find another way to apply freeze otherwise).
