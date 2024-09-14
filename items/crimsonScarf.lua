@@ -21,7 +21,7 @@ local buff = Buff.new("aphelion", "crimsonScarf")
 buff.icon_sprite = sprite
 buff.icon_stack_subimage = false
 buff.draw_stack_number = true
-buff.stack_number_col = Array.new(1, 3937500)
+buff.stack_number_col = Array.new(1, Color(0xDC143C))
 buff.max_stack = 999
 buff.is_timed = false
 
