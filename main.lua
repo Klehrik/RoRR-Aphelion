@@ -5,8 +5,7 @@ mods.on_all_mods_loaded(function() for _, m in pairs(mods) do if type(m) == "tab
 
 Aphelion = true
 
-PATH = _ENV["!plugins_mod_folder_path"].."/plugins/"
--- Remove "/plugins" from PATH when uploading to Thunderstore
+PATH = _ENV["!plugins_mod_folder_path"].."/"
 
 
 
