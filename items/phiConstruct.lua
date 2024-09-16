@@ -41,7 +41,7 @@ obj:set_depth(-1)
 
 obj:onCreate(function(self)
     self.persistent = true
-    self.image_speed = 0.4
+    self.image_speed = 0.2
 
     self.angle = gm.irandom_range(0, 359)
     self.angle_speed = 72   -- Per second
