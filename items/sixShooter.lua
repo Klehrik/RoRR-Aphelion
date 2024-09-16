@@ -21,7 +21,7 @@ item:onAttack(function(actor, damager, stack)
     local actor_data = actor:get_data("aphelion-sixShooter")
 
     -- Crit every 6 basic attacks
-    -- Additional stacks increase the attack's damage by 20%
+    -- Additional stacks increase the attack's damage by 25%
     if actor_data.count >= 6 then
         actor_data.count = actor_data.count - 6
 
