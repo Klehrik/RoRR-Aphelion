@@ -9,18 +9,25 @@ item:onPickup(function(actor, stack)
     actor.aphelion_ration_cooldown = 240 *60 * (1 - Helper.mixed_hyperbolic(stack, 0.2, 0))
 end)
 
+local function restore_stacks(actor)
+    -- Restore all used Rations
+    local item      = Item.find("aphelion-ration")
+    local item_used = Item.find("aphelion-rationUsed")
+    local normal    = actor:item_stack_count(item_used, Item.TYPE.real)
+    local temp      = actor:item_stack_count(item_used, Item.TYPE.temporary)
+    actor:item_remove(item_used, normal, false)
+    actor:item_remove(item_used, temp, true)
+    gm.item_give_internal(actor.value, item.value, normal, false)
+    gm.item_give_internal(actor.value, item.value, temp, true)
+end
+
 item:onStep(function(actor, stack)
     -- Tick down timer
     if actor.aphelion_ration_cooldown > 0 then actor.aphelion_ration_cooldown = actor.aphelion_ration_cooldown - 1
-    else
-         -- Restore all used Rations
-        local item      = Item.find("aphelion-ration")
-        local item_used = Item.find("aphelion-rationUsed")
-        local normal    = actor:item_stack_count(item_used, Item.TYPE.real)
-        local temp      = actor:item_stack_count(item_used, Item.TYPE.temporary)
-        actor:item_remove(item_used, normal, false)
-        actor:item_remove(item_used, temp, true)
-        gm.item_give_internal(actor.value, item.value, normal, false)
-        gm.item_give_internal(actor.value, item.value, temp, true)
+    else restore_stacks(actor)
     end
+end)
+
+item:onNewStage(function(actor, stack)
+    restore_stacks(actor)
 end)

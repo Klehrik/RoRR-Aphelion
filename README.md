@@ -26,3 +26,7 @@ Join the [Return of Modding server](https://discord.gg/VjS57cszMq) for support.
 * Ikesicle - Ideas, Art, Log entries
 * Adam - Log entries
 * peanutbuuter - Log entries
+
+### With feedback from
+* TheGreenDigi
+* FadeShock

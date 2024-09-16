@@ -21,7 +21,7 @@
         "ration" : {
             "name" : "Ration",
             "pickup" : "Receive a large heal when in peril. Recharges over time.",
-            "description" : "Falling below <r>25% health</c> heals you for <g>50% <c_stack>(+7% per stack, hyperbolic) <g>health</c>. Has a <b>4 <c_stack>(-20% per stack, hyperbolic) <b>minute</c> cooldown.",
+            "description" : "Falling below <r>25% health</c> heals you for <g>50% <c_stack>(+7% per stack, hyperbolic) <g>health</c>. Recharges after a <b>4 <c_stack>(-20% per stack, hyperbolic) <b>minute</c> cooldown, or <b>upon entering a new stage</c>.",
             "destination" : "Fort Shell,\nManhattan, NY,\nEarth",
             "date" : "4/30/2009",
             "story" : "12 boxes of quality-grade MREs for your boys, as requested. \n\nBe warned, they don't taste too good, or even passable -- they don't have any flavor at all actually. It's basically a large bland cookie, loaded up with all the nutrients you'll ever need.",
@@ -53,7 +53,7 @@
         "silicaPacket" : {
             "name" : "Silica Packet",
             "pickup" : "Temporary items last longer.",
-            "description" : "<y>Temporary items</c> last for <b>18% <c_stack>(+12% per stack) <b>longer</c>.",
+            "description" : "Gain <y>2 <c_stack>(+1 per stack) <y>random temporary items</c> <b>upon entering a new stage</c>. <y>Temporary items</c> last for <b>18% <c_stack>(+12% per stack) <b>longer</c>.",
             "destination" : "Suite 334,\nNautica Sector,\nNeptune",
             "date" : "12/14/2056",
             "story" : "I mean sure, I get having to preserve food, but stuffing a hundred of these in the package container ain't it. I can't even use any of this, but you sent so much that I can't bear to throw them out.",

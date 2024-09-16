@@ -18,6 +18,17 @@ item:onRemove(function(actor, stack)
     if stack <= 1 then actor_data.increase = nil end
 end)
 
+item:onNewStage(function(actor, stack)
+    local tier = Item.TIER.common
+    if Helper.chance(0.25) then tier = Item.TIER.uncommon
+    elseif Helper.chance(0.025) then tier = Item.TIER.rare
+    end
+
+    for i = 1, 1 + stack do
+        actor:item_give(Item.get_random(tier), 1, true)
+    end
+end)
+
 gm.post_script_hook(gm.constants.actor_get_blue_temp_item_duration, function(self, other, result, args)
     local actor = Instance.wrap(args[1].value)
     local actor_data = actor:get_data("aphelion-silicaPacket")

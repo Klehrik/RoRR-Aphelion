@@ -8,18 +8,16 @@ item:set_tier(Item.TIER.rare)
 item:set_loot_tags(Item.LOOT_TAG.category_damage)
 
 item:onStatRecalc(function(actor, stack)
-    actor.critical_chance = actor.critical_chance + 10 + (10 * stack)
+    actor.critical_chance = actor.critical_chance + (10 * stack)
 end)
 
 item:onAttack(function(actor, damager, stack)
     local total_crit = actor.critical_chance
     if damager.bonus_crit then total_crit = total_crit + damager.bonus_crit end
 
-    if total_crit <= 100.0 then return end
     if damager.critical then
-        local excess = total_crit - 100.0
-        if stack > 1 then excess = excess * (0.5 + (stack * 0.5)) end   -- Increase overcrit damage with stacks
-        local bonus = (damager.damage / 2.0) * (excess / 100.0)
+        if stack > 1 then total_crit = total_crit * (0.5 + (stack * 0.5)) end   -- Increase crit damage scaling with stacks
+        local bonus = (damager.damage / 2.0) * (total_crit / 100.0)
         damager.damage = damager.damage + bonus
     end
 end)

@@ -51,6 +51,9 @@ This update adds 2 alternate skills.
 * Added skill Stealth Hunting (Huntress special)
 * Added skill Unload (Bandit secondary)
 * Added equipment Shattered Glass
+* Ration : Now also restores used stacks upon entering a new stage.
+* Silica Packet
+    * Now gives 2 (+1 per stack) random temporary items upon entering a new stage.
 * Withered Branch : Stack wearoff rate decreased further for higher stack counts.
 * Explosive Spear
     * Now deals the correct amount of pre-explosion damage ticks (4 instead of 3).
@@ -63,6 +66,9 @@ This update adds 2 alternate skills.
     * Fixed guaranteed crit applying to other attacks in some cases.
     * No longer unlocks Stiletto instantly.
 * Overloaded Capacitor : Damage per stack: 33% -> 30%
+* Stiletto
+    * First stack crit bonus: +20% -> +10%
+    * Crit damage scaling now happens immediately instead of after 100% crit.
 * Whimsical Star : Can now hit worm bodies.
 * Magic Dagger
     * Debuff no longer remains when an enemy becomes unfrozen early.
