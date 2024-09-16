@@ -21,7 +21,7 @@ end)
 item:onNewStage(function(actor, stack)
     local tier = Item.TIER.common
     if Helper.chance(0.25) then tier = Item.TIER.uncommon
-    elseif Helper.chance(0.025) then tier = Item.TIER.rare
+    elseif Helper.chance(0.02) then tier = Item.TIER.rare
     end
 
     for i = 1, 1 + stack do
