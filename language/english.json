@@ -126,8 +126,8 @@
 
         "stiletto" : {
             "name" : "Stiletto",
-            "pickup" : "Convert excess critical chance into critical damage.",
-            "description" : "Gain <y>20% <c_stack>(+10% per stack) <y>critical chance</c>. Every <r>1% excess critical chance above 100%</c> is converted into <y>1% <c_stack>(+0.5% per stack) <y>critical damage</c>.",
+            "pickup" : "Critical chance increases critical damage.",
+            "description" : "Gain <y>10% <c_stack>(+10% per stack) <y>critical chance</c>. Every <y>1% critical chance</c> increases <y>critical damage</c> by <y>1% <c_stack>(+0.5% per stack).",
             "destination" : "Violet Heights,\nElderly Home,\nVenus",
             "date" : "01/04/2057",
             "story" : "I might know why you want this, and if I am correct, I pray you ordered the wrong kind.",
