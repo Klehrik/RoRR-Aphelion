@@ -5,11 +5,11 @@ local sprite = Resources.sprite_load("aphelion", "adrenaline", PATH.."assets/spr
 local equip = Equipment.new("aphelion", "adrenaline")
 equip:set_sprite(sprite)
 equip:set_loot_tags(Item.LOOT_TAG.category_healing)
-equip:set_cooldown(45)
+equip:set_cooldown(35)
 
 equip:onUse(function(actor)
     actor:add_barrier(actor.maxbarrier * 0.75)
-    actor:set_immune(1.2 *60)
+    -- actor:set_immune(1.2 *60)
     actor:buff_apply(Buff.find("aphelion-adrenaline"), 5 *60)
 end)
 
