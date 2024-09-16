@@ -20,13 +20,14 @@ item:onHit(function(actor, victim, damager, stack)
     -- Create object
     local obj = Object.find("aphelion-explosiveSpearObject")
     local inst = obj:create(actor.x + (dir * 36.0), actor.y - 4.0)
-    inst.parent = actor
-    inst.hsp = 20.0 * dir
+    local instData = inst:get_data()
+    instData.parent = actor
+    instData.hsp = 20.0 * dir
     gm.sound_play_at(sound, 1.0, 1.0, actor.x, actor.y, 1.0)
 
     -- Calculate damage
-    inst.pop_damage = damager.damage * (0.06 + (actor:item_stack_count(item) * 0.06))
-    inst.damage = damager.damage * (1.0 + (actor:item_stack_count(item) * 1.5))
+    instData.pop_damage = damager.damage * (0.06 + (actor:item_stack_count(item) * 0.06))
+    instData.damage = damager.damage * (1.0 + (actor:item_stack_count(item) * 1.5))
 
     -- Apply cooldown
     actor:buff_apply(cooldownBuff, 1, 10)
@@ -45,32 +46,37 @@ obj:set_sprite(sprite)
 obj:set_depth(-1)
 
 obj:onCreate(function(self)
-    self.vsp = -2.0
-    self.grav = 0.18
+    local selfData = self:get_data()
 
-    self.hit = nil
-    self.hit_offset_x = 0
-    self.hit_offset_y = 0
+    selfData.vsp = -2.0
+    selfData.grav = 0.18
 
-    self.tick = 85
+    selfData.hit = Instance.wrap_invalid()
+    selfData.hit_type = 0   -- 1 for ground
+    selfData.hit_offset_x = 0
+    selfData.hit_offset_y = 0
+
+    selfData.tick = 85
 end)
 
 obj:onStep(function(self)
-    if not self.flag_hit then
+    local selfData = self:get_data()
+
+    if not selfData.flag_hit then
         -- Move
-        self.x = self.x + self.hsp
-        self.y = self.y + self.vsp
-        self.vsp = self.vsp + self.grav
+        self.x = self.x + selfData.hsp
+        self.y = self.y + selfData.vsp
+        selfData.vsp = selfData.vsp + selfData.grav
 
         -- Actor collision
         local actors = self:get_collisions(gm.constants.pActor, gm.constants.oWormBody, gm.constants.oWurmBody)
         for _, actor in ipairs(actors) do
-            if (actor.team and actor.team ~= self.parent.team)
-            or (actor.parent and actor.parent.team and actor.parent.team ~= self.parent.team) then
-                self.flag_hit = true
-                self.hit = actor
-                self.hit_offset_x = actor.x - self.x
-                self.hit_offset_y = actor.y - self.y
+            if (actor.team and actor.team ~= selfData.parent.team)
+            or (actor.parent and actor.parent.team and actor.parent.team ~= selfData.parent.team) then
+                selfData.flag_hit = true
+                selfData.hit = actor
+                selfData.hit_offset_x = actor.x - self.x
+                selfData.hit_offset_y = actor.y - self.y
                 gm.sound_play_at(soundHit, 1.0, 1.0, self.x, self.y, 1.0)
                 break
             end
@@ -78,31 +84,34 @@ obj:onStep(function(self)
 
         -- Wall collision
         if self:is_colliding(gm.constants.oB) then
-            self.flag_hit = true
+            selfData.flag_hit = true
+            selfData.hit_type = 1
             gm.sound_play_at(soundHit, 1.0, 1.0, self.x, self.y, 1.0)
         end
 
         -- Set image_angle
-        self.image_angle = gm.point_direction(0, 0, self.hsp, self.vsp)
+        self.image_angle = gm.point_direction(0, 0, selfData.hsp, selfData.vsp)
     end
 end)
 
 obj:onStep(function(self)
-    if self.flag_hit then
-        self.tick = self.tick - 1
+    local selfData = self:get_data()
+
+    if selfData.flag_hit then
+        selfData.tick = selfData.tick - 1
 
         local c_red = Color(0xFF004D)
 
-        if self.hit then
+        if selfData.hit:exists() then
             -- Embed into hit actor
-            self.x = self.hit.x - self.hit_offset_x
-            self.y = self.hit.y - self.hit_offset_y
+            self.x = selfData.hit.x - selfData.hit_offset_x
+            self.y = selfData.hit.y - selfData.hit_offset_y
 
             -- Deal pop damage
-            if self.tick % 25 == 0 then
-                local actor = self.hit
+            if selfData.tick % 25 == 0 then
+                local actor = selfData.hit
                 if actor.RMT_wrapper ~= "Actor" then actor = actor.parent end
-                actor:take_damage(self.pop_damage, self.parent, c_red, 0.66, gm.sign(self.hsp), nil, {
+                actor:take_damage(selfData.pop_damage, selfData.parent, c_red, 0.66, gm.sign(selfData.hsp), nil, {
                     Actor.DAMAGER.allow_stun,
                     Actor.DAMAGER.raw_damage
                 })
@@ -110,8 +119,8 @@ obj:onStep(function(self)
         end
 
         -- Explode
-        if self.tick <= -20 or (self.hit and not Instance.exists(self.hit)) then
-            self.parent:fire_explosion(self.x, self.y, 200, 200, self.damage, 1.66, c_red, nil, nil, {
+        if selfData.tick <= -20 or (selfData.hit_type == 0 and not selfData.hit:exists()) then
+            selfData.parent:fire_explosion(self.x, self.y, 200, 200, selfData.damage, 1.66, c_red, nil, nil, {
                 Actor.DAMAGER.no_crit,
                 Actor.DAMAGER.no_proc,
                 Actor.DAMAGER.allow_stun,
@@ -124,16 +133,20 @@ obj:onStep(function(self)
 end)
 
 obj:onStep(function(self)
+    local selfData = self:get_data()
+
     -- Destroy when falling out of map
-    if self.y >= gm.variable_global_get("room_height") and not self.hit then
+    if self.y >= gm.variable_global_get("room_height") and not selfData.hit then
         self:destroy()
     end
 end)
 
 obj:onDraw(function(self)
-    if self.flag_hit then
+    local selfData = self:get_data()
+
+    if selfData.flag_hit then
         -- Show explosion radius
-        local radius = Helper.ease_out(math.min(85.0 - self.tick, 45.0) / 45.0) * 100
+        local radius = Helper.ease_out(math.min(85.0 - selfData.tick, 45.0) / 45.0) * 100
         gm.draw_set_circle_precision(64)
         gm.draw_set_alpha(0.5)
         local c = Color.WHITE
@@ -159,17 +172,17 @@ buff.is_timed = false
 buff.is_debuff = true
 
 buff:onApply(function(actor, stack)
-    local actor_data = actor:get_data("aphelion-explosiveSpear")
-    actor_data.cooldown = 60.0
+    local actorData = actor:get_data("aphelion-explosiveSpear")
+    actorData.cooldown = 60.0
 end)
 
 buff:onStep(function(actor, stack)
-    local actor_data = actor:get_data("aphelion-explosiveSpear")
+    local actorData = actor:get_data("aphelion-explosiveSpear")
 
-    actor_data.cooldown = actor_data.cooldown - 1
+    actorData.cooldown = actorData.cooldown - 1
 
-    if actor_data.cooldown <= 0 then
-        actor_data.cooldown = 60
+    if actorData.cooldown <= 0 then
+        actorData.cooldown = 60
         actor:buff_remove(buff, 1)
     end
 end)

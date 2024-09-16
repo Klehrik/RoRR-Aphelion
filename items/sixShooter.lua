@@ -8,22 +8,22 @@ item:set_tier(Item.TIER.uncommon)
 item:set_loot_tags(Item.LOOT_TAG.category_damage)
 
 item:onPickup(function(actor, stack)
-    local actor_data = actor:get_data("aphelion-sixShooter")
-    if not actor_data.count then actor_data.count = 0 end
+    local actorData = actor:get_data("aphelion-sixShooter")
+    if not actorData.count then actorData.count = 0 end
 end)
 
 item:onBasicUse(function(actor, stack)
-    local actor_data = actor:get_data("aphelion-sixShooter")
-    actor_data.count = actor_data.count + 1
+    local actorData = actor:get_data("aphelion-sixShooter")
+    actorData.count = actorData.count + 1
 end)
 
 item:onAttack(function(actor, damager, stack)
-    local actor_data = actor:get_data("aphelion-sixShooter")
+    local actorData = actor:get_data("aphelion-sixShooter")
 
     -- Crit every 6 basic attacks
     -- Additional stacks increase the attack's damage by 25%
-    if actor_data.count >= 6 then
-        actor_data.count = actor_data.count - 6
+    if actorData.count >= 6 then
+        actorData.count = actorData.count - 6
 
         -- For Stiletto
         if not damager.bonus_crit then damager.bonus_crit = 0 end
@@ -47,16 +47,16 @@ item:add_achievement()
 
 Actor.add_callback("onPreStep", function(actor)
     if not actor:same(Player.get_client()) then return end
-    local actor_data = actor:get_data("aphelion-sixShooter")
+    local actorData = actor:get_data("aphelion-sixShooter")
 
-    if not actor_data.achievement_counter then actor_data.achievement_counter = 0 end
+    if not actorData.achievement_counter then actorData.achievement_counter = 0 end
 
     if actor:buff_stack_count(Buff.find("ror-banditSkull")) >= 5.0 then
-        actor_data.achievement_counter = actor_data.achievement_counter + 1
-    else actor_data.achievement_counter = 0
+        actorData.achievement_counter = actorData.achievement_counter + 1
+    else actorData.achievement_counter = 0
     end
 
-    if actor_data.achievement_counter >= 60 *60 then
+    if actorData.achievement_counter >= 60 *60 then
         item:progress_achievement()
     end
 end)

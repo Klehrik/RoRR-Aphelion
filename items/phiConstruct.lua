@@ -8,20 +8,21 @@ item:set_tier(Item.TIER.uncommon)
 item:set_loot_tags(Item.LOOT_TAG.category_utility)
 
 item:onPickup(function(actor, stack)
-    local actor_data = actor:get_data("aphelion-phiConstruct")
-    if not actor_data.inst then
+    local actorData = actor:get_data("aphelion-phiConstruct")
+    if not actorData.inst then
         local obj = Object.find("aphelion", "phiConstructObject")
         local inst = obj:create(actor.x, actor.y)
-        inst.parent = actor
-        actor_data.inst = inst
+        local instData = inst:get_data()
+        instData.parent = actor
+        actorData.inst = inst
     end
 end)
 
 item:onRemove(function(actor, stack)
-    local actor_data = actor:get_data("aphelion-phiConstruct")
+    local actorData = actor:get_data("aphelion-phiConstruct")
     if stack <= 1 then
-        if actor_data.inst:exists() then actor_data.inst:destroy() end
-        actor_data.inst = nil
+        if actorData.inst:exists() then actorData.inst:destroy() end
+        actorData.inst = nil
     end
 end)
 
@@ -40,32 +41,38 @@ obj:set_sprite(sprite)
 obj:set_depth(-1)
 
 obj:onCreate(function(self)
+    local selfData = self:get_data()
+
     self.persistent = true
     self.image_speed = 0.2
 
-    self.angle = gm.irandom_range(0, 359)
-    self.angle_speed = 72   -- Per second
-    self.radius = 64
+    selfData.angle = gm.irandom_range(0, 359)
+    selfData.angle_speed = 72   -- Per second
+    selfData.radius = 64
 
-    self.fire_range = 250
-    self.charge = 0
+    selfData.fire_range = 250
+    selfData.charge = 0
 end)
 
 obj:onStep(function(self)
+    local selfData = self:get_data()
+
     -- Orbit around parent
-    local spd = self.angle_speed /60.0
-    self.angle = self.angle + spd
-    self.x = self.parent.x + (gm.dcos(self.angle) * self.radius)
-    self.y = self.parent.y - (gm.dsin(self.angle) * self.radius)
+    local spd = selfData.angle_speed /60.0
+    selfData.angle = selfData.angle + spd
+    self.x = selfData.parent.x + (gm.dcos(selfData.angle) * selfData.radius)
+    self.y = selfData.parent.y - (gm.dsin(selfData.angle) * selfData.radius)
 end)
 
 obj:onStep(function(self)
+    local selfData = self:get_data()
+
     -- Increment charge
-    local req = 60.0 / (1.25 * (0.9 + (self.parent.maxshield /200.0)))
-    if self.charge < req then
-        self.charge = self.charge + 1
-        self.charged = nil
-    else self.charged = true
+    local req = 60.0 / (1.25 * (0.9 + (selfData.parent.maxshield /200.0)))
+    if selfData.charge < req then
+        selfData.charge = selfData.charge + 1
+        selfData.charged = nil
+    else selfData.charged = true
     end
 
     -- Get nearest enemy or projectile (prioritized)
@@ -74,13 +81,13 @@ obj:onStep(function(self)
     local target = nil
     local target_type = 0
 
-    if self.charged then
-        local dist = self.fire_range
+    if selfData.charged then
+        local dist = selfData.fire_range
 
         -- Look for enemy projectiles
         local projs = Instance.find_all(Instance.projectiles)
         for _, p in ipairs(projs) do
-            local d = gm.point_distance(self.parent.x, self.parent.y, p.x, p.y)
+            local d = gm.point_distance(selfData.parent.x, selfData.parent.y, p.x, p.y)
             if d <= dist then
                 dist = d
                 target = p
@@ -91,8 +98,8 @@ obj:onStep(function(self)
         if not target then
             local actors = Instance.find_all(gm.constants.pActor)
             for _, a in ipairs(actors) do
-                if a.team and a.team ~= self.parent.team then
-                    local d = gm.point_distance(self.parent.x, self.parent.y, a.x, a.y)
+                if a.team and a.team ~= selfData.parent.team then
+                    local d = gm.point_distance(selfData.parent.x, selfData.parent.y, a.x, a.y)
                     if d <= dist then
                         dist = d
                         target = a
@@ -105,7 +112,7 @@ obj:onStep(function(self)
 
     -- Intercept / Deal damage
     if target then
-        self.charge = 0
+        selfData.charge = 0
 
         -- Set sprite direction
         self.image_xscale = 1
@@ -131,16 +138,16 @@ obj:onStep(function(self)
         -- however you cannot apply color blend to it like the above
 
         -- Act on target
-        if target_type == 0 then Instance.destroy(target)
+        if target_type == 0 then target:destroy()
         else
-            local damage_coeff = 0.45 + (0.15 * self.parent:item_stack_count(item))
-            target:take_damage(damage_coeff, self.parent, blend)
+            local damage_coeff = 0.45 + (0.15 * selfData.parent:item_stack_count(item))
+            target:take_damage(damage_coeff, selfData.parent, blend)
         end
 
-    elseif self.charged then
+    elseif selfData.charged then
         -- Set sprite direction relative to player
         self.image_xscale = 1
-        if self.parent.y > self.y then self.image_xscale = -1 end
+        if selfData.parent.y > self.y then self.image_xscale = -1 end
 
     end
 end)

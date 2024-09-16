@@ -14,9 +14,10 @@ equip:onUse(function(actor)
 
     local obj = Object.find("aphelion", "magicDaggerFreeze")
     local inst = obj:create(actor.x, actor.bbox_bottom + 1)
-    inst.parent = actor
+    local instData = inst:get_data()
+    instData.parent = actor
+    instData.x_offset = 28 * use_dir
     inst.image_xscale = inst.image_xscale * use_dir
-    inst.x_offset = 28 * use_dir
 end)
 
 
@@ -32,6 +33,8 @@ obj:set_sprite(sprite)
 obj:set_depth(-1)
 
 obj:onCreate(function(self)
+    local selfData = self:get_data()
+
     self.image_index = 0
     self.image_speed = 0
 
@@ -39,41 +42,43 @@ obj:onCreate(function(self)
     self.image_xscale = 4.0
     self.image_yscale = 2.0
 
-    self.damage_coeff = 2.5
-    self.freeze_time = 4.1  -- This is evidently not in seconds
+    selfData.damage_coeff = 2.5
+    selfData.freeze_time = 4.1  -- This is evidently not in seconds
 
-    self.state = 0
-    self.state_time = 0
+    selfData.state = 0
+    selfData.state_time = 0
 end)
 
 obj:onStep(function(self)
-    if self.state == 0 then
-        self.state_time = self.state_time + 1
+    local selfData = self:get_data()
+    
+    if selfData.state == 0 then
+        selfData.state_time = selfData.state_time + 1
 
-        self.x = self.parent.x + self.x_offset
-        self.y = self.parent.bbox_bottom + 1
+        self.x = selfData.parent.x + selfData.x_offset
+        self.y = selfData.parent.bbox_bottom + 1
 
-        if self.state_time == 1 then gm.sound_play_at(soundWindup, 1.0, 1.0, self.x, self.y, 1.0) end
-        if self.state_time >= 30 then
-            self.state = 1
-            self.state_time = 0
+        if selfData.state_time == 1 then gm.sound_play_at(soundWindup, 1.0, 1.0, self.x, self.y, 1.0) end
+        if selfData.state_time >= 30 then
+            selfData.state = 1
+            selfData.state_time = 0
             self.image_speed = 0.15
             self.image_alpha = 0.85
         end
 
-    elseif self.state == 1 then
-        self.state_time = self.state_time + 1
+    elseif selfData.state == 1 then
+        selfData.state_time = selfData.state_time + 1
 
-        if self.state_time == 1 then gm.sound_play_at(soundFreeze, 1.0, 1.0, self.x, self.y, 1.0) end
+        if selfData.state_time == 1 then gm.sound_play_at(soundFreeze, 1.0, 1.0, self.x, self.y, 1.0) end
 
         -- Freeze
-        if (not self.hit) and self.image_index >= 1.25 then
-            self.hit = true
+        if (not selfData.hit) and self.image_index >= 1.25 then
+            selfData.hit = true
 
             local radius_x = 31 * math.abs(self.image_xscale)
             local radius_y = 18 * math.abs(self.image_yscale)
 
-            local damager = self.parent:fire_explosion(self.x + (radius_x * gm.sign(self.image_xscale)), self.y - radius_y, radius_x * 2, radius_y * 2, self.damage_coeff, self.freeze_time, Color(0x909CD6), nil, nil, {
+            local damager = selfData.parent:fire_explosion(self.x + (radius_x * gm.sign(self.image_xscale)), self.y - radius_y, radius_x * 2, radius_y * 2, selfData.damage_coeff, selfData.freeze_time, Color(0x909CD6), nil, nil, {
                 Actor.DAMAGER.no_crit,
                 Actor.DAMAGER.no_proc,
                 Actor.DAMAGER.allow_stun

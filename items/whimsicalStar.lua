@@ -8,30 +8,31 @@ item:set_tier(Item.TIER.rare)
 item:set_loot_tags(Item.LOOT_TAG.category_utility)
 
 item:onPickup(function(actor, stack)
-    local actor_data = actor:get_data("aphelion-whimsicalStar")
-    if not actor_data.insts then actor_data.insts = {} end
+    local actorData = actor:get_data("aphelion-whimsicalStar")
+    if not actorData.insts then actorData.insts = {} end
 
     local count = 3
     if stack >= 2 then count = 2 end
     for i = 1, count do
         local obj = Object.find("aphelion", "whimsicalStarObject")
         local inst = obj:create(actor.x, actor.y)
-        inst.parent = actor
-        inst.number = #actor_data.insts
-        inst.prev = actor
-        if i > 1 then inst.prev = actor_data.insts[#actor_data.insts] end
-        table.insert(actor_data.insts, inst)
+        local instData = inst:get_data()
+        instData.parent = actor
+        instData.number = #actorData.insts
+        instData.prev = actor
+        if i > 1 then inst.prev = actorData.insts[#actorData.insts] end
+        table.insert(actorData.insts, inst)
     end
 end)
 
 item:onRemove(function(actor, stack)
-    local actor_data = actor:get_data("aphelion-whimsicalStar")
+    local actorData = actor:get_data("aphelion-whimsicalStar")
     local count = 3
     if stack >= 2 then count = 2 end
     for i = 1, count do
-        local inst = actor_data.insts[#actor_data.insts]
+        local inst = actorData.insts[#actorData.insts]
         if inst:exists() then inst:destroy() end
-        table.remove(actor_data.insts)
+        table.remove(actorData.insts)
     end
 end)
 
@@ -46,54 +47,60 @@ obj:set_sprite(sprite)
 obj:set_depth(-1)
 
 obj:onCreate(function(self)
+    local selfData = self:get_data()
+
     self.persistent = true
 
-    self.hsp = gm.random_range(-3.0, 3.0)
-    self.vsp = gm.random_range(-3.0, 3.0)
+    selfData.hsp = gm.random_range(-3.0, 3.0)
+    selfData.vsp = gm.random_range(-3.0, 3.0)
     
-    self.damage_coeff = 0.75
+    selfData.damage_coeff = 0.75
 
-    self.intercept_range = 350
-    self.intercept_target = -4
-    self.intercept_x_start = 0
-    self.intercept_y_start = 0
-    self.intercept_frame = 0
-    self.intercept_frame_max = 12.0    -- Will lerp to target position in 12 frames
+    selfData.intercept_range = 350
+    selfData.intercept_target = Instance.wrap_invalid()
+    selfData.intercept_x_start = 0
+    selfData.intercept_y_start = 0
+    selfData.intercept_frame = 0
+    selfData.intercept_frame_max = 12.0    -- Will lerp to target position in 12 frames
 
-    self.cd_hit = 0
-    self.cd_hit_max = 40
-    self.cooldown = 0
-    self.cooldown_max = 60
+    selfData.cd_hit = 0
+    selfData.cd_hit_max = 40
+    selfData.cooldown = 0
+    selfData.cooldown_max = 60
 end)
 
 obj:onStep(function(self)
+    local selfData = self:get_data()
+
     -- Follow "previous" star
     local acc = 0.25
 
-    if self.prev.x < self.x then self.hsp = self.hsp - acc
-    else self.hsp = self.hsp + acc
+    if selfData.prev.x < self.x then selfData.hsp = selfData.hsp - acc
+    else selfData.hsp = selfData.hsp + acc
     end
 
-    if self.prev.y < self.y then self.vsp = self.vsp - acc
-    else self.vsp = self.vsp + acc
+    if selfData.prev.y < self.y then selfData.vsp = selfData.vsp - acc
+    else selfData.vsp = selfData.vsp + acc
     end
 
     -- Clamp max speed
-    local max_speed = gm.clamp(gm.point_distance(self.x, self.y, self.parent.x, self.parent.y) / 28.0, 4.0, 12.0)
-    if math.abs(self.hsp) > max_speed then self.hsp = max_speed * gm.sign(self.hsp) end
-    if math.abs(self.vsp) > max_speed then self.vsp = max_speed * gm.sign(self.vsp) end
+    local max_speed = gm.clamp(gm.point_distance(self.x, self.y, selfData.parent.x, selfData.parent.y) / 28.0, 4.0, 12.0)
+    if math.abs(selfData.hsp) > max_speed then selfData.hsp = max_speed * gm.sign(selfData.hsp) end
+    if math.abs(selfData.vsp) > max_speed then selfData.vsp = max_speed * gm.sign(selfData.vsp) end
 
     -- Move
-    if not Instance.exists(self.intercept_target) then
-        self.x = self.x + self.hsp
-        self.y = self.y + self.vsp
+    if not selfData.intercept_target:exists() then
+        self.x = self.x + selfData.hsp
+        self.y = self.y + selfData.vsp
     end
 end)
 
 obj:onStep(function(self)
+    local selfData = self:get_data()
+
     -- Reduce hit cooldown
-    if self.cd_hit > 0 then
-        self.cd_hit = self.cd_hit - 1
+    if selfData.cd_hit > 0 then
+        selfData.cd_hit = selfData.cd_hit - 1
         return
     end
 
@@ -102,75 +109,79 @@ obj:onStep(function(self)
 
     -- Deal area damage on enemy collision
     for _, actor in ipairs(actors) do
-        if (actor.team and actor.team ~= self.parent.team)
-        or (actor.parent and actor.parent.team and actor.parent.team ~= self.parent.team) then
-            self.parent:fire_explosion(self.x, self.y, self.bbox_right - self.bbox_left, self.bbox_bottom - self.bbox_top, self.damage_coeff, nil, Color(0xA5C28C), nil, nil, {
+        if (actor.team and actor.team ~= selfData.parent.team)
+        or (actor.parent and actor.parent.team and actor.parent.team ~= selfData.parent.team) then
+            selfData.parent:fire_explosion(self.x, self.y, self.bbox_right - self.bbox_left, self.bbox_bottom - self.bbox_top, selfData.damage_coeff, nil, Color(0xA5C28C), nil, nil, {
                 Actor.DAMAGER.no_crit,
                 Actor.DAMAGER.no_proc
             })
-            self.cd_hit = self.cd_hit_max
+            selfData.cd_hit = selfData.cd_hit_max
             break
         end
     end
 end)
 
 obj:onStep(function(self)
+    local selfData = self:get_data()
+
     -- Reduce intercept cooldown
-    if self.cooldown > 0 then
-        self.cooldown = self.cooldown - 1
+    if selfData.cooldown > 0 then
+        selfData.cooldown = selfData.cooldown - 1
         return
     end
 
     -- Get nearest projectile to intercept
-    if not Instance.exists(self.intercept_target) then
+    if not selfData.intercept_target:exists() then
         local found = false
-        local dist = self.intercept_range
+        local dist = selfData.intercept_range
         local projs = Instance.find_all(Instance.projectiles)
         for _, p in ipairs(projs) do
             if not p.aphelion_whimsicalStar_targetted then
-                local d = gm.point_distance(self.parent.x, self.parent.y, p.x, p.y)
+                local d = gm.point_distance(selfData.parent.x, selfData.parent.y, p.x, p.y)
                 if d <= dist then
                     found = true
                     dist = d
-                    self.intercept_target = p
+                    selfData.intercept_target = p
                 end
             end
         end
         if found then
-            self.intercept_target.aphelion_whimsicalStar_targetted = true
-            self.intercept_frame = 0
-            self.intercept_x_start = self.x
-            self.intercept_y_start = self.y
+            selfData.intercept_target.aphelion_whimsicalStar_targetted = true
+            selfData.intercept_frame = 0
+            selfData.intercept_x_start = self.x
+            selfData.intercept_y_start = self.y
         end
 
     -- Intercept projectile
     else
-        if self.intercept_frame < self.intercept_frame_max then self.intercept_frame = self.intercept_frame + 1 end
+        if selfData.intercept_frame < selfData.intercept_frame_max then selfData.intercept_frame = selfData.intercept_frame + 1 end
 
-        local proj = self.intercept_target
+        local proj = selfData.intercept_target
 
         -- Move towards target
-        local interp = Helper.ease_out(self.intercept_frame / self.intercept_frame_max, 0.5)
-        self.x = self.intercept_x_start + ((proj.x - self.intercept_x_start) * interp)
-        self.y = self.intercept_y_start + ((proj.y - self.intercept_y_start) * interp)
+        local interp = Helper.ease_out(selfData.intercept_frame / selfData.intercept_frame_max, 0.5)
+        self.x = selfData.intercept_x_start + ((proj.x - selfData.intercept_x_start) * interp)
+        self.y = selfData.intercept_y_start + ((proj.y - selfData.intercept_y_start) * interp)
 
         -- Check for collision
         -- Many projectiles have no collision mask until they
         -- reach their destination, so checking by distance instead
         if gm.point_distance(self.x, self.y, proj.x, proj.y) <= 12.0 then
             proj:destroy()
-            self.cooldown = self.cooldown_max
+            selfData.cooldown = selfData.cooldown_max
         end
     end
 end)
 
 obj:onStep(function(self)
-    -- Set star size
-    if not self.size_set then
-        self.size_set = true
+    local selfData = self:get_data()
 
-        local px = (12 + (self.number * 4)) / 195.0
-        if self.number > 2 then px = gm.irandom_range(12, 20) / 195.0 end
+    -- Set star size
+    if not selfData.size_set then
+        selfData.size_set = true
+
+        local px = (12 + (selfData.number * 4)) / 195.0
+        if selfData.number > 2 then px = gm.irandom_range(12, 20) / 195.0 end
         self.image_xscale = px
         self.image_yscale = px
     end
@@ -178,7 +189,7 @@ obj:onStep(function(self)
     -- Set sprite stuff
     self.image_blend = Color.WHITE
     self.image_alpha = 1.0
-    if self.cooldown > 0 then
+    if selfData.cooldown > 0 then
         self.image_blend = 12632256
         self.image_alpha = 0.6
     end

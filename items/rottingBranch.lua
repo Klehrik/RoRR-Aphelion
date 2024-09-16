@@ -31,25 +31,25 @@ buff.is_timed = false
 buff.is_debuff = true
 
 buff:onApply(function(actor, stack)
-    local actor_data = actor:get_data("aphelion-rottingBranch")
-    if (not actor_data.timer) or stack == 1 then actor_data.timer = 0 end
-    actor_data.duration = math.ceil(210.0 / math.max(stack * 0.4, 1.0))
+    local actorData = actor:get_data("aphelion-rottingBranch")
+    if (not actorData.timer) or stack == 1 then actorData.timer = 0 end
+    actorData.duration = math.ceil(210.0 / math.max(stack * 0.4, 1.0))
 end)
 
 buff:onStep(function(actor, stack)
-    local actor_data = actor:get_data("aphelion-rottingBranch")
+    local actorData = actor:get_data("aphelion-rottingBranch")
 
-    actor_data.timer = actor_data.timer + 1
+    actorData.timer = actorData.timer + 1
     
-    if actor_data.attacker:exists() and actor_data.timer % 30 == 0 then
+    if actorData.attacker:exists() and actorData.timer % 30 == 0 then
         local coeff = 0.15 * stack
-        actor:take_damage(coeff, actor_data.attacker, Color(0xA28879))
+        actor:take_damage(coeff, actorData.attacker, Color(0xA28879))
     end
 
-    actor_data.duration = actor_data.duration - 1
-    if actor_data.duration <= 0 then
+    actorData.duration = actorData.duration - 1
+    if actorData.duration <= 0 then
         actor:buff_remove(buff, 1)
-        actor_data.duration = math.ceil(210.0 / math.max((stack - 1) * 0.25, 1.0))
+        actorData.duration = math.ceil(210.0 / math.max((stack - 1) * 0.25, 1.0))
     end
 end)
 

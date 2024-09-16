@@ -8,14 +8,14 @@ item:set_tier(Item.TIER.common)
 item:set_loot_tags(Item.LOOT_TAG.category_utility)
 
 item:onPickup(function(actor, stack)
-    local actor_data = actor:get_data("aphelion-silicaPacket")
-    actor_data.increase = 0.06 + (0.12 * stack)
+    local actorData = actor:get_data("aphelion-silicaPacket")
+    actorData.increase = 0.06 + (0.12 * stack)
 end)
 
 item:onRemove(function(actor, stack)
-    local actor_data = actor:get_data("aphelion-silicaPacket")
-    actor_data.increase = 0.06 + (0.12 * (stack - 1))
-    if stack <= 1 then actor_data.increase = nil end
+    local actorData = actor:get_data("aphelion-silicaPacket")
+    actorData.increase = 0.06 + (0.12 * (stack - 1))
+    if stack <= 1 then actorData.increase = nil end
 end)
 
 item:onNewStage(function(actor, stack)
@@ -31,9 +31,9 @@ end)
 
 gm.post_script_hook(gm.constants.actor_get_blue_temp_item_duration, function(self, other, result, args)
     local actor = Instance.wrap(args[1].value)
-    local actor_data = actor:get_data("aphelion-silicaPacket")
-    if actor_data.increase then
-        result.value = result.value * (1 + actor_data.increase)
+    local actorData = actor:get_data("aphelion-silicaPacket")
+    if actorData.increase then
+        result.value = result.value * (1 + actorData.increase)
     end
 end)
 
