@@ -74,5 +74,6 @@ This update adds 2 alternate skills, 1 passive equipment, and tweaks several ite
     * Debuff no longer remains when an enemy becomes unfrozen early.
     * Can no longer proc items (this was only required because I couldn't find another way to apply freeze otherwise).
 * Stimulants
-    * Cooldown: 45s -> 35s
+    * Cooldown: 45s -> 30s
+    * Barrier gain: 75% -> 65%
     * No longer grants brief invincibility.

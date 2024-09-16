@@ -163,7 +163,7 @@
         "adrenaline" : {
             "name" : "Stimulants",
             "pickup" : "Provides a temporary feeling of invincibility.",
-            "description" : "Gain <g>75% barrier</c> and <y>+40% movement speed</c> for <y>5 seconds</c>.",
+            "description" : "Gain <g>65% barrier</c> and <y>+40% movement speed</c> for <y>5 seconds</c>.",
             "destination" : "Backalley Place,\nUnit 4-72,\nVenus",
             "date" : "4/12/2056",
             "story" : "Fresh out of the sketchy labs we raided on [REDACTED]'s second moon, this unsettling mix of fluids really makes you feel bulletproof! Well, mostly. Barrett was left with a hell of a bruise; he might as well have gained a new birthmark."
