@@ -102,7 +102,7 @@ obj:onStep(function(self)
             if self.tick % 25 == 0 then
                 local actor = self.hit
                 if actor.RMT_wrapper ~= "Actor" then actor = actor.parent end
-                actor:take_damage(self.pop_damage, self.parent, gm.sign(self.hsp), c_red, 0.66, nil, {
+                actor:take_damage(self.pop_damage, self.parent, c_red, 0.66, gm.sign(self.hsp), nil, {
                     Actor.DAMAGER.allow_stun,
                     Actor.DAMAGER.raw_damage
                 })
