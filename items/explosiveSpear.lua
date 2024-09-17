@@ -110,7 +110,7 @@ obj:onStep(function(self)
             -- Deal pop damage
             if selfData.tick % 25 == 0 then
                 local actor = selfData.hit
-                if actor.RMT_wrapper ~= "Actor" then actor = actor.parent end
+                if actor.RMT_object ~= "Actor" then actor = actor.parent end
                 actor:take_damage(selfData.pop_damage, selfData.parent, c_red, 0.66, gm.sign(selfData.hsp), nil, {
                     Actor.DAMAGER.allow_stun,
                     Actor.DAMAGER.raw_damage
@@ -172,12 +172,12 @@ buff.is_timed = false
 buff.is_debuff = true
 
 buff:onApply(function(actor, stack)
-    local actorData = actor:get_data("aphelion-explosiveSpear")
+    local actorData = actor:get_data("explosiveSpear")
     actorData.cooldown = 60.0
 end)
 
 buff:onStep(function(actor, stack)
-    local actorData = actor:get_data("aphelion-explosiveSpear")
+    local actorData = actor:get_data("explosiveSpear")
 
     actorData.cooldown = actorData.cooldown - 1
 

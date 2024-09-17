@@ -8,7 +8,7 @@ item:set_tier(Item.TIER.common)
 item:set_loot_tags(Item.LOOT_TAG.category_damage)
 
 item:onHit(function(actor, victim, damager, stack)
-    local victim_data = victim:get_data("aphelion-rottingBranch")
+    local victim_data = victim:get_data("rottingBranch")
     if Helper.chance(0.15 + (0.1 * (stack - 1))) then
         victim:buff_apply(Buff.find("aphelion-rottingBranch"), 1)
         victim_data.attacker = actor
@@ -31,13 +31,13 @@ buff.is_timed = false
 buff.is_debuff = true
 
 buff:onApply(function(actor, stack)
-    local actorData = actor:get_data("aphelion-rottingBranch")
+    local actorData = actor:get_data("rottingBranch")
     if (not actorData.timer) or stack == 1 then actorData.timer = 0 end
     actorData.duration = math.ceil(210.0 / math.max(stack * 0.4, 1.0))
 end)
 
 buff:onStep(function(actor, stack)
-    local actorData = actor:get_data("aphelion-rottingBranch")
+    local actorData = actor:get_data("rottingBranch")
 
     actorData.timer = actorData.timer + 1
     

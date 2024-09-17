@@ -8,7 +8,7 @@ item:set_tier(Item.TIER.rare)
 item:set_loot_tags(Item.LOOT_TAG.category_utility)
 
 item:onPickup(function(actor, stack)
-    local actorData = actor:get_data("aphelion-whimsicalStar")
+    local actorData = actor:get_data("whimsicalStar")
     if not actorData.insts then actorData.insts = {} end
 
     local count = 3
@@ -26,7 +26,7 @@ item:onPickup(function(actor, stack)
 end)
 
 item:onRemove(function(actor, stack)
-    local actorData = actor:get_data("aphelion-whimsicalStar")
+    local actorData = actor:get_data("whimsicalStar")
     local count = 3
     if stack >= 2 then count = 2 end
     for i = 1, count do

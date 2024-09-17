@@ -8,17 +8,17 @@ item:set_tier(Item.TIER.uncommon)
 item:set_loot_tags(Item.LOOT_TAG.category_damage)
 
 item:onPickup(function(actor, stack)
-    local actorData = actor:get_data("aphelion-sixShooter")
+    local actorData = actor:get_data("sixShooter")
     if not actorData.count then actorData.count = 0 end
 end)
 
 item:onBasicUse(function(actor, stack)
-    local actorData = actor:get_data("aphelion-sixShooter")
+    local actorData = actor:get_data("sixShooter")
     actorData.count = actorData.count + 1
 end)
 
 item:onAttack(function(actor, damager, stack)
-    local actorData = actor:get_data("aphelion-sixShooter")
+    local actorData = actor:get_data("sixShooter")
 
     -- Crit every 6 basic attacks
     -- Additional stacks increase the attack's damage by 25%
@@ -47,7 +47,7 @@ item:add_achievement()
 
 Actor.add_callback("onPreStep", function(actor)
     if not actor:same(Player.get_client()) then return end
-    local actorData = actor:get_data("aphelion-sixShooter")
+    local actorData = actor:get_data("sixShooter")
 
     if not actorData.achievement_counter then actorData.achievement_counter = 0 end
 

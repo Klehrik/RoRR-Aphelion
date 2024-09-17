@@ -26,13 +26,13 @@ buff.max_stack = 999
 buff.is_timed = false
 
 buff:onApply(function(actor, stack)
-    local actorData = actor:get_data("aphelion-crimsonScarf")
+    local actorData = actor:get_data("crimsonScarf")
     if not actorData.timers then actorData.timers = {} end
     table.insert(actorData.timers, (4 + actor:item_stack_count(item)) * 60.0)
 end)
 
 buff:onStep(function(actor, stack)
-    local actorData = actor:get_data("aphelion-crimsonScarf")
+    local actorData = actor:get_data("crimsonScarf")
 
     -- Decrease stack timers
     -- and remove if expired

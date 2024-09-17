@@ -8,20 +8,20 @@ item:set_tier(Item.TIER.common)
 item:set_loot_tags(Item.LOOT_TAG.category_healing)
 
 item:add_callback("onPickup", function(actor, stack)
-    local actorData = actor:get_data("aphelion-calamariSkewers")
+    local actorData = actor:get_data("calamariSkewers")
     actorData.cooldown = 0
     if not actorData.timers then actorData.timers = {} end
 end)
 
 item:add_callback("onKill", function(actor, victim, damager, stack)
-    local actorData = actor:get_data("aphelion-calamariSkewers")
+    local actorData = actor:get_data("calamariSkewers")
     if actorData.cooldown <= 0 then
-        actor:buff_apply(Buff.find("aphelion-calamariSkewers"), 1)
+        actor:buff_apply(Buff.find("calamariSkewers"), 1)
     end
 end)
 
 item:add_callback("onStep", function(actor, stack)
-    local actorData = actor:get_data("aphelion-calamariSkewers")
+    local actorData = actor:get_data("calamariSkewers")
     if actorData.cooldown > 0 then
         actorData.cooldown = actorData.cooldown - 1
     end
@@ -41,12 +41,12 @@ buff.max_stack = 4
 buff.is_timed = false
 
 buff:onApply(function(actor, stack)
-    local actorData = actor:get_data("aphelion-calamariSkewers")
+    local actorData = actor:get_data("calamariSkewers")
     table.insert(actorData.timers, 60)
 end)
 
 buff:onStep(function(actor, stack)
-    local actorData = actor:get_data("aphelion-calamariSkewers")
+    local actorData = actor:get_data("calamariSkewers")
 
     -- Decrease stack timers
     -- and remove if expired
