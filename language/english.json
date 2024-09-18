@@ -52,7 +52,7 @@
         },
         "silicaPacket" : {
             "name" : "Silica Packet",
-            "pickup" : "Temporary items last longer.",
+            "pickup" : "Gain temporary items on entering a new stage. Temporary items last longer.",
             "description" : "Gain <y>2 <c_stack>(+1 per stack) <y>random temporary items</c> <b>upon entering a new stage</c>. <y>Temporary items</c> last for <b>18% <c_stack>(+12% per stack) <b>longer</c>.",
             "destination" : "Suite 334,\nNautica Sector,\nNeptune",
             "date" : "12/14/2056",
