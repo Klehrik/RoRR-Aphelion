@@ -112,11 +112,13 @@ buff.show_icon = false
 buff.is_debuff = true
 
 buff:onApply(function(actor, stack)
-    actor.aphelion_magicDagger_saved_x = actor.x
+    local actorData = actor:get_data("magicDagger")
+    actorData.saved_x = actor.x
 end)
 
 buff:onStep(function(actor, stack)
-    actor.x = actor.aphelion_magicDagger_saved_x
+    local actorData = actor:get_data("magicDagger")
+    actor.x = actorData.saved_x
     actor.pHspeed = 0.0
 
     -- Remove buff if no longer stunned

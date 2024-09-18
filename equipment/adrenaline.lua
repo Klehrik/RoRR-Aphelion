@@ -25,10 +25,6 @@ local buff = Buff.new("aphelion", "adrenaline")
 buff.icon_sprite = sprite
 buff.icon_stack_subimage = false
 
-buff:onApply(function(actor, stack)
-    actor.pHmax_base = actor.pHmax_base + increase
-end)
-
-buff:onRemove(function(actor, stack)
-    actor.pHmax_base = actor.pHmax_base - increase
+buff:onStatRecalc(function(actor, stack)
+    actor.pHmax = actor.pHmax + increase
 end)
