@@ -1,94 +1,73 @@
 -- Bandit : Unload
 
-local callbacks = {}
+-- local sprite = Resources.sprite_load("aphelion", "ballisticVest", PATH.."assets/sprites/ballisticVest.png", 1, 16, 16)
 
-
-
--- Skill
-local survivor_loadout_unlockables = gm.variable_global_get("survivor_loadout_unlockables")
-
-local survivor = gm.array_get(Class.SURVIVOR, gm.survivor_find("ror-bandit"))
-local x_family = gm.array_get(survivor, 7).elements
-
-local new = gm.struct_create()
-gm.static_set(new, gm.static_get(gm.array_get(x_family, 0)))
-new.skill_id = gm.skill_create("aphelion", "banditUnload")
-new.achievement_id = -1.0
-new.save_flag_viewed = nil
-new.index = gm.array_length(survivor_loadout_unlockables)
-
-gm.array_push(survivor_loadout_unlockables, new)
-gm.array_push(x_family, new)
-
-local skill = survivor_setup.Skill(new.skill_id)
-Survivor.setup_skill(skill,
-    "skill.banditUnload.name",
-    "skill.banditUnload.description",
-    gm.constants.sBanditSkills,
-    8,
-    gm.constants.sBanditShoot4,
-    4 *60.0,
-    2.5,
-    false,
-    new.skill_id + 1
+local skill = Skill.new("aphelion", "banditUnload")
+skill:set_skill_icon(gm.constants.sBanditSkills, 8)
+skill:set_skill_properties(2.5, 4 *60)
+skill:set_skill_stock(6, 6, true, 1)
+skill:set_skill_settings(
+    true, 0, 0,
+    true, true,
+    false, false,
+    true
 )
 skill.require_key_press = false
-skill.max_stock = 6
 
-local state = gm.actor_state_create(
-    "aphelion",
-    "banditUnload",
-    gm.array_length(actor_states)
-)
-local state_array = gm.array_get(Class.ACTOR_STATE, state)
+skill:onActivate(function(actor, skill, index)
+    actor:enter_state(State.find("aphelion-banditUnload"))
+end)
 
--- Skill on_activate
-table.insert(callbacks, {skill.on_activate, function(self, other, result, args)
-    self:actor_set_state(self, state)
-end})
+Survivor.find("ror-bandit"):add_skill(skill, 2)
 
--- State on_enter
-table.insert(callbacks, {gm.array_get(state_array, 2), function(self, other, result, args)
-    self.sprite_index = gm.constants.sBanditShoot4
-    self.image_index = 0
-    self.image_speed = 0.22
 
-    if self.aphelion_banditUnload_just_used then self.image_index = 4
-    else self:sound_play_at(gm.constants.wBanditShoot4_1, 1.0, 1.0, self.x, self.y, nil)
+
+-- State
+
+local state = State.new("aphelion", "banditUnload")
+
+state:onEnter(function(actor, data)
+    actor.sprite_index = gm.constants.sBanditShoot4
+    actor.image_index = 0
+    actor.image_speed = 0.22
+
+    if actor:get_data("banditUnload").just_used then actor.image_index = 4
+    else actor.value:sound_play_at(gm.constants.wBanditShoot4_1, 1.0, 1.0, actor.x, actor.y, nil)
     end
-end})
+end)
 
--- State on_exit
-table.insert(callbacks, {gm.array_get(state_array, 3), function(self, other, result, args)
-    self.aphelion_banditUnload_just_used = 2
-    self.aphelion_banditUnload_shot = nil
+state:onExit(function(actor, data)
+    actor:get_data("banditUnload").just_used = 2
 
-    self:skill_util_unlock_cooldown(Actor.find_skill_id("aphelion-banditUnload"))
-end})
+    data.shot = 0.0
+    actor.value:skill_util_unlock_cooldown(skill.value)
+end)
 
--- State on_step
-table.insert(callbacks, {gm.array_get(state_array, 4), function(self, other, result, args)
-    self:skill_util_lock_cooldown(Actor.find_skill_id("aphelion-banditUnload"))
+state:onStep(function(actor, data)
+    if actor.image_index >= 5 and data.shot ~= 1.0 then
+        data.shot = 1.0
+        actor.value:sound_play_at(gm.constants.wBanditShoot4_2, 1.0, 1.0, actor.x, actor.y, nil)
+        actor.value:sound_play_at(gm.constants.wGuardDeathOLD, 0.25, 1.85 + gm.random(0.15), actor.x, actor.y, nil)
+        actor.value:sound_play_at(gm.constants.wBullet2, 1.0, 1.0, actor.x, actor.y, nil)
 
-    if self.image_index >= 5 and not self.aphelion_banditUnload_shot then
-        self.aphelion_banditUnload_shot = true
-        self:sound_play_at(gm.constants.wBanditShoot4_2, 1.0, 1.0, self.x, self.y, nil)
-        self:sound_play_at(gm.constants.wGuardDeathOLD, 0.25, 1.85 + gm.random(0.15), self.x, self.y, nil)
-        self:sound_play_at(gm.constants.wBullet2, 1.0, 1.0, self.x, self.y, nil)
+        actor:fire_bullet(
+            actor.x, actor.y - 8,
+            1400, 90 - (90 * gm.sign(actor.image_xscale)),
+            actor.value:actor_get_skill_slot(1).active_skill.damage, nil, nil,
+            nil, gm.constants.sSparks15
+        )
 
-        Actor.fire_bullet(self, self.x, self.y - 8, 90 - (90 * gm.sign(self.image_xscale)), 1400.0, self:actor_get_skill_slot(1).active_skill.damage, nil, gm.constants.sSparks15)
-
-        local xstart = self.x + (16.0 * gm.sign(self.image_xscale))
-        local ystart = self.y - 8
-        local xend = self.x + (1400.0 * gm.sign(self.image_xscale))
-        local yend = self.y - 8
+        local xstart = actor.x + (16.0 * gm.sign(actor.image_xscale))
+        local ystart = actor.y - 8
+        local xend = actor.x + (1400.0 * gm.sign(actor.image_xscale))
+        local yend = actor.y - 8
         local hit = gm.collision_line_advanced_bullet(xstart, ystart, xend, yend, true, false)
         if Instance.exists(hit) then
             xend = hit.bbox_left
-            if self.x > hit.x then xend = hit.bbox_right end
+            if actor.x > hit.x then xend = hit.bbox_right end
         end
 
-        local tracer = gm.instance_create_depth(xstart, ystart, -1, gm.constants.oEfLineTracer)
+        local tracer = Object.find("ror-efLineTracer"):create(xstart, ystart)
         tracer.xend = xend
         tracer.yend = yend
         tracer.bm = 1.0
@@ -97,7 +76,7 @@ table.insert(callbacks, {gm.array_get(state_array, 4), function(self, other, res
         tracer.sprite_index = 3682.0
         tracer.image_blend = 4434400.0
 
-        local tracer = gm.instance_create_depth(xstart, ystart, -1, gm.constants.oEfBanditTracer)
+        local tracer = Object.find("ror-efBanditTracer"):create(xstart, ystart)
         tracer.xend = xend
         tracer.yend = yend
         tracer.sprite_index = gm.constants.sBanditTracer
@@ -112,36 +91,25 @@ table.insert(callbacks, {gm.array_get(state_array, 4), function(self, other, res
     end
 
     -- Skip end of animation if queueing another bullet
-    if self.x_skill and self.image_index >= 7 and self:actor_get_skill_slot(1).active_skill.stock >= 1.0 then
-        self.image_index = 9
+    if actor.x_skill and actor.image_index >= 7 and actor.value:actor_get_skill_slot(1).active_skill.stock >= 1.0 then
+        actor.image_index = 9
     end
 
-    self:skill_util_apply_friction()
-    self:skill_util_exit_state_on_anim_end()
-end})
+    actor.value:skill_util_lock_cooldown(skill.value)
+    actor.value:skill_util_apply_friction()
+    actor.value:skill_util_exit_state_on_anim_end()
+end)
 
-Actor.add_callback("onPreStep", function(actor)
-    if actor.aphelion_banditUnload_just_used
-    and actor.aphelion_banditUnload_just_used > 0 then
-        actor.aphelion_banditUnload_just_used = actor.aphelion_banditUnload_just_used - 1
-        if actor.aphelion_banditUnload_just_used <= 0 then actor.aphelion_banditUnload_just_used = nil end
+Actor:onPreStep(function(actor)
+    local actorData = actor:get_data("banditUnload")
+    if actorData.just_used and actorData.just_used > 0 then
+        actorData.just_used = actorData.just_used - 1
+        if actorData.just_used <= 0 then actorData.just_used = nil end
     end
 end)
 
-Actor.add_callback("onKill", function(actor, damager)
-    if actor:actor_get_skill_slot(1).active_skill.name == "skill.banditUnload.name" then
-        actor:actor_skill_add_stock(actor, 1, false, 1)     -- actor, slot, ignore cap, raw value
-    end
-end)
-
-
-
--- ========== Hooks ==========
-
-gm.post_script_hook(gm.constants.callback_execute, function(self, other, result, args)
-    for _, c in ipairs(callbacks) do
-        if args[1].value == c[1] then
-            c[2](self, other, result, args)
-        end
+Actor:onKill(function(actor, damager)
+    if actor.value:actor_get_skill_slot(1).active_skill.name == "skill.banditUnload.name" then
+        actor.value:actor_skill_add_stock(actor.value, 1, false, 1)     -- actor, slot, ignore cap, raw value
     end
 end)
