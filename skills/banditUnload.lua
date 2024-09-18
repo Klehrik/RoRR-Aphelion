@@ -46,6 +46,7 @@ end)
 state:onStep(function(actor, data)
     if actor.image_index >= 5 and data.shot ~= 1.0 then
         data.shot = 1.0
+        
         actor.value:sound_play_at(gm.constants.wBanditShoot4_2, 1.0, 1.0, actor.x, actor.y, nil)
         actor.value:sound_play_at(gm.constants.wGuardDeathOLD, 0.25, 1.85 + gm.random(0.15), actor.x, actor.y, nil)
         actor.value:sound_play_at(gm.constants.wBullet2, 1.0, 1.0, actor.x, actor.y, nil)
