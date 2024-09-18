@@ -1,10 +1,44 @@
-## v1.0.0
-* Initial release
+### v1.2.0
+This update adds 2 alternate skills, 1 passive equipment, and tweaks several items.
+* Added skill Stealth Hunting (Huntress special)
+* Added skill Unload (Bandit secondary)
+* Added equipment Shattered Glass
+* Ration : Now also restores used stacks upon entering a new stage.
+* Silica Packet
+    * Now gives 2 (+1 per stack) random temporary items upon entering a new stage.
+* Withered Branch : Stack wearoff rate decreased further for higher stack counts.
+* Explosive Spear
+    * Now deals the correct amount of pre-explosion damage ticks (4 instead of 3).
+        * Now deals the correct amount of damage in general.
+    * Now inflicts stun properly as described.
+    * The explosion can no longer crit.
+    * Now visually sticks into the hit enemy or surface.
+    * Now sticks into surfaces, allowing it to still explode on miss.
+* Six Shooter
+    * Fixed guaranteed crit applying to other attacks in some cases.
+    * No longer unlocks Stiletto instantly.
+* Overloaded Capacitor : Damage per stack: 33% -> 30%
+* Stiletto
+    * First stack crit bonus: +20% -> +10%
+    * Crit damage scaling now happens immediately instead of after 100% crit.
+* Whimsical Star : Can now hit worm bodies.
+* Magic Dagger
+    * Debuff no longer remains when an enemy becomes unfrozen early.
+    * Can no longer proc items (this was only required because I couldn't find another way to apply freeze otherwise).
+* Stimulants
+    * Cooldown: 45s -> 30s
+    * Barrier gain: 75% -> 65%
+    * No longer grants brief invincibility.
 
-### v1.0.1
-* Fixed a strange interaction between Ration and ItemDuplicator mod.
+### v1.1.1
+* Ballistic Vest : Additional stack shield gain: +20 -> +15
+* Crimson Scarf : Crit bonus per kill: 7% -> 6%
+* Phi Construct : No longer goes offline when shield is broken.
+* Stiletto
+    * Tweaked description to be more clear.
+    * First stack crit bonus: +5% -> +20%
 
-## v1.1.0
+### v1.1.0
 This update adds 4 new items (3 are Shield-oriented) and 2 equipment, as well as locking a few behind achievements.
 * Added Silica Packet
 * Added Relic Guard
@@ -38,42 +72,8 @@ This update adds 4 new items (3 are Shield-oriented) and 2 equipment, as well as
     * Projectile intercept cooldown: 1.5s -> 1s
     * Collision damage: 70% -> 75%
 
-### v1.1.1
-* Ballistic Vest : Additional stack shield gain: +20 -> +15
-* Crimson Scarf : Crit bonus per kill: 7% -> 6%
-* Phi Construct : No longer goes offline when shield is broken.
-* Stiletto
-    * Tweaked description to be more clear.
-    * First stack crit bonus: +5% -> +20%
+### v1.0.1
+* Fixed a strange interaction between Ration and ItemDuplicator mod.
 
-## v1.2.0
-This update adds 2 alternate skills, 1 passive equipment, and tweaks several items.
-* Added skill Stealth Hunting (Huntress special)
-* Added skill Unload (Bandit secondary)
-* Added equipment Shattered Glass
-* Ration : Now also restores used stacks upon entering a new stage.
-* Silica Packet
-    * Now gives 2 (+1 per stack) random temporary items upon entering a new stage.
-* Withered Branch : Stack wearoff rate decreased further for higher stack counts.
-* Explosive Spear
-    * Now deals the correct amount of pre-explosion damage ticks (4 instead of 3).
-        * Now deals the correct amount of damage in general.
-    * Now inflicts stun properly as described.
-    * The explosion can no longer crit.
-    * Now visually sticks into the hit enemy or surface.
-    * Now sticks into surfaces, allowing it to still explode on miss.
-* Six Shooter
-    * Fixed guaranteed crit applying to other attacks in some cases.
-    * No longer unlocks Stiletto instantly.
-* Overloaded Capacitor : Damage per stack: 33% -> 30%
-* Stiletto
-    * First stack crit bonus: +20% -> +10%
-    * Crit damage scaling now happens immediately instead of after 100% crit.
-* Whimsical Star : Can now hit worm bodies.
-* Magic Dagger
-    * Debuff no longer remains when an enemy becomes unfrozen early.
-    * Can no longer proc items (this was only required because I couldn't find another way to apply freeze otherwise).
-* Stimulants
-    * Cooldown: 45s -> 30s
-    * Barrier gain: 75% -> 65%
-    * No longer grants brief invincibility.
+### v1.0.0
+* Initial release
