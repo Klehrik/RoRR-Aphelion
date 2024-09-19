@@ -176,6 +176,14 @@
             "date" : "7/6/2056",
             "story" : "I was searching for another teleporter when I came across a twinkling that caught my eye. A piece of shattered glass, irregularly shaped but still pristine. I felt strangely vulnerable as I held it in my hands, but I could tell that it was another great source of power.",
             "priority" : "<or>Field-found</c>"
+        },
+        "thermiteFlare" : {
+            "name" : "Thermite Flare",
+            "pickup" : "Incinerate an enemy for high damage over time.",
+            "description" : "Throw a <r>thermite flare</c>, <or>igniting</c> and <b>slowing</c> an enemy for <y>60% damage per 0.2 seconds</c> for <y>10 seconds</c>.",
+            "destination" : "The Sierpinski Triangle,\nVenus",
+            "date" : "10/27/2022",
+            "story" : "These sticks of thermite have an internal combustion mechanism, allowing for easy ignition. <TODO>"
         }
     },
 

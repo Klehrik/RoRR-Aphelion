@@ -1,4 +1,4 @@
--- Aphelion v1.2.0
+-- Aphelion v1.1.2
 
 log.info("Successfully loaded ".._ENV["!guid"]..".")
 mods.on_all_mods_loaded(function() for _, m in pairs(mods) do if type(m) == "table" and m.RoRR_Modding_Toolkit then Achievement = m.Achievement Actor = m.Actor Alarm = m.Alarm Array = m.Array Artifact = m.Artifact Buff = m.Buff Callback = m.Callback Class = m.Class Color = m.Color Equipment = m.Equipment Helper = m.Helper Instance = m.Instance Item = m.Item List = m.List Net = m.Net Object = m.Object Player = m.Player Resources = m.Resources Skill = m.Skill State = m.State Survivor_Log = m.Survivor_Log Survivor = m.Survivor Wrap = m.Wrap break end end end)
@@ -16,7 +16,7 @@ function __initialize()
     local folders = {
         "items",
         "equipment",
-        "skills"
+        -- "skills"
     }
     for _, folder in ipairs(folders) do
         local names = path.get_files(PATH..folder)

@@ -54,7 +54,7 @@ state:onStep(function(actor, data)
         actor:fire_bullet(
             actor.x, actor.y - 8,
             1400, 90 - (90 * gm.sign(actor.image_xscale)),
-            actor.value:actor_get_skill_slot(1).active_skill.damage, nil, nil,
+            actor:get_active_skill(Actor.SKILL.secondary).damage, nil, nil,
             nil, gm.constants.sSparks15
         )
 
@@ -92,7 +92,7 @@ state:onStep(function(actor, data)
     end
 
     -- Skip end of animation if queueing another bullet
-    if actor.x_skill and actor.image_index >= 7 and actor.value:actor_get_skill_slot(1).active_skill.stock >= 1.0 then
+    if actor.x_skill and actor.image_index >= 7 and actor:get_active_skill(Actor.SKILL.secondary).stock >= 1 then
         actor.image_index = 9
     end
 
@@ -110,7 +110,7 @@ Actor:onPreStep(function(actor)
 end)
 
 Actor:onKill(function(actor, damager)
-    if actor.value:actor_get_skill_slot(1).active_skill.name == "skill.banditUnload.name" then
+    if actor:get_active_skill(Actor.SKILL.secondary).skill_id == skill.value then
         actor.value:actor_skill_add_stock(actor.value, 1, false, 1)     -- actor, slot, ignore cap, raw value
     end
 end)

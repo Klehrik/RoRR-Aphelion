@@ -8,9 +8,7 @@ equip:set_loot_tags(Item.LOOT_TAG.category_damage, Item.LOOT_TAG.category_utilit
 equip:set_cooldown(45)
 
 equip:onUse(function(actor)
-    local use_dir = actor.value:player_util_local_player_get_equipment_activation_direction()
-    if use_dir == true then use_dir = 1.0 end
-    if use_dir == false then use_dir = -1.0 end
+    local use_dir = actor:get_equipment_use_direction()
 
     local obj = Object.find("aphelion", "magicDaggerFreeze")
     local inst = obj:create(actor.x, actor.bbox_bottom + 1)
