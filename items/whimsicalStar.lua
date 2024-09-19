@@ -105,7 +105,7 @@ obj:onStep(function(self)
     end
 
     -- Get all collisions with pActors
-    local actors = self:get_collisions(gm.constants.pActor, unpack(Instance.worm_bodies))
+    local actors = self:get_collisions(gm.constants.pActor, table.unpack(Instance.worm_bodies))
 
     -- Deal area damage on enemy collision
     for _, actor in ipairs(actors) do

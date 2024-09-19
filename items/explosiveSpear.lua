@@ -69,7 +69,7 @@ obj:onStep(function(self)
         selfData.vsp = selfData.vsp + selfData.grav
 
         -- Actor collision
-        local actors = self:get_collisions(gm.constants.pActor, unpack(Instance.worm_bodies))
+        local actors = self:get_collisions(gm.constants.pActor, table.unpack(Instance.worm_bodies))
         for _, actor in ipairs(actors) do
             if (actor.team and actor.team ~= selfData.parent.team)
             or (actor.parent and actor.parent.team and actor.parent.team ~= selfData.parent.team) then

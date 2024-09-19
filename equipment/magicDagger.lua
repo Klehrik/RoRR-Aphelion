@@ -73,7 +73,7 @@ obj:onStep(function(self)
         if (not selfData.hit) and self.image_index >= 1.25 then
             selfData.hit = true
 
-            local radius_x = 31 * math.abs(self.image_xscale)
+            local radius_x = 29 * math.abs(self.image_xscale)
             local radius_y = 18 * math.abs(self.image_yscale)
 
             local damager = selfData.parent:fire_explosion(self.x + (radius_x * gm.sign(self.image_xscale)), self.y - radius_y, radius_x * 2, radius_y * 2, selfData.damage_coeff, selfData.freeze_time, Color(0x909CD6), nil, nil, {
