@@ -16,7 +16,7 @@ end)
 item:add_callback("onKill", function(actor, victim, damager, stack)
     local actorData = actor:get_data("calamariSkewers")
     if actorData.cooldown <= 0 then
-        actor:buff_apply(Buff.find("calamariSkewers"), 1)
+        actor:buff_apply(Buff.find("aphelion-calamariSkewers"), 1)
     end
 end)
 
