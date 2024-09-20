@@ -18,7 +18,7 @@ skill:onActivate(function(actor, skill, index)
     actor:enter_state(State.find("aphelion-banditUnload"))
 end)
 
-Survivor.find("ror-bandit"):add_skill(skill, 2)
+Survivor.find("ror-bandit"):add_skill(skill, Actor.SKILL.secondary)
 
 
 
