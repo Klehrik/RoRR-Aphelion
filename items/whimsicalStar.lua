@@ -50,6 +50,7 @@ obj:onCreate(function(self)
     local selfData = self:get_data()
 
     self.persistent = true
+    self.image_alpha = 0
 
     selfData.hsp = gm.random_range(-3.0, 3.0)
     selfData.vsp = gm.random_range(-3.0, 3.0)
@@ -188,7 +189,7 @@ obj:onStep(function(self)
 
     -- Set sprite stuff
     self.image_blend = Color.WHITE
-    self.image_alpha = 1.0
+    self.image_alpha = 1
     if selfData.cooldown > 0 then
         self.image_blend = 12632256
         self.image_alpha = 0.6
