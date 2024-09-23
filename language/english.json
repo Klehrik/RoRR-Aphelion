@@ -184,6 +184,14 @@
             "destination" : "The Sierpinski Triangle,\nVenus",
             "date" : "10/27/2022",
             "story" : "These sticks of thermite have an internal combustion mechanism, allowing for easy ignition. <TODO>"
+        },
+        "warpDrive" : {
+            "name" : "Warp Drive",
+            "pickup" : "Teleport a short distance up to 3 times.",
+            "description" : "<y>Teleport forwards</c> a short distance. Can use <b>up to 3 times</c> in succession.",
+            "destination" : "",
+            "date" : "",
+            "story" : ""
         }
     },
 

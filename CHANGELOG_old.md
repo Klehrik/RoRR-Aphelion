@@ -1,5 +1,5 @@
 ### v1.2.0
-This update adds 2 alternate skills, 2 equipment (one is passive), and tweaks several items.
+This update adds 2 alternate skills, 3 equipment (one is passive), and tweaks several items.
 * Added skill Stealth Hunting (Huntress special)
 * Added skill Unload (Bandit secondary)
 * Added equipment Shattered Glass
