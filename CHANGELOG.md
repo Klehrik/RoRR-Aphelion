@@ -11,7 +11,7 @@
     * Now inflicts stun properly as described.
     * The explosion can no longer crit.
     * Now visually sticks into the hit enemy or surface.
-    * Now sticks into surfaces, allowing it to still explode on miss.
+    * Now still explodes when hitting a surface.
 * Six Shooter
     * Fixed guaranteed crit applying to other attacks in some cases.
     * No longer unlocks Stiletto instantly.
