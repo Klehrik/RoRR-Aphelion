@@ -242,6 +242,10 @@
         "magicDagger" : {
             "name" : "A SECRET",
             "description" : "Enter the hidden stage on Ancient Valley."
+        },
+        "shatteredGlass" : {
+            "name" : "Fragility",
+            "description" : "Beat the game with Artifact of Glass enabled."
         }
     }
 }
