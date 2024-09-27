@@ -112,10 +112,11 @@ obj:onStep(function(self)
     for _, actor in ipairs(actors) do
         if (actor.team and actor.team ~= selfData.parent.team)
         or (actor.parent and actor.parent.team and actor.parent.team ~= selfData.parent.team) then
-            selfData.parent:fire_explosion(self.x, self.y, self.bbox_right - self.bbox_left, self.bbox_bottom - self.bbox_top, selfData.damage_coeff, nil, Color(0xA5C28C), nil, nil, {
-                Actor.DAMAGER.no_crit,
-                Actor.DAMAGER.no_proc
-            })
+            local damager = selfData.parent:fire_explosion(self.x, self.y, self.bbox_right - self.bbox_left, self.bbox_bottom - self.bbox_top, selfData.damage_coeff)
+            damager:set_color(Color(0xA5C28C))
+            damager:set_critical(false)
+            damager:set_proc(false)
+
             selfData.cd_hit = selfData.cd_hit_max
             break
         end

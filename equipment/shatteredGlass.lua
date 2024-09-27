@@ -21,7 +21,7 @@ end)
 
 
 -- Achievement
-equip:add_achievement()
+-- equip:add_achievement()
 
 -- Object.find("ror-commandFinal"):onActivate(function(self)
 --     local glass = Artifact.find("ror-glass").active

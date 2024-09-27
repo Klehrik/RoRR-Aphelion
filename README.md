@@ -1,4 +1,4 @@
-Content mod that currently adds 16 items and 2 equipment.  
+Content mod that currently adds 16 items and 3 equipment.  
 Includes unlockable achievements for some of them.  
 
 Not tested in online multiplayer; support will come in a future update (possibly).  

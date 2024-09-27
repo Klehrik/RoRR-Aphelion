@@ -111,21 +111,25 @@ obj:onStep(function(self)
             if selfData.tick % 25 == 0 then
                 local actor = selfData.hit
                 if actor.RMT_object ~= "Actor" then actor = actor.parent end
-                actor:take_damage(selfData.pop_damage, selfData.parent, c_red, 0.66, gm.sign(selfData.hsp), nil, {
-                    Actor.DAMAGER.allow_stun,
-                    Actor.DAMAGER.raw_damage
-                })
+
+                local damager = selfData.parent:fire_direct(actor, selfData.pop_damage)
+                damager:use_raw_damage()
+                damager:set_color(c_red)
+                damager:set_critical(false)
+                damager:set_proc(false)
+                damager:set_stun(1)
             end
         end
 
         -- Explode
         if selfData.tick <= -20 or (selfData.hit_type == 0 and not selfData.hit:exists()) then
-            selfData.parent:fire_explosion(self.x, self.y, 200, 200, selfData.damage, 1.66, c_red, nil, nil, {
-                Actor.DAMAGER.no_crit,
-                Actor.DAMAGER.no_proc,
-                Actor.DAMAGER.allow_stun,
-                Actor.DAMAGER.raw_damage
-            })
+            local damager = selfData.parent:fire_explosion(self.x, self.y, 200, 200, selfData.damage)
+            damager:use_raw_damage()
+            damager:set_color(c_red)
+            damager:set_critical(false)
+            damager:set_proc(false)
+            damager:set_stun(2.5)
+
             gm.sound_play_at(soundExplode, 1.0, 1.0, self.x, self.y, 1.0)
             self:destroy()
         end

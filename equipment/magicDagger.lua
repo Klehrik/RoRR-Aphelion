@@ -41,7 +41,7 @@ obj:onCreate(function(self)
     self.image_yscale = 2.0
 
     selfData.damage_coeff = 2.5
-    selfData.freeze_time = 4.1  -- This is evidently not in seconds
+    selfData.freeze_time = 6.1  -- in seconds
 
     selfData.state = 0
     selfData.state_time = 0
@@ -75,14 +75,13 @@ obj:onStep(function(self)
 
             local radius_x = 29 * math.abs(self.image_xscale)
             local radius_y = 18 * math.abs(self.image_yscale)
-
-            local damager = selfData.parent:fire_explosion(self.x + (radius_x * gm.sign(self.image_xscale)), self.y - radius_y, radius_x * 2, radius_y * 2, selfData.damage_coeff, selfData.freeze_time, Color(0x909CD6), nil, nil, {
-                Actor.DAMAGER.no_crit,
-                Actor.DAMAGER.no_proc,
-                Actor.DAMAGER.allow_stun
-            })
+            
+            local damager = selfData.parent:fire_explosion(self.x + (radius_x * gm.sign(self.image_xscale)), self.y - radius_y, radius_x * 2, radius_y * 2, selfData.damage_coeff)
+            damager:set_color(Color(0x909CD6))
+            damager:set_critical(false)
+            damager:set_proc(false)
+            damager:set_stun(selfData.freeze_time, nil, Damager.KNOCKBACK_KIND.deepfreeze)
             damager.aphelion_magicDagger_ice = true
-            damager.knockback_kind = 3
         end
 
         -- Animate

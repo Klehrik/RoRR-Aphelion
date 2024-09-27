@@ -1,9 +1,6 @@
-### v1.2.0
-This update adds 2 alternate skills and 2 equipment (one is passive).
-* Added skill Stealth Hunting (Huntress special)
-* Added skill Unload (Bandit secondary)
-* Added equipment Shattered Glass
-* Added equipment Thermite Flare
+### v1.1.3
+* Changed damager creation calls to new ones.
+* Added equipment Shattered Glass (passive)
 
 ### v1.1.2
 * Ration : Now also restores used stacks upon entering a new stage.

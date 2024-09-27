@@ -134,14 +134,16 @@ obj:onStep(function(self)
         local sparks = obj:create(target.x, target.y)
         sparks.sprite_index = gm.constants.sSparks1
         sparks.image_blend = blend
-        -- NOTE: actor:take_damage can now accept a hit sprite,
-        -- however you cannot apply color blend to it like the above
 
         -- Act on target
         if target_type == 0 then target:destroy()
         else
             local damage_coeff = 0.45 + (0.15 * selfData.parent:item_stack_count(item))
-            target:take_damage(damage_coeff, selfData.parent, blend)
+            
+            local damager = selfData.parent:fire_direct(target, damage_coeff)
+            damager:set_color(blend)
+            damager:set_critical(false)
+            damager:set_proc(false)
         end
 
     elseif selfData.charged then

@@ -6,3 +6,9 @@
 - Make E spear a custom object and have it visually stick into enemies
 
 - Fix E spear not stunning
+
+### v1.2.0
+This update adds 2 alternate skills and 1 equipment.
+* Added skill Stealth Hunting (Huntress special)
+* Added skill Unload (Bandit secondary)
+* Added equipment Thermite Flare

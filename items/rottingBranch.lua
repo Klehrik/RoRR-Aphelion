@@ -43,7 +43,11 @@ buff:onStep(function(actor, stack)
     
     if actorData.attacker:exists() and actorData.timer % 30 == 0 then
         local coeff = 0.15 * stack
-        actor:take_damage(coeff, actorData.attacker, Color(0xA28879))
+
+        local damager = actorData.attacker:fire_direct(actor, coeff)
+        damager:set_color(Color(0xA28879))
+        damager:set_critical(false)
+        damager:set_proc(false)
     end
 
     actorData.duration = actorData.duration - 1
@@ -52,8 +56,3 @@ buff:onStep(function(actor, stack)
         actorData.duration = math.ceil(210.0 / math.max((stack - 1) * 0.25, 1.0))
     end
 end)
-
--- buff:onChange(function(actor, to, stack)
---     -- Pass attacker to new actor instance
---     to.aphelion_rottingBranch_attacker = actor.aphelion_rottingBranch_attacker
--- end)
