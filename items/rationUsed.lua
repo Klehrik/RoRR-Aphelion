@@ -6,7 +6,7 @@ local item = Item.new("aphelion", "rationUsed", true)
 item:set_sprite(sprite)
 
 item:onPickup(function(actor, stack)
-    actor.aphelion_ration_cooldown = 240 *60 * (1 - Helper.mixed_hyperbolic(stack, 0.2, 0))
+    actor:get_data("ration").cooldown = 240 *60 * (1 - Helper.mixed_hyperbolic(stack, 0.2, 0))
 end)
 
 local function restore_stacks(actor)
@@ -22,8 +22,10 @@ local function restore_stacks(actor)
 end
 
 item:onStep(function(actor, stack)
+    local actorData = actor:get_data("ration")
+
     -- Tick down timer
-    if actor.aphelion_ration_cooldown > 0 then actor.aphelion_ration_cooldown = actor.aphelion_ration_cooldown - 1
+    if actorData.cooldown > 0 then actorData.cooldown = actorData.cooldown - 1
     else restore_stacks(actor)
     end
 end)
