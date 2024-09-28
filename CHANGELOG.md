@@ -1,3 +1,8 @@
+### v ?
+* Relic Guard
+    * First stack: 60%
+    * Stacking: +20%
+
 ### v1.1.4
 * Added now-required IDs to Actor callbacks.
 
