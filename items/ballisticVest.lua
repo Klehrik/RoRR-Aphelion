@@ -17,7 +17,7 @@ end)
 -- Achievement
 item:add_achievement(2000, true)
 
-Actor:onDamaged(function(actor, damager)
+Actor:onDamaged("aphelion-ballisticVestUnlock", function(actor, damager)
     if not actor:same(Player.get_client()) then return end
     if damager then item:progress_achievement(damager.damage) end
 end)

@@ -42,7 +42,7 @@ end)
 -- Achievement
 item:add_achievement(50)
 
-Actor.add_callback("onPostAttack", function(actor, damager)
+Actor:onPostAttack("aphelion-silicaPacketUnlock", function(actor, damager)
     if not actor:same(Player.get_client()) then return end
     if (damager.attack_flags & (1 << 12)) > 0 then
         item:progress_achievement(damager.kill_number)

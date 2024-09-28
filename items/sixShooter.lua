@@ -45,7 +45,7 @@ end)
 -- Achievement
 item:add_achievement()
 
-Actor.add_callback("onPreStep", function(actor)
+Actor:onPreStep("aphelion-sixShooterUnlock", function(actor)
     if not actor:same(Player.get_client()) then return end
     local actorData = actor:get_data("sixShooter")
 

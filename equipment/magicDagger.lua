@@ -93,7 +93,7 @@ obj:onStep(function(self)
     end
 end)
 
-Actor:onHit(function(actor, victim, damager)
+Actor:onHit("aphelion-magicDaggerFreeze", function(actor, victim, damager)
     if ((not victim.stun_immune) or (victim.stun_immune == false))
     and damager and damager.aphelion_magicDagger_ice then
         victim:buff_apply(Buff.find("aphelion-magicDaggerFreeze"), 6 * 60.0)

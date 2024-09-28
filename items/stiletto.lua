@@ -27,7 +27,7 @@ end)
 -- Achievement
 item:add_achievement()
 
-Actor.add_callback("onPreStep", function(actor)
+Actor:onPreStep("aphelion-stilettoUnlock", function(actor)
     if not actor:same(Player.get_client()) then return end
     if actor.critical_chance >= 100.0 then
         item:progress_achievement()

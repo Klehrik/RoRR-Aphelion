@@ -1,3 +1,6 @@
+### v1.1.4
+* Added now-required IDs to Actor callbacks.
+
 ### v1.1.3
 * Changed damager creation calls to new ones.
 * Added equipment Shattered Glass (passive)
