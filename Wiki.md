@@ -144,7 +144,7 @@ Close this page if you would like to unlock and learn what each item does for yo
             <td align="center"><img src="https://github.com/user-attachments/assets/473868ae-bd7f-45f6-90e8-e05b8649f23e"></td>
             <td align="center"><p>$\color{#c9273d}\textsf{Stiletto}$</p></td>
             <td align="center">Critical chance increases critical damage.</td>
-            <td align="center"><p>Gain $\color{#efd27b}\textsf{10\%}$ $\color{#555555}\textsf{(+10\% per stack)}$ $\color{#efd27b}\textsf{critical chance}$. Every $\color{#efd27b}\textsf{1\% critical chance}$ increases $\color{#efd27b}\textsf{critical damage}$ by $\color{#efd27b}\textsf{1\%}$ $\color{#555555}\textsf{(+0.5\% per stack).}$</p></td>
+            <td align="center"><p>Gain $\color{#efd27b}\textsf{10\%}$ $\color{#555555}\textsf{(+10\% per stack)}$ $\color{#efd27b}\textsf{critical chance}$. Every $\color{#efd27b}\textsf{1\% critical chance}$ increases $\color{#efd27b}\textsf{critical damage}$ by $\color{#efd27b}\textsf{1\%}$ $\color{#555555}\textsf{(+0.5\% per stack)}$.</p></td>
         </tr>
     </tbody>
     <tbody>
