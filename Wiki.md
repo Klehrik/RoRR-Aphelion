@@ -56,7 +56,7 @@ Close this page if you would like to unlock and learn what each item does for yo
             <td align="center"><img src="https://github.com/user-attachments/assets/483a966b-9db9-4b29-b512-b127a6a8be1c"></td>
             <td align="center"><b>Ration</b></td>
             <td align="center">Receive a large heal when in peril. Recharges over time.</td>
-            <td align="center"><p>Falling below $\color{#cf6666}\textsf{25\% health}$ heals you for $\color{#7eb686}\textsf{50%}$ $\color{#555555}\textsf{(+7\% per stack, hyperbolic)}$ $\color{#7eb686}\textsf{health}$. Recharges after a $\color{#319ad2}\textsf{4}$ $\color{#555555}\textsf{(-20\% per stack, hyperbolic)}$ $\color{#319ad2}\textsf{minute}$ cooldown, or $\color{#319ad2}\textsf{upon entering a new stage}$.</p></td>
+            <td align="center"><p>Falling below $\color{#cf6666}\textsf{25\% health}$ heals you for $\color{#7eb686}\textsf{50\%}$ $\color{#555555}\textsf{(+7\% per stack, hyperbolic)}$ $\color{#7eb686}\textsf{health}$. Recharges after a $\color{#319ad2}\textsf{4}$ $\color{#555555}\textsf{(-20\% per stack, hyperbolic)}$ $\color{#319ad2}\textsf{minute}$ cooldown, or $\color{#319ad2}\textsf{upon entering a new stage}$.</p></td>
         </tr>
     </tbody>
     <tbody>
