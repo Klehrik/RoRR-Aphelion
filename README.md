@@ -1,6 +1,8 @@
 Content mod that currently adds 16 items and 3 equipment.  
 Includes unlockable achievements for some of them.  
 
+You can find the list of items [here](https://github.com/Klehrik/RoRR-Aphelion/wiki/Content) (if you wish).  
+
 Not tested in online multiplayer; support will come in a future update (possibly).  
 
 Also check out [CaseysContent](https://thunderstore.io/c/risk-of-rain-returns/p/TeamCC/CaseysContent/) and [BreathingUnderwater](https://thunderstore.io/c/risk-of-rain-returns/p/Groove_Salad/BreathingUnderwater/)!
