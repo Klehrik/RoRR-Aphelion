@@ -158,7 +158,7 @@ Close this page if you would like to unlock and learn what each item does for yo
     <tbody>
         <tr>
             <td align="center"><img src="https://github.com/user-attachments/assets/90366deb-7892-474a-a698-ff52934c2131"></td>
-            <td align="center"><p>$\color{#d96635}\textsf{Stimulants}$</p></td>
+            <td align="center"><p>$\color{#d96635}\textsf{Stimulants (30s)}$</p></td>
             <td align="center">Provides a temporary feeling of invincibility.</td>
             <td align="center"><p>Gain $\color{#7eb686}\textsf{65\% barrier}$ and $\color{#319ad2}\textsf{+40\% movement speed}$ for $\color{#efd27b}\textsf{5 seconds}$.</p></td>
         </tr>
@@ -166,7 +166,7 @@ Close this page if you would like to unlock and learn what each item does for yo
     <tbody>
         <tr>
             <td align="center"><img src="https://github.com/user-attachments/assets/f3153b88-66ce-4a0f-9889-9625abd2c07a"></td>
-            <td align="center"><p>$\color{#d96635}\textsf{Magic Dagger}$</p></td>
+            <td align="center"><p>$\color{#d96635}\textsf{Magic Dagger (45s)}$</p></td>
             <td align="center">Freeze enemies in front of you for 6 seconds.</td>
             <td align="center"><p>Release a burst of $\color{#319ad2}\textsf{runic ice}$, dealing $\color{#efd27b}\textsf{250\% damage}$ and $\color{#319ad2}\textsf{freezing}$ $\color{#efd27b}\textsf{all enemies in front of you}$ for $\color{#319ad2}\textsf{6 seconds}$.</p></td>
         </tr>
@@ -174,7 +174,7 @@ Close this page if you would like to unlock and learn what each item does for yo
     <tbody>
         <tr>
             <td align="center"><img src="https://github.com/user-attachments/assets/08bc008a-e55a-456e-b1f6-6ba8db004a80"></td>
-            <td align="center"><p>$\color{#d96635}\textsf{Shattered Glass}$</p></td>
+            <td align="center"><p>$\color{#d96635}\textsf{Shattered Glass (Passive)}$</p></td>
             <td align="center">Gain strength and fragility when held.</td>
             <td align="center"><p>$\color{#efd27b}\textsf{Increase damage by 50\%}$ but $\color{#cf6666}\textsf{decrease maximum health by 33\%}$ while held.</p></td>
         </tr>
