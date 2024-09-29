@@ -112,7 +112,7 @@ Close this page if you would like to unlock and learn what each item does for yo
             <td align="center"><img src="https://github.com/user-attachments/assets/88bb5015-a2cd-4669-80f0-260ef5f0e293"></td>
             <td align="center"><p>$\color{#75b458}\textsf{Relic Guard}$</p></td>
             <td align="center">Gain a small shield. Fortify yourself temporarily when it breaks.</td>
-            <td align="center"><p>Gain a $\color{#319ad2}\textsf{20}$ $\color{#555555}\textsf{(+20 per stack)}$ $\color{#319ad2}\textsf{health shield}$. On shield break, gain $\color{#7eb686}\textsf{barrier}$ equal to $\color{#efd27b}\textsf{50\%}$ $\color{#555555}\textsf{(+25\% per stack)}$ of your $\color{#319ad2}\textsf{maximum shield}$.</p></td>
+            <td align="center"><p>Gain a $\color{#319ad2}\textsf{20}$ $\color{#555555}\textsf{(+20 per stack)}$ $\color{#319ad2}\textsf{health shield}$. On shield break, gain $\color{#7eb686}\textsf{barrier}$ equal to $\color{#efd27b}\textsf{60\%}$ $\color{#555555}\textsf{(+20\% per stack)}$ of your $\color{#319ad2}\textsf{maximum shield}$.</p></td>
         </tr>
     </tbody>
     <tbody>
