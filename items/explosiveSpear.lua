@@ -63,7 +63,7 @@ obj:onCreate(function(self)
     -- Cloth physics
     selfData.nodes = {}
     local prev = nil
-    for i = 20, 1, -1 do
+    for i = 1, 20 do
         local node = {
             x = self.x,
             y = self.y,
