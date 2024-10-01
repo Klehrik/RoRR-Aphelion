@@ -2,6 +2,9 @@
 * Relic Guard
     * First stack: 60%
     * Stacking: +20%
+* Explosive Spear : Visual changes
+    * Cloth physics
+    * 
 
 ### v1.1.4
 * Added now-required IDs to Actor callbacks.

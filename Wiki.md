@@ -14,7 +14,8 @@ red    - c9273d
 orange - d96635
 -->
 
-Close this page if you would like to unlock and learn what each item does for yourself in-game.
+Close this page if you would like to unlock and learn what each item does for yourself in-game.  
+(This page does not render properly on mobile for some reason.)  
 
 <br>
 
