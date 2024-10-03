@@ -51,44 +51,13 @@ state:onStep(function(actor, data)
         actor.value:sound_play_at(gm.constants.wGuardDeathOLD, 0.25, 1.85 + gm.random(0.15), actor.x, actor.y, nil)
         actor.value:sound_play_at(gm.constants.wBullet2, 1.0, 1.0, actor.x, actor.y, nil)
 
-        actor:fire_bullet(
-            actor.x, actor.y - 8,
-            1400, 90 - (90 * gm.sign(actor.image_xscale)),
-            actor:get_active_skill(Skill.SLOT.secondary).damage, nil, nil,
-            nil, gm.constants.sSparks15
+        local d = actor:fire_bullet(
+            actor.x, actor.y,
+            1400, actor.value:skill_util_facing_direction(),
+            actor:get_active_skill(Skill.SLOT.secondary).damage, nil,
+            gm.constants.sSparks15
         )
-
-        local xstart = actor.x + (16.0 * gm.sign(actor.image_xscale))
-        local ystart = actor.y - 8
-        local xend = actor.x + (1400.0 * gm.sign(actor.image_xscale))
-        local yend = actor.y - 8
-        local hit = gm.collision_line_advanced_bullet(xstart, ystart, xend, yend, true, false)
-        if Instance.exists(hit) then
-            xend = hit.bbox_left
-            if actor.x > hit.x then xend = hit.bbox_right end
-        end
-
-        local tracer = Object.find("ror-efLineTracer"):create(xstart, ystart)
-        tracer.xend = xend
-        tracer.yend = yend
-        tracer.bm = 1.0
-        tracer.rate = 0.15
-        tracer.width = 1.0
-        tracer.sprite_index = 3682.0
-        tracer.image_blend = 4434400.0
-
-        local tracer = Object.find("ror-efBanditTracer"):create(xstart, ystart)
-        tracer.xend = xend
-        tracer.yend = yend
-        tracer.sprite_index = gm.constants.sBanditTracer
-        tracer.blend_1 = 7719114.0
-        tracer.blend_2 = 8421504.0
-        tracer.blend_f = 1.0
-        tracer.blend_rate = 0.5
-        tracer.bm = 0.0
-        tracer.max_rate = 0.5
-        tracer.rate = 0.01
-        tracer.width = 2.0
+        d.tracer_kind = 19
     end
 
     -- Skip end of animation if queueing another bullet
@@ -101,7 +70,7 @@ state:onStep(function(actor, data)
     actor.value:skill_util_exit_state_on_anim_end()
 end)
 
-Actor:onPreStep(function(actor)
+Actor:onPreStep("aphelion-banditUnload", function(actor)
     local actorData = actor:get_data("banditUnload")
     if actorData.just_used and actorData.just_used > 0 then
         actorData.just_used = actorData.just_used - 1
@@ -109,8 +78,44 @@ Actor:onPreStep(function(actor)
     end
 end)
 
-Actor:onKill(function(actor, damager)
+Actor:onKill("aphelion-banditUnload", function(actor, damager)
     if actor:get_active_skill(Skill.SLOT.secondary).skill_id == skill.value then
         actor.value:actor_skill_add_stock(actor.value, 1, false, 1)     -- actor, slot, ignore cap, raw value
     end
 end)
+
+
+
+-- UNUSED
+
+-- local xstart = actor.x + (16.0 * gm.sign(actor.image_xscale))
+-- local ystart = actor.y - 8
+-- local xend = actor.x + (1400.0 * gm.sign(actor.image_xscale))
+-- local yend = actor.y - 8
+-- local hit = gm.collision_line_advanced_bullet(xstart, ystart, xend, yend, true, false)
+-- if Instance.exists(hit) then
+--     xend = hit.bbox_left
+--     if actor.x > hit.x then xend = hit.bbox_right end
+-- end
+
+-- local tracer = Object.find("ror-efLineTracer"):create(xstart, ystart)
+-- tracer.xend = xend
+-- tracer.yend = yend
+-- tracer.bm = 1.0
+-- tracer.rate = 0.15
+-- tracer.width = 1.0
+-- tracer.sprite_index = 3682.0
+-- tracer.image_blend = 4434400.0
+
+-- local tracer = Object.find("ror-efBanditTracer"):create(xstart, ystart)
+-- tracer.xend = xend
+-- tracer.yend = yend
+-- tracer.sprite_index = gm.constants.sBanditTracer
+-- tracer.blend_1 = 7719114.0
+-- tracer.blend_2 = 8421504.0
+-- tracer.blend_f = 1.0
+-- tracer.blend_rate = 0.5
+-- tracer.bm = 0.0
+-- tracer.max_rate = 0.5
+-- tracer.rate = 0.01
+-- tracer.width = 2.0

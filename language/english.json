@@ -207,7 +207,7 @@
 
         "banditUnload" : {
             "name" : "Unload",
-            "description" : "Hold to cycle through a cylinder for <y>250% damage per shot</c>. <b>Gain rounds by killing enemies or after 4 seconds. Hold up to 6.</c>"
+            "description" : "Hold to cycle through a cylinder for <y>250% damage per shot</c>. \n<b>Gain rounds by killing enemies or after 4 seconds. Hold up to 6.</c>"
         }
     },
 

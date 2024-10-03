@@ -16,7 +16,7 @@ function __initialize()
     local folders = {
         "items",
         "equipment",
-        -- "skills"
+        "skills"
     }
     for _, folder in ipairs(folders) do
         local names = path.get_files(PATH..folder)
