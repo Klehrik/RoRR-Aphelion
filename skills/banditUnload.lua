@@ -7,7 +7,7 @@ skill:set_skill_icon(gm.constants.sBanditSkills, 8)
 skill:set_skill_properties(3.0, 3 *60)
 skill:set_skill_stock(6, 6, true, 1)
 skill:set_skill_settings(
-    true, 0, 0,
+    true, false, 0,
     true, true,
     false, false,
     true
