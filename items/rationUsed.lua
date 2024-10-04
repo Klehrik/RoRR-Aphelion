@@ -17,8 +17,8 @@ local function restore_stacks(actor)
     local temp      = actor:item_stack_count(item_used, Item.TYPE.temporary)
     actor:item_remove(item_used, normal, false)
     actor:item_remove(item_used, temp, true)
-    gm.item_give_internal(actor.value, item.value, normal, false)
-    gm.item_give_internal(actor.value, item.value, temp, true)
+    GM.item_give_internal(actor, item, normal, false)
+    GM.item_give_internal(actor, item, temp, true)
 end
 
 item:onStep(function(actor, stack)

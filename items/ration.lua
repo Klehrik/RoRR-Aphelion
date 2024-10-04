@@ -1,7 +1,7 @@
 -- Ration
 
 local sprite = Resources.sprite_load("aphelion", "ration", PATH.."assets/sprites/ration.png", 1, 16, 16)
-local sound = Resources.sfx_load(PATH.."assets/sounds/ration.ogg")
+local sound = Resources.sfx_load("aphelion", "ration", PATH.."assets/sounds/ration.ogg")
 
 local item = Item.new("aphelion", "ration")
 item:set_sprite(sprite)
@@ -16,8 +16,8 @@ item:onPickup(function(actor, stack)
     local temp      = actor:item_stack_count(item_used, Item.TYPE.temporary)
     actor:item_remove(item_used, normal, false)
     actor:item_remove(item_used, temp, true)
-    gm.item_give_internal(actor.value, item.value, normal, false)   -- Check if this still works in MP when the time comes
-    gm.item_give_internal(actor.value, item.value, temp, true)
+    GM.item_give_internal(actor, item, normal, false)   -- Check if this still works in MP when the time comes
+    GM.item_give_internal(actor, item, temp, true)
 end)
 
 item:onDamaged(function(actor, damager, stack)
@@ -33,7 +33,7 @@ item:onDamaged(function(actor, damager, stack)
         local temp      = actor:item_stack_count(item, Item.TYPE.temporary)
         actor:item_remove(item, normal, false)
         actor:item_remove(item, temp, true)
-        gm.item_give_internal(actor.value, item_used.value, normal, false)
-        gm.item_give_internal(actor.value, item_used.value, temp, true)
+        GM.item_give_internal(actor, item_used, normal, false)
+        GM.item_give_internal(actor, item_used, temp, true)
     end
 end)

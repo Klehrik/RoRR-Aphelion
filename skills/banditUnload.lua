@@ -4,7 +4,7 @@
 
 local skill = Skill.new("aphelion", "banditUnload")
 skill:set_skill_icon(gm.constants.sBanditSkills, 8)
-skill:set_skill_properties(2.5, 4 *60)
+skill:set_skill_properties(3.0, 3 *60)
 skill:set_skill_stock(6, 6, true, 1)
 skill:set_skill_settings(
     true, 0, 0,
@@ -12,7 +12,6 @@ skill:set_skill_settings(
     false, false,
     true
 )
-skill.require_key_press = false
 
 skill:onActivate(function(actor, skill, index)
     actor:enter_state(State.find("aphelion-banditUnload"))
@@ -29,48 +28,54 @@ local state = State.new("aphelion", "banditUnload")
 state:onEnter(function(actor, data)
     actor.sprite_index = gm.constants.sBanditShoot4
     actor.image_index = 0
-    actor.image_speed = 0.22
+    actor.image_speed = 0.28    -- 0.22 is special use speed
 
     if actor:get_data("banditUnload").just_used then actor.image_index = 4
-    else actor.value:sound_play_at(gm.constants.wBanditShoot4_1, 1.0, 1.0, actor.x, actor.y, nil)
+    else actor:sound_play_at(gm.constants.wBanditShoot4_1, 1.0, 1.0, actor.x, actor.y, nil)
     end
 end)
 
 state:onExit(function(actor, data)
     actor:get_data("banditUnload").just_used = 2
 
-    data.shot = 0.0
-    actor.value:skill_util_unlock_cooldown(skill.value)
+    data.shot = nil
+    actor:skill_util_unlock_cooldown(skill)
 end)
 
 state:onStep(function(actor, data)
-    if actor.image_index >= 5 and data.shot ~= 1.0 then
-        data.shot = 1.0
+    if actor.image_index >= 5 and not data.shot then
+        data.shot = true
         
-        actor.value:sound_play_at(gm.constants.wBanditShoot4_2, 1.0, 1.0, actor.x, actor.y, nil)
-        actor.value:sound_play_at(gm.constants.wGuardDeathOLD, 0.25, 1.85 + gm.random(0.15), actor.x, actor.y, nil)
-        actor.value:sound_play_at(gm.constants.wBullet2, 1.0, 1.0, actor.x, actor.y, nil)
+        actor:sound_play_at(gm.constants.wBanditShoot4_2, 1.0, 1.0, actor.x, actor.y, nil)
+        actor:sound_play_at(gm.constants.wGuardDeathOLD, 0.25, 1.85 + gm.random(0.15), actor.x, actor.y, nil)
+        actor:sound_play_at(gm.constants.wBullet2, 1.0, 1.0, actor.x, actor.y, nil)
+
+        local last = actor:get_active_skill(Skill.SLOT.secondary).stock <= 0
+
+        local pierce = nil
+        if last then pierce = 0.65 end
 
         local d = actor:fire_bullet(
             actor.x, actor.y,
-            1400, actor.value:skill_util_facing_direction(),
-            actor:get_active_skill(Skill.SLOT.secondary).damage, nil,
-            gm.constants.sSparks15
+            1400, actor:skill_util_facing_direction(),
+            actor:get_active_skill(Skill.SLOT.secondary).damage, pierce,
+            gm.constants.sSparks15, Damager.TRACER.bandit2
         )
-        d.tracer_kind = 19
+        
+        if last then d:set_stun(1.2) end
     end
 
     -- Skip end of animation if queueing another bullet
-    if actor.x_skill and actor.image_index >= 7 and actor:get_active_skill(Skill.SLOT.secondary).stock >= 1 then
+    if actor.x_skill and actor.image_index >= 6.5 and actor:get_active_skill(Skill.SLOT.secondary).stock >= 1 then
         actor.image_index = 9
     end
 
-    actor.value:skill_util_lock_cooldown(skill.value)
-    actor.value:skill_util_apply_friction()
-    actor.value:skill_util_exit_state_on_anim_end()
+    actor:skill_util_lock_cooldown(skill)
+    actor:skill_util_apply_friction()
+    actor:skill_util_exit_state_on_anim_end()
 end)
 
-Actor:onPreStep("aphelion-banditUnload", function(actor)
+Actor:onPreStep("aphelion-banditUnload_onPreStep", function(actor)
     local actorData = actor:get_data("banditUnload")
     if actorData.just_used and actorData.just_used > 0 then
         actorData.just_used = actorData.just_used - 1
@@ -78,9 +83,9 @@ Actor:onPreStep("aphelion-banditUnload", function(actor)
     end
 end)
 
-Actor:onKill("aphelion-banditUnload", function(actor, damager)
+Actor:onKill("aphelion-banditUnload_onKill", function(actor, damager)
     if actor:get_active_skill(Skill.SLOT.secondary).skill_id == skill.value then
-        actor.value:actor_skill_add_stock(actor.value, 1, false, 1)     -- actor, slot, ignore cap, raw value
+        actor:actor_skill_add_stock(actor, 1, false, 1)     -- actor, slot, ignore cap, raw value
     end
 end)
 

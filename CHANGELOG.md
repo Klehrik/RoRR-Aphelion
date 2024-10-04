@@ -1,10 +1,13 @@
-### v ?
-* Relic Guard
-    * First stack: 60%
-    * Stacking: +20%
+### v1.2.0 ?
+This update adds 2 skills.
+* Added Unload (Bandit secondary)
+* Added Stealth Hunting (Huntress secondary)
 * Explosive Spear : Visual changes
     * Cloth physics
-    * 
+* Relic Guard
+    * First stack: 50% -> 60%
+    * Stacking: +25% -> +20%
+* Shattered Glass : No longer appears with Artifact of Enigma or in equipment activators.
 
 ### v1.1.4
 * Added now-required IDs to Actor callbacks.

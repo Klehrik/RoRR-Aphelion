@@ -23,8 +23,8 @@ end)
 -- Object
 
 local sprite = gm.constants.sChefIce
-local soundWindup = Resources.sfx_load(PATH.."assets/sounds/magicDaggerWindup.ogg")
-local soundFreeze = Resources.sfx_load(PATH.."assets/sounds/magicDaggerFreeze.ogg")
+local soundWindup = Resources.sfx_load("aphelion", "magicDaggerWindup", PATH.."assets/sounds/magicDaggerWindup.ogg")
+local soundFreeze = Resources.sfx_load("aphelion", "magicDaggerFreeze", PATH.."assets/sounds/magicDaggerFreeze.ogg")
 
 local obj = Object.new("aphelion", "magicDaggerFreeze")
 obj:set_sprite(sprite)
