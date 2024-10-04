@@ -53,7 +53,7 @@ state:onStep(function(actor, data)
         local last = actor:get_active_skill(Skill.SLOT.secondary).stock <= 0
 
         local pierce = nil
-        if last then pierce = 0.65 end
+        if last then pierce = 0.6 end
 
         local d = actor:fire_bullet(
             actor.x, actor.y,
