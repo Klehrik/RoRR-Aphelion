@@ -1,7 +1,7 @@
 ### v1.2.0 ?
 This update adds 2 skills.
 * Added Unload (Bandit secondary)
-* Added Stealth Hunting (Huntress secondary)
+* Added Stealth Hunting (Huntress special)
 * Explosive Spear : Visual changes
     * Cloth physics
 * Relic Guard
