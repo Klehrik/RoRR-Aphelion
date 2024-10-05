@@ -11,14 +11,17 @@ end)
 
 local function restore_stacks(actor)
     -- Restore all used Rations
-    local item      = Item.find("aphelion-ration")
-    local item_used = Item.find("aphelion-rationUsed")
-    local normal    = actor:item_stack_count(item_used, Item.TYPE.real)
-    local temp      = actor:item_stack_count(item_used, Item.TYPE.temporary)
-    actor:item_remove(item_used, normal, false)
-    actor:item_remove(item_used, temp, true)
-    GM.item_give_internal(actor, item, normal, false)
-    GM.item_give_internal(actor, item, temp, true)
+    local item_ready = Item.find("aphelion-ration")
+    local normal    = actor:item_stack_count(item, Item.TYPE.real)
+    local temp      = actor:item_stack_count(item, Item.TYPE.temporary)
+    if normal > 0 then
+        actor:item_remove(item, normal, false)
+        actor:item_give(item_ready, normal, false)
+    end
+    if temp > 0 then
+        actor:item_remove(item, temp, true)
+        actor:item_give(item_ready, temp, true)
+    end
 end
 
 item:onStep(function(actor, stack)

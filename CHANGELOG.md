@@ -2,6 +2,7 @@
 This update adds 2 skills.
 * Added Unload (Bandit secondary)
 * Added Stealth Hunting (Huntress special)
+* Ration : Fixed stacking bug with temporary stacks.
 * Explosive Spear : Visual changes
     * Cloth physics
 * Relic Guard
