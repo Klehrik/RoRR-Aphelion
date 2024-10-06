@@ -63,7 +63,7 @@
         "sixShooter" : {
             "name" : "Six Shooter",
             "pickup" : "Every 6 basic attacks critically strike.",
-            "description" : "Every <b>6th basic attack</c> gains <y>+100% critical chance</c>. <c_stack>Increases 6th basic attack damage by 25% per stack.</c>",
+            "description" : "Every <b>6th basic attack</c> gains <y>+100% critical chance</c>. <c_stack>Increases 6th basic attack damage by 33% per stack.</c>",
             "destination" : "Apt. #302,\n12th District,\nNeo Metro,\nVenus",
             "date" : "8/13/2056",
             "story" : "An antique from days past. The cylinder is somewhat damaged, and black powder is pretty hard (and expensive!) to get nowadays, but regardless it should be a nice addition to your collection if you aren't planning on firing it.",
@@ -255,7 +255,7 @@
         },
         "whimsicalStar" : {
             "name" : "Spur",
-            "description" : "Commando: Kill 7 enemies with a single use of Full Metal Jacket."
+            "description" : "Commando: Kill 9 enemies with a single use of Full Metal Jacket."
         },
 
         "magicDagger" : {

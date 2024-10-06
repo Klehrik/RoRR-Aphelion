@@ -220,7 +220,7 @@ Actor:onPostAttack("aphelion-whimsicalStarUnlock_3", function(actor, damager)
     local actorData = actor:get_data("whimsicalStar")
 
     if not actorData.achievement_check then return end
-    if damager.kill_number >= 7 then
+    if damager.kill_number >= 9 then
         item:progress_achievement()
     end
 end)
