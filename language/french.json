@@ -2,7 +2,7 @@
     "item" : {
         "ballisticVest" : {
             "name" : "Gilet pare-balles",
-            "pickup" : "Réduit les dégâts subis de 14 % et gagnez un petit bouclier.",
+            "pickup" : "Réduit les dégâts subis de 5 % et gagnez un petit bouclier.",
             "description" : "Améliore <g>l'armure</c> de <g>5 <c_stack>(+5 par cumul)</c> et gagnez un <b>bouclier</c> de <b>20 <c_stack>(+15 par cumul) <b>PV</c>.",
             "destination" : "1904,\nComté de Baron,\nMars",
             "date" : "9/03/2056",
