@@ -14,7 +14,7 @@ end)
 item:onShieldBreak(function(actor, stack)
     -- TODO for later: Apply to all nearby allies
     -- and change description wording
-    actor:add_barrier(actor.maxshield * (0.25 + (stack * 0.25)))
+    actor:add_barrier(actor.maxshield * (0.4 + (stack * 0.2)))
 end)
 
 

@@ -63,7 +63,7 @@
         "sixShooter" : {
             "name" : "Six Shooter",
             "pickup" : "Every 6 basic attacks critically strike.",
-            "description" : "Every <b>6th basic attack</c> gains <y>+100% critical chance</c>. <c_stack>Increases 6th basic attack damage by 25% per stack.</c>",
+            "description" : "Every <b>6th basic attack</c> gains <y>+100% critical chance</c>. <c_stack>Increases 6th basic attack damage by 33% per stack.</c>",
             "destination" : "Apt. #302,\n12th District,\nNeo Metro,\nVenus",
             "date" : "8/13/2056",
             "story" : "An antique from days past. The cylinder is somewhat damaged, and black powder is pretty hard (and expensive!) to get nowadays, but regardless it should be a nice addition to your collection if you aren't planning on firing it.",
@@ -108,7 +108,7 @@
         "relicGuard" : {
             "name" : "Relic Guard",
             "pickup" : "Gain a small shield. Fortify yourself temporarily when it breaks.",
-            "description" : "Gain a <b>20 <c_stack>(+20 per stack) <b>health shield</c>. On shield break, gain <g>barrier</c> equal to <y>50% <c_stack>(+25% per stack)</c> of your <b>maximum shield</c>.",
+            "description" : "Gain a <b>20 <c_stack>(+20 per stack) <b>health shield</c>. On shield break, gain <g>barrier</c> equal to <y>60% <c_stack>(+20% per stack)</c> of your <b>maximum shield</c>.",
             "destination" : "Bldg. 1\n3 Wry Ave.\nTheworl,\nTitan",
             "date" : "11/14/2056",
             "story" : "Found this stashed in Thorton's attic - somehow he managed to hide a shield of this size from the rest of us during that expedition. I didn't find anything else in there, but regardless he is no longer a part of the team. The shield itself is surprisingly solid, at least compared to the other one, but I would still be careful with handling it.",
@@ -127,7 +127,7 @@
         "stiletto" : {
             "name" : "Stiletto",
             "pickup" : "Critical chance increases critical damage.",
-            "description" : "Gain <y>10% <c_stack>(+10% per stack) <y>critical chance</c>. Every <y>1% critical chance</c> increases <y>critical damage</c> by <y>1% <c_stack>(+0.5% per stack).",
+            "description" : "Gain <y>10% <c_stack>(+10% per stack) <y>critical chance</c>. Every <y>1% critical chance</c> increases <y>critical damage</c> by <y>1% <c_stack>(+0.5% per stack)</c>.",
             "destination" : "Violet Heights,\nElderly Home,\nVenus",
             "date" : "01/04/2057",
             "story" : "I might know why you want this, and if I am correct, I pray you ordered the wrong kind.",
@@ -207,7 +207,26 @@
 
         "banditUnload" : {
             "name" : "Unload",
-            "description" : "Hold to cycle through a cylinder for <y>250% damage per shot</c>. <b>Gain rounds by killing enemies or after 4 seconds. Hold up to 6.</c>"
+            "description" : "Hold to cycle through a cylinder for <y>300% damage per round</c>. \n<y>Pierces</c> and <y>stuns</c> on the <y>last shot</c>. \n<b>Gain rounds by killing enemies or after 3 seconds. Hold up to 6.</c>"
+        },
+
+        "handOverdrive" : {
+            "name" : "OVERDRIVE",
+            "description" : "<y>CHARGE FORWARD</c> FOR <y>350% DAMAGE</c> AND GAIN <g>100 ARMOR</c>."
+        },
+
+        "loaderGrapple" : {
+            "name" : "Grapple",
+            "description" : "Pull an enemy <y>towards you</c> and <y>perform a takedown</c>, <y>stunning</c> for <y>500% damage</c>."
+        },
+
+        "sniperBlast" : {
+            "name" : "Spotter: BLAST",
+            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. Hitting the target causes a <y>small explosion</c> for <y>50% TOTAL damage</c>."
+        },
+        "sniperBlastBoosted" : {
+            "name" : "Spotter: DETONATE",
+            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. Hitting the target causes a <y>small explosion</c> for <y>50% TOTAL damage</c>, <y>stunning</c> enemies."
         }
     },
 
@@ -236,7 +255,7 @@
         },
         "whimsicalStar" : {
             "name" : "Spur",
-            "description" : "Commando: Kill 7 enemies with a single use of Full Metal Jacket."
+            "description" : "Commando: Kill 9 enemies with a single use of Full Metal Jacket."
         },
 
         "magicDagger" : {

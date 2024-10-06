@@ -1,7 +1,7 @@
 -- Explosive Spear
 
 local sprite = Resources.sprite_load("aphelion", "explosiveSpear", PATH.."assets/sprites/explosiveSpear.png", 1, 16, 16)
-local sound = Resources.sfx_load(PATH.."assets/sounds/explosiveSpearThrow.ogg")
+local sound = Resources.sfx_load("aphelion", "explosiveSpearThrow", PATH.."assets/sounds/explosiveSpearThrow.ogg")
 
 local item = Item.new("aphelion", "explosiveSpear")
 item:set_sprite(sprite)
@@ -30,7 +30,7 @@ item:onHit(function(actor, victim, damager, stack)
     instData.damage = damager.damage * (1.0 + (actor:item_stack_count(item) * 1.5))
 
     -- Apply cooldown
-    actor:buff_apply(cooldownBuff, 1, 10)
+    actor:buff_apply(cooldownBuff, 1, 10)   -- Stack count is seconds
 end)
 
 
@@ -38,14 +38,16 @@ end)
 -- Object
 
 local sprite = Resources.sprite_load("aphelion", "explosiveSpearProjectile", PATH.."assets/sprites/explosiveSpearProjectile.png", 1, 36, 3, 1, -20, -5, -3, 3)
-local soundHit = Resources.sfx_load(PATH.."assets/sounds/explosiveSpearHit.ogg")
-local soundExplode = Resources.sfx_load(PATH.."assets/sounds/explosiveSpearExplode.ogg")
+local soundHit = Resources.sfx_load("aphelion", "explosiveSpearHit", PATH.."assets/sounds/explosiveSpearHit.ogg")
+local soundExplode = Resources.sfx_load("aphelion", "explosiveSpearExplode", PATH.."assets/sounds/explosiveSpearExplode.ogg")
 
 local obj = Object.new("aphelion", "explosiveSpearObject")
 obj:set_sprite(sprite)
 obj:set_depth(-1)
 
 obj:onCreate(function(self)
+    self.image_alpha = 0
+
     local selfData = self:get_data()
 
     selfData.vsp = -2.0
@@ -57,6 +59,25 @@ obj:onCreate(function(self)
     selfData.hit_offset_y = 0
 
     selfData.tick = 85
+
+    -- Cloth physics
+    selfData.nodes = {}
+    local prev = nil
+    for i = 1, 20 do
+        local node = {
+            x = self.x,
+            y = self.y,
+            xPrev = self.x,
+            yPrev = self.y,
+            wind = 0.25,
+            grav = 0.8,
+            length = 1,
+            size = 3
+        }
+        if prev then node.parent = prev end
+        prev = node
+        table.insert(selfData.nodes, node)
+    end
 end)
 
 obj:onStep(function(self)
@@ -148,6 +169,64 @@ end)
 obj:onDraw(function(self)
     local selfData = self:get_data()
 
+    -- Spear
+    local dir = gm.point_direction(0, 0, selfData.hsp, selfData.vsp)
+    local length = 34
+    local tip = 6
+    local cols = {Color(0x424647), Color(0x25272b)}
+    for i = 1, 0, -1 do
+        local c = cols[i + 1]
+        gm.draw_line_width_color(
+            self.x + (gm.dcos(dir) * tip) + (-4 * gm.sign(selfData.hsp) * i), self.y - (gm.dsin(dir) * tip) + i,
+            self.x + (gm.dcos(dir - 180) * length) + (-4 * gm.sign(selfData.hsp) * i), self.y - (gm.dsin(dir - 180) * length) + i,
+            2, c, c)
+    end
+
+    -- Cloth : Move
+    for _, n in ipairs(selfData.nodes) do
+        -- Starting node
+        if not n.parent then
+            n.x = self.x
+            n.y = self.y
+
+        else
+            -- Calculate velocities
+            local vx = (n.x - n.xPrev) * 0.2
+            local vy = (n.y - n.yPrev) * 0.4
+
+            -- Update saved previous position
+            n.xPrev = n.x
+            n.yPrev = n.y
+
+            -- Apply velocities
+            local wind = math.abs(gm.dsin(gm.variable_global_get("current_time")/10) * n.wind)
+            n.x = n.x + vx + wind
+            n.y = n.y + vy + n.grav
+        end
+    end
+
+    -- Cloth : Apply constraints
+	for _, n in ipairs(selfData.nodes) do
+        if n.parent then
+            local dist = gm.point_distance(n.x, n.y, n.parent.x, n.parent.y)
+            if dist > n.length then
+                local dir = gm.point_direction(n.parent.x, n.parent.y, n.x, n.y)
+                n.x = n.parent.x + (gm.dcos(dir) * n.length)
+                n.y = n.parent.y - (gm.dsin(dir) * n.length)
+            end
+        end
+	end
+
+    -- Cloth : Draw
+    local cols = {Color(0xff004d), Color(0xbe1250)}
+    for i = 1, 0, -1 do
+        for _, n in ipairs(selfData.nodes) do
+            local c = cols[i + 1]
+            gm.draw_circle_color(n.x, n.y + i, n.size, c, c, false)
+        end
+    end
+
+    -- Explosion Radius
     if selfData.flag_hit then
         -- Show explosion radius
         local radius = Helper.ease_out(math.min(85.0 - selfData.tick, 45.0) / 45.0) * 100

@@ -1,3 +1,16 @@
+### v1.1.5
+* Added namespace-identifier to Resource.sfx_load.
+* Ration : Fixed stacking bug with temporary stacks.
+* Explosive Spear : Visual changes
+    * Cloth physics
+* Relic Guard
+    * First stack: 50% -> 60%
+    * Stacking: +25% -> +20%
+* Six Shooter : Stack 6th shot damage bonus: +25% -> +33%
+* Stiletto : Minor sprite update
+* Whimsical Star : Unlock requirement: 7 -> 9
+* Shattered Glass : No longer appears with Artifact of Enigma or in equipment activators.
+
 ### v1.1.4
 * Added now-required IDs to Actor callbacks.
 

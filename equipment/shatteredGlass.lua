@@ -4,7 +4,7 @@ local sprite = Resources.sprite_load("aphelion", "shatteredGlass", PATH.."assets
 
 local equip = Equipment.new("aphelion", "shatteredGlass")
 equip:set_sprite(sprite)
-equip:set_loot_tags(Item.LOOT_TAG.category_damage)
+equip:set_loot_tags(Item.LOOT_TAG.category_damage, Item.LOOT_TAG.equipment_blacklist_enigma, Item.LOOT_TAG.equipment_blacklist_activator)
 equip:set_passive(true)
 
 equip:onPostStatRecalc(function(actor)
