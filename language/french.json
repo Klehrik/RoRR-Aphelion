@@ -8,6 +8,275 @@
             "date" : "9/03/2056",
             "story" : "",
             "priority" : "Standard"
+        },
+        "heartLocket" : {
+            "name" : "Médaillon cœur",
+            "pickup" : "Régénère votre PV en activant un objet.",
+            "description" : "Activer un objet régénère <g>9 % <c_stack>(+4,5 % par cumul, hyperbolique)</c> de votre <g>PV</c>.",
+            "destination" : "Mon ami",
+            "date" : "7/30/2056",
+            "story" : "",
+            "priority" : "Standard"
+        },
+        "ration" : {
+            "name" : "Ration",
+            "pickup" : "",
+            "description" : "",
+            "destination" : "",
+            "date" : "4/30/2009",
+            "story" : "",
+            "priority" : "Standard"
+        },
+        "rationUsed" : {
+            "name" : "Ration",
+            "pickup" : "Cet objet se recharge.",
+            "description" : "Cet objet se recharge."
+        },
+
+
+
+        "ration_" : {
+            "name" : "Ration",
+            "pickup" : "Receive a large heal when in peril. Recharges over time.",
+            "description" : "Falling below <r>25% health</c> heals you for <g>50% <c_stack>(+7% per stack, hyperbolic) <g>health</c>. Recharges after a <b>4 <c_stack>(-20% per stack, hyperbolic) <b>minute</c> cooldown, or <b>upon entering a new stage</c>.",
+            "destination" : "Fort Shell,\nManhattan, NY,\nEarth",
+            "date" : "4/30/2009",
+            "story" : "12 boxes of quality-grade MREs for your boys, as requested. \n\nBe warned, they don't taste too good, or even passable -- they don't have any flavor at all actually. It's basically a large bland cookie, loaded up with all the nutrients you'll ever need.",
+            "priority" : "Standard"
+        },
+        "rottingBranch" : {
+            "name" : "Withered Branch",
+            "pickup" : "Chance to wither enemies on hit.",
+            "description" : "<y>15% <c_stack>(+10% per stack) <y>chance</c> on hit to <r>wither</c> an enemy. Each stack of <r>wither</c> deals <y>15% damage per 0.5 seconds</c>.",
+            "destination" : "Saury Cosmo,\nBeacon Post,\nSpace",
+            "date" : "9/16/2056",
+            "story" : "Sample from an infected tree in the Io Shield Plantation. The disease's spread is beginning to accelerate, and the locals are starting to get on edge. Make the analysis quick - we really want to nip this in the bud before it gets out of control, but we also can't burn out the entire plantation.",
+            "priority" : "Standard/Biological"
+        },
+        "calamariSkewers" : {
+            "name" : "Calamari Skewers",
+            "pickup" : "Receive a large heal after rapidly killing 4 enemies.",
+            "description" : "Killing <y>4</c> enemies within <y>1 second</c> heals you for <g>20 <c_stack>(+20 per stack) <g>health + <g>10% missing health</c>. Has a <b>2 second</c> cooldown.",
+            "destination" : "Ichiban Izakaya,\nGassé Commercial Lattice,\nEarth",
+            "date" : "03/22/2056",
+            "story" : "These are only resin models of the real thing, to be used in display cases and whatnot. Current advancements in materials and aromatics tech allows them to not only look, but feel, smell, and even taste the part of actual food, but don't be fooled. THEY'RE NOT EDIBLE. The resin used is non-toxic, so you won't die if you do, but don't come asking for a refund after one of your regulars reports a stomachache or something like that.",
+            "priority" : "Standard"
+        },
+        "silicaPacket" : {
+            "name" : "Silica Packet",
+            "pickup" : "Gain temporary items upon entering a new stage. Temporary items last longer.",
+            "description" : "Gain <y>2 <c_stack>(+1 per stack) <y>random temporary items</c> <b>upon entering a new stage</c>. <y>Temporary items</c> last for <b>18% <c_stack>(+12% per stack) <b>longer</c>.",
+            "destination" : "Suite 334,\nNautica Sector,\nNeptune",
+            "date" : "12/14/2056",
+            "story" : "I mean sure, I get having to preserve food, but stuffing a hundred of these in the package container ain't it. I can't even use any of this, but you sent so much that I can't bear to throw them out.",
+            "priority" : "Standard"
+        },
+
+        "sixShooter" : {
+            "name" : "Six Shooter",
+            "pickup" : "Every 6 basic attacks critically strike.",
+            "description" : "Every <b>6th basic attack</c> gains <y>+100% critical chance</c>. <c_stack>Increases 6th basic attack damage by 33% per stack.</c>",
+            "destination" : "Apt. #302,\n12th District,\nNeo Metro,\nVenus",
+            "date" : "8/13/2056",
+            "story" : "An antique from days past. The cylinder is somewhat damaged, and black powder is pretty hard (and expensive!) to get nowadays, but regardless it should be a nice addition to your collection if you aren't planning on firing it.",
+            "priority" : "<g>Priority</c>"
+        },
+        "barrierDamage" : {
+            "name" : "Bandana",
+            "pickup" : "Gain barrier out of combat. Deal increased damage while you have barrier.",
+            "description" : "Leaving combat for <y>5</c> seconds grants <g>barrier</c> equal to <g>8% health</c>. While barrier is active, your attacks deal <y>+18% <c_stack>(+9% per stack) <y>damage</c>.",
+            "destination" : "1803\nCombat Zone\nVenus",
+            "date" : "8/29/2056",
+            "story" : "I return to you what is rightfully yours. Remember your training, and the thrill of combat. Strike first, and hard - let your instincts guide you, to survival, to victory, and to bloodshed.",
+            "priority" : "<g>Priority</c>"
+        },
+        "crimsonScarf" : {
+            "name" : "Crimson Scarf",
+            "pickup" : "Critical chance is temporarily increased on kill.",
+            "description" : "Killing an enemy increases <y>critical chance</c> by <y>6%</c> for <b>5 <c_stack>(+1 per stack) <b>seconds</c>.",
+            "destination" : "Backalley Place,\nUnit 4-72,\nVenus",
+            "date" : "02/27/2056",
+            "story" : "Boss. Told you that this was the last job. Decided to grab a souvenir when the job was done. Ambushed on the way out. Did what had to be done. Casualties were unavoidable. Noticed my souvenir got sullied with blood. Started feeling... alive. Turns out one of the attacking party was still alive. Gave chase. It was.. easier? Sending in my \"souvenir\" for analysis. If you send it back, I'll do more jobs. This time, happily.",
+            "priority" : "<g>Priority</c>"
+        },
+        "obeliskShard" : {
+            "name" : "Obelisk Shard",
+            "pickup" : "Standing still accelerates your equipment cooldown.",
+            "description" : "Standing still for <y>2</c> seconds makes your <b>equipment cooldown</c> go down <b>40% <c_stack>(+30% per stack) <b>faster</c>.",
+            "destination" : "CI Investigations\n224 Grove Way,\nEarth",
+            "date" : "3/19/2056",
+            "story" : "You have no idea the lengths I had to go to so I could get my hands on one of these. The temple members are crazy enough to outsiders - I have no idea how you talked me into becoming an acolyte. The worst part is I had to walk around in that horrid garb in PUBLIC PLACES. What if SHE saw me? \n\nAnyways, after many trials and tribulations, here's one of those crystals they use. Try not to chant in [REDACTED] with it around; it starts glowing and making this god awful buzzing noise.",
+            "priority" : "<g>Priority</c>"
+        },
+        "explosiveSpear" : {
+            "name" : "Explosive Spear",
+            "pickup" : "Throw out an explosive spear on a high damage hit. Recharges over time.",
+            "description" : "Throw an <r>explosive spear</c> on a hit that deals <b>at least 200% damage</c>, <y>stunning</c> an enemy for <y>4x12% <c_stack>(+6% per stack) <y>TOTAL damage</c> and <y>exploding</c> for <y>250% <c_stack>(+150% per stack) <y>TOTAL damage</c> after a short delay. Has a <b>10 second</c> cooldown.",
+            "destination" : "<c_stack>Unmarked</c>",
+            "date" : "3/28/2017",
+            "story" : "<c_stack>Loaded UES Automated Translator (v12b)</c> \n<c_stack>> Analyzing data format... done.</c> \n<c_stack>> Decoding... done.</c> \n<c_stack>> Translating text... done.</c> \n<c_stack>> Resolving... done.</c> \n<c_stack>Success! </c> \n\n<c_stack>-----========== TRANSLATION LOG ==========-----</c> \n\n1632.87 - PRIVATE \nThree Candid Embers, Shattered Stones \n\nTCE: One of my overseers spotted something interesting last cycle. \n\nTCE: I am sending the footage over to you right now. \n\nSS: ...that is an explosion. \n\nTCE: Right? Non-reusable, and shoddily-crafted, but an effective weapon nonetheless. \n\nTCE: Another tool, just like the \"lanterns\". \n\nTCE: It's a fascinating development for the species. I am curious to see what else they may come up with. \n\nSS: Are you going to watch them then? \n\nTCE: Yes. It's not like there is anything better to do. \n\n<c_stack>-----========== TRANSLATION END ==========-----</c> \n\n<y>Reviewer Notes:</c> \n<r>*</c> No destination label OR sender address. Where did this come from?",
+            "priority" : "<g>Priority</c>"
+        },
+        "relicGuard" : {
+            "name" : "Relic Guard",
+            "pickup" : "Gain a small shield. Fortify yourself temporarily when it breaks.",
+            "description" : "Gain a <b>20 <c_stack>(+20 per stack) <b>health shield</c>. On shield break, gain <g>barrier</c> equal to <y>60% <c_stack>(+20% per stack)</c> of your <b>maximum shield</c>.",
+            "destination" : "Bldg. 1\n3 Wry Ave.\nTheworl,\nTitan",
+            "date" : "11/14/2056",
+            "story" : "Found this stashed in Thorton's attic - somehow he managed to hide a shield of this size from the rest of us during that expedition. I didn't find anything else in there, but regardless he is no longer a part of the team. The shield itself is surprisingly solid, at least compared to the other one, but I would still be careful with handling it.",
+            "priority" : "<g>Priority/Fragile</c>"
+        },
+        "phiConstruct" : {
+            "name" : "Phi Construct",
+            "pickup" : "Gain a small shield and a defensive construct.",
+            "description" : "Gain a <b>20 <c_stack>(+20 per stack) <b>health shield</c> and a small <y>defensive construct</c> that <y>fires at nearby enemies</c> and <b>projectiles</c> for <y>60% <c_stack>(+15% per stack) <y>damage</c> every <y>0.8</c> seconds; fire rate <b>scales with maximum shield <c_stack>(+0.5% per point past 20 shield)</c>.",
+            "destination" : "Complex 3B,\nSaturn,\n???",
+            "date" : "6/4/2056",
+            "story" : "...?\n\nBOOTING...\n\nSCANNING SURROUNDINGS\n\nUNKNOWN PRESCENCE DETECTED\n\n...\n\nFAILED TO LOAD DIRECTIVES\n\n...\n\nRESETTING...\n\nESTABLISHING NEW DIRECTIVES\n\n...\n\nESCORTING FRIENDLY LIFEFORM",
+            "priority" : "<g>Field-found</c>"
+        },
+
+        "stiletto" : {
+            "name" : "Stiletto",
+            "pickup" : "Critical chance increases critical damage.",
+            "description" : "Gain <y>10% <c_stack>(+10% per stack) <y>critical chance</c>. Every <y>1% critical chance</c> increases <y>critical damage</c> by <y>1% <c_stack>(+0.5% per stack)</c>.",
+            "destination" : "Violet Heights,\nElderly Home,\nVenus",
+            "date" : "01/04/2057",
+            "story" : "I might know why you want this, and if I am correct, I pray you ordered the wrong kind.",
+            "priority" : "<r>High Priority</c>"
+        },
+        "whimsicalStar" : {
+            "name" : "Whimsical Star",
+            "pickup" : "Summon stars to protect you.",
+            "description" : "<y>3 <c_stack>(+2 per stack) <y>stars orbit erratically around you</c>, dealing <y>75% damage</c> on collision. Each star will also <b>intercept nearby projectiles</c>; this has a <b>1 second</c> cooldown.",
+            "destination" : "Complex B Unit 56,\nSand Zone,\nMars",
+            "date" : "12/20/2004",
+            "story" : "Here's a trinket I got at the famous Jovian Marketplace; thought I should send a little something back to you, y'know? Apparently if you wish upon it, your needs will come true, or something like that. Maybe you could make a wish for him.",
+            "priority" : "<r>Standard</c>"
+        },
+        "overloadedCapacitor" : {
+            "name" : "Overloaded Capacitor",
+            "pickup" : "Gain a large amount of shield. Fire chain lightning while it's active.",
+            "description" : "Gain an <b>18% <c_stack>(+18% per stack, hyperbolic) <b>health shield</c>. While shield is active, all your <y>attacks fire chain lightning</c> for a bonus <y>30% <c_stack>(+30% per stack) <y>TOTAL damage</c> on up to <y>2</c> targets.",
+            "destination" : "Ampère Weapons Lab,\nEarth",
+            "date" : "3/17/2056",
+            "story" : "These prototype VF-12 high-density supercapacitors are currently the most powerful ones of their size in the solar system. Should suit your needs. Do NOT let them build up any charge past their cap; they have a stopping problem and WILL discharge any overflow.",
+            "priority" : "<r>High Priority/Fragile</c>"
+        },
+
+        "magicDagger" : {
+            "name" : "Magic Dagger",
+            "pickup" : "Freeze enemies in front of you for 6 seconds.",
+            "description" : "Release a burst of <b>runic ice</c>, dealing <y>250% damage</c> and <b>freezing</c> <y>all enemies in front of you</c> for <b>6 seconds</c>.",
+            "destination" : "The Far Shore,\n???",
+            "date" : "3/16/2022",
+            "story" : "I'm sorry that I left you the way I did. Even with everything that I've done, all the taboos and sins I've wrought, it was still wrong to run from you with my tail between my legs. I don't know what's going to happen to me now, so consider this my final gift.\n\nWhenever you feel threatened, hold this dagger close to your heart. Let your soul and being flow into it, and it will respond in turn, casting away the darkness you face. I pray that in times of crisis, it will give you hope and protect you from the chaos of the world, as it did for me.\n\nGoodbye."
+        },
+        "adrenaline" : {
+            "name" : "Stimulants",
+            "pickup" : "Provides a temporary feeling of invincibility.",
+            "description" : "Gain <g>65% barrier</c> and <b>+40% movement speed</c> for <y>5 seconds</c>.",
+            "destination" : "Backalley Place,\nUnit 4-72,\nVenus",
+            "date" : "4/12/2056",
+            "story" : "Fresh out of the sketchy labs we raided on [REDACTED]'s second moon, this unsettling mix of fluids really makes you feel bulletproof! Well, mostly. Barrett was left with a hell of a bruise; he might as well have gained a new birthmark."
+        },
+        "shatteredGlass" : {
+            "name" : "Shattered Glass",
+            "pickup" : "Gain strength and fragility when held.",
+            "description" : "<y>Increase damage by 50%</c> but <r>decrease maximum health by 33%</c> while held.",
+            "destination" : "Exhibit A,\nMuseum of Oddities,\nNeptune",
+            "date" : "7/6/2056",
+            "story" : "I was searching for another teleporter when I came across a twinkling that caught my eye. A piece of shattered glass, irregularly shaped but still pristine. I felt strangely vulnerable as I held it in my hands, but I could tell that it was another great source of power.",
+            "priority" : "<or>Field-found</c>"
+        },
+        "thermiteFlare" : {
+            "name" : "Thermite Flare",
+            "pickup" : "Incinerate an enemy for high damage over time.",
+            "description" : "Throw a <r>thermite flare</c>, <or>igniting</c> and <b>slowing</c> an enemy for <y>60% damage per 0.2 seconds</c> for <y>10 seconds</c>.",
+            "destination" : "The Sierpinski Triangle,\nVenus",
+            "date" : "10/27/2022",
+            "story" : "These sticks of thermite have an internal combustion mechanism, allowing for easy ignition. <TODO>"
+        },
+        "warpDrive" : {
+            "name" : "Warp Drive",
+            "pickup" : "Teleport a short distance up to 3 times.",
+            "description" : "<y>Teleport forwards</c> a short distance. Can use <b>up to 3 times</c> in succession.",
+            "destination" : "",
+            "date" : "",
+            "story" : ""
+        }
+    },
+
+    "skill" : {
+        "huntressStealth" : {
+            "name" : "Stealth Hunting",
+            "description" : "<b>Turn invisible</c> for <b>4</c> seconds, <y>increasing damage by 30%</c>."
+        },
+        "huntressStealthBoosted" : {
+            "name" : "Stealth Stalking",
+            "description" : "<b>Turn invisible</c> for <b>4</c> seconds, <y>increasing damage, critical chance, and movement speed by 30%</c>."
+        },
+
+        "banditUnload" : {
+            "name" : "Unload",
+            "description" : "Hold to cycle through a cylinder for <y>300% damage per round</c>. \n<y>Pierces</c> and <y>stuns</c> on the <y>last shot</c>. \n<b>Gain rounds by killing enemies or after 3 seconds. Hold up to 6.</c>"
+        },
+
+        "handOverdrive" : {
+            "name" : "OVERDRIVE",
+            "description" : "<y>CHARGE FORWARD</c> FOR <y>350% DAMAGE</c> AND GAIN <g>100 ARMOR</c>."
+        },
+
+        "loaderGrapple" : {
+            "name" : "Grapple",
+            "description" : "Pull an enemy <y>towards you</c> and <y>slam them</c>, <y>stunning</c> for <y>500% damage</c>."
+        },
+
+        "sniperBlast" : {
+            "name" : "Spotter: BLAST",
+            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. Hitting the target causes a <y>small explosion</c> for <y>50% TOTAL damage</c>."
+        },
+        "sniperBlastBoosted" : {
+            "name" : "Spotter: DETONATE",
+            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. Hitting the target causes a <y>small explosion</c> for <y>50% TOTAL damage</c>, <y>stunning</c> enemies."
+        }
+    },
+
+    "achievement" : {
+        "ballisticVest" : {
+            "name" : "Die Hard",
+            "description" : "Take 2,000 damage in a single run."
+        },
+        "silicaPacket" : {
+            "name" : "Oxygen Removal",
+            "description" : "Drifter: Suffocate 50 enemies."
+        },
+
+        "sixShooter" : {
+            "name" : "High Noon",
+            "description" : "Bandit: Stay at the maximum level of Standoff for 60 seconds."
+        },
+        "relicGuard" : {
+            "name" : "Bastion",
+            "description" : "Reach 400 shield."
+        },
+
+        "stiletto" : {
+            "name" : "Precision",
+            "description" : "Reach 100% critical chance."
+        },
+        "whimsicalStar" : {
+            "name" : "Spur",
+            "description" : "Commando: Kill 9 enemies with a single use of Full Metal Jacket."
+        },
+
+        "magicDagger" : {
+            "name" : "A SECRET",
+            "description" : "Enter the hidden stage on Ancient Valley."
+        },
+        "shatteredGlass" : {
+            "name" : "Fragility",
+            "description" : "Beat the game with Artifact of Glass enabled."
         }
     }
 }
