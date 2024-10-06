@@ -217,7 +217,7 @@
 
         "loaderGrapple" : {
             "name" : "Grapple",
-            "description" : "Pull an enemy <y>towards you</c> and <y>slam them</c>, <y>stunning</c> for <y>500% damage</c>."
+            "description" : "Pull an enemy <y>towards you</c> and <y>perform a takedown</c>, <y>stunning</c> for <y>500% damage</c>."
         },
 
         "sniperBlast" : {
