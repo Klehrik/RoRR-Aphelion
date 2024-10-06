@@ -14,3 +14,8 @@ This update adds 2 alternate skills and 1 equipment.
 * Added equipment Thermite Flare
 
 v Fix bug with Ration and temp stacks replicating
+
+### v1.2.0
+This update adds 2 skills.
+* Added Unload (Bandit secondary)
+* Added Stealth Hunting (Huntress special)
