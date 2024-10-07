@@ -2,6 +2,7 @@
 This update adds 2 skills.
 * Added Unload (Bandit secondary)
 * Added Stealth Hunting (Huntress special)
+* Magic Dagger : Renamed achievement
 
 ### v1.1.5
 * Added namespace-identifier to Resource.sfx_load.
