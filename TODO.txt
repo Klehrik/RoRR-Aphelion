@@ -19,3 +19,13 @@ v Fix bug with Ration and temp stacks replicating
 This update adds 2 skills.
 * Added Unload (Bandit secondary)
 * Added Stealth Hunting (Huntress special)
+
+- Tempest Ridge
+    - Stage 3 (4 if Amber Hills is added)
+    - Increased Mountain Shrine spawns
+    - Wind comes for a bit periodically and pushes all actors in a direction
+
+- Amber Mesa
+    - Stage 3
+    - Uses stage 6 background but brighter (more desert-like?)
+    - Increased Drone spawns
