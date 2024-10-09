@@ -25,6 +25,7 @@ Join the [Return of Modding server](https://discord.gg/VjS57cszMq) for support.
 * Ikesicle - Ideas, Art, Log entries
 * Adam - Log entries
 * peanutbuuter - Log entries
+* Kaban (HEXXEDUDE) - Russian translation
 
 ### With feedback from
 * TheGreenDigi

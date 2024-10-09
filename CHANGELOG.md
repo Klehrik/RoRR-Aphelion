@@ -1,3 +1,9 @@
+### v1.1.6
+* Ration : Fixed stream of errors when dying while in possession of some.
+* Magic Dagger : Renamed achievement
+* Added Russian translation by Kaban (HEXXEDUDE).
+* Reduced lag associated with Actor callbacks by replacing them with Instance callbacks.
+
 ### v1.1.5
 * Added namespace-identifier to Resource.sfx_load.
 * Ration : Fixed stacking bug with temporary stacks.

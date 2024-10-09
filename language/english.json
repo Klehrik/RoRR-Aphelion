@@ -259,12 +259,25 @@
         },
 
         "magicDagger" : {
-            "name" : "A SECRET",
+            "name" : "A Space Between",
             "description" : "Enter the hidden stage on Ancient Valley."
         },
         "shatteredGlass" : {
             "name" : "Fragility",
             "description" : "Beat the game with Artifact of Glass enabled."
+        }
+    },
+
+    "stage" : {
+        "amberMesa" : {
+            "name" : "Amber Mesa",
+            "subname" : "Sweltering Heat",
+            "story" : "Stage 3 (increased Drones)"
+        },
+        "tempestRidge" : {
+            "name" : "Tempest Ridge",
+            "subname" : "Perilous Trek",
+            "story" : "Stage 5 (increased Mountain Shrines)"
         }
     }
 }

@@ -202,25 +202,60 @@ end)
 -- Achievement
 item:add_achievement()
 
-Actor:onSkillUse("aphelion-whimsicalStarUnlock_1", function(actor)
-    if not actor:same(Player.get_client()) then return end
-    actor:get_data("whimsicalStar").achievement_check = 2
-end, Skill.find("ror-commandoX"))
+table.insert(player_callbacks, {
+    "onSkillUse",
+    "aphelion-whimsicalStarUnlock_1",
+    function(actor)
+        actor:get_data("whimsicalStar").achievement_check = 2
+    end,
+    Skill.find("ror-commandoX")
+})
 
-Actor:onPreStep("aphelion-whimsicalStarUnlock_2", function(actor)
-    local actorData = actor:get_data("whimsicalStar")
+table.insert(player_callbacks, {
+    "onPreStep",
+    "aphelion-whimsicalStarUnlock_2",
+    function(actor)
+        local actorData = actor:get_data("whimsicalStar")
 
-    if actorData.achievement_check and actorData.achievement_check > 0 then
-        actorData.achievement_check = actorData.achievement_check - 1
-        if actorData.achievement_check <= 0 then actorData.achievement_check = nil end
+        if actorData.achievement_check and actorData.achievement_check > 0 then
+            actorData.achievement_check = actorData.achievement_check - 1
+            if actorData.achievement_check <= 0 then actorData.achievement_check = nil end
+        end
     end
-end)
+})
 
-Actor:onPostAttack("aphelion-whimsicalStarUnlock_3", function(actor, damager)
-    local actorData = actor:get_data("whimsicalStar")
+table.insert(player_callbacks, {
+    "onPostAttack",
+    "aphelion-whimsicalStarUnlock_3",
+    function(actor, damager)
+        local actorData = actor:get_data("whimsicalStar")
 
-    if not actorData.achievement_check then return end
-    if damager.kill_number >= 9 then
-        item:progress_achievement()
+        if not actorData.achievement_check then return end
+        if damager.kill_number >= 9 then
+            item:progress_achievement()
+        end
     end
-end)
+})
+
+-- Actor:onSkillUse("aphelion-whimsicalStarUnlock_1", function(actor)
+--     if not actor:same(Player.get_client()) then return end
+--     actor:get_data("whimsicalStar").achievement_check = 2
+-- end, Skill.find("ror-commandoX"))
+
+-- Actor:onPreStep("aphelion-whimsicalStarUnlock_2", function(actor)
+--     local actorData = actor:get_data("whimsicalStar")
+
+--     if actorData.achievement_check and actorData.achievement_check > 0 then
+--         actorData.achievement_check = actorData.achievement_check - 1
+--         if actorData.achievement_check <= 0 then actorData.achievement_check = nil end
+--     end
+-- end)
+
+-- Actor:onPostAttack("aphelion-whimsicalStarUnlock_3", function(actor, damager)
+--     local actorData = actor:get_data("whimsicalStar")
+
+--     if not actorData.achievement_check then return end
+--     if damager.kill_number >= 9 then
+--         item:progress_achievement()
+--     end
+-- end)
