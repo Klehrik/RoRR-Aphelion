@@ -6,7 +6,6 @@ mods.on_all_mods_loaded(function() for _, m in pairs(mods) do if type(m) == "tab
 PATH = _ENV["!plugins_mod_folder_path"].."/"
 
 player_callbacks = {}
-local run_init = false
 
 
 
@@ -24,29 +23,20 @@ function __initialize()
         for _, name in ipairs(names) do require(name) end
     end
 
+    -- Add player callbacks on run start
+    Callback.add("onGameStart", "aphelion-addPlayerCallbacks", function(self, other, result, args)
+        Alarm.create(function()
+
+            --Add player callbacks
+            local player = Player.get_client()
+            for _, c in ipairs(player_callbacks) do
+                player:add_callback(c[1], c[2], c[3], c[4])
+            end
+
+        end, 1)
+    end, true)
+
     -- Huntress : Set Stealth Hunting upgrade
     local skill = Skill.find("aphelion-huntressStealth")
     skill.upgrade_skill = Skill.find("aphelion-huntressStealthBoosted")
 end
-
-
-
--- ========== Hooks ==========
-
-gm.post_script_hook(gm.constants.run_create, function(self, other, result, args)
-    run_init = true
-end)
-
-gm.post_script_hook(gm.constants.__input_system_tick, function(self, other, result, args)
-    if run_init then
-        local player = Player.get_client()
-        if player:exists() then
-            run_init = false
-
-            -- Add player callbacks
-            for _, c in ipairs(player_callbacks) do
-                player:add_callback(c[1], c[2], c[3], c[4])
-            end
-        end
-    end
-end)

@@ -131,7 +131,7 @@ Callback.add("onStageStart", "aphelion-magicDaggerUnlock", function(self, other,
     if gm.variable_global_get("stage_id") == 10.0 then
         equip:progress_achievement()
     end
-end)
+end, true)
 
 -- gm.pre_script_hook(gm.constants.__input_system_tick, function(self, other, result, args)
 --     if gm.variable_global_get("stage_id") == 10.0 then
