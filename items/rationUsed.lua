@@ -29,7 +29,7 @@ item:onStep(function(actor, stack)
     local actorData = actor:get_data("ration")
 
     -- Tick down timer
-    if actorData.cooldown and (actorData.cooldown > 0) then actorData.cooldown = actorData.cooldown - 1
+    if actorData.cooldown > 0 then actorData.cooldown = actorData.cooldown - 1
     else restore_stacks(actor)
     end
 end)
