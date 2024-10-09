@@ -26,13 +26,10 @@ function __initialize()
     -- Add player callbacks on run start
     Callback.add("onGameStart", "aphelion-addPlayerCallbacks", function(self, other, result, args)
         Alarm.create(function()
-
-            --Add player callbacks
             local player = Player.get_client()
             for _, c in ipairs(player_callbacks) do
                 player:add_callback(c[1], c[2], c[3], c[4])
             end
-
         end, 1)
     end, true)
 
