@@ -6,7 +6,7 @@ mods.on_all_mods_loaded(function() for _, m in pairs(mods) do if type(m) == "tab
 PATH = _ENV["!plugins_mod_folder_path"].."/"
 
 player_callbacks = {}
-local run_create = false
+local run_init = false
 
 
 
@@ -34,14 +34,14 @@ end
 -- ========== Hooks ==========
 
 gm.post_script_hook(gm.constants.run_create, function(self, other, result, args)
-    run_create = true
+    run_init = true
 end)
 
 gm.post_script_hook(gm.constants.__input_system_tick, function(self, other, result, args)
-    if run_create then
+    if run_init then
         local player = Player.get_client()
         if player:exists() then
-            run_create = false
+            run_init = false
 
             -- Add player callbacks
             for _, c in ipairs(player_callbacks) do
