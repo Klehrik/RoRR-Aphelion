@@ -16,7 +16,7 @@ function __initialize()
     local folders = {
         "items",
         "equipment",
-        "skills"
+        -- "skills"
     }
     for _, folder in ipairs(folders) do
         local names = path.get_files(PATH..folder)
@@ -34,6 +34,6 @@ function __initialize()
     end, true)
 
     -- Huntress : Set Stealth Hunting upgrade
-    local skill = Skill.find("aphelion-huntressStealth")
-    skill.upgrade_skill = Skill.find("aphelion-huntressStealthBoosted")
+    -- local skill = Skill.find("aphelion-huntressStealth")
+    -- skill.upgrade_skill = Skill.find("aphelion-huntressStealthBoosted")
 end
