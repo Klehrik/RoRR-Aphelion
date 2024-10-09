@@ -1,5 +1,5 @@
 ### v1.1.7
-* 
+* Fixed (in RMT) stream of errors when dying while in possession of certain items.
 
 ### v1.1.6
 * Ration : Fixed stream of errors when dying while in possession of some.
