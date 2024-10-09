@@ -1,3 +1,6 @@
+### v1.1.7
+* 
+
 ### v1.1.6
 * Ration : Fixed stream of errors when dying while in possession of some.
 * Magic Dagger : Renamed achievement

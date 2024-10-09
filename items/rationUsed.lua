@@ -25,6 +25,7 @@ local function restore_stacks(actor)
 end
 
 item:onStep(function(actor, stack)
+    if actor.dead == true or actor.dead == 1.0 then return end
     local actorData = actor:get_data("ration")
 
     -- Tick down timer
