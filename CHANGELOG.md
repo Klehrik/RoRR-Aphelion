@@ -2,6 +2,7 @@
 This update adds 2 skills.
 * Added Unload (Bandit secondary)
 * Added Stealth Hunting (Huntress special)
+* Ration : Fixed stream of errors when dying while in possession of some.
 * Magic Dagger : Renamed achievement
 * Added Russian translation by Kaban (HEXXEDUDE).
 * Reduced lag associated with Actor callbacks by replacing them.
