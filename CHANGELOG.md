@@ -4,6 +4,7 @@ This update adds 2 skills.
 * Added Stealth Hunting (Huntress special)
 * Magic Dagger : Renamed achievement
 * Added Russian translation by Kaban (HEXXEDUDE).
+* Reduced lag associated with Actor callbacks by replacing them.
 
 ### v1.1.5
 * Added namespace-identifier to Resource.sfx_load.

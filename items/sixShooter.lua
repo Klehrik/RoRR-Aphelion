@@ -45,18 +45,37 @@ end)
 -- Achievement
 item:add_achievement()
 
-Actor:onPreStep("aphelion-sixShooterUnlock", function(actor)
-    if not actor:same(Player.get_client()) then return end
-    local actorData = actor:get_data("sixShooter")
+table.insert(player_callbacks, {
+    "onPreStep",
+    "aphelion-sixShooterUnlock",
+    function(actor)
+        local actorData = actor:get_data("sixShooter")
 
-    if not actorData.achievement_counter then actorData.achievement_counter = 0 end
+        if not actorData.achievement_counter then actorData.achievement_counter = 0 end
 
-    if actor:buff_stack_count(Buff.find("ror-banditSkull")) >= 5.0 then
-        actorData.achievement_counter = actorData.achievement_counter + 1
-    else actorData.achievement_counter = 0
+        if actor:buff_stack_count(Buff.find("ror-banditSkull")) >= 5.0 then
+            actorData.achievement_counter = actorData.achievement_counter + 1
+        else actorData.achievement_counter = 0
+        end
+
+        if actorData.achievement_counter >= 60 *60 then
+            item:progress_achievement()
+        end
     end
+})
 
-    if actorData.achievement_counter >= 60 *60 then
-        item:progress_achievement()
-    end
-end)
+-- Actor:onPreStep("aphelion-sixShooterUnlock", function(actor)
+--     if not actor:same(Player.get_client()) then return end
+--     local actorData = actor:get_data("sixShooter")
+
+--     if not actorData.achievement_counter then actorData.achievement_counter = 0 end
+
+--     if actor:buff_stack_count(Buff.find("ror-banditSkull")) >= 5.0 then
+--         actorData.achievement_counter = actorData.achievement_counter + 1
+--     else actorData.achievement_counter = 0
+--     end
+
+--     if actorData.achievement_counter >= 60 *60 then
+--         item:progress_achievement()
+--     end
+-- end)
