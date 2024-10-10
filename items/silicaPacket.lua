@@ -42,19 +42,8 @@ end)
 -- Achievement
 item:add_achievement(50)
 
-table.insert(player_callbacks, {
-    "onPostAttack",
-    "aphelion-silicaPacketUnlock",
-    function(actor, damager)
-        if (damager.attack_flags & (1 << 12)) > 0 then
-            item:progress_achievement(damager.kill_number)
-        end
+Player:onPostAttack("aphelion-silicaPacketUnlock", function(actor, damager)
+    if (damager.attack_flags & (1 << 12)) > 0 then
+        item:progress_achievement(damager.kill_number)
     end
-})
-
--- Actor:onPostAttack("aphelion-silicaPacketUnlock", function(actor, damager)
---     if not actor:same(Player.get_client()) then return end
---     if (damager.attack_flags & (1 << 12)) > 0 then
---         item:progress_achievement(damager.kill_number)
---     end
--- end)
+end)
