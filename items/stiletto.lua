@@ -27,7 +27,7 @@ end)
 -- Achievement
 item:add_achievement()
 
-Player:onPreStep("aphelion-stilettoUnlock", function(actor)
+Player:onStatRecalc("aphelion-stilettoUnlock", function(actor)
     if actor.critical_chance >= 100.0 then
         item:progress_achievement()
     end
