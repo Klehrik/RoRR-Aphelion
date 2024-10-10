@@ -45,16 +45,16 @@ end)
 -- Achievement
 item:add_achievement()
 
-Player:onPreStep("aphelion-sixShooterUnlock", function(actor)
+Buff.find("ror-banditSkull"):onStep(function(actor, stack)
     local actorData = actor:get_data("sixShooter")
-
     if not actorData.achievement_counter then actorData.achievement_counter = 0 end
 
-    if actor:buff_stack_count(Buff.find("ror-banditSkull")) >= 5.0 then
-        actorData.achievement_counter = actorData.achievement_counter + 1
-    else actorData.achievement_counter = 0
+    if stack < 5 then
+        actorData.achievement_counter = 0
+        return
     end
 
+    actorData.achievement_counter = actorData.achievement_counter + 1
     if actorData.achievement_counter >= 60 *60 then
         item:progress_achievement()
     end

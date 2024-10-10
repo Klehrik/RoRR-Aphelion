@@ -22,7 +22,7 @@ end)
 -- Achievement
 item:add_achievement()
 
-Player:onPreStep("aphelion-relicGuardUnlock", function(actor)
+Player:onStatRecalc("aphelion-relicGuardUnlock", function(actor)
     if actor.maxshield >= 400.0 then
         item:progress_achievement()
     end
