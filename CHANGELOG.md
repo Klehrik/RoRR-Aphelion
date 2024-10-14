@@ -1,3 +1,7 @@
+### v1.1.8
+* New RMT one-liner and initialize change.
+* Explosive Spear : Fixed going through walls sometimes.
+
 ### v1.1.7
 * Fixed (in RMT) stream of errors when dying while in possession of certain items.
 

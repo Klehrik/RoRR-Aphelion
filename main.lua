@@ -1,6 +1,7 @@
 -- Aphelion
 
 log.info("Successfully loaded ".._ENV["!guid"]..".")
+mods["RoRRModdingToolkit-RoRR_Modding_Toolkit"].auto()
 
 PATH = _ENV["!plugins_mod_folder_path"].."/"
 
@@ -8,7 +9,7 @@ PATH = _ENV["!plugins_mod_folder_path"].."/"
 
 -- ========== Main ==========
 
-function __initialize()
+Initialize(function()
     -- Require all files in content folders
     local folders = {
         "items",
@@ -23,4 +24,4 @@ function __initialize()
     -- Huntress : Set Stealth Hunting upgrade
     -- local skill = Skill.find("aphelion-huntressStealth")
     -- skill.upgrade_skill = Skill.find("aphelion-huntressStealthBoosted")
-end
+end)

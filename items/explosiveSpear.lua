@@ -104,7 +104,7 @@ obj:onStep(function(self)
         end
 
         -- Wall collision
-        if self:is_colliding(gm.constants.oB) then
+        if self:is_colliding(gm.constants.pSolidBulletCollision) then
             selfData.flag_hit = true
             selfData.hit_type = 1
             gm.sound_play_at(soundHit, 1.0, 1.0, self.x, self.y, 1.0)
