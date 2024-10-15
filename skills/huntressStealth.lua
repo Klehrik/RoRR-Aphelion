@@ -59,3 +59,28 @@ end)
 buff:onPostStatRecalc(function(actor, stack)
     actor.damage = actor.damage * 1.3
 end)
+
+
+
+-- Achievement
+skill:add_achievement()
+
+local not_hit = true
+
+Callback.add("onStageStart", "aphelion-huntressStealthUnlock", function(self, other, result, args)
+    not_hit = true
+end)
+
+Player:onDamaged("aphelion-huntressStealthUnlock", function(actor, damager)
+    not_hit = false
+end)
+
+Player:onInteract("aphelion-huntressStealthUnlock", function(actor, interactable)
+    if not_hit
+    and actor.class == 1.0
+    and Helper.table_has(Instance.teleporters, interactable.object_index)
+    and interactable.active >= 2.0
+    then
+        skill:progress_achievement()
+    end
+end)

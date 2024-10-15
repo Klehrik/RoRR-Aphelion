@@ -3,6 +3,7 @@ This update adds 2 skills.
 * Added Unload (Bandit secondary)
 * Added Stealth Hunting (Huntress special)
 * Explosive Spear : Fixed going through walls sometimes.
+* Misc : Huntress' Blink now grants 15 i-frames.
 
 ### v1.1.7
 * Fixed (in RMT) stream of errors when dying while in possession of certain items.

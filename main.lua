@@ -21,6 +21,6 @@ Initialize(function()
         for _, name in ipairs(names) do require(name) end
     end
 
-    -- Huntress : Set Stealth Hunting upgrade
-    Skill.find("aphelion-huntressStealth").upgrade_skill = Skill.find("aphelion-huntressStealthBoosted")
+    -- Misc
+    require("./misc")
 end)

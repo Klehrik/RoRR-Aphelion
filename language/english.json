@@ -265,6 +265,15 @@
         "shatteredGlass" : {
             "name" : "Fragility",
             "description" : "Beat the game with Artifact of Glass enabled."
+        },
+
+        "banditUnload" : {
+            "name" : "Trigger Happy",
+            "description" : "Bandit: Kill 50 enemies with Lights Out or Standoff."
+        },
+        "huntressStealth" : {
+            "name" : "Ghost",
+            "description" : "Huntress: Complete a stage without getting hit."
         }
     },
 

@@ -91,6 +91,19 @@ end)
 
 
 
+-- Achievement
+skill:add_achievement(50)
+
+Player:onPostAttack("aphelion-banditUnloadUnlock", function(actor, damager)
+    if (damager.attack_flags & (1 << 0))
+    + (damager.attack_flags & (1 << 16))
+    + (damager.attack_flags & (1 << 17)) > 0 then
+        skill:progress_achievement(damager.kill_number)
+    end
+end)
+
+
+
 -- UNUSED
 
 -- local xstart = actor.x + (16.0 * gm.sign(actor.image_xscale))
