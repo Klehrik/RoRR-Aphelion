@@ -1,7 +1,7 @@
-Content mod that currently adds 16 items and 3 equipment.  
+Content mod that currently adds 16 items, 3 equipment, and 2 skills.  
 Includes unlockable achievements for some of them.  
 
-You can find the list of items [here](https://github.com/Klehrik/RoRR-Aphelion/wiki/Content) (if you wish).  
+You can find the list of content [here](https://github.com/Klehrik/RoRR-Aphelion/wiki/Content) if you wish.  
 
 Not tested in online multiplayer; support will come in a future update (possibly).  
 
