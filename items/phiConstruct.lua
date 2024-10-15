@@ -1,6 +1,6 @@
 -- Phi Construct
 
-local sprite = Resources.sprite_load("aphelion", "phiConstruct", PATH.."assets/sprites/phiConstruct.png", 1, 16, 16)
+local sprite = Resources.sprite_load("aphelion", "item/phiConstruct", PATH.."assets/sprites/items/phiConstruct.png", 1, 16, 16)
 
 local item = Item.new("aphelion", "phiConstruct")
 item:set_sprite(sprite)
@@ -34,7 +34,7 @@ end)
 
 -- Object
 
-local sprite = Resources.sprite_load("aphelion", "phiConstructObject", PATH.."assets/sprites/phiConstructObject.png", 4, 8, 8)
+local sprite = Resources.sprite_load("aphelion", "object/phiConstruct", PATH.."assets/sprites/objects/phiConstruct.png", 4, 8, 8)
 
 local obj = Object.new("aphelion", "phiConstructObject")
 obj:set_sprite(sprite)

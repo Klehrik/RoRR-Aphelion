@@ -1,9 +1,9 @@
 -- Bandit : Unload
 
--- local sprite = Resources.sprite_load("aphelion", "ballisticVest", PATH.."assets/sprites/ballisticVest.png", 1, 16, 16)
+local sprite = Resources.sprite_load("aphelion", "skill/bandit", PATH.."assets/sprites/skills/bandit.png", 1)
 
 local skill = Skill.new("aphelion", "banditUnload")
-skill:set_skill_icon(gm.constants.sBanditSkills, 8)
+skill:set_skill_icon(sprite, 0)
 skill:set_skill_properties(3.0, 3 *60)
 skill:set_skill_stock(6, 6, true, 1)
 skill:set_skill_settings(
@@ -62,7 +62,7 @@ state:onStep(function(actor, data)
             gm.constants.sSparks15, Damager.TRACER.bandit2
         )
         
-        if last then d:set_stun(1.2) end
+        if last then d:set_stun(0.8) end    -- About 66% of Dynamite stun
     end
 
     -- Skip end of animation if queueing another bullet
@@ -75,41 +75,32 @@ state:onStep(function(actor, data)
     actor:skill_util_exit_state_on_anim_end()
 end)
 
-table.insert(player_callbacks, {
-    "onPreStep",
-    "aphelion-banditUnload_onPreStep",
-    function(actor)
-        local actorData = actor:get_data("banditUnload")
-        if actorData.just_used and actorData.just_used > 0 then
-            actorData.just_used = actorData.just_used - 1
-            if actorData.just_used <= 0 then actorData.just_used = nil end
-        end
+Player:onPreStep("aphelion-banditUnload_onPreStep", function(actor)
+    local actorData = actor:get_data("banditUnload")
+    if actorData.just_used and actorData.just_used > 0 then
+        actorData.just_used = actorData.just_used - 1
+        if actorData.just_used <= 0 then actorData.just_used = nil end
     end
-})
+end)
 
-table.insert(player_callbacks, {
-    "onKill",
-    "aphelion-banditUnload_onKill",
-    function(actor, damager)
-        if actor:get_active_skill(Skill.SLOT.secondary).skill_id == skill.value then
-            actor:actor_skill_add_stock(actor, 1, false, 1)     -- actor, slot, ignore cap, raw value
-        end
+Player:onKill("aphelion-banditUnload_onKill", function(actor, damager)
+    if actor:get_active_skill(Skill.SLOT.secondary).skill_id == skill.value then
+        actor:actor_skill_add_stock(actor, 1, false, 1)     -- actor, slot, ignore cap, raw value
     end
-})
+end)
 
--- Actor:onPreStep("aphelion-banditUnload_onPreStep", function(actor)
---     local actorData = actor:get_data("banditUnload")
---     if actorData.just_used and actorData.just_used > 0 then
---         actorData.just_used = actorData.just_used - 1
---         if actorData.just_used <= 0 then actorData.just_used = nil end
---     end
--- end)
 
--- Actor:onKill("aphelion-banditUnload_onKill", function(actor, damager)
---     if actor:get_active_skill(Skill.SLOT.secondary).skill_id == skill.value then
---         actor:actor_skill_add_stock(actor, 1, false, 1)     -- actor, slot, ignore cap, raw value
---     end
--- end)
+
+-- Achievement
+skill:add_achievement(50)
+
+Player:onPostAttack("aphelion-banditUnloadUnlock", function(actor, damager)
+    if (damager.attack_flags & (1 << 0))
+    + (damager.attack_flags & (1 << 16))
+    + (damager.attack_flags & (1 << 17)) > 0 then
+        skill:progress_achievement(damager.kill_number)
+    end
+end)
 
 
 
