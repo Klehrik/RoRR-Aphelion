@@ -1,6 +1,6 @@
 -- Whimsical Star
 
-local sprite = Resources.sprite_load("aphelion", "whimsicalStar", PATH.."assets/sprites/whimsicalStar.png", 1, 16, 16)
+local sprite = Resources.sprite_load("aphelion", "item/whimsicalStar", PATH.."assets/sprites/item/whimsicalStar.png", 1, 16, 16)
 
 local item = Item.new("aphelion", "whimsicalStar")
 item:set_sprite(sprite)
@@ -40,7 +40,7 @@ end)
 
 -- Object
 
-local sprite = Resources.sprite_load("aphelion", "whimsicalStarObject", PATH.."assets/sprites/whimsicalStarObject.png", 1, 98, 98, 1, -90, -90, 90, 90)
+local sprite = Resources.sprite_load("aphelion", "object/whimsicalStar", PATH.."assets/sprites/objects/whimsicalStar.png", 1, 98, 98, 1, -90, -90, 90, 90)
 
 local obj = Object.new("aphelion", "whimsicalStarObject")
 obj:set_sprite(sprite)

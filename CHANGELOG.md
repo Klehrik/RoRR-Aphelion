@@ -1,5 +1,7 @@
-### v1.1.8
-* New RMT one-liner and initialize change.
+### v1.2.0
+This update adds 2 skills.
+* Added Unload (Bandit secondary)
+* Added Stealth Hunting (Huntress special)
 * Explosive Spear : Fixed going through walls sometimes.
 
 ### v1.1.7

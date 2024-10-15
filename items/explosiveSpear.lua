@@ -1,6 +1,6 @@
 -- Explosive Spear
 
-local sprite = Resources.sprite_load("aphelion", "explosiveSpear", PATH.."assets/sprites/explosiveSpear.png", 1, 16, 16)
+local sprite = Resources.sprite_load("aphelion", "item/explosiveSpear", PATH.."assets/sprites/items/explosiveSpear.png", 1, 16, 16)
 local sound = Resources.sfx_load("aphelion", "explosiveSpearThrow", PATH.."assets/sounds/explosiveSpearThrow.ogg")
 
 local item = Item.new("aphelion", "explosiveSpear")
@@ -37,7 +37,7 @@ end)
 
 -- Object
 
-local sprite = Resources.sprite_load("aphelion", "explosiveSpearProjectile", PATH.."assets/sprites/explosiveSpearProjectile.png", 1, 36, 3, 1, -20, -5, -3, 3)
+local sprite = Resources.sprite_load("aphelion", "object/explosiveSpear", PATH.."assets/sprites/objects/explosiveSpear.png", 1, 36, 3, 1, -20, -5, -3, 3)
 local soundHit = Resources.sfx_load("aphelion", "explosiveSpearHit", PATH.."assets/sounds/explosiveSpearHit.ogg")
 local soundExplode = Resources.sfx_load("aphelion", "explosiveSpearExplode", PATH.."assets/sounds/explosiveSpearExplode.ogg")
 
@@ -243,7 +243,7 @@ end)
 
 -- Buffs
 
-local sprite = Resources.sprite_load("aphelion", "buffExplosiveSpear", PATH.."assets/sprites/buffExplosiveSpear.png", 1, 7, 9)
+local sprite = Resources.sprite_load("aphelion", "buff/explosiveSpear", PATH.."assets/sprites/buffs/explosiveSpear.png", 1, 7, 9)
 
 local buff = Buff.new("aphelion", "explosiveSpearDisplay")
 buff.icon_sprite = sprite

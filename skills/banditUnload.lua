@@ -1,9 +1,9 @@
 -- Bandit : Unload
 
--- local sprite = Resources.sprite_load("aphelion", "ballisticVest", PATH.."assets/sprites/ballisticVest.png", 1, 16, 16)
+local sprite = Resources.sprite_load("aphelion", "skill/bandit", PATH.."assets/sprites/skills/bandit.png", 1)
 
 local skill = Skill.new("aphelion", "banditUnload")
-skill:set_skill_icon(gm.constants.sBanditSkills, 8)
+skill:set_skill_icon(sprite, 0)
 skill:set_skill_properties(3.0, 3 *60)
 skill:set_skill_stock(6, 6, true, 1)
 skill:set_skill_settings(

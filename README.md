@@ -5,8 +5,6 @@ You can find the list of items [here](https://github.com/Klehrik/RoRR-Aphelion/w
 
 Not tested in online multiplayer; support will come in a future update (possibly).  
 
-Also check out [CaseysContent](https://thunderstore.io/c/risk-of-rain-returns/p/TeamCC/CaseysContent/) and [BreathingUnderwater](https://thunderstore.io/c/risk-of-rain-returns/p/Groove_Salad/BreathingUnderwater/)!
-
 ![Hidden showcase](https://github.com/Klehrik/Klehrik-Aphelion/blob/main/hiddenShowcase.png?raw=true)  
 
 ![Withered Branch](https://github.com/Klehrik/Klehrik-Aphelion/blob/main/showcaseWitheredBranch.gif?raw=true)  

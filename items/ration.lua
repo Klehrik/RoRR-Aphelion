@@ -1,6 +1,6 @@
 -- Ration
 
-local sprite = Resources.sprite_load("aphelion", "ration", PATH.."assets/sprites/ration.png", 1, 16, 16)
+local sprite = Resources.sprite_load("aphelion", "item/ration", PATH.."assets/sprites/items/ration.png", 1, 16, 16)
 local sound = Resources.sfx_load("aphelion", "ration", PATH.."assets/sounds/ration.ogg")
 
 local item = Item.new("aphelion", "ration")

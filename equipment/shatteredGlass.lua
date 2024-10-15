@@ -1,6 +1,6 @@
 -- Shattered Glass
 
-local sprite = Resources.sprite_load("aphelion", "shatteredGlass", PATH.."assets/sprites/shatteredGlass.png", 2, 22, 22)
+local sprite = Resources.sprite_load("aphelion", "equipment/shatteredGlass", PATH.."assets/sprites/equipment/shatteredGlass.png", 2, 22, 22)
 
 local equip = Equipment.new("aphelion", "shatteredGlass")
 equip:set_sprite(sprite)
