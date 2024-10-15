@@ -12,10 +12,10 @@ end
 
 -- Skill
 
--- local sprite = Resources.sprite_load("aphelion", "ballisticVest", PATH.."assets/sprites/ballisticVest.png", 1, 16, 16)
+local sprite = Resources.sprite_load("aphelion", "skill/huntress", PATH.."assets/sprites/skills/huntress.png", 2)
 
 local skill = Skill.new("aphelion", "huntressStealth")
-skill:set_skill_icon(gm.constants.sHuntressSkills, 1)
+skill:set_skill_icon(sprite, 0)
 skill:set_skill_properties(0.0, 14 *60)
 skill:set_skill_stock(1, 1, true, 1)
 skill:set_skill_settings(
