@@ -62,7 +62,7 @@ state:onStep(function(actor, data)
             gm.constants.sSparks15, Damager.TRACER.bandit2
         )
         
-        if last then d:set_stun(1.2) end
+        if last then d:set_stun(0.8) end    -- About 66% of Dynamite stun
     end
 
     -- Skip end of animation if queueing another bullet
