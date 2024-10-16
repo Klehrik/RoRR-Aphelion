@@ -197,7 +197,7 @@ Close this page if you would like to unlock and learn what each item does for yo
         <tr>
             <td align="center"><img src="https://github.com/user-attachments/assets/b2656260-264f-4017-b68d-3ad36c5655ec"></td>
             <td align="center"><b>Unload</b></td>
-            <td align="center">Secondary</td>
+            <td align="center">Secondary<br>(0s)</td>
             <td align="center"><p>Hold to cycle through a cylinder for $\color{#efd27b}\textsf{300\% damage per round}$. <br>$\color{#efd27b}\textsf{Pierces}$ and $\color{#efd27b}\textsf{stuns}$ on the $\color{#efd27b}\textsf{last shot}$. <br>$\color{#319ad2}\textsf{Gain rounds by killing enemies or after 3 seconds. Hold up to 6.}$</p></td>
         </tr>
     </tbody>
@@ -205,7 +205,7 @@ Close this page if you would like to unlock and learn what each item does for yo
         <tr>
             <td align="center"><img src="https://github.com/user-attachments/assets/cd3bbce1-60de-4c21-944c-66bd53a6b0c1"></td>
             <td align="center"><b>Stealth Hunting</b></td>
-            <td align="center">Special</td>
+            <td align="center">Special<br>(14s)</td>
             <td align="center"><p>$\color{#319ad2}\textsf{Turn invisible}$ for $\color{#319ad2}\textsf{5}$ seconds, $\color{#efd27b}\textsf{increasing damage by 30\%}$.</p></td>
         </tr>
     </tbody>
@@ -213,7 +213,7 @@ Close this page if you would like to unlock and learn what each item does for yo
         <tr>
             <td align="center"><img src="https://github.com/user-attachments/assets/5152d7b0-575e-41e4-9dc7-db802a1ab719"></td>
             <td align="center"><b>Stealth Stalking</b></td>
-            <td align="center">Special</td>
+            <td align="center">Special<br>(14s)</td>
             <td align="center"><p>$\color{#319ad2}\textsf{Turn invisible}$ for $\color{#319ad2}\textsf{5}$ seconds, $\color{#efd27b}\textsf{increasing damage, critical chance, and movement speed by 30\%}$.</p></td>
         </tr>
     </tbody>
