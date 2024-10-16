@@ -198,7 +198,7 @@ Close this page if you would like to unlock and learn what each item does for yo
             <td align="center"><img src="https://github.com/user-attachments/assets/b2656260-264f-4017-b68d-3ad36c5655ec"></td>
             <td align="center"><b>Unload</b></td>
             <td align="center">Secondary<br>(3s/round)</td>
-            <td align="center"><p>Hold to cycle through a cylinder for $\color{#efd27b}\textsf{300\% damage per round}$. <br>$\color{#efd27b}\textsf{Pierces}$ and $\color{#efd27b}\textsf{stuns}$ on the $\color{#efd27b}\textsf{last shot}$. <br>$\color{#319ad2}\textsf{Gain rounds by killing enemies or after 3 seconds. Hold up to 6.}$</p></td>
+            <td align="center"><p>Hold to cycle through a cylinder for $\color{#efd27b}\textsf{300\% damage per round}$. <br>$\color{#efd27b}\textsf{Pierces}$ and $\color{#efd27b}\textsf{stuns}$ on the $\color{#efd27b}\textsf{last shot}$. <br>$\color{#319ad2}\textsf{Gain a round on kill or after 3 seconds. Hold up to 6.}$</p></td>
         </tr>
     </tbody>
     <tbody>
