@@ -63,7 +63,7 @@
         "sixShooter" : {
             "name" : "Six Shooter",
             "pickup" : "Every 6 basic attacks critically strike.",
-            "description" : "Every <b>6th basic attack</c> gains <y>+100% critical chance</c>. <c_stack>Increases 6th basic attack damage by 33% per stack.</c>",
+            "description" : "Every <b>6th basic attack</c> gains <y>+100% critical chance</c>. <c_stack>Increases 6th basic attack damage by 50% per stack.</c>",
             "destination" : "Apt. #302,\n12th District,\nNeo Metro,\nVenus",
             "date" : "8/13/2056",
             "story" : "An antique from days past. The cylinder is somewhat damaged, and black powder is pretty hard (and expensive!) to get nowadays, but regardless it should be a nice addition to your collection if you aren't planning on firing it.",
@@ -154,8 +154,8 @@
 
         "magicDagger" : {
             "name" : "Magic Dagger",
-            "pickup" : "Freeze enemies in front of you for 6 seconds.",
-            "description" : "Release a burst of <b>runic ice</c>, dealing <y>250% damage</c> and <b>freezing</c> <y>all enemies in front of you</c> for <b>6 seconds</c>.",
+            "pickup" : "Freeze enemies in front of you for 9 seconds.",
+            "description" : "Release a burst of <b>runic ice</c>, dealing <y>250% damage</c> and <b>freezing</c> <y>all enemies in front of you</c> for <b>9 seconds</c>.",
             "destination" : "The Far Shore,\n???",
             "date" : "3/16/2022",
             "story" : "I'm sorry that I left you the way I did. Even with everything that I've done, all the taboos and sins I've wrought, it was still wrong to run from you with my tail between my legs. I don't know what's going to happen to me now, so consider this my final gift.\n\nWhenever you feel threatened, hold this dagger close to your heart. Let your soul and being flow into it, and it will respond in turn, casting away the darkness you face. I pray that in times of crisis, it will give you hope and protect you from the chaos of the world, as it did for me.\n\nGoodbye."
@@ -220,13 +220,13 @@
             "description" : "Pull an enemy <y>towards you</c> and <y>perform a takedown</c>, <y>stunning</c> for <y>500% damage</c>."
         },
 
-        "sniperBlast" : {
-            "name" : "Spotter: BLAST",
-            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. Hitting the target causes a <y>small explosion</c> for <y>50% TOTAL damage</c>."
+        "sniperShock" : {
+            "name" : "Spotter: SHOCK",
+            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. Hitting the target creates <y>chain lighting</c> for <y>50% TOTAL damage</c> on up to <y>3</c> targets."
         },
-        "sniperBlastBoosted" : {
-            "name" : "Spotter: DETONATE",
-            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. Hitting the target causes a <y>small explosion</c> for <y>50% TOTAL damage</c>, <y>stunning</c> enemies."
+        "sniperShockBoosted" : {
+            "name" : "Spotter: ELECTROCUTE",
+            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. Hitting the target creates <y>chain lighting</c> for <y>50% TOTAL damage</c> on up to <y>5</c> targets."
         }
     },
 

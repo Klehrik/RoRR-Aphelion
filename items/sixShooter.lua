@@ -35,7 +35,7 @@ item:onAttack(function(actor, damager, stack)
         end
 
         if stack > 1 then
-            damager.damage = damager.damage * (0.67 + (0.33 * stack))
+            damager.damage = damager.damage * (0.5 + (0.5 * stack))
         end
     end
 end)

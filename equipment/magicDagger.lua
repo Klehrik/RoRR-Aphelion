@@ -41,7 +41,7 @@ obj:onCreate(function(self)
     self.image_yscale = 2.0
 
     selfData.damage_coeff = 2.5
-    selfData.freeze_time = 6.1  -- in seconds
+    selfData.freeze_time = 9.1  -- in seconds
 
     selfData.state = 0
     selfData.state_time = 0
