@@ -121,7 +121,7 @@ Close this page if you would like to unlock and learn what each item does for yo
             <td align="center"><img src="https://github.com/user-attachments/assets/1c784a9d-3bd8-44e3-bc3c-1187857a7ce3"></td>
             <td align="center"><p>$\color{#75b458}\textsf{Six Shooter}$</p></td>
             <td align="center">Every 6 basic attacks critically strike.</td>
-            <td align="center"><p>Every $\color{#319ad2}\textsf{6th basic attack}$ gains $\color{#efd27b}\textsf{+100\% critical chance}$. $\color{#555555}\textsf{Increases 6th basic attack damage by 33\% per stack.}$</p></td>
+            <td align="center"><p>Every $\color{#319ad2}\textsf{6th basic attack}$ gains $\color{#efd27b}\textsf{+100\% critical chance}$. $\color{#555555}\textsf{Increases 6th basic attack damage by 50\% per stack.}$</p></td>
         </tr>
     </tbody>
     <tbody>
@@ -168,8 +168,8 @@ Close this page if you would like to unlock and learn what each item does for yo
         <tr>
             <td align="center"><img src="https://github.com/user-attachments/assets/f3153b88-66ce-4a0f-9889-9625abd2c07a"></td>
             <td align="center"><p>$\color{#d96635}\textsf{Magic Dagger (45s)}$</p></td>
-            <td align="center">Freeze enemies in front of you for 6 seconds.</td>
-            <td align="center"><p>Release a burst of $\color{#319ad2}\textsf{runic ice}$, dealing $\color{#efd27b}\textsf{250\% damage}$ and $\color{#319ad2}\textsf{freezing}$ $\color{#efd27b}\textsf{all enemies in front of you}$ for $\color{#319ad2}\textsf{6 seconds}$.</p></td>
+            <td align="center">Freeze enemies in front of you for 9 seconds.</td>
+            <td align="center"><p>Release a burst of $\color{#319ad2}\textsf{runic ice}$, dealing $\color{#efd27b}\textsf{250\% damage}$ and $\color{#319ad2}\textsf{freezing}$ $\color{#efd27b}\textsf{all enemies in front of you}$ for $\color{#319ad2}\textsf{9 seconds}$.</p></td>
         </tr>
     </tbody>
     <tbody>
@@ -206,7 +206,7 @@ Close this page if you would like to unlock and learn what each item does for yo
             <td align="center"><img src="https://github.com/user-attachments/assets/cd3bbce1-60de-4c21-944c-66bd53a6b0c1"></td>
             <td align="center"><b>Stealth Hunting</b></td>
             <td align="center">Special</td>
-            <td align="center"><p>$\color{#319ad2}\textsf{Turn invisible}$ for $\color{#319ad2}\textsf{4}$ seconds, $\color{#efd27b}\textsf{increasing damage by 30\%}$.</p></td>
+            <td align="center"><p>$\color{#319ad2}\textsf{Turn invisible}$ for $\color{#319ad2}\textsf{5}$ seconds, $\color{#efd27b}\textsf{increasing damage by 30\%}$.</p></td>
         </tr>
     </tbody>
     <tbody>
@@ -214,7 +214,7 @@ Close this page if you would like to unlock and learn what each item does for yo
             <td align="center"><img src="https://github.com/user-attachments/assets/5152d7b0-575e-41e4-9dc7-db802a1ab719"></td>
             <td align="center"><b>Stealth Stalking</b></td>
             <td align="center">Special</td>
-            <td align="center"><p>$\color{#319ad2}\textsf{Turn invisible}$ for $\color{#319ad2}\textsf{4}$ seconds, $\color{#efd27b}\textsf{increasing damage, critical chance, and movement speed by 30\%}$.</p></td>
+            <td align="center"><p>$\color{#319ad2}\textsf{Turn invisible}$ for $\color{#319ad2}\textsf{5}$ seconds, $\color{#efd27b}\textsf{increasing damage, critical chance, and movement speed by 30\%}$.</p></td>
         </tr>
     </tbody>
 </table>
