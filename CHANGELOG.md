@@ -1,4 +1,5 @@
 ### v1.2.2
+* Unload : Slightly tweaked description.
 * Stealth Hunting : Fixed slightly incorrect description from last patch.
 
 ### v1.2.1

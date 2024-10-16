@@ -207,7 +207,7 @@
 
         "banditUnload" : {
             "name" : "Unload",
-            "description" : "Hold to cycle through a cylinder for <y>300% damage per round</c>. \n<y>Pierces</c> and <y>stuns</c> on the <y>last shot</c>. \n<b>Gain rounds by killing enemies or after 3 seconds. Hold up to 6.</c>"
+            "description" : "Hold to cycle through a cylinder for <y>300% damage per round</c>. \n<y>Pierces</c> and <y>stuns</c> on the <y>last shot</c>. \n<b>Gain a round on kill or after 3 seconds. Hold up to 6.</c>"
         },
 
         "handOverdrive" : {
