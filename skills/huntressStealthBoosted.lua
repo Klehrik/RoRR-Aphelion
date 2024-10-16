@@ -16,7 +16,7 @@ local sprite = Resources.sprite_load("aphelion", "skill/huntress", PATH.."assets
 
 local skill = Skill.new("aphelion", "huntressStealthBoosted")
 skill:set_skill_icon(sprite, 1)
-skill:set_skill_properties(0.0, 14 *60)
+skill:set_skill_properties(0.0, 15 *60)
 skill:set_skill_stock(1, 1, true, 1)
 skill:set_skill_settings(
     true, false, 2,
@@ -26,7 +26,7 @@ skill:set_skill_settings(
 )
 
 skill:onActivate(function(actor, skill, index)
-    actor:buff_apply(Buff.find("aphelion-huntressStealthBoosted"), 4 *60.0)
+    actor:buff_apply(Buff.find("aphelion-huntressStealthBoosted"), 5 *60.0)
 
     create_smoke(actor)
 end)

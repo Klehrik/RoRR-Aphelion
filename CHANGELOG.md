@@ -1,6 +1,9 @@
 ### v1.2.1
 * Six Shooter : Stack 6th shot damage bonus: +33% -> +50%
 * Magic Dagger : Freeze time: 6s -> 9s
+* Stealth Hunting
+    * Duration: 4s -> 5s
+    * Cooldown: 14s -> 15s
 
 ### v1.2.0
 This update adds 2 skills.
