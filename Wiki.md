@@ -206,7 +206,7 @@ Close this page if you would like to unlock and learn what each item does for yo
             <td align="center"><img src="https://github.com/user-attachments/assets/cd3bbce1-60de-4c21-944c-66bd53a6b0c1"></td>
             <td align="center"><b>Stealth Hunting</b></td>
             <td align="center">Special</td>
-            <td align="center"><p>$\color{#319ad2}\textsf{Turn invisible}$ for $\color{#319ad2}\textsf{4}$ seconds, $\color{#efd27b}\textsf{increasing damage by 30\%}$.</p></td>
+            <td align="center"><p>$\color{#319ad2}\textsf{Turn invisible}$ for $\color{#319ad2}\textsf{5}$ seconds, $\color{#efd27b}\textsf{increasing damage by 30\%}$.</p></td>
         </tr>
     </tbody>
     <tbody>
@@ -214,7 +214,7 @@ Close this page if you would like to unlock and learn what each item does for yo
             <td align="center"><img src="https://github.com/user-attachments/assets/5152d7b0-575e-41e4-9dc7-db802a1ab719"></td>
             <td align="center"><b>Stealth Stalking</b></td>
             <td align="center">Special</td>
-            <td align="center"><p>$\color{#319ad2}\textsf{Turn invisible}$ for $\color{#319ad2}\textsf{4}$ seconds, $\color{#efd27b}\textsf{increasing damage, critical chance, and movement speed by 30\%}$.</p></td>
+            <td align="center"><p>$\color{#319ad2}\textsf{Turn invisible}$ for $\color{#319ad2}\textsf{5}$ seconds, $\color{#efd27b}\textsf{increasing damage, critical chance, and movement speed by 30\%}$.</p></td>
         </tr>
     </tbody>
 </table>
