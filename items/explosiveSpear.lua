@@ -38,6 +38,7 @@ end)
 -- Object
 
 local sprite = Resources.sprite_load("aphelion", "object/explosiveSpear", PATH.."assets/sprites/objects/explosiveSpear.png", 1, 36, 3, 1, -20, -5, -3, 3)
+local explosive_192 = Resources.sprite_load("aphelion", "explosive_192", PATH.."assets/sprites/effects/explosive_192.png", 6, 96, 96)
 local soundHit = Resources.sfx_load("aphelion", "explosiveSpearHit", PATH.."assets/sounds/explosiveSpearHit.ogg")
 local soundExplode = Resources.sfx_load("aphelion", "explosiveSpearExplode", PATH.."assets/sounds/explosiveSpearExplode.ogg")
 
@@ -144,7 +145,7 @@ obj:onStep(function(self)
 
         -- Explode
         if selfData.tick <= -20 or (selfData.hit_type == 0 and not selfData.hit:exists()) then
-            local damager = selfData.parent:fire_explosion(self.x, self.y, 200, 200, selfData.damage)
+            local damager = selfData.parent:fire_explosion(self.x, self.y, 200, 200, selfData.damage, explosive_192)
             damager:use_raw_damage()
             damager:set_color(c_red)
             damager:set_critical(false)

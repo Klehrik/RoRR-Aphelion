@@ -212,16 +212,16 @@
 
         "sniperBlast" : {
             "name" : "Spotter: BLAST",
-            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. Hitting the target causes an <y>explosion</c> for <y>50% TOTAL damage</c>. \nThis has a <r>5 second cooldown</c>."
+            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. \nHitting the target causes an <y>explosion</c> for <y>50% TOTAL damage</c>. \nThis has a <r>5 second cooldown</c>."
         },
         "sniperBlastBoosted" : {
             "name" : "Spotter: DETONATE",
-            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. Hitting the target causes a <y>large explosion</c> for <y>50% TOTAL damage</c>, <y>stunning</c> enemies. \nThis has a <r>5 second cooldown</c>."
+            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. \nHitting the target causes a <y>large explosion</c> for <y>50% TOTAL damage</c>, <y>stunning</c> enemies. \nThis has a <r>5 second cooldown</c>."
         },
 
         "handOverdrive" : {
             "name" : "OVERDRIVE",
-            "description" : "<y>CHARGE FORWARD</c> FOR <y>350% DAMAGE</c> AND GAIN <g>100 ARMOR</c>."
+            "description" : "CHARGE FORWARD, <y>KNOCKING ENEMIES BACK</c> FOR <y>4x100% DAMAGE</c> AND GAINING <g>200 ARMOR</c>."
         },
 
         "loaderGrapple" : {

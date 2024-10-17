@@ -1,10 +1,10 @@
--- Sniper : Spotter: BLAST
+-- Sniper : Spotter: DETONATE
 
 local sprite = Resources.sprite_load("aphelion", "skill/sniper", PATH.."assets/sprites/skills/sniper.png", 2)
-local explosive_192 = Resources.sprite_load("aphelion", "explosive_192", PATH.."assets/sprites/effects/explosive_192.png", 6, 96, 96)
+local explosive_256 = Resources.sprite_load("aphelion", "explosive_256", PATH.."assets/sprites/effects/explosive_256.png", 6, 128, 128)
 
-local skill = Skill.new("aphelion", "sniperBlast")
-skill:set_skill_icon(sprite, 0)
+local skill = Skill.new("aphelion", "sniperBlastBoosted")
+skill:set_skill_icon(sprite, 1)
 skill:set_skill_properties(0.0, 10 *60)
 skill:set_skill_stock(1, 1, true, 1)
 skill:set_skill_settings(
@@ -50,25 +50,23 @@ skill:onActivate(function(actor, struct, index)
     end
 end)
 
-Player:onHit("aphelion-sniperBlast_onHit", function(actor, victim, damager)
-    if actor:item_stack_count(Item.find("ror-ancientScepter")) > 0 then return end
+Player:onHit("aphelion-sniperBlastBoosted_onHit", function(actor, victim, damager)
+    if actor:item_stack_count(Item.find("ror-ancientScepter")) <= 0 then return end
     local drone = GM._survivor_sniper_find_drone(actor)
     if not drone:exists() then return end
     if drone.tt:same(victim) then
         local damager = actor:fire_explosion(
             victim.x, victim.y, -- change to damager hit location
-            200, 200,
+            250, 250,
             damager.damage * 0.5,
-            explosive_192
+            explosive_256
         )
         damager:use_raw_damage()
         damager:set_color(Color(0xffbb59))
         damager:set_critical(false)
         damager:set_proc(false)
-        damager:set_stun(0.2)
+        damager:set_stun(1.7)
 
         victim:sound_play_at(gm.constants.wExplosiveShot, 1.0, 1.0, victim.x, victim.y, 1.0)
     end
 end)
-
-Survivor.find("ror-sniper"):add_skill(skill, Skill.SLOT.special)

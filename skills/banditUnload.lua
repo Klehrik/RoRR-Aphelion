@@ -13,7 +13,7 @@ skill:set_skill_settings(
     true
 )
 
-skill:onActivate(function(actor, skill, index)
+skill:onActivate(function(actor, struct, index)
     actor:enter_state(State.find("aphelion-banditUnload"))
 end)
 
@@ -37,9 +37,7 @@ end)
 
 state:onExit(function(actor, data)
     actor:get_data("banditUnload").just_used = 2
-
     data.shot = nil
-    actor:skill_util_unlock_cooldown(skill)
 end)
 
 state:onStep(function(actor, data)

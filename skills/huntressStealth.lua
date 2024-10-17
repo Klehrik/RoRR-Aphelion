@@ -25,7 +25,7 @@ skill:set_skill_settings(
     false
 )
 
-skill:onActivate(function(actor, skill, index)
+skill:onActivate(function(actor, struct, index)
     actor:buff_apply(Buff.find("aphelion-huntressStealth"), 5 *60.0)
 
     create_smoke(actor)
