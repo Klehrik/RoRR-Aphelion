@@ -212,11 +212,11 @@
 
         "sniperBlast" : {
             "name" : "Spotter: BLAST",
-            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. Hitting the target causes an <y>explosion</c> for <y>50% TOTAL damage</c>. Has a <b>5 second</c> cooldown."
+            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. Hitting the target causes an <y>explosion</c> for <y>50% TOTAL damage</c>. <br>This has a <r>5 second cooldown</c>."
         },
         "sniperBlastBoosted" : {
             "name" : "Spotter: DETONATE",
-            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. Hitting the target causes a <y>large explosion</c> for <y>50% TOTAL damage</c>, <y>stunning</c> enemies. Has a <b>5 second</c> cooldown."
+            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. Hitting the target causes a <y>large explosion</c> for <y>50% TOTAL damage</c>, <y>stunning</c> enemies. <br>This has a <r>5 second cooldown</c>."
         },
 
         "handOverdrive" : {
