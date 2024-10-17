@@ -197,15 +197,15 @@ Close this page if you would like to unlock and learn what each item does for yo
         <tr>
             <td align="center"><img src="https://github.com/user-attachments/assets/b2656260-264f-4017-b68d-3ad36c5655ec"></td>
             <td align="center"><b>Unload</b></td>
-            <td align="center">Secondary</td>
-            <td align="center"><p>Hold to cycle through a cylinder for $\color{#efd27b}\textsf{300\% damage per round}$. <br>$\color{#efd27b}\textsf{Pierces}$ and $\color{#efd27b}\textsf{stuns}$ on the $\color{#efd27b}\textsf{last shot}$. <br>$\color{#319ad2}\textsf{Gain rounds by killing enemies or after 3 seconds. Hold up to 6.}$</p></td>
+            <td align="center">Secondary<br>(3s/round)</td>
+            <td align="center"><p>Hold to cycle through a cylinder for $\color{#efd27b}\textsf{300\% damage per round}$. <br>$\color{#efd27b}\textsf{Pierces}$ and $\color{#efd27b}\textsf{stuns}$ on the $\color{#efd27b}\textsf{last shot}$. <br>$\color{#319ad2}\textsf{Gain a round on kill or after 3 seconds. Hold up to 6.}$</p></td>
         </tr>
     </tbody>
     <tbody>
         <tr>
             <td align="center"><img src="https://github.com/user-attachments/assets/cd3bbce1-60de-4c21-944c-66bd53a6b0c1"></td>
             <td align="center"><b>Stealth Hunting</b></td>
-            <td align="center">Special</td>
+            <td align="center">Special<br>(14s)</td>
             <td align="center"><p>$\color{#319ad2}\textsf{Turn invisible}$ for $\color{#319ad2}\textsf{5}$ seconds, $\color{#efd27b}\textsf{increasing damage by 30\%}$.</p></td>
         </tr>
     </tbody>
@@ -213,8 +213,24 @@ Close this page if you would like to unlock and learn what each item does for yo
         <tr>
             <td align="center"><img src="https://github.com/user-attachments/assets/5152d7b0-575e-41e4-9dc7-db802a1ab719"></td>
             <td align="center"><b>Stealth Stalking</b></td>
-            <td align="center">Special</td>
+            <td align="center">Special<br>(14s)</td>
             <td align="center"><p>$\color{#319ad2}\textsf{Turn invisible}$ for $\color{#319ad2}\textsf{5}$ seconds, $\color{#efd27b}\textsf{increasing damage, critical chance, and movement speed by 30\%}$.</p></td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr>
+            <td align="center"><img src="https://github.com/user-attachments/assets/134836c3-5821-4764-877c-e50e3f1cea92"></td>
+            <td align="center"><b>Spotter: BLAST</b></td>
+            <td align="center">Special<br>(10s)</td>
+            <td align="center"><p>Send your Spotter out to $\color{#efd27b}\textsf{target the most dangerous enemy}$. <br>Hitting the target causes an $\color{#efd27b}\textsf{explosion}$ for $\color{#efd27b}\textsf{50\% TOTAL damage}$. <br>This has a $\color{#cf6666}\textsf{5 second cooldown}$.</p></td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr>
+            <td align="center"><img src="https://github.com/user-attachments/assets/883bd2e9-a0d2-4eb1-8920-cec9cd632245"></td>
+            <td align="center"><b>Spotter: DETONATE</b></td>
+            <td align="center">Special<br>(10s)</td>
+            <td align="center"><p>Send your Spotter out to $\color{#efd27b}\textsf{target the most dangerous enemy}$. <br>Hitting the target causes a $\color{#efd27b}\textsf{large explosion}$ for $\color{#efd27b}\textsf{50\% TOTAL damage}$, $\color{#efd27b}\textsf{stunning}$ enemies. <br>This has a $\color{#cf6666}\textsf{5 second cooldown}$.</p></td>
         </tr>
     </tbody>
 </table>

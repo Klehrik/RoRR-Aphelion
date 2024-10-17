@@ -1,3 +1,10 @@
+### v1.2.2
+* Added Spotter: BLAST (Sniper special)
+    * Some vfx are a little scuffed/missing but it's functional.
+* Unload : Slightly tweaked description.
+* Stealth Hunting : Fixed slightly incorrect description from last patch.
+* Explosive Spear : Added temporary(?) explosion sprite.
+
 ### v1.2.1
 * Six Shooter : Stack 6th shot damage bonus: +33% -> +50%
 * Magic Dagger : Freeze time: 6s -> 9s

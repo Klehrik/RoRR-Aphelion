@@ -9,7 +9,7 @@ item:set_tier(Item.TIER.uncommon)
 item:set_loot_tags(Item.LOOT_TAG.category_damage)
 
 item:onHit(function(actor, victim, damager, stack)
-    local cooldownBuff = Buff.find("aphelion-explosiveSpearDisplay")
+    local cooldownBuff = Buff.find("aphelion-explosiveSpearCooldown")
     if actor:buff_stack_count(cooldownBuff) > 0 then return end
     
     -- Do not proc if the hit does not deal at least 200%
@@ -38,6 +38,7 @@ end)
 -- Object
 
 local sprite = Resources.sprite_load("aphelion", "object/explosiveSpear", PATH.."assets/sprites/objects/explosiveSpear.png", 1, 36, 3, 1, -20, -5, -3, 3)
+local explosive_192 = Resources.sprite_load("aphelion", "explosive_192", PATH.."assets/sprites/effects/explosive_192.png", 6, 96, 96)
 local soundHit = Resources.sfx_load("aphelion", "explosiveSpearHit", PATH.."assets/sounds/explosiveSpearHit.ogg")
 local soundExplode = Resources.sfx_load("aphelion", "explosiveSpearExplode", PATH.."assets/sounds/explosiveSpearExplode.ogg")
 
@@ -144,7 +145,7 @@ obj:onStep(function(self)
 
         -- Explode
         if selfData.tick <= -20 or (selfData.hit_type == 0 and not selfData.hit:exists()) then
-            local damager = selfData.parent:fire_explosion(self.x, self.y, 200, 200, selfData.damage)
+            local damager = selfData.parent:fire_explosion(self.x, self.y, 200, 200, selfData.damage, explosive_192)
             damager:use_raw_damage()
             damager:set_color(c_red)
             damager:set_critical(false)
@@ -245,7 +246,7 @@ end)
 
 local sprite = Resources.sprite_load("aphelion", "buff/explosiveSpear", PATH.."assets/sprites/buffs/explosiveSpear.png", 1, 7, 9)
 
-local buff = Buff.new("aphelion", "explosiveSpearDisplay")
+local buff = Buff.new("aphelion", "explosiveSpearCooldown")
 buff.icon_sprite = sprite
 buff.icon_stack_subimage = false
 buff.draw_stack_number = true

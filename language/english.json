@@ -196,37 +196,37 @@
     },
 
     "skill" : {
+        "banditUnload" : {
+            "name" : "Unload",
+            "description" : "Hold to cycle through a cylinder for <y>300% damage per round</c>. \n<y>Pierces</c> and <y>stuns</c> on the <y>last shot</c>. \n<b>Gain a round on kill or after 3 seconds. Hold up to 6.</c>"
+        },
+
         "huntressStealth" : {
             "name" : "Stealth Hunting",
-            "description" : "<b>Turn invisible</c> for <b>4</c> seconds, <y>increasing damage by 30%</c>."
+            "description" : "<b>Turn invisible</c> for <b>5</c> seconds, <y>increasing damage by 30%</c>."
         },
         "huntressStealthBoosted" : {
             "name" : "Stealth Stalking",
-            "description" : "<b>Turn invisible</c> for <b>4</c> seconds, <y>increasing damage, critical chance, and movement speed by 30%</c>."
+            "description" : "<b>Turn invisible</c> for <b>5</c> seconds, <y>increasing damage, critical chance, and movement speed by 30%</c>."
         },
 
-        "banditUnload" : {
-            "name" : "Unload",
-            "description" : "Hold to cycle through a cylinder for <y>300% damage per round</c>. \n<y>Pierces</c> and <y>stuns</c> on the <y>last shot</c>. \n<b>Gain rounds by killing enemies or after 3 seconds. Hold up to 6.</c>"
+        "sniperBlast" : {
+            "name" : "Spotter: BLAST",
+            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. \nHitting the target causes an <y>explosion</c> for <y>50% TOTAL damage</c>. \nThis has a <r>5 second cooldown</c>."
+        },
+        "sniperBlastBoosted" : {
+            "name" : "Spotter: DETONATE",
+            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. \nHitting the target causes a <y>large explosion</c> for <y>50% TOTAL damage</c>, <y>stunning</c> enemies. \nThis has a <r>5 second cooldown</c>."
         },
 
         "handOverdrive" : {
             "name" : "OVERDRIVE",
-            "description" : "<y>CHARGE FORWARD</c> FOR <y>350% DAMAGE</c> AND GAIN <g>100 ARMOR</c>."
+            "description" : "CHARGE FORWARD, <y>KNOCKING ENEMIES BACK</c> FOR <y>4x100% DAMAGE</c> AND GAINING <g>200 ARMOR</c>."
         },
 
         "loaderGrapple" : {
             "name" : "Grapple",
             "description" : "Pull an enemy <y>towards you</c> and <y>perform a takedown</c>, <y>stunning</c> for <y>500% damage</c>."
-        },
-
-        "sniperShock" : {
-            "name" : "Spotter: SHOCK",
-            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. Hitting the target creates <y>chain lighting</c> for <y>50% TOTAL damage</c> on up to <y>3</c> targets."
-        },
-        "sniperShockBoosted" : {
-            "name" : "Spotter: ELECTROCUTE",
-            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. Hitting the target creates <y>chain lighting</c> for <y>50% TOTAL damage</c> on up to <y>5</c> targets."
         }
     },
 
@@ -274,6 +274,10 @@
         "huntressStealth" : {
             "name" : "Ghost",
             "description" : "Huntress: Complete a stage without getting hit."
+        },
+        "sniperBlast" : {
+            "name" : "Explosive Weaponry",
+            "description" : "Sniper: Obtain Arms Race, Brilliant Behemoth, and Drone Repair Kit in one run."
         }
     },
 
