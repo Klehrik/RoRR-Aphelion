@@ -196,6 +196,11 @@
     },
 
     "skill" : {
+        "banditUnload" : {
+            "name" : "Unload",
+            "description" : "Hold to cycle through a cylinder for <y>300% damage per round</c>. \n<y>Pierces</c> and <y>stuns</c> on the <y>last shot</c>. \n<b>Gain a round on kill or after 3 seconds. Hold up to 6.</c>"
+        },
+
         "huntressStealth" : {
             "name" : "Stealth Hunting",
             "description" : "<b>Turn invisible</c> for <b>5</c> seconds, <y>increasing damage by 30%</c>."
@@ -205,9 +210,13 @@
             "description" : "<b>Turn invisible</c> for <b>5</c> seconds, <y>increasing damage, critical chance, and movement speed by 30%</c>."
         },
 
-        "banditUnload" : {
-            "name" : "Unload",
-            "description" : "Hold to cycle through a cylinder for <y>300% damage per round</c>. \n<y>Pierces</c> and <y>stuns</c> on the <y>last shot</c>. \n<b>Gain a round on kill or after 3 seconds. Hold up to 6.</c>"
+        "sniperBlast" : {
+            "name" : "Spotter: BLAST",
+            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. Hitting the target causes a <y>small explosion</c> for <y>50% TOTAL damage</c>."
+        },
+        "sniperBlastBoosted" : {
+            "name" : "Spotter: DETONATE",
+            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. Hitting the target causes an <y>explosion</c> for <y>50% TOTAL damage</c>, <y>stunning</c> enemies."
         },
 
         "handOverdrive" : {
@@ -218,15 +227,6 @@
         "loaderGrapple" : {
             "name" : "Grapple",
             "description" : "Pull an enemy <y>towards you</c> and <y>perform a takedown</c>, <y>stunning</c> for <y>500% damage</c>."
-        },
-
-        "sniperBlast" : {
-            "name" : "Spotter: BLAST",
-            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. Hitting the target causes a <y>small explosion</c> for <y>50% TOTAL damage</c>."
-        },
-        "sniperBlastBoosted" : {
-            "name" : "Spotter: DETONATE",
-            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. Hitting the target causes an <y>explosion</c> for <y>50% TOTAL damage</c>, <y>stunning</c> enemies."
         }
     },
 
