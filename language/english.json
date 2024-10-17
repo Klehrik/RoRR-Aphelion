@@ -220,13 +220,13 @@
             "description" : "Pull an enemy <y>towards you</c> and <y>perform a takedown</c>, <y>stunning</c> for <y>500% damage</c>."
         },
 
-        "sniperShock" : {
-            "name" : "Spotter: SHOCK",
-            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. Hitting the target creates <y>chain lighting</c> for <y>50% TOTAL damage</c> on up to <y>3</c> targets."
+        "sniperBlast" : {
+            "name" : "Spotter: BLAST",
+            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. Hitting the target causes a <y>small explosion</c> for <y>50% TOTAL damage</c>."
         },
-        "sniperShockBoosted" : {
-            "name" : "Spotter: ELECTROCUTE",
-            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. Hitting the target creates <y>chain lighting</c> for <y>50% TOTAL damage</c> on up to <y>5</c> targets."
+        "sniperBlastBoosted" : {
+            "name" : "Spotter: DETONATE",
+            "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. Hitting the target causes an <y>explosion</c> for <y>50% TOTAL damage</c>, <y>stunning</c> enemies."
         }
     },
 

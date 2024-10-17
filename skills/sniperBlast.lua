@@ -1,8 +1,8 @@
--- -- Sniper : Spotter: SHOCK
+-- -- Sniper : Spotter: BLAST
 
 -- local sprite = Resources.sprite_load("aphelion", "skill/sniper", PATH.."assets/sprites/skills/sniper.png", 2)
 
--- local skill = Skill.new("aphelion", "sniperShock")
+-- local skill = Skill.new("aphelion", "sniperBlast")
 -- skill:set_skill_icon(sprite, 0)
 -- skill:set_skill_properties(0.0, 0)
 -- skill:set_skill_stock(1, 1, true, 1)
