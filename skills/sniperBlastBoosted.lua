@@ -1,7 +1,7 @@
 -- Sniper : Spotter: DETONATE
 
 local sprite = Resources.sprite_load("aphelion", "skill/sniper", PATH.."assets/sprites/skills/sniper.png", 2)
-local explosive_256 = Resources.sprite_load("aphelion", "explosive_256", PATH.."assets/sprites/effects/explosive_256.png", 6, 128, 128)
+local explosive_256 = Resources.sprite_load("aphelion", "explosive_256", PATH.."assets/sprites/effects/explosive_256.png", 6, 128, 128, 0.8)
 
 local skill = Skill.new("aphelion", "sniperBlastBoosted")
 skill:set_skill_icon(sprite, 1)
@@ -56,7 +56,7 @@ Player:onHit("aphelion-sniperBlastBoosted_onHit", function(actor, victim, damage
 
     local drone = GM._survivor_sniper_find_drone(actor)
     if not drone:exists() then return end
-    if drone.tt:same(victim) then
+    if Wrap.wrap(drone.tt):same(victim) then
         local damager = actor:fire_explosion(
             victim.x, victim.y, -- change to damager hit location
             250, 250,

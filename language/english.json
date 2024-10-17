@@ -274,6 +274,10 @@
         "huntressStealth" : {
             "name" : "Ghost",
             "description" : "Huntress: Complete a stage without getting hit."
+        },
+        "sniperBlast" : {
+            "name" : "Explosive Weaponry",
+            "description" : "Sniper: Obtain Arms Race, Brilliant Behemoth, and Drone Repair Kit in one run."
         }
     },
 

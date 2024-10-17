@@ -1,7 +1,7 @@
 -- Sniper : Spotter: BLAST
 
 local sprite = Resources.sprite_load("aphelion", "skill/sniper", PATH.."assets/sprites/skills/sniper.png", 2)
-local explosive_192 = Resources.sprite_load("aphelion", "explosive_192", PATH.."assets/sprites/effects/explosive_192.png", 6, 96, 96)
+local explosive_192 = Resources.sprite_load("aphelion", "explosive_192", PATH.."assets/sprites/effects/explosive_192.png", 6, 96, 96, 0.8)
 
 local skill = Skill.new("aphelion", "sniperBlast")
 skill:set_skill_icon(sprite, 0)
@@ -56,7 +56,7 @@ Player:onHit("aphelion-sniperBlast_onHit", function(actor, victim, damager)
 
     local drone = GM._survivor_sniper_find_drone(actor)
     if not drone:exists() then return end
-    if drone.tt:same(victim) then
+    if Wrap.wrap(drone.tt):same(victim) then
         local damager = actor:fire_explosion(
             victim.x, victim.y, -- change to damager hit location
             200, 200,
@@ -106,5 +106,19 @@ buff:onStep(function(actor, stack)
     if actorData.cooldown <= 0 then
         actorData.cooldown = 60
         actor:buff_remove(buff, 1)
+    end
+end)
+
+
+
+-- Achievement
+skill:add_achievement()
+
+Player:onStatRecalc("aphelion-sniperBlastUnlock", function(actor)
+    if actor.class == 7.0
+    and actor:item_stack_count(Item.find("ror-armsRace")) > 0
+    and actor:item_stack_count(Item.find("ror-brilliantBehemoth")) > 0
+    and actor:get_equipment().value == Equipment.find("ror-droneRepairKit").value then
+        skill:progress_achievement()
     end
 end)
