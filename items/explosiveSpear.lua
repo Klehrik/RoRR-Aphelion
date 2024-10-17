@@ -9,7 +9,7 @@ item:set_tier(Item.TIER.uncommon)
 item:set_loot_tags(Item.LOOT_TAG.category_damage)
 
 item:onHit(function(actor, victim, damager, stack)
-    local cooldownBuff = Buff.find("aphelion-explosiveSpearDisplay")
+    local cooldownBuff = Buff.find("aphelion-explosiveSpearCooldown")
     if actor:buff_stack_count(cooldownBuff) > 0 then return end
     
     -- Do not proc if the hit does not deal at least 200%
@@ -246,7 +246,7 @@ end)
 
 local sprite = Resources.sprite_load("aphelion", "buff/explosiveSpear", PATH.."assets/sprites/buffs/explosiveSpear.png", 1, 7, 9)
 
-local buff = Buff.new("aphelion", "explosiveSpearDisplay")
+local buff = Buff.new("aphelion", "explosiveSpearCooldown")
 buff.icon_sprite = sprite
 buff.icon_stack_subimage = false
 buff.draw_stack_number = true

@@ -52,6 +52,8 @@ end)
 
 Player:onHit("aphelion-sniperBlast_onHit", function(actor, victim, damager)
     if actor:item_stack_count(Item.find("ror-ancientScepter")) > 0 then return end
+    if actor:buff_stack_count(Buff.find("aphelion-sniperBlastCooldown")) > 0 then return end
+
     local drone = GM._survivor_sniper_find_drone(actor)
     if not drone:exists() then return end
     if drone.tt:same(victim) then
@@ -68,7 +70,41 @@ Player:onHit("aphelion-sniperBlast_onHit", function(actor, victim, damager)
         damager:set_stun(0.2)
 
         victim:sound_play_at(gm.constants.wExplosiveShot, 1.0, 1.0, victim.x, victim.y, 1.0)
+        
+        -- Apply cooldown
+        actor:buff_apply(Buff.find("aphelion-sniperBlastCooldown"), 1, 5)   -- Stack count is seconds
     end
 end)
 
 Survivor.find("ror-sniper"):add_skill(skill, Skill.SLOT.special)
+
+
+
+-- Buff
+
+local sprite = Resources.sprite_load("aphelion", "buff/sniperBlast", PATH.."assets/sprites/buffs/sniperBlast.png", 1, 6, 6)
+
+local buff = Buff.new("aphelion", "sniperBlastCooldown")
+buff.icon_sprite = sprite
+buff.icon_stack_subimage = false
+buff.draw_stack_number = true
+buff.stack_number_col = Array.new(1, Color(0xBEBEBE))
+buff.max_stack = 5
+buff.is_timed = false
+buff.is_debuff = true
+
+buff:onApply(function(actor, stack)
+    local actorData = actor:get_data("sniperBlast")
+    actorData.cooldown = 60.0
+end)
+
+buff:onStep(function(actor, stack)
+    local actorData = actor:get_data("sniperBlast")
+
+    actorData.cooldown = actorData.cooldown - 1
+
+    if actorData.cooldown <= 0 then
+        actorData.cooldown = 60
+        actor:buff_remove(buff, 1)
+    end
+end)

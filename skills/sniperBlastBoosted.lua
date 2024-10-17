@@ -52,6 +52,8 @@ end)
 
 Player:onHit("aphelion-sniperBlastBoosted_onHit", function(actor, victim, damager)
     if actor:item_stack_count(Item.find("ror-ancientScepter")) <= 0 then return end
+    if actor:buff_stack_count(Buff.find("aphelion-sniperBlastCooldown")) > 0 then return end
+
     local drone = GM._survivor_sniper_find_drone(actor)
     if not drone:exists() then return end
     if drone.tt:same(victim) then
@@ -68,5 +70,8 @@ Player:onHit("aphelion-sniperBlastBoosted_onHit", function(actor, victim, damage
         damager:set_stun(1.7)
 
         victim:sound_play_at(gm.constants.wExplosiveShot, 1.0, 1.0, victim.x, victim.y, 1.0)
+        
+        -- Apply cooldown
+        actor:buff_apply(Buff.find("aphelion-sniperBlastCooldown"), 1, 5)   -- Stack count is seconds
     end
 end)
