@@ -33,8 +33,6 @@ local duration = 30     -- in seconds
 -- Object
 
 local sprite = Resources.sprite_load("aphelion", "objects/thermiteFlare", PATH.."assets/sprites/objects/thermiteFlare.png", 5, 13, 5)
--- local soundWindup = Resources.sfx_load("aphelion", "", PATH.."assets/sounds/magicDaggerWindup.ogg")
--- local soundFreeze = Resources.sfx_load("aphelion", "", PATH.."assets/sounds/magicDaggerFreeze.ogg")
 
 local obj = Object.new("aphelion", "thermiteFlareObject")
 obj:set_sprite(sprite)
