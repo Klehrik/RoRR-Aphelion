@@ -32,7 +32,7 @@ local duration = 30     -- in seconds
 
 -- Object
 
-local sprite = gm.constants.sBanditDynamite
+local sprite = Resources.sprite_load("aphelion", "objects/thermiteFlare", PATH.."assets/sprites/objects/thermiteFlare.png", 5, 13, 5)
 -- local soundWindup = Resources.sfx_load("aphelion", "", PATH.."assets/sounds/magicDaggerWindup.ogg")
 -- local soundFreeze = Resources.sfx_load("aphelion", "", PATH.."assets/sounds/magicDaggerFreeze.ogg")
 
@@ -112,7 +112,7 @@ buff:onApply(function(actor, stack)
             if damager.parent and damager.parent:exists() and (not damager.aphelion_thermiteFlare) then
                 local damager2 = damager.parent.fire_direct(actor, damager.damage * damage_extra)
                 damager2:use_raw_damage()
-                damager2:set_color(Color.TEXT_ORANGE)
+                damager2:set_color(0x9c6228)
                 damager2:set_critical(false)
                 damager2:set_proc(false)
                 damager.aphelion_thermiteFlare = true
