@@ -1,3 +1,7 @@
+### v1.2.3
+* Added Thermite Flare (2-use equipment)
+* Removed test skill accidentally added to Commando.
+
 ### v1.2.2
 * Added Spotter: BLAST (Sniper special)
     * Some vfx are a little scuffed/missing but it's functional.

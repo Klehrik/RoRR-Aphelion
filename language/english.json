@@ -179,13 +179,18 @@
         },
         "thermiteFlare" : {
             "name" : "Thermite Flare",
-            "pickup" : "Incinerate an enemy for high damage over time.",
-            "description" : "Throw a <r>thermite flare</c>, <or>igniting</c> and <b>slowing</c> an enemy for <y>60% damage per 0.2 seconds</c> for <y>10 seconds</c>.",
+            "pickup" : "Incinerate an enemy for high damage over time. Consumed after 2 uses.",
+            "description" : "Throw a <r>thermite flare</c>, <or>igniting</c> an enemy for <y>6x60% damage per second</c> and causing it to take <y>25% more damage from all other sources</c> for <y>20 seconds</c>. \nEquipment is <r>consumed</c> after <b>2</c> uses.",
             "destination" : "The Sierpinski Triangle,\nVenus",
             "date" : "10/27/2022",
-            "story" : "These sticks of thermite have an internal combustion mechanism, allowing for easy ignition. <TODO>"
+            "story" : "These sticks of thermite have an internal combustion mechanism, allowing for easy ignition; just light the side with the ribbon. Should aid in the disposal of the bodies. Be careful not to burn yourselves with it; it's not a pleasant way to go."
         },
-        "warpDrive" : {
+        "thermiteFlareLast" : {
+            "name" : "Thermite Flare",
+            "pickup" : "Incinerate an enemy for high damage over time. Consumed after use.",
+            "description" : "Throw a <r>thermite flare</c>, <or>igniting</c> an enemy for <y>6x60% damage per second</c> and causing it to take <y>25% more damage from all other sources</c> for <y>20 seconds</c>. \nEquipment is <r>consumed</c> after use."
+        },
+        "UNUSED_warpDrive" : {
             "name" : "Warp Drive",
             "pickup" : "Teleport a short distance up to 3 times.",
             "description" : "<y>Teleport forwards</c> a short distance. Can use <b>up to 3 times</c> in succession.",
@@ -219,12 +224,12 @@
             "description" : "Send your Spotter out to <y>target the most dangerous enemy</c>. \nHitting the target causes a <y>large explosion</c> for <y>50% TOTAL damage</c>, <y>stunning</c> enemies. \nThis has a <r>5 second cooldown</c>."
         },
 
-        "handOverdrive" : {
+        "UNUSED_handOverdrive" : {
             "name" : "OVERDRIVE",
             "description" : "CHARGE FORWARD, <y>KNOCKING ENEMIES BACK</c> FOR <y>4x100% DAMAGE</c> AND GAINING <g>200 ARMOR</c>."
         },
 
-        "loaderGrapple" : {
+        "UNUSED_loaderGrapple" : {
             "name" : "Grapple",
             "description" : "Pull an enemy <y>towards you</c> and <y>perform a takedown</c>, <y>stunning</c> for <y>500% damage</c>."
         }
@@ -262,7 +267,11 @@
             "name" : "A Space Between",
             "description" : "Enter the hidden stage on Ancient Valley."
         },
-        "shatteredGlass" : {
+        "thermiteFlare" : {
+            "name" : "Die Jagd",
+            "description" : "Kill 60 bosses."
+        },
+        "UNUSED_shatteredGlass" : {
             "name" : "Fragility",
             "description" : "Beat the game with Artifact of Glass enabled."
         },
@@ -282,12 +291,12 @@
     },
 
     "stage" : {
-        "amberMesa" : {
+        "UNUSED_amberMesa" : {
             "name" : "Amber Mesa",
             "subname" : "Sweltering Heat",
             "story" : "Stage 3 (increased Drones)"
         },
-        "tempestRidge" : {
+        "UNUSED_tempestRidge" : {
             "name" : "Tempest Ridge",
             "subname" : "Perilous Trek",
             "story" : "Stage 5 (increased Mountain Shrines)"
