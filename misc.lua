@@ -1,5 +1,8 @@
 -- Misc
 
+-- Thermite Flare : Change item log sprite
+Item_Log.find("aphelion", "thermiteFlare").sprite_id = GM.sprite_find("aphelion-equipment/thermiteFlareLast")
+
 -- Set special upgrades
 Skill.find("aphelion-huntressStealth").upgrade_skill = Skill.find("aphelion-huntressStealthBoosted")
 Skill.find("aphelion-sniperBlast").upgrade_skill = Skill.find("aphelion-sniperBlastBoosted")
