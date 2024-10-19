@@ -152,3 +152,14 @@ Actor:onPreStep("aphelion-thermiteFlare_removeWurmImmunity", function(self)
         self.buff_immune:set(buff, false)
     end
 end)
+
+
+
+-- Achievement
+equip:add_achievement(60)
+
+Player:onKill("aphelion-thermiteFlareUnlock", function(actor, victim)
+    if GM.actor_is_boss(victim) then
+        equip:progress_achievement(1)
+    end
+end)
