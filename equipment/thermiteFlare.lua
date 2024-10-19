@@ -19,6 +19,8 @@ equip:onUse(function(actor)
     actor:set_equipment(Equipment.find("aphelion-thermiteFlareLast"))
 end)
 
+Item_Log.find("aphelion", "thermiteFlare").sprite_id = Resources.sprite_load("aphelion", "equipment/thermiteFlareLast", PATH.."assets/sprites/equipment/thermiteFlareLast.png", 2, 22, 22)
+
 
 
 -- Parameters
