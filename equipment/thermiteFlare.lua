@@ -63,7 +63,7 @@ obj:onStep(function(self)
     local actors = self:get_collisions(gm.constants.pActor)
     for _, actor in ipairs(actors) do
         if actor.team and actor.team ~= selfData.parent.team
-        and actor:get_stack_count(Buff.find("aphelion-thermiteFlareIgnite")) <= 0 then
+        and actor:buff_stack_count(Buff.find("aphelion-thermiteFlareIgnite")) <= 0 then
             actor:buff_apply(Buff.find("aphelion-thermiteFlareIgnite"), duration *60)
             actor:get_data("thermiteFlare").attacker = selfData.parent
             self:destroy()
