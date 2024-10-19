@@ -180,7 +180,7 @@
         "thermiteFlare" : {
             "name" : "Thermite Flare",
             "pickup" : "Incinerate an enemy for high damage over time. Consumed after 2 uses.",
-            "description" : "Throw a <r>thermite flare</c>, <or>igniting</c> an enemy for <y>60% damage per 0.2 seconds</c> and causing it to take <y>25% more damage from all other sources</c> for <y>30 seconds</c>. \nEquipment is <r>consumed</c> after <b>2</c> uses.",
+            "description" : "Throw a <r>thermite flare</c>, <or>igniting</c> an enemy for <y>6x60% damage per second</c> and causing it to take <y>25% more damage from all other sources</c> for <y>20 seconds</c>. \nEquipment is <r>consumed</c> after <b>2</c> uses.",
             "destination" : "The Sierpinski Triangle,\nVenus",
             "date" : "10/27/2022",
             "story" : "These sticks of thermite have an internal combustion mechanism, allowing for easy ignition; just light the side with the ribbon. Should aid in the disposal of the bodies. Be careful not to burn yourselves with it; it's not a pleasant way to go."
@@ -188,7 +188,7 @@
         "thermiteFlareLast" : {
             "name" : "Thermite Flare",
             "pickup" : "Incinerate an enemy for high damage over time. Consumed after use.",
-            "description" : "Throw a <r>thermite flare</c>, <or>igniting</c> an enemy for <y>60% damage per 0.2 seconds</c> and causing it to take <y>25% more damage from all other sources</c> for <y>30 seconds</c>. \nEquipment is <r>consumed</c> after use."
+            "description" : "Throw a <r>thermite flare</c>, <or>igniting</c> an enemy for <y>6x60% damage per second</c> and causing it to take <y>25% more damage from all other sources</c> for <y>20 seconds</c>. \nEquipment is <r>consumed</c> after use."
         },
         "UNUSED_warpDrive" : {
             "name" : "Warp Drive",

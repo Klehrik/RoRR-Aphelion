@@ -185,7 +185,7 @@ Close this page if you would like to unlock and learn what each item does for yo
             <td align="center"><img src="https://github.com/user-attachments/assets/09199e70-aa6c-4166-b738-1ac2585e874c"></td>
             <td align="center"><p>$\color{#d96635}\textsf{Thermite Flare (6s/30s)}$</p></td>
             <td align="center">Incinerate an enemy for high damage over time. Consumed after 2 uses.</td>
-            <td align="center"><p>Throw a $\color{#cf6666}\textsf{thermite flare}$, igniting an enemy for $\color{#efd27b}\textsf{60\% damage per 0.2 seconds}$ and causing it to take $\color{#efd27b}\textsf{25\% more damage from all other sources}$ for $\color{#efd27b}\textsf{30 seconds}$. \nEquipment is $\color{#cf6666}\textsf{consumed}$ after $\color{#319ad2}\textsf{2}$ uses.</p></td>
+            <td align="center"><p>Throw a $\color{#cf6666}\textsf{thermite flare}$, igniting an enemy for $\color{#efd27b}\textsf{6x60\% damage per second}$ and causing it to take $\color{#efd27b}\textsf{25\% more damage from all other sources}$ for $\color{#efd27b}\textsf{20 seconds}$. \nEquipment is $\color{#cf6666}\textsf{consumed}$ after $\color{#319ad2}\textsf{2}$ uses.</p></td>
         </tr>
     </tbody>
 </table>

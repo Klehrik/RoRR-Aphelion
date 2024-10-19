@@ -25,8 +25,8 @@ end)
 
 local damage_coeff = 0.6
 local damage_extra = 0.25
-local frame_max = 12    -- frames between damage ticks
-local duration = 30     -- in seconds
+local frame_max = 10    -- frames between damage ticks
+local duration = 20     -- in seconds
 
 
 
