@@ -74,7 +74,7 @@ Player:onHit("aphelion-sniperBlastBoosted_onHit", function(actor, victim, damage
     if actor:buff_stack_count(Buff.find("aphelion-sniperBlastCooldown")) > 0 then return end
 
     local drone = GM._survivor_sniper_find_drone(actor)
-    if not drone:exists() then return end
+    if not Instance.exists(drone) then return end
     if Instance.exists(drone.tt) and drone.tt:same(victim) then
         local damager = actor:fire_explosion(
             victim.x, victim.y, -- change to damager hit location
