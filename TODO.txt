@@ -29,3 +29,7 @@ This update adds 2 skills.
     - Stage 3
     - Uses stage 6 background but brighter (more desert-like?)
     - Increased Drone spawns
+
+
+- Add small thing to the side on title screen
+    - Don't want to redo entire title screen because a) lot of work b) Starstorm will do that
