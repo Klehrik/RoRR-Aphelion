@@ -1,3 +1,10 @@
+### v1.2.5
+* Fixed default Sniper special triggering BLAST explosion.
+    * Damage number now offset above other ones.
+
+### v1.2.4
+* Fixed onHit error when Spotter: BLAST is _not_ equipped (idk how I missed that).
+
 ### v1.2.3
 * Added Thermite Flare (2-use equipment)
 * Removed test skill accidentally added to Commando.
