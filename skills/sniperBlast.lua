@@ -70,9 +70,7 @@ skill:onActivate(function(actor, struct, index)
 end)
 
 Player:onHit("aphelion-sniperBlast_onHit", function(actor, victim, damager)
-    local skillB = Skill.find("aphelion-sniperBlastBoosted")
-    if (actor:get_skill(Skill.SLOT.special).value ~= skill.value)
-    and (actor:get_skill(Skill.SLOT.special).value ~= skillB.value) then return end
+    if actor:get_skill(Skill.SLOT.special).value ~= skill.value then return end
     if actor:item_stack_count(Item.find("ror-ancientScepter")) > 0 then return end
     if actor:buff_stack_count(Buff.find("aphelion-sniperBlastCooldown")) > 0 then return end
 
