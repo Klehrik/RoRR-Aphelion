@@ -8,7 +8,7 @@ skill:set_skill_icon(sprite, 0)
 skill:set_skill_properties(0.0, 10 *60)
 skill:set_skill_stock(1, 1, true, 1)
 skill:set_skill_settings(
-    true, false, 1,
+    true, false, 3,
     false, false,
     true, true,
     false
@@ -70,6 +70,9 @@ skill:onActivate(function(actor, struct, index)
 end)
 
 Player:onHit("aphelion-sniperBlast_onHit", function(actor, victim, damager)
+    local skillB = Skill.find("aphelion-sniperBlastBoosted")
+    if (actor:get_skill(Skill.SLOT.special).value ~= skill.value)
+    and (actor:get_skill(Skill.SLOT.special).value ~= skillB.value) then return end
     if actor:item_stack_count(Item.find("ror-ancientScepter")) > 0 then return end
     if actor:buff_stack_count(Buff.find("aphelion-sniperBlastCooldown")) > 0 then return end
 

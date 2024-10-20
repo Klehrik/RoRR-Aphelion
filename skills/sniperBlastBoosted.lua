@@ -8,7 +8,7 @@ skill:set_skill_icon(sprite, 1)
 skill:set_skill_properties(0.0, 10 *60)
 skill:set_skill_stock(1, 1, true, 1)
 skill:set_skill_settings(
-    true, false, 1,
+    true, false, 3,
     false, false,
     true, true,
     false

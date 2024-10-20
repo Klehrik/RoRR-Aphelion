@@ -1,3 +1,6 @@
+### v1.2.5
+* Fixed default Sniper special triggering BLAST explosion.
+
 ### v1.2.4
 * Fixed onHit error when Spotter: BLAST is _not_ equipped (idk how I missed that).
 
