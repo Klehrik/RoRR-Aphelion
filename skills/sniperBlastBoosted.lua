@@ -70,24 +70,25 @@ skill:onActivate(function(actor, struct, index)
 end)
 
 Player:onHit("aphelion-sniperBlastBoosted_onHit", function(actor, victim, damager)
-    if actor:get_skill(Skill.SLOT.special).value ~= skill.value then return end
+    if actor:get_default_skill(Skill.SLOT.special).skill_id ~= Skill.find("aphelion-sniperBlast").value then return end
     if actor:item_stack_count(Item.find("ror-ancientScepter")) <= 0 then return end
     if actor:buff_stack_count(Buff.find("aphelion-sniperBlastCooldown")) > 0 then return end
 
     local drone = GM._survivor_sniper_find_drone(actor)
     if not Instance.exists(drone) then return end
     if Instance.exists(drone.tt) and drone.tt:same(victim) then
-        local damager = actor:fire_explosion(
+        local damager2 = actor:fire_explosion(
             victim.x, victim.y, -- change to damager hit location
             250, 250,
             damager.damage * 0.5,
             explosive_256
         )
-        damager:use_raw_damage()
-        damager:set_color(Color(0xffbb59))
-        damager:set_critical(false)
-        damager:set_proc(false)
-        damager:set_stun(1.7)
+        damager2.climb = damager.climb + 8
+        damager2:use_raw_damage()
+        damager2:set_color(Color(0xffbb59))
+        damager2:set_critical(false)
+        damager2:set_proc(false)
+        damager2:set_stun(1.7)
 
         victim:sound_play_at(gm.constants.wExplosiveShot, 1.0, 1.0, victim.x, victim.y, 1.0)
         
