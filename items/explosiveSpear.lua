@@ -1,6 +1,7 @@
 -- Explosive Spear
 
 local sprite = Resources.sprite_load("aphelion", "item/explosiveSpear", PATH.."assets/sprites/items/explosiveSpear.png", 1, 16, 16)
+local spriteCooldown = Resources.sprite_load("aphelion", "cooldown/explosiveSpear", PATH.."assets/sprites/cooldowns/explosiveSpear.png", 1, 4, 4)
 local sound = Resources.sfx_load("aphelion", "explosiveSpearThrow", PATH.."assets/sounds/explosiveSpearThrow.ogg")
 
 local item = Item.new("aphelion", "explosiveSpear")
@@ -9,8 +10,7 @@ item:set_tier(Item.TIER.uncommon)
 item:set_loot_tags(Item.LOOT_TAG.category_damage)
 
 item:onHit(function(actor, victim, damager, stack)
-    local cooldownBuff = Buff.find("aphelion-explosiveSpearCooldown")
-    if actor:buff_stack_count(cooldownBuff) > 0 then return end
+    if Cooldown.get(actor, "aphelion-explosiveSpear") > 0 then return end
     
     -- Do not proc if the hit does not deal at least 200%
     if damager.damage < actor.damage * 2.0 then return end
@@ -30,7 +30,7 @@ item:onHit(function(actor, victim, damager, stack)
     instData.damage = damager.damage * (1.0 + (actor:item_stack_count(item) * 1.5))
 
     -- Apply cooldown
-    actor:buff_apply(cooldownBuff, 1, 10)   -- Stack count is seconds
+    Cooldown.set(actor, "aphelion-explosiveSpear", 10 *60, spriteCooldown, Color(0xff004d))
 end)
 
 
@@ -237,36 +237,5 @@ obj:onDraw(function(self)
         gm.draw_circle(self.x, self.y, radius, c, c, true)
         gm.draw_set_alpha(1)
         gm.draw_set_circle_precision(24)
-    end
-end)
-
-
-
--- Buffs
-
-local sprite = Resources.sprite_load("aphelion", "buff/explosiveSpear", PATH.."assets/sprites/buffs/explosiveSpear.png", 1, 7, 9)
-
-local buff = Buff.new("aphelion", "explosiveSpearCooldown")
-buff.icon_sprite = sprite
-buff.icon_stack_subimage = false
-buff.draw_stack_number = true
-buff.stack_number_col = Array.new(1, Color(0xBEBEBE))
-buff.max_stack = 10
-buff.is_timed = false
-buff.is_debuff = true
-
-buff:onApply(function(actor, stack)
-    local actorData = actor:get_data("explosiveSpear")
-    actorData.cooldown = 60.0
-end)
-
-buff:onStep(function(actor, stack)
-    local actorData = actor:get_data("explosiveSpear")
-
-    actorData.cooldown = actorData.cooldown - 1
-
-    if actorData.cooldown <= 0 then
-        actorData.cooldown = 60
-        actor:buff_remove(buff, 1)
     end
 end)

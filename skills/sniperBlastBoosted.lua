@@ -1,6 +1,7 @@
 -- Sniper : Spotter: DETONATE
 
 local sprite = Resources.sprite_load("aphelion", "skill/sniper", PATH.."assets/sprites/skills/sniper.png", 2)
+local spriteCooldown = Resources.sprite_load("aphelion", "cooldown/sniperBlast", PATH.."assets/sprites/cooldowns/sniperBlast.png", 1, 4, 4)
 local explosive_256 = Resources.sprite_load("aphelion", "explosive_256", PATH.."assets/sprites/effects/explosive_256.png", 6, 128, 128, 0.8)
 
 local skill = Skill.new("aphelion", "sniperBlastBoosted")
@@ -72,7 +73,7 @@ end)
 Player:onHit("aphelion-sniperBlastBoosted_onHit", function(actor, victim, damager)
     if actor:get_default_skill(Skill.SLOT.special).skill_id ~= Skill.find("aphelion-sniperBlast").value then return end
     if actor:item_stack_count(Item.find("ror-ancientScepter")) <= 0 then return end
-    if actor:buff_stack_count(Buff.find("aphelion-sniperBlastCooldown")) > 0 then return end
+    if Cooldown.get(actor, "aphelion-sniperBlast") > 0 then return end
 
     local drone = GM._survivor_sniper_find_drone(actor)
     if not Instance.exists(drone) then return end
@@ -83,8 +84,8 @@ Player:onHit("aphelion-sniperBlastBoosted_onHit", function(actor, victim, damage
             damager.damage * 0.5,
             explosive_256
         )
-        damager2.climb = damager.climb + 8
         damager2:use_raw_damage()
+        damager2:add_offset(damager)
         damager2:set_color(Color(0xffbb59))
         damager2:set_critical(false)
         damager2:set_proc(false)
@@ -93,6 +94,6 @@ Player:onHit("aphelion-sniperBlastBoosted_onHit", function(actor, victim, damage
         victim:sound_play_at(gm.constants.wExplosiveShot, 1.0, 1.0, victim.x, victim.y, 1.0)
         
         -- Apply cooldown
-        actor:buff_apply(Buff.find("aphelion-sniperBlastCooldown"), 1, 5)   -- Stack count is seconds
+        Cooldown.set(actor, "aphelion-sniperBlast", 5 *60, spriteCooldown, Color(0xffbb59))
     end
 end)
