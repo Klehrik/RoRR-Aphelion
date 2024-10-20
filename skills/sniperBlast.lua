@@ -1,6 +1,7 @@
 -- Sniper : Spotter: BLAST
 
 local sprite = Resources.sprite_load("aphelion", "skill/sniper", PATH.."assets/sprites/skills/sniper.png", 2)
+local spriteCooldown = Resources.sprite_load("aphelion", "cooldown/sniperBlast", PATH.."assets/sprites/cooldowns/sniperBlast.png", 1, 4, 4)
 local explosive_192 = Resources.sprite_load("aphelion", "explosive_192", PATH.."assets/sprites/effects/explosive_192.png", 6, 96, 96, 0.8)
 
 local skill = Skill.new("aphelion", "sniperBlast")
@@ -72,7 +73,7 @@ end)
 Player:onHit("aphelion-sniperBlast_onHit", function(actor, victim, damager)
     if actor:get_default_skill(Skill.SLOT.special).skill_id ~= skill.value then return end
     if actor:item_stack_count(Item.find("ror-ancientScepter")) > 0 then return end
-    if actor:buff_stack_count(Buff.find("aphelion-sniperBlastCooldown")) > 0 then return end
+    if Cooldown.get(actor, "aphelion-sniperBlast") > 0 then return end
 
     local drone = GM._survivor_sniper_find_drone(actor)
     if not Instance.exists(drone) then return end
@@ -83,8 +84,8 @@ Player:onHit("aphelion-sniperBlast_onHit", function(actor, victim, damager)
             damager.damage * 0.5,
             explosive_192
         )
-        damager2.climb = damager.climb + 8
         damager2:use_raw_damage()
+        damager2:add_offset(damager)
         damager2:set_color(Color(0xffbb59))
         damager2:set_critical(false)
         damager2:set_proc(false)
@@ -93,42 +94,11 @@ Player:onHit("aphelion-sniperBlast_onHit", function(actor, victim, damager)
         victim:sound_play_at(gm.constants.wExplosiveShot, 1.0, 1.0, victim.x, victim.y, 1.0)
         
         -- Apply cooldown
-        actor:buff_apply(Buff.find("aphelion-sniperBlastCooldown"), 1, 5)   -- Stack count is seconds
+        Cooldown.set(actor, "aphelion-sniperBlast", 5 *60, spriteCooldown, Color(0xffbb59))
     end
 end)
 
 Survivor.find("ror-sniper"):add_skill(skill, Skill.SLOT.special)
-
-
-
--- Buff
-
-local sprite = Resources.sprite_load("aphelion", "buff/sniperBlast", PATH.."assets/sprites/buffs/sniperBlast.png", 1, 6, 6)
-
-local buff = Buff.new("aphelion", "sniperBlastCooldown")
-buff.icon_sprite = sprite
-buff.icon_stack_subimage = false
-buff.draw_stack_number = true
-buff.stack_number_col = Array.new(1, Color(0xBEBEBE))
-buff.max_stack = 5
-buff.is_timed = false
-buff.is_debuff = true
-
-buff:onApply(function(actor, stack)
-    local actorData = actor:get_data("sniperBlast")
-    actorData.cooldown = 60.0
-end)
-
-buff:onStep(function(actor, stack)
-    local actorData = actor:get_data("sniperBlast")
-
-    actorData.cooldown = actorData.cooldown - 1
-
-    if actorData.cooldown <= 0 then
-        actorData.cooldown = 60
-        actor:buff_remove(buff, 1)
-    end
-end)
 
 
 

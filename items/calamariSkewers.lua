@@ -1,6 +1,7 @@
 -- Calamari Skewers
 
 local sprite = Resources.sprite_load("aphelion", "item/calamariSkewers", PATH.."assets/sprites/items/calamariSkewers.png", 1, 16, 16)
+local spriteCooldown = Resources.sprite_load("aphelion", "cooldown/calamariSkewers", PATH.."assets/sprites/cooldowns/calamariSkewers.png", 1, 4, 4)
 
 local item = Item.new("aphelion", "calamariSkewers")
 item:set_sprite(sprite)
@@ -14,10 +15,8 @@ item:add_callback("onPickup", function(actor, stack)
 end)
 
 item:add_callback("onKill", function(actor, victim, damager, stack)
-    local actorData = actor:get_data("calamariSkewers")
-    if actorData.cooldown <= 0 then
-        actor:buff_apply(Buff.find("aphelion-calamariSkewers"), 1)
-    end
+    if Cooldown.get(actor, "aphelion-calamariSkewers") > 0 then return end
+    actor:buff_apply(Buff.find("aphelion-calamariSkewers"), 1)
 end)
 
 item:add_callback("onStep", function(actor, stack)
@@ -59,8 +58,10 @@ buff:onStep(function(actor, stack)
     if #actorData.timers >= 4 then
         local item_stack = actor:item_stack_count(item)
         actor:heal((item_stack * 20) + ((actor.maxhp - actor.hp) * 0.1))
-        actorData.cooldown = 2 *60
         actorData.timers = {}
+
+        -- Apply cooldown
+        Cooldown.set(actor, "aphelion-calamariSkewers", 2 *60, spriteCooldown, Color(0xffcbcb))
     end
 
     -- Remove buff stacks if more than table size

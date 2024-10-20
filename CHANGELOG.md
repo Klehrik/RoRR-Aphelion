@@ -1,3 +1,6 @@
+### v1.2.6
+* Added custom cooldown display above skills HUD.
+
 ### v1.2.5
 * Fixed default Sniper special triggering BLAST explosion.
     * Damage number now offset above other ones.

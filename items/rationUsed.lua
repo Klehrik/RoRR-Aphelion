@@ -1,12 +1,17 @@
 -- Ration (Used)
 
 local sprite = Resources.sprite_load("aphelion", "item/rationUsed", PATH.."assets/sprites/items/rationUsed.png", 1, 16, 16)
+local spriteCooldown = Resources.sprite_load("aphelion", "cooldown/ration", PATH.."assets/sprites/cooldowns/ration.png", 1, 4, 4)
 
 local item = Item.new("aphelion", "rationUsed", true)
 item:set_sprite(sprite)
 
 item:onPickup(function(actor, stack)
-    actor:get_data("ration").cooldown = 240 *60 * (1 - Helper.mixed_hyperbolic(stack, 0.2, 0))
+    local cd = 240 *60 * (1 - Helper.mixed_hyperbolic(stack, 0.2, 0))
+    actor:get_data("ration").cooldown = cd
+
+    -- Apply cooldown
+    Cooldown.set(actor, "aphelion-ration", cd, spriteCooldown, Color(0xf0e07d))
 end)
 
 local function restore_stacks(actor)

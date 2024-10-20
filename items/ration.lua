@@ -21,6 +21,9 @@ item:onPickup(function(actor, stack)
         actor:item_remove(item_used, temp, true)
         actor:item_give(item, temp, true)
     end
+
+    -- Remove cooldown
+    Cooldown.set(actor, "aphelion-ration", 0)
 end)
 
 item:onDamaged(function(actor, damager, stack)
