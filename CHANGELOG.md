@@ -1,3 +1,8 @@
+### v1.2.7
+* Obelisk Shard : No longer throws errors if an enemy picks this up (somehow).
+* Phi Construct : No longer crashes the game if the parent ceases to exist.
+* Whimsical Star : No longer crashes the game if the parent ceases to exist.
+
 ### v1.2.6
 * Added custom cooldown displays above skills HUD.
 
