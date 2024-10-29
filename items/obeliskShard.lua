@@ -8,6 +8,8 @@ item:set_tier(Item.TIER.uncommon)
 item:set_loot_tags(Item.LOOT_TAG.category_utility)
 
 item:onStep(function(actor, stack)
+    if actor.RMT_object ~= "Player" then return end
+
     if actor.still_timer >= 2 *60.0 then
         actor:buff_apply(Buff.find("aphelion-obeliskShard"), 2)
 

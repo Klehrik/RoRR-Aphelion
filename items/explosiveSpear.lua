@@ -84,6 +84,13 @@ end)
 obj:onStep(function(self)
     local selfData = self:get_data()
 
+    -- Destroy self if parent no longer exists
+    if not selfData.parent:exists() then
+        self:destroy()
+        return
+    end
+
+
     if not selfData.flag_hit then
         -- Move
         self.x = self.x + selfData.hsp
@@ -114,10 +121,7 @@ obj:onStep(function(self)
         -- Set image_angle
         self.image_angle = gm.point_direction(0, 0, selfData.hsp, selfData.vsp)
     end
-end)
 
-obj:onStep(function(self)
-    local selfData = self:get_data()
 
     if selfData.flag_hit then
         selfData.tick = selfData.tick - 1
@@ -156,10 +160,7 @@ obj:onStep(function(self)
             self:destroy()
         end
     end
-end)
 
-obj:onStep(function(self)
-    local selfData = self:get_data()
 
     -- Destroy when falling out of map
     if self.y >= gm.variable_global_get("room_height") and not selfData.hit then

@@ -73,6 +73,13 @@ end)
 obj:onStep(function(self)
     local selfData = self:get_data()
 
+    -- Destroy self if parent no longer exists
+    if not selfData.prev:exists() then
+        self:destroy()
+        return
+    end
+
+
     -- Follow "previous" star
     local acc = 0.25
 
@@ -94,89 +101,77 @@ obj:onStep(function(self)
         self.x = self.x + selfData.hsp
         self.y = self.y + selfData.vsp
     end
-end)
 
-obj:onStep(function(self)
-    local selfData = self:get_data()
 
-    -- Reduce hit cooldown
-    if selfData.cd_hit > 0 then
-        selfData.cd_hit = selfData.cd_hit - 1
-        return
-    end
+    -- Reduce cooldowns
+    selfData.cd_hit = math.max(selfData.cd_hit - 1, 0)
+    selfData.cooldown = math.max(selfData.cooldown - 1, 0)
 
-    -- Get all collisions with pActors
-    local actors = self:get_collisions(gm.constants.pActor, table.unpack(Instance.worm_bodies))
 
-    -- Deal area damage on enemy collision
-    for _, actor in ipairs(actors) do
-        if (actor.team and actor.team ~= selfData.parent.team)
-        or (actor.parent and actor.parent.team and actor.parent.team ~= selfData.parent.team) then
-            local damager = selfData.parent:fire_explosion(self.x, self.y, self.bbox_right - self.bbox_left, self.bbox_bottom - self.bbox_top, selfData.damage_coeff)
-            damager:set_color(Color(0xA5C28C))
-            damager:set_critical(false)
-            damager:set_proc(false)
+    if selfData.cd_hit <= 0 then
+        -- Get all collisions with pActors
+        local actors = self:get_collisions(gm.constants.pActor, table.unpack(Instance.worm_bodies))
 
-            selfData.cd_hit = selfData.cd_hit_max
-            break
-        end
-    end
-end)
+        -- Deal area damage on enemy collision
+        for _, actor in ipairs(actors) do
+            if (actor.team and actor.team ~= selfData.parent.team)
+            or (actor.parent and actor.parent.team and actor.parent.team ~= selfData.parent.team) then
+                local damager = selfData.parent:fire_explosion(self.x, self.y, self.bbox_right - self.bbox_left, self.bbox_bottom - self.bbox_top, selfData.damage_coeff)
+                damager:set_color(Color(0xA5C28C))
+                damager:set_critical(false)
+                damager:set_proc(false)
 
-obj:onStep(function(self)
-    local selfData = self:get_data()
-
-    -- Reduce intercept cooldown
-    if selfData.cooldown > 0 then
-        selfData.cooldown = selfData.cooldown - 1
-        return
-    end
-
-    -- Get nearest projectile to intercept
-    if not selfData.intercept_target:exists() then
-        local found = false
-        local dist = selfData.intercept_range
-        local projs = Instance.find_all(Instance.projectiles)
-        for _, p in ipairs(projs) do
-            if not p.aphelion_whimsicalStar_targetted then
-                local d = gm.point_distance(selfData.parent.x, selfData.parent.y, p.x, p.y)
-                if d <= dist then
-                    found = true
-                    dist = d
-                    selfData.intercept_target = p
-                end
+                selfData.cd_hit = selfData.cd_hit_max
+                break
             end
         end
-        if found then
-            selfData.intercept_target.aphelion_whimsicalStar_targetted = true
-            selfData.intercept_frame = 0
-            selfData.intercept_x_start = self.x
-            selfData.intercept_y_start = self.y
-        end
+    end
 
-    -- Intercept projectile
-    else
-        if selfData.intercept_frame < selfData.intercept_frame_max then selfData.intercept_frame = selfData.intercept_frame + 1 end
 
-        local proj = selfData.intercept_target
+    if selfData.cooldown <= 0 then
+        -- Get nearest projectile to intercept
+        if not selfData.intercept_target:exists() then
+            local found = false
+            local dist = selfData.intercept_range
+            local projs = Instance.find_all(Instance.projectiles)
+            for _, p in ipairs(projs) do
+                if not p.aphelion_whimsicalStar_targetted then
+                    local d = gm.point_distance(selfData.parent.x, selfData.parent.y, p.x, p.y)
+                    if d <= dist then
+                        found = true
+                        dist = d
+                        selfData.intercept_target = p
+                    end
+                end
+            end
+            if found then
+                selfData.intercept_target.aphelion_whimsicalStar_targetted = true
+                selfData.intercept_frame = 0
+                selfData.intercept_x_start = self.x
+                selfData.intercept_y_start = self.y
+            end
 
-        -- Move towards target
-        local interp = Helper.ease_out(selfData.intercept_frame / selfData.intercept_frame_max, 0.5)
-        self.x = selfData.intercept_x_start + ((proj.x - selfData.intercept_x_start) * interp)
-        self.y = selfData.intercept_y_start + ((proj.y - selfData.intercept_y_start) * interp)
+        -- Intercept projectile
+        else
+            if selfData.intercept_frame < selfData.intercept_frame_max then selfData.intercept_frame = selfData.intercept_frame + 1 end
 
-        -- Check for collision
-        -- Many projectiles have no collision mask until they
-        -- reach their destination, so checking by distance instead
-        if gm.point_distance(self.x, self.y, proj.x, proj.y) <= 12.0 then
-            proj:destroy()
-            selfData.cooldown = selfData.cooldown_max
+            local proj = selfData.intercept_target
+
+            -- Move towards target
+            local interp = Helper.ease_out(selfData.intercept_frame / selfData.intercept_frame_max, 0.5)
+            self.x = selfData.intercept_x_start + ((proj.x - selfData.intercept_x_start) * interp)
+            self.y = selfData.intercept_y_start + ((proj.y - selfData.intercept_y_start) * interp)
+
+            -- Check for collision
+            -- Many projectiles have no collision mask until they
+            -- reach their destination, so checking by distance instead
+            if gm.point_distance(self.x, self.y, proj.x, proj.y) <= 12.0 then
+                proj:destroy()
+                selfData.cooldown = selfData.cooldown_max
+            end
         end
     end
-end)
 
-obj:onStep(function(self)
-    local selfData = self:get_data()
 
     -- Set star size
     if not selfData.size_set then

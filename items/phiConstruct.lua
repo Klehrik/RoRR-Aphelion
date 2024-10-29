@@ -57,15 +57,19 @@ end)
 obj:onStep(function(self)
     local selfData = self:get_data()
 
+    -- Destroy self if parent no longer exists
+    if not selfData.parent:exists() then
+        self:destroy()
+        return
+    end
+    
+
     -- Orbit around parent
     local spd = selfData.angle_speed /60.0
     selfData.angle = selfData.angle + spd
     self.x = selfData.parent.x + (gm.dcos(selfData.angle) * selfData.radius)
     self.y = selfData.parent.y - (gm.dsin(selfData.angle) * selfData.radius)
-end)
 
-obj:onStep(function(self)
-    local selfData = self:get_data()
 
     -- Increment charge
     local req = 60.0 / (1.25 * (0.9 + (selfData.parent.maxshield /200.0)))
