@@ -1,5 +1,6 @@
 ### v1.2.8
 * Magic Dagger : Added small vfx on use.
+* Slightly faster actor collision checking for Explosive Spear and Whimsical Star.
 
 ### v1.2.7
 * Obelisk Shard : No longer throws errors if an enemy picks this up (somehow).
