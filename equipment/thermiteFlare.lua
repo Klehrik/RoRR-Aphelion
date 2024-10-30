@@ -109,7 +109,7 @@ buff:onApply(function(actor, stack)
     if not actor:callback_exists("aphelion-thermiteFlareWeaken") then
         actor:onDamaged("aphelion-thermiteFlareWeaken", function(actor, damager)
             if damager.parent and damager.parent:exists() and (not damager.aphelion_thermiteFlare) then
-                local damager2 = damager.parent.fire_direct(actor, damager.damage * damage_extra)
+                local damager2 = damager.parent:fire_direct(actor, damager.damage * damage_extra)
                 damager2:use_raw_damage()
                 damager2:set_color(0x9c6228)
                 damager2:set_critical(false)
