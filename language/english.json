@@ -188,7 +188,7 @@
         "thermiteFlare2" : {
             "name" : "Thermite Flare",
             "pickup" : "Incinerate an enemy for high damage over time. Consumed after 2 uses.",
-            "description" : "Throw a <r>thermite flare</c>, <or>igniting</c> an enemy for <y>6x60% damage per second</c> and causing it to take <y>30% more damage from all other sources</c> for <y>20 seconds</c>. \nEquipment is <r>consumed</c> after <b>2</c> uses.",
+            "description" : "Throw a <r>thermite flare</c>, <or>igniting</c> an enemy for <y>6x60% damage per second</c> and causing it to take <y>30% more damage from all other sources</c> for <y>20 seconds</c>. \nEquipment is <r>consumed</c> after <b>2</c> uses."
         },
         "thermiteFlareLast" : {
             "name" : "Thermite Flare",
