@@ -16,7 +16,7 @@ equip:onUse(function(actor)
     instData.parent = actor
     instData.hsp = 6.0 * use_dir
 
-    actor:set_equipment(Equipment.find("aphelion-thermiteFlareLast"))
+    actor:set_equipment(Equipment.find("aphelion-thermiteFlare2"))
 end)
 
 
@@ -24,7 +24,7 @@ end)
 -- Parameters
 
 local damage_coeff = 0.6
-local damage_extra = 0.25
+local damage_extra = 0.3
 local frame_max = 10    -- frames between damage ticks
 local duration = 20     -- in seconds
 
@@ -97,6 +97,7 @@ end)
 
 
 -- Buff
+local dmg_col = Color(0x9c6228)
 
 local buff = Buff.new("aphelion", "thermiteFlareIgnite")
 buff.show_icon = false
@@ -109,12 +110,13 @@ buff:onApply(function(actor, stack)
     if not actor:callback_exists("aphelion-thermiteFlareWeaken") then
         actor:onDamaged("aphelion-thermiteFlareWeaken", function(actor, damager)
             if damager.parent and damager.parent:exists() and (not damager.aphelion_thermiteFlare) then
-                local damager2 = damager.parent.fire_direct(actor, damager.damage * damage_extra)
+                local damager2 = damager.parent:fire_direct(actor, damager.damage * damage_extra)
                 damager2:use_raw_damage()
-                damager2:set_color(0x9c6228)
+                damager2:add_offset(damager)
+                damager2:set_color(dmg_col)
                 damager2:set_critical(false)
                 damager2:set_proc(false)
-                damager.aphelion_thermiteFlare = true
+                damager2.aphelion_thermiteFlare = true
             end
         end)
     end
@@ -131,7 +133,7 @@ buff:onStep(function(actor, stack)
         actorData.frame = frame_max
 
         local damager = actorData.attacker:fire_direct(actor, damage_coeff)
-        damager:set_color(Color.TEXT_ORANGE)
+        damager:set_color(dmg_col)
         damager:set_critical(false)
         damager:set_proc(false)
         damager.aphelion_thermiteFlare = true

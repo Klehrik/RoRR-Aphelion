@@ -1,3 +1,11 @@
+### v1.2.8
+* Magic Dagger : Added small vfx on use.
+* Thermite Flare
+    * Fixed error with the extra damage effect.
+    * Uses: 2 -> 3
+    * Extra damage: +25% -> +30%
+* Slightly faster actor collision checking for Explosive Spear and Whimsical Star.
+
 ### v1.2.7
 * Obelisk Shard : No longer throws errors if an enemy picks this up (somehow).
 * Phi Construct : No longer crashes the game if the parent ceases to exist.

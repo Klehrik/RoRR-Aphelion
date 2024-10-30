@@ -81,7 +81,7 @@ obj:onStep(function(self)
 
 
     -- Follow "previous" star
-    local acc = 0.25
+    local acc = 0.15
 
     if selfData.prev.x < self.x then selfData.hsp = selfData.hsp - acc
     else selfData.hsp = selfData.hsp + acc
@@ -110,7 +110,7 @@ obj:onStep(function(self)
 
     if selfData.cd_hit <= 0 then
         -- Get all collisions with pActors
-        local actors = self:get_collisions(gm.constants.pActor, table.unpack(Instance.worm_bodies))
+        local actors = self:get_collisions(gm.constants.pActorCollisionBase)
 
         -- Deal area damage on enemy collision
         for _, actor in ipairs(actors) do

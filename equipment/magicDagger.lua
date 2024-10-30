@@ -21,7 +21,6 @@ end)
 
 
 -- Object
-
 local sprite = gm.constants.sChefIce
 local soundWindup = Resources.sfx_load("aphelion", "magicDaggerWindup", PATH.."assets/sounds/magicDaggerWindup.ogg")
 local soundFreeze = Resources.sfx_load("aphelion", "magicDaggerFreeze", PATH.."assets/sounds/magicDaggerFreeze.ogg")
@@ -82,6 +81,8 @@ obj:onStep(function(self)
             damager:set_proc(false)
             damager:set_stun(selfData.freeze_time, nil, Damager.KNOCKBACK_KIND.deepfreeze)
             damager.aphelion_magicDagger_ice = true
+
+            Object.find("aphelion-magicDaggerTrunic"):create(selfData.parent.x, selfData.parent.bbox_top - 24)
         end
 
         -- Animate
@@ -102,8 +103,39 @@ end, true)
 
 
 
--- Buff
+-- Trunic
+local sprite = Resources.sprite_load("aphelion", "effects/trunic", PATH.."assets/sprites/effects/trunic.png", 1, 20, 12)
 
+local obj = Object.new("aphelion", "magicDaggerTrunic")
+obj:set_sprite(sprite)
+obj:set_depth(-1)
+
+obj:onCreate(function(self)
+    local selfData = self:get_data()
+
+    selfData.oy = self.y
+    selfData.px_up = 8
+
+    selfData.frame = 0
+    selfData.ease = 1/30
+    selfData.fade = 1/20
+end)
+
+obj:onStep(function(self)
+    local selfData = self:get_data()
+    
+    selfData.frame = selfData.frame + 1
+    self.y = selfData.oy - (Helper.ease_out(math.min(selfData.ease * selfData.frame, 1.0)) * selfData.px_up)
+
+    if selfData.frame >= 60 then
+        self.image_alpha = self.image_alpha - selfData.fade
+        if self.image_alpha <= 0 then self:destroy() end
+    end
+end)
+
+
+
+-- Buff
 local buff = Buff.new("aphelion", "magicDaggerFreeze")
 buff.show_icon = false
 buff.is_debuff = true
