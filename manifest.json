@@ -1,12 +1,12 @@
 ﻿{
 	"name": "Aphelion",
-	"version_number": "1.2.7",
+	"version_number": "1.2.8",
 	"website_url": "https://github.com/Klehrik/RoRR-Aphelion/wiki/Content",
 	"description": "Content mod that currently adds 16 items, 4 equipment, and 3 skills.",
 	"dependencies": [
 		"ReturnOfModding-ReturnOfModding-1.0.47",
 		"MGReturns-ENVY-1.1.1",
-		"RoRRModdingToolkit-RoRR_Modding_Toolkit-1.1.21",
+		"RoRRModdingToolkit-RoRR_Modding_Toolkit-1.1.23",
 		"Klehrik-CooldownHelper-1.0.0"
 	]
 }

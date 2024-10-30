@@ -1,3 +1,6 @@
+### v1.2.8
+* Magic Dagger : Added small vfx on use.
+
 ### v1.2.7
 * Obelisk Shard : No longer throws errors if an enemy picks this up (somehow).
 * Phi Construct : No longer crashes the game if the parent ceases to exist.
