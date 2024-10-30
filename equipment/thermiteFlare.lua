@@ -16,7 +16,7 @@ equip:onUse(function(actor)
     instData.parent = actor
     instData.hsp = 6.0 * use_dir
 
-    actor:set_equipment(Equipment.find("aphelion-thermiteFlareLast"))
+    actor:set_equipment(Equipment.find("aphelion-thermiteFlare2"))
 end)
 
 
