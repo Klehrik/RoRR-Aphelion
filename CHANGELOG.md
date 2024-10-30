@@ -1,6 +1,8 @@
 ### v1.2.8
 * Magic Dagger : Added small vfx on use.
-* Thermite Flare : Fixed error with the increased damage effect.
+* Thermite Flare
+    * Fixed error with the extra damage effect.
+    * Extra damage: +25% -> +30%
 * Slightly faster actor collision checking for Explosive Spear and Whimsical Star.
 
 ### v1.2.7
