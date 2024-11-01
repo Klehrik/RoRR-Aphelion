@@ -32,24 +32,34 @@ buff.is_debuff = true
 
 buff:onApply(function(actor, stack)
     local actorData = actor:get_data("rottingBranch")
-    if (not actorData.timer) or stack == 1 then actorData.timer = 0 end
-    actorData.duration = math.ceil(210.0 / math.max(stack * 0.4, 1.0))
+    if stack <= 1 then actorData.dot = Instance.wrap_invalid() end
+    actorData.duration = math.ceil(210.0 / math.max(stack * 0.4, 1.0))   
+end)
+
+buff:onRemove(function(actor, stack)
+    local actorData = actor:get_data("rottingBranch")
+    if actorData.dot:exists() then actorData.dot:destroy() end
 end)
 
 buff:onStep(function(actor, stack)
     local actorData = actor:get_data("rottingBranch")
 
-    actorData.timer = actorData.timer + 1
-    
-    if actorData.attacker:exists() and actorData.timer % 30 == 0 then
-        local coeff = 0.15 * stack
-
-        local damager = actorData.attacker:fire_direct(actor, coeff)
-        damager:set_color(Color(0xA28879))
-        damager:set_critical(false)
-        damager:set_proc(false)
+    if actorData.attacker:exists() then
+        -- Create oDot if it does not exist
+        if not actorData.dot:exists() then
+            actorData.dot = GM.instance_create(0, 0, gm.constants.oDot)
+            actorData.dot.parent = actorData.attacker
+            actorData.dot.target = actor
+            actorData.dot.rate = 30
+            actorData.dot.textColor = Color(0xA28879)
+        end
+        
+        -- Adjust damage based on buff stack
+        actorData.dot.damage = 0.15 * actorData.attacker.damage * stack
+        actorData.dot.ticks = 2     -- Prevent oDot from expiring normally
     end
 
+    -- Decrease buff stacks
     actorData.duration = actorData.duration - 1
     if actorData.duration <= 0 then
         actor:buff_remove(buff, 1)
