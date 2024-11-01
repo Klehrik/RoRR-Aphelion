@@ -1,10 +1,14 @@
 ### v1.2.9
 * Withered Branch : Now uses `oDot` so that the damage number appears on the left.
+* Thermite Flare
+    * Now uses `oDot` so that the damage number appears on the left.
+    * Changed damage color.
 
 ### v1.2.8
 * Magic Dagger : Added small vfx on use.
 * Thermite Flare
     * Fixed error with the extra damage effect.
+    * Extra damage number now offset above original damage.
     * Uses: 2 -> 3
     * Extra damage: +25% -> +30%
 * Slightly faster actor collision checking for Explosive Spear and Whimsical Star.

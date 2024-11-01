@@ -23,10 +23,10 @@ end)
 
 -- Parameters
 
-local damage_coeff = 0.6
-local damage_extra = 0.3
-local frame_max = 10    -- frames between damage ticks
-local duration = 20     -- in seconds
+local damage_coeff  = 0.6
+local damage_extra  = 0.3
+local ticks_per_sec = 6     -- dmg ticks per sec
+local duration      = 20    -- in seconds
 
 
 
@@ -64,8 +64,8 @@ obj:onStep(function(self)
     for _, actor in ipairs(actors) do
         if actor.team and actor.team ~= selfData.parent.team
         and actor:buff_stack_count(Buff.find("aphelion-thermiteFlareIgnite")) <= 0 then
-            actor:buff_apply(Buff.find("aphelion-thermiteFlareIgnite"), duration *60)
             actor:get_data("thermiteFlare").attacker = selfData.parent
+            actor:buff_apply(Buff.find("aphelion-thermiteFlareIgnite"), duration *60)
             self:destroy()
             break
         end
@@ -75,8 +75,8 @@ obj:onStep(function(self)
     local actors = self:get_collisions(Instance.worm_bodies)
     for _, actor in ipairs(actors) do
         if actor.parent and actor.parent.team and actor.parent.team ~= selfData.parent.team then
-            actor.parent:buff_apply(Buff.find("aphelion-thermiteFlareIgnite"), duration *60)
             actor.parent:get_data("thermiteFlare").attacker = selfData.parent
+            actor.parent:buff_apply(Buff.find("aphelion-thermiteFlareIgnite"), duration *60)
             self:destroy()
             break
         end
@@ -97,7 +97,7 @@ end)
 
 
 -- Buff
-local dmg_col = Color(0x9c6228)
+local dmg_col = Color.TEXT_ORANGE
 
 local buff = Buff.new("aphelion", "thermiteFlareIgnite")
 buff.show_icon = false
@@ -105,7 +105,17 @@ buff.is_debuff = true
 
 buff:onApply(function(actor, stack)
     local actorData = actor:get_data("thermiteFlare")
-    actorData.frame = 0
+
+    -- Create oDot
+    if actorData.attacker:exists() then
+        actorData.dot = GM.instance_create(0, 0, gm.constants.oDot)
+        actorData.dot.parent = actorData.attacker
+        actorData.dot.target = actor
+        actorData.dot.rate = 60 / ticks_per_sec
+        actorData.dot.textColor = dmg_col
+        actorData.dot.ticks = ticks_per_sec * duration
+        actorData.dot.damage = damage_coeff * actorData.attacker.damage
+    end
 
     if not actor:callback_exists("aphelion-thermiteFlareWeaken") then
         actor:onDamaged("aphelion-thermiteFlareWeaken", function(actor, damager)
@@ -124,20 +134,6 @@ end)
 
 buff:onRemove(function(actor, stack)
     actor:remove_callback("aphelion-thermiteFlareWeaken")
-end)
-
-buff:onStep(function(actor, stack)
-    local actorData = actor:get_data("thermiteFlare")
-    if actorData.frame > 0 then actorData.frame = actorData.frame - 1
-    else
-        actorData.frame = frame_max
-
-        local damager = actorData.attacker:fire_direct(actor, damage_coeff)
-        damager:set_color(dmg_col)
-        damager:set_critical(false)
-        damager:set_proc(false)
-        damager.aphelion_thermiteFlare = true
-    end
 end)
 
 
