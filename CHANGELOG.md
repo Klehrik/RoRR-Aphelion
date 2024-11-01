@@ -1,5 +1,5 @@
 ### v1.2.9
-* Withered Branch : Now uses `oDot` so the damage number appears on the left.
+* Withered Branch : Now uses `oDot` so that the damage number appears on the left.
 
 ### v1.2.8
 * Magic Dagger : Added small vfx on use.
