@@ -8,22 +8,14 @@ item:set_sprite(sprite)
 item:set_tier(Item.TIER.common)
 item:set_loot_tags(Item.LOOT_TAG.category_healing)
 
-item:add_callback("onPickup", function(actor, stack)
+item:onPickup(function(actor, stack)
     local actorData = actor:get_data("calamariSkewers")
-    actorData.cooldown = 0
     if not actorData.timers then actorData.timers = {} end
 end)
 
-item:add_callback("onKill", function(actor, victim, damager, stack)
+item:onKill(function(actor, victim, damager, stack)
     if Cooldown.get(actor, "aphelion-calamariSkewers") > 0 then return end
     actor:buff_apply(Buff.find("aphelion-calamariSkewers"), 1)
-end)
-
-item:add_callback("onStep", function(actor, stack)
-    local actorData = actor:get_data("calamariSkewers")
-    if actorData.cooldown > 0 then
-        actorData.cooldown = actorData.cooldown - 1
-    end
 end)
 
 
