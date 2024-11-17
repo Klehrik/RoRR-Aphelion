@@ -1,4 +1,5 @@
 ### v1.2.12
+* Calamari Skewers : Reworked to be more useful.
 * Silica Packet : Slightly tweaked new stage temporary item rarity chances.
 * Thermite Flare : 1- and 2-use variants can no longer spawn as an initial drop in the equipment pool (whoops).
 

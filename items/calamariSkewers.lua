@@ -10,12 +10,41 @@ item:set_loot_tags(Item.LOOT_TAG.category_healing)
 
 item:onPickup(function(actor, stack)
     local actorData = actor:get_data("calamariSkewers")
-    if not actorData.timers then actorData.timers = {} end
+    if not actorData.count then
+        actorData.count = 0
+        actorData.timer = 0
+    end
 end)
 
 item:onKill(function(actor, victim, damager, stack)
     if Cooldown.get(actor, "aphelion-calamariSkewers") > 0 then return end
-    actor:buff_apply(Buff.find("aphelion-calamariSkewers"), 1)
+    local buff = Buff.find("aphelion-calamariSkewers")
+    local actorData = actor:get_data("calamariSkewers")
+    actorData.count = actorData.count + 1
+    actorData.timer = 1.5 *60
+    if actorData.count >= 2 then
+        local count = 1
+        if actor:buff_stack_count(buff) <= 0 then count = 2 end
+        actor:buff_apply(buff, 1, count)
+    end
+end)
+
+item:onStep(function(actor, stack_count)
+    local actorData = actor:get_data("calamariSkewers")
+
+    -- Consume all stacks if timer expires
+    if actorData.timer > 0 then actorData.timer = actorData.timer - 1
+    else
+        if actorData.count >= 2 then
+            local per = actor.maxhp * (0.02 + (actor:item_stack_count(item) * 0.01))
+            actor:heal(per * actorData.count)
+
+            -- Apply cooldown
+            Cooldown.set(actor, "aphelion-calamariSkewers", 5 *60, spriteCooldown, Color(0xffcbcb))
+        end
+
+        actorData.count = 0
+    end
 end)
 
 
@@ -28,34 +57,12 @@ local buff = Buff.new("aphelion", "calamariSkewers")
 buff.icon_sprite = sprite
 buff.icon_stack_subimage = false
 buff.draw_stack_number = true
-buff.max_stack = 4
+buff.max_stack = 999
 buff.is_timed = false
-
-buff:onApply(function(actor, stack)
-    local actorData = actor:get_data("calamariSkewers")
-    table.insert(actorData.timers, 60)
-end)
 
 buff:onStep(function(actor, stack)
     local actorData = actor:get_data("calamariSkewers")
 
-    -- Decrease stack timers
-    -- and remove if expired
-    for i, time in ipairs(actorData.timers) do
-        actorData.timers[i] = time - 1
-        if time <= 0 then table.remove(actorData.timers, i) end
-    end
-
-    -- Check if 4 kills within 1 second has been achieved
-    if #actorData.timers >= 4 then
-        local item_stack = actor:item_stack_count(item)
-        actor:heal((item_stack * 20) + ((actor.maxhp - actor.hp) * 0.1))
-        actorData.timers = {}
-
-        -- Apply cooldown
-        Cooldown.set(actor, "aphelion-calamariSkewers", 2 *60, spriteCooldown, Color(0xffcbcb))
-    end
-
-    -- Remove buff stacks if more than table size
-    if stack > #actorData.timers then actor:buff_remove(buff, stack - #actorData.timers) end
+    -- Remove buff stacks if more than count
+    if stack > actorData.count then actor:buff_remove(buff, stack - actorData.count) end
 end)
