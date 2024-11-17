@@ -1,3 +1,6 @@
+### v1.2.11
+* Thermite Flare : Swapped `Actor:onPreStep` with hook to avoid huge lag.
+
 ### v1.2.10
 * Thermite Flare : No longer appears with Artifact of Enigma or in equipment activators.
 
