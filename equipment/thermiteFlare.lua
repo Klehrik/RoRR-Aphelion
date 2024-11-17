@@ -25,7 +25,7 @@ end)
 
 local damage_coeff  = 0.6
 local damage_extra  = 0.3
-local ticks_per_sec = 6     -- dmg ticks per sec
+local ticks         = 120   -- total damage tick count
 local duration      = 20    -- in seconds
 
 
@@ -106,15 +106,9 @@ buff.is_debuff = true
 buff:onApply(function(actor, stack)
     local actorData = actor:get_data("thermiteFlare")
 
-    -- Create oDot
+    -- Apply DoT
     if actorData.attacker:exists() then
-        actorData.dot = GM.instance_create(0, 0, gm.constants.oDot)
-        actorData.dot.parent = actorData.attacker
-        actorData.dot.target = actor
-        actorData.dot.rate = 60 / ticks_per_sec
-        actorData.dot.textColor = dmg_col
-        actorData.dot.ticks = ticks_per_sec * duration
-        actorData.dot.damage = damage_coeff * actorData.attacker.damage
+        actor:apply_dot(damage_coeff, actorData.attacker, ticks, (duration * 60) / ticks, dmg_col)
     end
 
     if not actor:callback_exists("aphelion-thermiteFlareWeaken") then
@@ -141,6 +135,8 @@ end)
 -- Hooks
 
 gm.post_script_hook(gm.constants.instance_create, function(self, other, result, args)
+    if not self then return end
+
     -- Allow the debuff to affect worms/wurms
     if (self.object_index == gm.constants.oWorm
     or self.object_index == gm.constants.oWurmHead) then

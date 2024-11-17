@@ -93,9 +93,9 @@ end)
 skill:add_achievement(50)
 
 Player:onPostAttack("aphelion-banditUnloadUnlock", function(actor, damager)
-    if (damager.attack_flags & (1 << 0))
-    + (damager.attack_flags & (1 << 16))
-    + (damager.attack_flags & (1 << 17)) > 0 then
+    if damager:get_attack_flag(Damager.ATTACK_FLAG.cd_reset_on_kill)
+    or damager:get_attack_flag(Damager.ATTACK_FLAG.gain_skull_on_kill)
+    or damager:get_attack_flag(Damager.ATTACK_FLAG.gain_skull_boosted) then
         skill:progress_achievement(damager.kill_number)
     end
 end)

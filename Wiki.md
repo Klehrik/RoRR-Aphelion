@@ -42,8 +42,8 @@ Close this page if you would like to unlock and learn what everything does for y
         <tr>
             <td align="center"><img src="https://github.com/user-attachments/assets/cac8293f-3e4b-44f3-a418-bec545eebc00"></td>
             <td align="center"><b>Calamari Skewers</b></td>
-            <td align="center">Receive a large heal after rapidly killing 4 enemies.</td>
-            <td align="center"><p>Killing $\color{#efd27b}\textsf{4}$ enemies within $\color{#efd27b}\textsf{1 second}$ heals you for $\color{#7eb686}\textsf{20}$ $\color{#555555}\textsf{(+20 per stack)}$ $\color{#7eb686}\textsf{health + 10\% missing health}$. Has a $\color{#319ad2}\textsf{2 second}$ cooldown.</p></td>
+            <td align="center">Heal on consecutive kills.</td>
+            <td align="center"><p>Killing $\color{#efd27b}\textsf{2 or more enemies}$ in succession grants $\color{#efd27b}\textsf{1 buff stack per kill}$, refreshing duration. After $\color{#efd27b}\textsf{1.5}$ seconds, $\color{#cf6666}\textsf{consume all}$ and $\color{#7eb686}\textsf{heal}$ for $\color{#7eb686}\textsf{3\%}$ $\color{#555555}\textsf{(+1\% per stack)}$ $\color{#7eb686}\textsf{health per buff stack}$. Has a $\color{#319ad2}\textsf{5 second}$ cooldown.</p></td>
         </tr>
     </tbody>
     <tbody>

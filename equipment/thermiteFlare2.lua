@@ -6,6 +6,7 @@ local equip = Equipment.new("aphelion", "thermiteFlare2", true)
 equip:set_sprite(sprite)
 equip:set_loot_tags(Item.LOOT_TAG.category_damage, Item.LOOT_TAG.equipment_blacklist_enigma, Item.LOOT_TAG.equipment_blacklist_activator)
 equip:set_cooldown(6)
+equip:toggle_loot(false)
 
 equip:onUse(function(actor)
     local use_dir = actor:get_equipment_use_direction()

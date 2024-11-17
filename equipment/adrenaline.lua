@@ -9,7 +9,6 @@ equip:set_cooldown(30)
 
 equip:onUse(function(actor)
     actor:add_barrier(actor.maxbarrier * 0.65)
-    -- actor:set_immune(1.2 *60)
     actor:buff_apply(Buff.find("aphelion-adrenaline"), 5 *60)
 end)
 
