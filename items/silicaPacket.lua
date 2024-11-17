@@ -19,12 +19,11 @@ item:onRemove(function(actor, stack)
 end)
 
 item:onNewStage(function(actor, stack)
-    local tier = Item.TIER.common
-    if Helper.chance(0.25) then tier = Item.TIER.uncommon
-    elseif Helper.chance(0.02) then tier = Item.TIER.rare
-    end
-
     for i = 1, 1 + stack do
+        local tier = Item.TIER.common
+        if Helper.chance(0.3) then tier = Item.TIER.uncommon
+        elseif Helper.chance(0.02) then tier = Item.TIER.rare
+        end
         actor:item_give(Item.get_random(tier), 1, true)
     end
 end)
@@ -43,7 +42,7 @@ end)
 item:add_achievement(50)
 
 Player:onPostAttack("aphelion-silicaPacketUnlock", function(actor, damager)
-    if (damager.attack_flags & (1 << 12)) > 0 then
+    if damager:get_attack_flag(Damager.ATTACK_FLAG.drifter_execute) then
         item:progress_achievement(damager.kill_number)
     end
 end)

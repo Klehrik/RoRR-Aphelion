@@ -1,3 +1,7 @@
+### v1.2.12
+* Silica Packet : Slightly tweaked new stage temporary item rarity chances.
+* Thermite Flare : 1- and 2-use variants can no longer spawn as an initial drop in the equipment pool (whoops).
+
 ### v1.2.11
 * Thermite Flare : Swapped `Actor:onPreStep` with hook to avoid huge lag.
 
