@@ -1,3 +1,6 @@
+### v1.2.10
+* Thermite Flare : No longer appears with Artifact of Enigma or in equipment activators.
+
 ### v1.2.9
 * Withered Branch : Now uses `oDot` so that the damage number appears on the left.
 * Thermite Flare
