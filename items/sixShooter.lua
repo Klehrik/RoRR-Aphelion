@@ -29,10 +29,7 @@ item:onAttack(function(actor, damager, stack)
         if not damager.bonus_crit then damager.bonus_crit = 0 end
         damager.bonus_crit = damager.bonus_crit + 100
 
-        if not damager.critical then
-            damager.critical = true
-            damager.damage = damager.damage * 2.0
-        end
+        damager:set_critical(true)
 
         if stack > 1 then
             damager.damage = damager.damage * (0.5 + (0.5 * stack))

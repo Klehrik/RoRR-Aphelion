@@ -34,6 +34,9 @@ This update adds 2 skills.
 - Add small thing to the side on title screen
     - Don't want to redo entire title screen because a) lot of work b) Starstorm will do that
 
-- Change Withered Branch to use oDot instead
-    - Store single instance of it and set "tick" to >0 repeatedly
-    - Modify damage with buff stacks
+v Change Withered Branch to use oDot instead
+    v Store single instance of it and set "tick" to >0 repeatedly
+    v Modify damage with buff stacks
+
+- Allow ThermFlare stacking
+- Explosive Spear should throw in direction of attack, not facing direction
