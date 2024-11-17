@@ -47,11 +47,7 @@ buff:onStep(function(actor, stack)
     if actorData.attacker:exists() then
         -- Create oDot if it does not exist
         if not actorData.dot:exists() then
-            actorData.dot = GM.instance_create(0, 0, gm.constants.oDot)
-            actorData.dot.parent = actorData.attacker
-            actorData.dot.target = actor
-            actorData.dot.rate = 30
-            actorData.dot.textColor = Color(0xA28879)
+            actorData.dot = actor:apply_dot(0, actorData.attacker, 2, 30, Color(0xA28879))
         end
         
         -- Adjust damage based on buff stack
