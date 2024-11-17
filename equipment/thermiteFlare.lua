@@ -140,15 +140,11 @@ end)
 
 -- Hooks
 
-Actor:onPreStep("aphelion-thermiteFlare_removeWurmImmunity", function(self)
-    local selfData = self:get_data("thermiteFlare")
-
+gm.post_script_hook(gm.constants.instance_create, function(self, other, result, args)
     -- Allow the debuff to affect worms/wurms
     if (self.object_index == gm.constants.oWorm
-    or self.object_index == gm.constants.oWurmHead)
-    and not selfData.remove_immunity then
-        selfData.remove_immunity = true
-        self.buff_immune:set(buff, false)
+    or self.object_index == gm.constants.oWurmHead) then
+        Instance.wrap(self).buff_immune:set(buff, false)
     end
 end)
 
