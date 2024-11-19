@@ -17,5 +17,7 @@ equip:onUse(function(actor)
     instData.parent = actor
     instData.hsp = 8.0 * use_dir
 
-    actor:set_equipment(-1)
+    if actor:get_equipment().value == equip.value then
+        actor:set_equipment(-1)
+    end
 end)

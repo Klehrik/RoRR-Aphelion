@@ -16,7 +16,9 @@ equip:onUse(function(actor)
     instData.parent = actor
     instData.hsp = 6.0 * use_dir
 
-    actor:set_equipment(Equipment.find("aphelion-thermiteFlare2"))
+    if actor:get_equipment().value == equip.value then
+        actor:set_equipment(Equipment.find("aphelion-thermiteFlare2"))
+    end
 end)
 
 
