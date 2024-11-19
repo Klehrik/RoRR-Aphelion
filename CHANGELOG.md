@@ -1,3 +1,6 @@
+### v1.2.13
+* Thermite Flare : No longer overrides your equipment via Bottled Chaos.
+
 ### v1.2.12
 * Calamari Skewers : Reworked to be more useful.
 * Silica Packet : Slightly tweaked new stage temporary item rarity chances.
