@@ -75,12 +75,11 @@ obj:onStep(function(self)
             local radius_x = 29 * math.abs(self.image_xscale)
             local radius_y = 18 * math.abs(self.image_yscale)
             
-            local damager = selfData.parent:fire_explosion(self.x + (radius_x * gm.sign(self.image_xscale)), self.y - radius_y, radius_x * 2, radius_y * 2, selfData.damage_coeff)
-            damager:set_color(Color(0x909CD6))
-            damager:set_critical(false)
-            damager:set_proc(false)
-            damager:set_stun(selfData.freeze_time, nil, Damager.KNOCKBACK_KIND.deepfreeze)
-            damager.aphelion_magicDagger_ice = true
+            local attack_info = selfData.parent:fire_explosion(self.x + (radius_x * gm.sign(self.image_xscale)), self.y - radius_y, radius_x * 2, radius_y * 2, selfData.damage_coeff, nil, nil, true).attack_info
+            attack_info:set_color(Color(0x909CD6))
+            attack_info:set_critical(false)
+            attack_info:set_stun(selfData.freeze_time, nil, Attack_Info.KNOCKBACK_KIND.deepfreeze)
+            attack_info.aphelion_magicDagger_ice = true
 
             Object.find("aphelion-magicDaggerTrunic"):create(selfData.parent.x, selfData.parent.bbox_top - 24)
         end
@@ -94,12 +93,12 @@ obj:onStep(function(self)
     end
 end)
 
-Actor:onHit("aphelion-magicDaggerFreeze", function(actor, victim, damager)
+Actor:onAttackHit("aphelion-magicDaggerFreeze", function(actor, victim, hit_info)
     if ((not victim.stun_immune) or (victim.stun_immune == false))
-    and damager and damager.aphelion_magicDagger_ice then
+    and hit_info and hit_info.aphelion_magicDagger_ice then
         victim:buff_apply(Buff.find("aphelion-magicDaggerFreeze"), 6 * 60.0)
     end
-end, true)
+end)
 
 
 
@@ -145,7 +144,7 @@ buff:onApply(function(actor, stack)
     actorData.saved_x = actor.x
 end)
 
-buff:onStep(function(actor, stack)
+buff:onPostStep(function(actor, stack)
     local actorData = actor:get_data("magicDagger")
     actor.x = actorData.saved_x
     actor.pHspeed = 0.0

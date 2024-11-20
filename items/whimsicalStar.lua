@@ -7,7 +7,7 @@ item:set_sprite(sprite)
 item:set_tier(Item.TIER.rare)
 item:set_loot_tags(Item.LOOT_TAG.category_utility)
 
-item:onPickup(function(actor, stack)
+item:onAcquire(function(actor, stack)
     local actorData = actor:get_data("whimsicalStar")
     if not actorData.insts then actorData.insts = {} end
 
@@ -116,10 +116,9 @@ obj:onStep(function(self)
         for _, actor in ipairs(actors) do
             if (actor.team and actor.team ~= selfData.parent.team)
             or (actor.parent and actor.parent.team and actor.parent.team ~= selfData.parent.team) then
-                local damager = selfData.parent:fire_explosion(self.x, self.y, self.bbox_right - self.bbox_left, self.bbox_bottom - self.bbox_top, selfData.damage_coeff)
-                damager:set_color(Color(0xA5C28C))
-                damager:set_critical(false)
-                damager:set_proc(false)
+                local attack_info = selfData.parent:fire_explosion(self.x, self.y, self.bbox_right - self.bbox_left, self.bbox_bottom - self.bbox_top, selfData.damage_coeff, nil, nil, true).attack_info
+                attack_info:set_color(Color(0xA5C28C))
+                attack_info:set_critical(false)
 
                 selfData.cd_hit = selfData.cd_hit_max
                 break
@@ -197,7 +196,7 @@ end)
 -- Achievement
 item:add_achievement()
 
-Player:onSkillUse("aphelion-whimsicalStarUnlock_1", function(actor)
+Player:onSkillUse("aphelion-whimsicalStarUnlock_1", function(actor, active_skill)
     actor:get_data("whimsicalStar").achievement_check = 2
 end, Skill.find("ror-commandoX"))
 
@@ -210,11 +209,11 @@ Player:onPreStep("aphelion-whimsicalStarUnlock_2", function(actor)
     end
 end)
 
-Player:onPostAttack("aphelion-whimsicalStarUnlock_3", function(actor, damager)
+Player:onAttackHandleEndProc("aphelion-whimsicalStarUnlock_3", function(actor, attack_info)
     local actorData = actor:get_data("whimsicalStar")
 
     if not actorData.achievement_check then return end
-    if damager.kill_number >= 9 then
+    if attack_info.kill_number >= 9 then
         item:progress_achievement()
     end
 end)

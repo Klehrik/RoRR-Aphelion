@@ -17,8 +17,6 @@ end)
 -- Achievement
 item:add_achievement(2000, true)
 
-Player:onDamaged("aphelion-ballisticVestUnlock", function(actor, damager)
-    if damager then
-        item:progress_achievement(damager.damage)
-    end
+Player:onDamagedProc("aphelion-ballisticVestUnlock", function(actor, attacker, hit_info)
+    item:progress_achievement(hit_info.damage)
 end)

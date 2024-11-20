@@ -123,7 +123,7 @@ Close this page if you would like to unlock and learn what everything does for y
             <td align="center"><img src="https://github.com/user-attachments/assets/1c784a9d-3bd8-44e3-bc3c-1187857a7ce3"></td>
             <td align="center"><p>$\color{#75b458}\textsf{Six Shooter}$</p></td>
             <td align="center">Every 6 basic attacks critically strike.</td>
-            <td align="center"><p>Every $\color{#319ad2}\textsf{6th basic attack}$ gains $\color{#efd27b}\textsf{+100\% critical chance}$. $\color{#555555}\textsf{Increases 6th basic attack damage by 50\% per stack.}$</p></td>
+            <td align="center"><p>Every $\color{#319ad2}\textsf{6th basic attack}$ deals $\color{#efd27b}\textsf{40\%}$ $\color{#555555}\textsf{(+30\% per stack)}$ $\color{#efd27b}\textsf{more damage}$ and gains $\color{#efd27b}\textsf{+100\% critical chance}$.</p></td>
         </tr>
     </tbody>
     <tbody>

@@ -53,14 +53,14 @@ state:onStep(function(actor, data)
         local pierce = nil
         if last then pierce = 0.65 end
 
-        local d = actor:fire_bullet(
+        local attack_info = actor:fire_bullet(
             actor.x, actor.y,
             1400, actor:skill_util_facing_direction(),
             actor:get_active_skill(Skill.SLOT.secondary).damage, pierce,
-            gm.constants.sSparks15, Damager.TRACER.bandit2
-        )
+            gm.constants.sSparks15, Attack_Info.TRACER.bandit2
+        ).attack_info
         
-        if last then d:set_stun(0.8) end    -- About 66% of Dynamite stun
+        if last then attack_info:set_stun(0.8) end    -- About 66% of Dynamite stun
     end
 
     -- Skip end of animation if queueing another bullet
@@ -81,7 +81,7 @@ Player:onPreStep("aphelion-banditUnload_onPreStep", function(actor)
     end
 end)
 
-Player:onKill("aphelion-banditUnload_onKill", function(actor, damager)
+Player:onKillProc("aphelion-banditUnload_onKill", function(actor, victim)
     if actor:get_active_skill(Skill.SLOT.secondary).skill_id == skill.value then
         actor:actor_skill_add_stock(actor, 1, false, 1)     -- actor, slot, ignore cap, raw value
     end
@@ -92,11 +92,11 @@ end)
 -- Achievement
 skill:add_achievement(50)
 
-Player:onPostAttack("aphelion-banditUnloadUnlock", function(actor, damager)
-    if damager:get_attack_flag(Damager.ATTACK_FLAG.cd_reset_on_kill)
-    or damager:get_attack_flag(Damager.ATTACK_FLAG.gain_skull_on_kill)
-    or damager:get_attack_flag(Damager.ATTACK_FLAG.gain_skull_boosted) then
-        skill:progress_achievement(damager.kill_number)
+Player:onAttackHandleEndProc("aphelion-banditUnloadUnlock", function(actor, attack_info)
+    if attack_info:get_attack_flag(Attack_Info.ATTACK_FLAG.cd_reset_on_kill)
+    or attack_info:get_attack_flag(Attack_Info.ATTACK_FLAG.gain_skull_on_kill)
+    or attack_info:get_attack_flag(Attack_Info.ATTACK_FLAG.gain_skull_boosted) then
+        skill:progress_achievement(attack_info.kill_number)
     end
 end)
 

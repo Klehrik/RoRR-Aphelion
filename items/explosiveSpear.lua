@@ -9,11 +9,11 @@ item:set_sprite(sprite)
 item:set_tier(Item.TIER.uncommon)
 item:set_loot_tags(Item.LOOT_TAG.category_damage)
 
-item:onHit(function(actor, victim, damager, stack)
+item:onHitProc(function(actor, victim, stack, hit_info)
     if Cooldown.get(actor, "aphelion-explosiveSpear") > 0 then return end
     
     -- Do not proc if the hit does not deal at least 200%
-    if damager.damage < actor.damage * 2.0 then return end
+    if hit_info.damage < actor.damage * 2.0 then return end
 
     local dir = actor.image_xscale
 
@@ -23,11 +23,11 @@ item:onHit(function(actor, victim, damager, stack)
     local instData = inst:get_data()
     instData.parent = actor
     instData.hsp = 20.0 * dir
-    gm.sound_play_at(sound, 1.0, 1.0, actor.x, actor.y, 1.0)
+    inst:sound_play_at(sound, 1.0, 1.0, inst.x, inst.y, 1.0)
 
     -- Calculate damage
-    instData.pop_damage = damager.damage * (0.06 + (actor:item_stack_count(item) * 0.06))
-    instData.damage = damager.damage * (1.0 + (actor:item_stack_count(item) * 1.5))
+    instData.pop_damage = hit_info.damage * (0.06 + (actor:item_stack_count(item) * 0.06))
+    instData.damage = hit_info.damage * (1.0 + (actor:item_stack_count(item) * 1.5))
 
     -- Apply cooldown
     Cooldown.set(actor, "aphelion-explosiveSpear", 10 *60, spriteCooldown, Color(0xff004d))
@@ -106,7 +106,7 @@ obj:onStep(function(self)
                 selfData.hit = actor
                 selfData.hit_offset_x = actor.x - self.x
                 selfData.hit_offset_y = actor.y - self.y
-                gm.sound_play_at(soundHit, 1.0, 1.0, self.x, self.y, 1.0)
+                self:sound_play_at(soundHit, 1.0, 1.0, self.x, self.y, 1.0)
                 break
             end
         end
@@ -115,7 +115,7 @@ obj:onStep(function(self)
         if self:is_colliding(gm.constants.pSolidBulletCollision) then
             selfData.flag_hit = true
             selfData.hit_type = 1
-            gm.sound_play_at(soundHit, 1.0, 1.0, self.x, self.y, 1.0)
+            self:sound_play_at(soundHit, 1.0, 1.0, self.x, self.y, 1.0)
         end
 
         -- Set image_angle
@@ -138,25 +138,23 @@ obj:onStep(function(self)
                 local actor = selfData.hit
                 if actor.RMT_object ~= "Actor" then actor = actor.parent end
 
-                local damager = selfData.parent:fire_direct(actor, selfData.pop_damage)
-                damager:use_raw_damage()
-                damager:set_color(c_red)
-                damager:set_critical(false)
-                damager:set_proc(false)
-                damager:set_stun(1)
+                local attack_info = selfData.parent:fire_direct(actor, selfData.pop_damage, nil, nil, nil, nil, true).attack_info
+                attack_info:use_raw_damage()
+                attack_info:set_color(c_red)
+                attack_info:set_critical(false)
+                attack_info:set_stun(1)
             end
         end
 
         -- Explode
         if selfData.tick <= -20 or (selfData.hit_type == 0 and not selfData.hit:exists()) then
-            local damager = selfData.parent:fire_explosion(self.x, self.y, 200, 200, selfData.damage, explosive_192)
-            damager:use_raw_damage()
-            damager:set_color(c_red)
-            damager:set_critical(false)
-            damager:set_proc(false)
-            damager:set_stun(2.5)
+            local attack_info = selfData.parent:fire_explosion(self.x, self.y, 200, 200, selfData.damage, explosive_192, true).attack_info
+            attack_info:use_raw_damage()
+            attack_info:set_color(c_red)
+            attack_info:set_critical(false)
+            attack_info:set_stun(2.5)
 
-            gm.sound_play_at(soundExplode, 1.0, 1.0, self.x, self.y, 1.0)
+            self:sound_play_at(soundExplode, 1.0, 1.0, self.x, self.y, 1.0)
             self:destroy()
         end
     end

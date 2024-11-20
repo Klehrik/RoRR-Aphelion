@@ -1,3 +1,8 @@
+### v1.2.14
+* Updated alongside RMT v1.1.33.
+* Six Shooter : 6th shot damage bonus: +40% (+30% per stack); now applies on first stack
+* Spotter: BLAST : Explosion is now centered at the point of bullet collision.
+
 ### v1.2.13
 * Thermite Flare : No longer overrides your equipment via Bottled Chaos.
 

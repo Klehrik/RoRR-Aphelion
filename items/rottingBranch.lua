@@ -7,11 +7,11 @@ item:set_sprite(sprite)
 item:set_tier(Item.TIER.common)
 item:set_loot_tags(Item.LOOT_TAG.category_damage)
 
-item:onHit(function(actor, victim, damager, stack)
-    local victim_data = victim:get_data("rottingBranch")
+item:onHitProc(function(actor, victim, stack, hit_info)
+    local victimData = victim:get_data("rottingBranch")
     if Helper.chance(0.15 + (0.1 * (stack - 1))) then
         victim:buff_apply(Buff.find("aphelion-rottingBranch"), 1)
-        victim_data.attacker = actor
+        victimData.attacker = actor
     end
 end)
 
@@ -41,7 +41,7 @@ buff:onRemove(function(actor, stack)
     if actorData.dot:exists() then actorData.dot:destroy() end
 end)
 
-buff:onStep(function(actor, stack)
+buff:onPostStep(function(actor, stack)
     local actorData = actor:get_data("rottingBranch")
 
     if actorData.attacker:exists() then

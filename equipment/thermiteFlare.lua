@@ -114,15 +114,14 @@ buff:onApply(function(actor, stack)
     end
 
     if not actor:callback_exists("aphelion-thermiteFlareWeaken") then
-        actor:onDamaged("aphelion-thermiteFlareWeaken", function(actor, damager)
-            if damager.parent and damager.parent:exists() and (not damager.aphelion_thermiteFlare) then
-                local damager2 = damager.parent:fire_direct(actor, damager.damage * damage_extra)
-                damager2:use_raw_damage()
-                damager2:add_offset(damager)
-                damager2:set_color(dmg_col)
-                damager2:set_critical(false)
-                damager2:set_proc(false)
-                damager2.aphelion_thermiteFlare = true
+        actor:onDamagedProc("aphelion-thermiteFlareWeaken", function(actor, attacker, hit_info)
+            if hit_info.parent and hit_info.parent:exists() and (not hit_info.aphelion_thermiteFlare) then
+                local attack_info2 = hit_info.parent:fire_direct(actor, hit_info.damage * damage_extra, nil, nil, nil, nil, true).attack_info
+                attack_info2:use_raw_damage()
+                attack_info2:add_climb(hit_info)
+                attack_info2:set_color(dmg_col)
+                attack_info2:set_critical(false)
+                attack_info2.aphelion_thermiteFlare = true
             end
         end)
     end
@@ -151,8 +150,8 @@ end)
 -- Achievement
 equip:add_achievement(60)
 
-Player:onKill("aphelion-thermiteFlareUnlock", function(actor, victim)
-    if GM.actor_is_boss(victim) then
+Player:onKillProc("aphelion-thermiteFlareUnlock", function(actor, victim)
+    if Helper.is_true(GM.actor_is_boss(victim)) then
         equip:progress_achievement(1)
     end
 end)

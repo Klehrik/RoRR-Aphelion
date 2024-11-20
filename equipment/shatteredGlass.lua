@@ -17,15 +17,3 @@ equip:onPostStatRecalc(function(actor)
     
     -- TODO: Make health bar blue maybe
 end)
-
-
-
--- Achievement
--- equip:add_achievement()
-
--- Object.find("ror-commandFinal"):onActivate(function(self)
---     local glass = Artifact.find("ror-glass").active
---     if glass == true or glass == 1.0 then
---         equip:progress_achievement()
---     end
--- end)

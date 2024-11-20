@@ -6,7 +6,7 @@ local spriteCooldown = Resources.sprite_load("aphelion", "cooldown/ration", PATH
 local item = Item.new("aphelion", "rationUsed", true)
 item:set_sprite(sprite)
 
-item:onPickup(function(actor, stack)
+item:onAcquire(function(actor, stack)
     local cd = 240 *60 * (1 - Helper.mixed_hyperbolic(stack, 0.2, 0))
     actor:get_data("ration").cooldown = cd
 
@@ -29,7 +29,7 @@ local function restore_stacks(actor)
     end
 end
 
-item:onStep(function(actor, stack)
+item:onPostStep(function(actor, stack)
     if actor.dead == true or actor.dead == 1.0 then return end
     local actorData = actor:get_data("ration")
 
@@ -39,6 +39,6 @@ item:onStep(function(actor, stack)
     end
 end)
 
-item:onNewStage(function(actor, stack)
+item:onStageStart(function(actor, stack)
     restore_stacks(actor)
 end)
