@@ -11,15 +11,15 @@ item:set_loot_tags(Item.LOOT_TAG.category_healing)
 item:onAcquire(function(actor, stack)
     -- Restore all used Rations
     local item_used = Item.find("aphelion-rationUsed")
-    local normal    = actor:item_stack_count(item_used, Item.TYPE.real)
-    local temp      = actor:item_stack_count(item_used, Item.TYPE.temporary)
+    local normal    = actor:item_stack_count(item_used, Item.STACK_KIND.normal)
+    local temp      = actor:item_stack_count(item_used, Item.STACK_KIND.temporary_blue)
     if normal > 0 then
-        actor:item_remove(item_used, normal, false)
-        actor:item_give(item, normal, false)
+        actor:item_remove(item_used, normal)
+        actor:item_give(item, normal)
     end
     if temp > 0 then
-        actor:item_remove(item_used, temp, true)
-        actor:item_give(item, temp, true)
+        actor:item_remove(item_used, temp, Item.STACK_KIND.temporary_blue)
+        actor:item_give(item, temp, Item.STACK_KIND.temporary_blue)
     end
 
     -- Remove cooldown
@@ -34,15 +34,15 @@ item:onDamagedProc(function(actor, attacker, stack, hit_info)
 
         -- Remove stacks and give used stacks
         local item_used = Item.find("aphelion-rationUsed")
-        local normal    = actor:item_stack_count(item, Item.TYPE.real)
-        local temp      = actor:item_stack_count(item, Item.TYPE.temporary)
+        local normal    = actor:item_stack_count(item, Item.STACK_KIND.normal)
+        local temp      = actor:item_stack_count(item, Item.STACK_KIND.temporary_blue)
         if normal > 0 then
-            actor:item_remove(item, normal, false)
-            actor:item_give(item_used, normal, false)
+            actor:item_remove(item, normal)
+            actor:item_give(item_used, normal)
         end
         if temp > 0 then
-            actor:item_remove(item, temp, true)
-            actor:item_give(item_used, temp, true)
+            actor:item_remove(item, temp, Item.STACK_KIND.temporary_blue)
+            actor:item_give(item_used, temp, Item.STACK_KIND.temporary_blue)
         end
     end
 end)

@@ -72,7 +72,7 @@
         "sixShooter" : {
             "name" : "Six Shooter",
             "pickup" : "Every 6 basic attacks critically strike.",
-            "description" : "Every <b>6th basic attack</c> deals <y>40% <c_stack>(+30% per stack) <y>more damage</c> and gains <y>+100% critical chance</c>.",
+            "description" : "Every <b>6th basic attack</c> deals <y>33% <c_stack>(+33% per stack) <y>more damage</c> and gains <y>+100% critical chance</c>.",
             "destination" : "Apt. #302,\n12th District,\nNeo Metro,\nVenus",
             "date" : "8/13/2056",
             "story" : "An antique from days past. The cylinder is somewhat damaged, and black powder is pretty hard (and expensive!) to get nowadays, but regardless it should be a nice addition to your collection if you aren't planning on firing it.",

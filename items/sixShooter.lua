@@ -26,7 +26,7 @@ item:onAttackCreateProc(function(actor, stack, attack_info)
     if actorData.count >= 6 then
         actorData.count = actorData.count - 6
 
-        attack_info:set_damage(attack_info.damage * (1.1 + (0.3 * stack)))
+        attack_info:set_damage(attack_info.damage * (1 + (0.33 * stack)))
         attack_info:set_critical(true)
 
         -- For Stiletto
