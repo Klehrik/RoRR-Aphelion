@@ -116,7 +116,7 @@ buff:onApply(function(actor, stack)
     if not actor:callback_exists("aphelion-thermiteFlareWeaken") then
         actor:onDamagedProc("aphelion-thermiteFlareWeaken", function(actor, attacker, hit_info)
             if hit_info.parent and hit_info.parent:exists() and (not hit_info.aphelion_thermiteFlare) then
-                local attack_info2 = hit_info.parent:fire_direct(actor, hit_info.damage * damage_extra, nil, nil, nil, nil, true).attack_info
+                local attack_info2 = hit_info.parent:fire_direct(actor, hit_info.damage * damage_extra, nil, nil, nil, nil, false).attack_info
                 attack_info2:use_raw_damage()
                 attack_info2:add_climb(hit_info)
                 attack_info2:set_color(dmg_col)

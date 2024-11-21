@@ -116,7 +116,7 @@ obj:onStep(function(self)
         for _, actor in ipairs(actors) do
             if (actor.team and actor.team ~= selfData.parent.team)
             or (actor.parent and actor.parent.team and actor.parent.team ~= selfData.parent.team) then
-                local attack_info = selfData.parent:fire_explosion(self.x, self.y, self.bbox_right - self.bbox_left, self.bbox_bottom - self.bbox_top, selfData.damage_coeff, nil, nil, true).attack_info
+                local attack_info = selfData.parent:fire_explosion(self.x, self.y, self.bbox_right - self.bbox_left, self.bbox_bottom - self.bbox_top, selfData.damage_coeff, nil, nil, false).attack_info
                 attack_info:set_color(Color(0xA5C28C))
                 attack_info:set_critical(false)
 

@@ -144,7 +144,7 @@ obj:onStep(function(self)
         else
             local damage_coeff = 0.45 + (0.15 * selfData.parent:item_stack_count(item))
             
-            local attack_info = selfData.parent:fire_direct(target, damage_coeff, nil, nil, nil, nil, true).attack_info
+            local attack_info = selfData.parent:fire_direct(target, damage_coeff, nil, nil, nil, nil, false).attack_info
             attack_info:set_color(blend)
             attack_info:set_critical(false)
         end

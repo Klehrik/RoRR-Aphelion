@@ -138,7 +138,7 @@ obj:onStep(function(self)
                 local actor = selfData.hit
                 if actor.RMT_object ~= "Actor" then actor = actor.parent end
 
-                local attack_info = selfData.parent:fire_direct(actor, selfData.pop_damage, nil, nil, nil, nil, true).attack_info
+                local attack_info = selfData.parent:fire_direct(actor, selfData.pop_damage, nil, nil, nil, nil, false).attack_info
                 attack_info:use_raw_damage()
                 attack_info:set_color(c_red)
                 attack_info:set_critical(false)
@@ -148,7 +148,7 @@ obj:onStep(function(self)
 
         -- Explode
         if selfData.tick <= -20 or (selfData.hit_type == 0 and not selfData.hit:exists()) then
-            local attack_info = selfData.parent:fire_explosion(self.x, self.y, 200, 200, selfData.damage, explosive_192, true).attack_info
+            local attack_info = selfData.parent:fire_explosion(self.x, self.y, 200, 200, selfData.damage, explosive_192, false).attack_info
             attack_info:use_raw_damage()
             attack_info:set_color(c_red)
             attack_info:set_critical(false)

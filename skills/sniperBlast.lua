@@ -87,7 +87,7 @@ Player:onHitProc("aphelion-sniperBlast_onHit", function(actor, victim, hit_info)
             200, 200,
             hit_info.damage * 0.5,
             explosive_192, nil,
-            true
+            false
         ).attack_info
         attack_info2:use_raw_damage()
         attack_info2:add_climb(hit_info)

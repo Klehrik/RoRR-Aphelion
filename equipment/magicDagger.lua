@@ -75,7 +75,7 @@ obj:onStep(function(self)
             local radius_x = 29 * math.abs(self.image_xscale)
             local radius_y = 18 * math.abs(self.image_yscale)
             
-            local attack_info = selfData.parent:fire_explosion(self.x + (radius_x * gm.sign(self.image_xscale)), self.y - radius_y, radius_x * 2, radius_y * 2, selfData.damage_coeff, nil, nil, true).attack_info
+            local attack_info = selfData.parent:fire_explosion(self.x + (radius_x * gm.sign(self.image_xscale)), self.y - radius_y, radius_x * 2, radius_y * 2, selfData.damage_coeff, nil, nil, false).attack_info
             attack_info:set_color(Color(0x909CD6))
             attack_info:set_critical(false)
             attack_info:set_stun(selfData.freeze_time, nil, Attack_Info.KNOCKBACK_KIND.deepfreeze)
