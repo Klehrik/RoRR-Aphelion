@@ -1,18 +1,37 @@
 -- Mystery Box
 
-local sprite = Resources.sprite_load("aphelion", "item/silicaPacket", PATH.."assets/sprites/items/silicaPacket.png", 1, 16, 16)
+local sprite = Resources.sprite_load("aphelion", "item/mysteryBox", PATH.."assets/sprites/items/mysteryBox.png", 1, 16, 16)
 
 local item = Item.new("aphelion", "mysteryBox")
 item:set_sprite(sprite)
 item:set_tier(Item.TIER.rare)
 
 local function spawn_boxes(actor, stack)
-    -- wip
+    -- WIP
     local spacing = 44
     local x = (stack - 1) * -spacing/2
     for i = 1, stack do
-        log.info(x)
-        Item.spawn_crate(actor.x + x, actor.y, Item.TIER.common)
+        local choices = {}
+        for j = 1, 5 do
+            -- Pick tier
+            local tier = Item.TIER.common
+            if      Helper.chance(0.29) then tier = Item.TIER.uncommon
+            elseif  Helper.chance(0.03) then tier = Item.TIER.rare
+            end
+
+            -- Pick unselected item
+            local _item = nil
+            repeat
+                _item = Item.get_random(tier)
+            until _item:is_loot()
+              and _item:is_unlocked()
+              and (not Helper.table_has(choices, _item.value))
+              and _item.value ~= item.value
+
+            -- Add to choices
+            table.insert(choices, _item.value)
+        end
+        Item.spawn_crate(actor.x + x, actor.y, Item.TIER.boss, choices)
         x = x + spacing
     end
 end
