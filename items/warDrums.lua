@@ -48,7 +48,7 @@ buff:onPostStep(function(actor, stack)
 
     actorData.timer = actorData.timer - 1
     if actorData.timer <= 0 then
-        actor:buff_remove(buff, buff.max_stack)
+        actor:buff_remove(buff, 1)
     end
 end)
 
