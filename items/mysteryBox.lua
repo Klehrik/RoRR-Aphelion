@@ -52,12 +52,17 @@ item:add_achievement()
 
 Player:onPickupCollected("aphelion-mysteryBoxUnlock", function(actor, pickup_object)
     -- Item: ~107
-    -- Equipment: ~29 (excluding strange battery)
+    -- Equipment: ~29 (excluding Strange Battery)
+
+    if item:is_unlocked() then return end
+
     local found_all = true
 
     for i = 0, 107 do
-        local object_id = Class.ITEM:get(i):get(8)
-        if object_id then
+        local _item = Class.ITEM:get(i)
+        local object_id = _item:get(8)
+        local tier = _item:get(8)
+        if object_id and tier <= 4 then
             local key = gm.item_get_stat_key_total_collected(object_id)
             local total = gm.save_stat_get(key)
             if total <= 0 then
@@ -70,8 +75,10 @@ Player:onPickupCollected("aphelion-mysteryBoxUnlock", function(actor, pickup_obj
     if not found_all then return end
 
     for i = 0, 29 do
-        local object_id = Class.EQUIPMENT:get(i):get(8)
-        if object_id then
+        local equip = Class.EQUIPMENT:get(i)
+        local object_id = equip:get(8)
+        local tier = equip:get(6)
+        if object_id and tier <= 4 then
             local key = gm.equipment_get_stat_key_time_held(object_id)
             local total = gm.save_stat_get(key)
             if total <= 0 then
