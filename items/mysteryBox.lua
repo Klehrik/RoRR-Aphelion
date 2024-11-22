@@ -16,7 +16,7 @@ local function spawn_boxes(actor, stack)
             -- Pick tier
             local tier = Item.TIER.common
             if      Helper.chance(0.29) then tier = Item.TIER.uncommon
-            elseif  Helper.chance(0.03) then tier = Item.TIER.rare
+            elseif  Helper.chance(0.04) then tier = Item.TIER.rare
             end
 
             -- Pick unselected item
@@ -48,10 +48,40 @@ end)
 
 
 -- Achievement
--- item:add_achievement(50)
+item:add_achievement()
 
--- Player:onAttackHandleEndProc("aphelion-silicaPacketUnlock", function(actor, attack_info)
---     if attack_info:get_attack_flag(Attack_Info.ATTACK_FLAG.drifter_execute) then
---         item:progress_achievement(attack_info.kill_number)
---     end
--- end)
+Player:onPickupCollected("aphelion-mysteryBoxUnlock", function(actor, pickup_object)
+    -- Item: ~107
+    -- Equipment: ~29 (excluding strange battery)
+    local found_all = true
+
+    for i = 0, 107 do
+        local object_id = Class.ITEM:get(i):get(8)
+        if object_id then
+            local key = gm.item_get_stat_key_total_collected(object_id)
+            local total = gm.save_stat_get(key)
+            if total <= 0 then
+                found_all = false
+                break
+            end
+        end
+    end
+
+    if not found_all then return end
+
+    for i = 0, 29 do
+        local object_id = Class.EQUIPMENT:get(i):get(8)
+        if object_id then
+            local key = gm.equipment_get_stat_key_time_held(object_id)
+            local total = gm.save_stat_get(key)
+            if total <= 0 then
+                found_all = false
+                break
+            end
+        end
+    end
+
+    if not found_all then return end
+
+    item:progress_achievement()
+end)

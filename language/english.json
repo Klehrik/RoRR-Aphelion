@@ -285,6 +285,10 @@
             "name" : "Spur",
             "description" : "Commando: Kill 9 enemies with a single use of Full Metal Jacket."
         },
+        "mysteryBox" : {
+            "name" : "Collector",
+            "description" : "Obtain every vanilla item and equipment at least once."
+        },
 
         "magicDagger" : {
             "name" : "A Space Between",
