@@ -68,6 +68,15 @@
             "story" : "I mean sure, I get having to preserve food, but stuffing a hundred of these in the package container ain't it. I can't even use any of this, but you sent so much that I can't bear to throw them out.",
             "priority" : "Standard"
         },
+        "warDrums" : {
+            "name" : "War Drums",
+            "pickup" : "Become progressively more agile in combat.",
+            "description" : "Slowly increase <y>attack speed</c> and <b>movement speed</c> while in combat, up to <y>15% <c_stack>(+10% per stack)</c> after <y>25</c> seconds. <r>Expires</c> after <r>not striking an enemy</c> for <y>5</c> seconds.",
+            "destination" : "",
+            "date" : "",
+            "story" : "",
+            "priority" : "Standard"
+        },
 
         "sixShooter" : {
             "name" : "Six Shooter",
@@ -266,6 +275,10 @@
         "silicaPacket" : {
             "name" : "Oxygen Removal",
             "description" : "Drifter: Suffocate 50 enemies."
+        },
+        "warDrums" : {
+            "name" : "Last Stand",
+            "description" : "Kill 25 enemies while under the same Warbanner buff."
         },
 
         "sixShooter" : {
