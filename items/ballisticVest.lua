@@ -18,5 +18,5 @@ end)
 item:add_achievement(2000, true)
 
 Player:onDamagedProc("aphelion-ballisticVestUnlock", function(actor, attacker, hit_info)
-    item:progress_achievement(hit_info.damage)
+    item:progress_achievement(math.min(hit_info.damage, actor.hp))
 end)

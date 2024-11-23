@@ -1,6 +1,8 @@
 -- Mystery Box
 
 local sprite = Resources.sprite_load("aphelion", "item/mysteryBox", PATH.."assets/sprites/items/mysteryBox.png", 1, 16, 16)
+local spriteObj = Resources.sprite_load("aphelion", "object/mysteryBox", PATH.."assets/sprites/objects/mysteryBox.png", 1, 25, 35)
+local spriteObjUse = Resources.sprite_load("aphelion", "object/mysteryBoxUse", PATH.."assets/sprites/objects/mysteryBoxUse.png", 8, 32, 39)
 
 local item = Item.new("aphelion", "mysteryBox")
 item:set_sprite(sprite)
@@ -31,7 +33,9 @@ local function spawn_boxes(actor, stack)
             -- Add to choices
             table.insert(choices, _item.value)
         end
-        Item.spawn_crate(actor.x + x, actor.y, Item.TIER.boss, choices)
+        local box = Item.spawn_crate(actor.x + x, actor.y, Item.TIER.common, choices)
+        box.sprite_index = spriteObj
+        box.sprite_death = spriteObjUse
         x = x + spacing
     end
 end
