@@ -9,9 +9,13 @@ item:set_loot_tags(Item.LOOT_TAG.category_damage, Item.LOOT_TAG.category_utility
 
 item:onHitProc(function(actor, victim, stack, hit_info)
     local actorData = actor:get_data("warDrums")
-    local buff = Buff.find("aphelion-warDrumsBuff")
+
+    -- Reset kill timer
     actorData.item_stack = stack
     actorData.timer = 5 *60
+
+    -- Apply buff (if haven't already)
+    local buff = Buff.find("aphelion-warDrumsBuff")
     if actor:buff_stack_count(buff) <= 0 then
         actorData.frame = 0
         actor:buff_apply(buff, 1, 1)
@@ -32,7 +36,7 @@ buff.is_timed = false
 
 buff:onStatRecalc(function(actor, stack)
     local actorData = actor:get_data("warDrums")
-    local max = 0.05 + (actorData.item_stack * 0.1)
+    local max = 0.03 + (actorData.item_stack * 0.12)
     local val = (stack / buff.max_stack) * max
     actor.attack_speed = actor.attack_speed + val
     actor.pHmax = actor.pHmax + (val * 2.8)
@@ -40,12 +44,15 @@ end)
 
 buff:onPostStep(function(actor, stack)
     local actorData = actor:get_data("warDrums")
+
+    -- Increment buff
     actorData.frame = actorData.frame + 1
     if actorData.frame >= 60 then
         actorData.frame = 0
         actor:buff_apply(buff, 1, 1)
     end
 
+    -- Decrement kill timer
     actorData.timer = actorData.timer - 1
     if actorData.timer <= 0 then
         actor:buff_remove(buff, 1)
@@ -83,6 +90,7 @@ Buff.find("ror-warbanner"):onApply(function(actor, stack)
 end)
 
 Buff.find("ror-warbanner"):onRemove(function(actor, stack)
+    -- Reset on buff loss
     local actorData = actor:get_data("warDrums")
     actorData.kills = 0
     actorData.add_kills = false

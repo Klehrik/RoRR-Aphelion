@@ -55,7 +55,7 @@ obj:onStep(function(self)
         self.x = selfData.parent.x + selfData.x_offset
         self.y = selfData.parent.bbox_bottom + 1
 
-        if selfData.state_time == 1 then gm.sound_play_at(soundWindup, 1.0, 1.0, self.x, self.y, 1.0) end
+        if selfData.state_time == 1 then gm.sound_play_at(soundWindup, 1.0, 1.0, self.x, self.y, nil) end
         if selfData.state_time >= 30 then
             selfData.state = 1
             selfData.state_time = 0
@@ -66,7 +66,7 @@ obj:onStep(function(self)
     elseif selfData.state == 1 then
         selfData.state_time = selfData.state_time + 1
 
-        if selfData.state_time == 1 then gm.sound_play_at(soundFreeze, 1.0, 1.0, self.x, self.y, 1.0) end
+        if selfData.state_time == 1 then gm.sound_play_at(soundFreeze, 1.0, 1.0, self.x, self.y, nil) end
 
         -- Freeze
         if (not selfData.hit) and self.image_index >= 1.25 then

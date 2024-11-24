@@ -65,7 +65,7 @@ skill:onActivate(function(actor, struct, index)
         drone.tt = target
         actor:add_skill_override(index, Skill.find("ror-sniperVRecall"), 2)
     else
-        actor:sound_play_at(gm.constants.wError, 1.0, 1.0, actor.x, actor.y, 1.0)
+        actor:sound_play_at(gm.constants.wError, 1.0, 1.0, actor.x, actor.y, nil)
         actor:refresh_skill(index)
     end
 end)
@@ -95,7 +95,7 @@ Player:onHitProc("aphelion-sniperBlast_onHit", function(actor, victim, hit_info)
         attack_info2:set_critical(false)
         attack_info2:set_stun(0.2)
 
-        victim:sound_play_at(gm.constants.wExplosiveShot, 1.0, 1.0, victim.x, victim.y, 1.0)
+        victim:sound_play_at(gm.constants.wExplosiveShot, 1.0, 1.0, victim.x, victim.y, nil)
         
         -- Apply cooldown
         Cooldown.set(actor, "aphelion-sniperBlast", 5 *60, spriteCooldown, Color(0xffbb59))

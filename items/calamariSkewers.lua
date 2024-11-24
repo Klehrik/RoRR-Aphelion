@@ -38,6 +38,7 @@ item:onPostStep(function(actor, stack)
         if actorData.count >= 2 then
             local per = actor.maxhp * (0.02 + (actor:item_stack_count(item) * 0.01))
             actor:heal(per * actorData.count)
+            actor:sound_play_at(gm.constants.wUse, 1.0, 0.7, self.x, self.y, nil)
 
             -- Apply cooldown
             Cooldown.set(actor, "aphelion-calamariSkewers", 5 *60, spriteCooldown, Color(0xffcbcb))

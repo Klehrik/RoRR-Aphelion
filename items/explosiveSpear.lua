@@ -23,7 +23,7 @@ item:onHitProc(function(actor, victim, stack, hit_info)
     local instData = inst:get_data()
     instData.parent = actor
     instData.hsp = 20.0 * dir
-    inst:sound_play_at(sound, 1.0, 1.0, inst.x, inst.y, 1.0)
+    inst:sound_play_at(sound, 1.0, 1.0, inst.x, inst.y, nil)
 
     -- Calculate damage
     instData.pop_damage = hit_info.damage * (0.06 + (actor:item_stack_count(item) * 0.06))
@@ -106,7 +106,7 @@ obj:onStep(function(self)
                 selfData.hit = actor
                 selfData.hit_offset_x = actor.x - self.x
                 selfData.hit_offset_y = actor.y - self.y
-                self:sound_play_at(soundHit, 1.0, 1.0, self.x, self.y, 1.0)
+                self:sound_play_at(soundHit, 1.0, 1.0, self.x, self.y, nil)
                 break
             end
         end
@@ -115,7 +115,7 @@ obj:onStep(function(self)
         if self:is_colliding(gm.constants.pSolidBulletCollision) then
             selfData.flag_hit = true
             selfData.hit_type = 1
-            self:sound_play_at(soundHit, 1.0, 1.0, self.x, self.y, 1.0)
+            self:sound_play_at(soundHit, 1.0, 1.0, self.x, self.y, nil)
         end
 
         -- Set image_angle
@@ -154,7 +154,7 @@ obj:onStep(function(self)
             attack_info:set_critical(false)
             attack_info:set_stun(2.5)
 
-            self:sound_play_at(soundExplode, 1.0, 1.0, self.x, self.y, 1.0)
+            self:sound_play_at(soundExplode, 1.0, 1.0, self.x, self.y, nil)
             self:destroy()
         end
     end

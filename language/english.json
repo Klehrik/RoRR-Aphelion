@@ -71,7 +71,7 @@
         "warDrums" : {
             "name" : "War Drums",
             "pickup" : "Become progressively more agile in combat.",
-            "description" : "Slowly increase <y>attack speed</c> and <b>movement speed</c> while in combat, up to <y>15% <c_stack>(+10% per stack)</c> after <y>25</c> seconds. <r>Expires</c> after <r>not striking an enemy</c> for <y>5</c> seconds.",
+            "description" : "Slowly increase <y>attack speed</c> and <b>movement speed</c> while in combat, up to <y>15% <c_stack>(+12% per stack)</c> after <y>25</c> seconds. <r>Expires</c> after <r>not striking an enemy</c> for <y>5</c> seconds.",
             "destination" : "",
             "date" : "",
             "story" : "",

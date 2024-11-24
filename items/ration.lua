@@ -30,7 +30,7 @@ item:onDamagedProc(function(actor, attacker, stack, hit_info)
     -- Heal when at <= 25% health
     if actor.hp <= actor.maxhp * 0.25 then
         actor:heal(actor.maxhp * Helper.mixed_hyperbolic(stack, 0.07, 0.5))
-        actor:sound_play_at(sound, 0.9, 1.0, actor.x, actor.y, 1.0)
+        actor:sound_play_at(sound, 0.9, 1.0, actor.x, actor.y)
 
         -- Remove stacks and give used stacks
         local item_used = Item.find("aphelion-rationUsed")
