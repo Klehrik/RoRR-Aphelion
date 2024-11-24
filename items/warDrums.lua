@@ -41,22 +41,24 @@ buff:onPostStatRecalc(function(actor, stack)
 
     actor.damage = actor.damage * val
     actor.attack_speed = actor.attack_speed * val
+    actor.pHmax = actor.pHmax * val
     actor.critical_chance = actor.critical_chance * val
-    actor.maxhp = gm.round(actor.maxhp * val)
-    actor.maxshield = gm.round(actor.maxshield * val)
     actor.hp_regen = actor.hp_regen * val
     actor.armor = actor.armor * val
-    actor.pHmax = actor.pHmax * val
+    -- actor.maxhp = gm.round(actor.maxhp * val)    -- Removing these because goofy stuff happens
+    -- actor.maxshield = gm.round(actor.maxshield * val)
 end)
 
 buff:onPostStep(function(actor, stack)
     local actorData = actor:get_data("warDrums")
 
     -- Increment buff
-    actorData.frame = actorData.frame + 1
-    if actorData.frame >= 60 then
-        actorData.frame = 0
-        actor:buff_apply(buff, 1, 1)
+    if stack < 25 then
+        actorData.frame = actorData.frame + 1
+        if actorData.frame >= 60 then
+            actorData.frame = 0
+            actor:buff_apply(buff, 1, 1)
+        end
     end
 
     -- Decrement kill timer
