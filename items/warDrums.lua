@@ -34,12 +34,19 @@ buff.draw_stack_number = true
 buff.max_stack = 25
 buff.is_timed = false
 
-buff:onStatRecalc(function(actor, stack)
+buff:onPostStatRecalc(function(actor, stack)
     local actorData = actor:get_data("warDrums")
-    local max = 0.03 + (actorData.item_stack * 0.12)
-    local val = (stack / buff.max_stack) * max
-    actor.attack_speed = actor.attack_speed + val
-    actor.pHmax = actor.pHmax + (val * 2.8)
+    local max = 0.04 + (actorData.item_stack * 0.03)
+    local val = 1 + (stack/buff.max_stack * max)
+
+    actor.damage = actor.damage * val
+    actor.attack_speed = actor.attack_speed * val
+    actor.critical_chance = actor.critical_chance * val
+    actor.maxhp = gm.round(actor.maxhp * val)
+    actor.maxshield = gm.round(actor.maxshield * val)
+    actor.hp_regen = actor.hp_regen * val
+    actor.armor = actor.armor * val
+    actor.pHmax = actor.pHmax * val
 end)
 
 buff:onPostStep(function(actor, stack)
