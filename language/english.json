@@ -172,7 +172,7 @@
         "mysteryBox" : {
             "name" : "Mystery Box",
             "pickup" : "What's inside?",
-            "description" : "Spawns <y>a <c_stack>(+1 per stack) <y>mystery box <b>upon entering a new stage</c>, containing a <g>selection between 5 items</c>.",
+            "description" : "Spawns <y>2 <c_stack>(+1 per stack) <y>mystery boxes <b>upon entering a new stage</c>, each containing a <g>selection between 5 items</c>.",
             "destination" : "\"The Bunker\",\nSilva Grove,\nVenus",
             "date" : "11/08/2056",
             "story" : "Thank you for ordering MYSTERY BOX. Open it and you'll find just the thing you need, no matter the sitation.\n\n<c_stack>Cipher Imaginative is not liable for any damages caused by use of the product. All sales final.</c>",

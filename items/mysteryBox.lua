@@ -18,7 +18,7 @@ local function spawn_boxes(actor, stack)
             -- Pick tier
             local tier = Item.TIER.common
             if      Helper.chance(0.29) then tier = Item.TIER.uncommon
-            elseif  Helper.chance(0.04) then tier = Item.TIER.rare
+            elseif  Helper.chance(0.03) then tier = Item.TIER.rare
             end
 
             -- Pick unselected item
@@ -41,12 +41,12 @@ local function spawn_boxes(actor, stack)
 end
 
 item:onAcquire(function(actor, stack)
-    -- Spawn a box immediately on first stack
-    if stack == 1 then spawn_boxes(actor, stack) end
+    -- Spawn boxes immediately on first pickup
+    if stack == 1 then spawn_boxes(actor, stack + 1) end
 end)
 
 item:onStageStart(function(actor, stack)
-    spawn_boxes(actor, stack)
+    spawn_boxes(actor, stack + 1)
 end)
 
 
