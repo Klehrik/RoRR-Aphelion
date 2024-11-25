@@ -5,7 +5,7 @@ local sprite = Resources.sprite_load("aphelion", "item/ballisticVest", PATH.."as
 local item = Item.new("aphelion", "warDrums")
 item:set_sprite(sprite)
 item:set_tier(Item.TIER.common)
-item:set_loot_tags(Item.LOOT_TAG.category_damage, Item.LOOT_TAG.category_utility)
+item:set_loot_tags(Item.LOOT_TAG.category_damage, Item.LOOT_TAG.category_healing, Item.LOOT_TAG.category_utility)
 
 item:onHitProc(function(actor, victim, stack, hit_info)
     local actorData = actor:get_data("warDrums")
