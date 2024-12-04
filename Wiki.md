@@ -80,6 +80,14 @@ Close this page if you would like to unlock and learn what everything does for y
     </tbody>
     <tbody>
         <tr>
+            <td align="center"><img src=""></td>
+            <td align="center"><b>War Drum</b></td>
+            <td align="center">Become progressively empowered during combat.</td>
+            <td align="center"><p>Slowly increase $\color{#efd27b}\textsf{damage}$, $\color{#efd27b}\textsf{attack speed}$, $\color{#319ad2}\textsf{movement speed}$, $\color{#efd27b}\textsf{critical chance}$, $\color{#7eb686}\textsf{health regeneration}$, and $\color{#7eb686}\textsf{armor}$ while in combat, up to $\color{#efd27b}\textsf{7\%}$ $\color{#555555}\textsf{(+3\% per stack)}$ $\color{#efd27b}\textsf{multiplicatively}$ after $\color{#efd27b}\textsf{25}$ seconds. $\color{#cf6666}\textsf{Expires}$ after $\color{#cf6666}\textsf{not striking an enemy}$ for $\color{#efd27b}\textsf{5}$ seconds.</p></td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr>
             <td align="center"><img src="https://github.com/user-attachments/assets/f298dcd3-e1f1-4de9-ade8-57d8701994e4"></td>
             <td align="center"><p>$\color{#75b458}\textsf{Bandana}$</p></td>
             <td align="center">Gain barrier out of combat. Deal increased damage while you have barrier.</td>
@@ -132,6 +140,14 @@ Close this page if you would like to unlock and learn what everything does for y
             <td align="center"><p>$\color{#75b458}\textsf{Phi Construct}$</p></td>
             <td align="center">Gain a small shield and a defensive construct.</td>
             <td align="center"><p>Gain a $\color{#319ad2}\textsf{20}$ $\color{#555555}\textsf{(+20 per stack)}$ $\color{#319ad2}\textsf{health shield}$ and a small $\color{#efd27b}\textsf{defensive construct}$ that $\color{#efd27b}\textsf{fires at nearby enemies}$ and $\color{#319ad2}\textsf{projectiles}$ for $\color{#efd27b}\textsf{60\%}$ $\color{#555555}\textsf{(+15\% per stack)}$ $\color{#efd27b}\textsf{damage}$ every $\color{#efd27b}\textsf{0.8}$ seconds; fire rate $\color{#319ad2}\textsf{scales with maximum shield}$ $\color{#555555}\textsf{(+0.5\% per point past 20 shield)}$.</p></td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr>
+            <td align="center"><img src=""></td>
+            <td align="center"><p>$\color{#c9273d}\textsf{Mystery Box}$</p></td>
+            <td align="center">What's inside?</td>
+            <td align="center"><p>Spawns $\color{#efd27b}\textsf{2}$ $\color{#555555}\textsf{(+1 per stack)}$ $\color{#efd27b}\textsf{mystery boxes}$ $\color{#319ad2}\textsf{upon entering a new stage}$, each containing a $\color{#7eb686}\textsf{selection between 5 items}$.</p></td>
         </tr>
     </tbody>
     <tbody>
