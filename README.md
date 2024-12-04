@@ -1,3 +1,5 @@
+[**Thunderstore**](https://thunderstore.io/c/risk-of-rain-returns/p/Klehrik/Aphelion/)
+
 Content mod that currently adds 16 items, 4 equipment, and 3 skills.  
 Includes unlockable achievements for some of them.  
 
