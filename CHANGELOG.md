@@ -3,7 +3,7 @@
 * Added War Drum (common item)
 * Added Mystery Box (rare item)
 * Six Shooter : 6th shot damage bonus: +33% (+33% per stack); now applies on first stack
-* Spotter: BLAST : Explosion is now centered at the point of bullet collision.
+* Spotter: BLAST : Explosion is now centered at the point of attack collision.
 
 ### v1.2.13
 * Thermite Flare : No longer overrides your equipment via Bottled Chaos.
