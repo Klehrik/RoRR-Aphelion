@@ -7,6 +7,10 @@ item:set_sprite(sprite)
 item:set_tier(Item.TIER.common)
 item:set_loot_tags(Item.LOOT_TAG.category_damage, Item.LOOT_TAG.category_healing, Item.LOOT_TAG.category_utility)
 
+item:onAcquire(function(actor, stack)
+    if stack == 1 then actor:get_data("warDrum").alpha = 0 end
+end)
+
 item:onHitProc(function(actor, victim, stack, hit_info)
     local actorData = actor:get_data("warDrum")
 
@@ -20,6 +24,21 @@ item:onHitProc(function(actor, victim, stack, hit_info)
         actorData.frame = 0
         actorData.alpha = 0
         actor:buff_apply(buff, 1, 1)
+    end
+end)
+
+item:onPreDraw(function(actor, stack)
+    local actorData = actor:get_data("warDrum")
+
+    -- Pulse ring
+    if actorData.alpha > 0 then
+        actorData.radius = actorData.radius + actorData.radius_inc
+        actorData.alpha = actorData.alpha - 1/60
+
+        local c = Color.WHITE
+        gm.draw_set_alpha(actorData.alpha)
+        gm.draw_circle_color(actor.x, actor.y, actorData.radius, c, c, true)
+        gm.draw_set_alpha(1)
     end
 end)
 
@@ -58,7 +77,7 @@ end)
 
 buff:onPostStatRecalc(function(actor, stack)
     local actorData = actor:get_data("warDrum")
-    local max = 0.04 + (actorData.item_stack * 0.03)
+    local max = 0.035 + (actorData.item_stack * 0.035)
     local val = 1 + (stack/buff.max_stack * max)
 
     actor.damage = actor.damage * val
@@ -87,19 +106,6 @@ buff:onPostStep(function(actor, stack)
     actorData.timer = actorData.timer - 1
     if actorData.timer <= 0 then
         actor:buff_remove(buff, 1)
-    end
-end)
-
-buff:onPreDraw(function(actor, stack)
-    local actorData = actor:get_data("warDrum")
-    if actorData.alpha > 0 then
-        actorData.radius = actorData.radius + actorData.radius_inc
-        actorData.alpha = actorData.alpha - 1/60
-
-        local c = Color.WHITE
-        gm.draw_set_alpha(actorData.alpha)
-        gm.draw_circle_color(actor.x, actor.y, actorData.radius, c, c, true)
-        gm.draw_set_alpha(1)
     end
 end)
 
