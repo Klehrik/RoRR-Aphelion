@@ -68,8 +68,8 @@
             "story" : "I mean sure, I get having to preserve food, but stuffing a hundred of these in the package container ain't it. I can't even use any of this, but you sent so much that I can't bear to throw them out.",
             "priority" : "Standard"
         },
-        "warDrums" : {
-            "name" : "War Drums",
+        "warDrum" : {
+            "name" : "War Drum",
             "pickup" : "Become progressively empowered during combat.",
             "description" : "Slowly increase <y>damage</c>, <y>attack speed</c>, <b>movement speed</c>, <y>critical chance</c>, <g>health regeneration</c>, and <g>armor</c> while in combat, up to <y>7% <c_stack>(+3% per stack) <y>multiplicatively</c> after <y>25</c> seconds. <r>Expires</c> after <r>not striking an enemy</c> for <y>5</c> seconds.",
             "destination" : "",
@@ -229,6 +229,14 @@
             "destination" : "",
             "date" : "",
             "story" : ""
+        },
+        "turretDeploy" : {
+            "name" : "Turret Assembly Kit",
+            "pickup" : "Deploy a turret which lasts for up to 40 seconds.",
+            "description" : "Deploy a <y>turret</c> which <b>inherits up to 5 items</c>. <r>Loses 2.5% health per second.</c>",
+            "destination" : "",
+            "date" : "",
+            "story" : ""
         }
     },
 
@@ -276,7 +284,7 @@
             "name" : "Oxygen Removal",
             "description" : "Drifter: Suffocate 50 enemies."
         },
-        "warDrums" : {
+        "warDrum" : {
             "name" : "Last Stand",
             "description" : "Kill 25 enemies while under the same Warbanner buff."
         },
@@ -314,6 +322,10 @@
         "UNUSED_shatteredGlass" : {
             "name" : "Fragility",
             "description" : "Beat the game with Artifact of Glass enabled."
+        },
+        "WIP_turretDeploy" : {
+            "name" : "\"And if that don't work...\"",
+            "description" : "Engineer: Deploy a turret before activating the teleporter and have it survive the entire event."
         },
 
         "banditUnload" : {

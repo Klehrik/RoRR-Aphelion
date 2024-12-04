@@ -1,6 +1,6 @@
 ### v1.2.14
 * Updated alongside RMT.
-* Added War Drums (common item)
+* Added War Drum (common item)
 * Added Mystery Box (rare item)
 * Six Shooter : 6th shot damage bonus: +33% (+33% per stack); now applies on first stack
 * Spotter: BLAST : Explosion is now centered at the point of bullet collision.
