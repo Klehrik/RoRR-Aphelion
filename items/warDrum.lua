@@ -38,16 +38,22 @@ local function pulse(actor)
     if not actor:exists() then return end
     local stack = actor:buff_stack_count(buff)
     if stack <= 0 then return end
+
     local actorData = actor:get_data("warDrum")
     actorData.radius = 0
     actorData.radius_inc = 0.75 + (stack/5 * 0.25)
     actorData.alpha = 1
-    actor:sound_play_at(sound, 0.25 + (stack/5 * 0.13), 1.0 + gm.random_range(-0.25, 0.25), actor.x, actor.y)
-    Alarm.create(pulse, 5 *60, actor)
+    actor:sound_play_at(sound, 0.25 + (stack/5 * 0.11), 1.0 + gm.random_range(-0.25, 0.25), actor.x, actor.y)
+
+    actorData.alarm = Alarm.create(pulse, 5 *60, actor)
 end
 
 buff:onApply(function(actor, stack)
-    if stack == 1 then Alarm.create(pulse, 5 *60, actor) end
+    local actorData = actor:get_data("warDrum")
+    if stack == 1 then
+        Alarm.destroy(actorData.alarm)
+        actorData.alarm = Alarm.create(pulse, 5 *60, actor)
+    end
 end)
 
 buff:onPostStatRecalc(function(actor, stack)
