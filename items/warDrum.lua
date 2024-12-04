@@ -43,7 +43,7 @@ local function pulse(actor)
     actorData.radius = 0
     actorData.radius_inc = 0.75 + (stack/5 * 0.25)
     actorData.alpha = 1
-    actor:sound_play_at(sound, 0.25 + (stack/5 * 0.11), 1.0 + gm.random_range(-0.25, 0.25), actor.x, actor.y)
+    actor:sound_play_at(sound, 0.25 + (stack/5 * 0.1), 1.0 + gm.random_range(-0.25, 0.25), actor.x, actor.y)
 
     actorData.alarm = Alarm.create(pulse, 5 *60, actor)
 end
