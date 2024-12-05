@@ -38,8 +38,8 @@ for _, p in ipairs({part, part2}) do
     p:set_alpha3(1, 0.8, 0)
     p:set_life(40, 50)
 end
-part:set_orientation(25, 45, 1, 0.5, false)
-part2:set_orientation(-25, -45, -1, 0.5, false)
+part:set_orientation(25, 45, 0.8, 0.5, false)
+part2:set_orientation(-25, -45, -0.8, 0.5, false)
 
 item:onPostDraw(function(actor, stack)
     if actor.RMT_object ~= "Player" then return end
