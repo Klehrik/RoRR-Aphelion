@@ -10,8 +10,6 @@ item:set_loot_tags(Item.LOOT_TAG.category_utility)
 item:onPostStep(function(actor, stack)
     if actor.RMT_object ~= "Player" then return end
     if actor.still_timer >= 2 *60.0 then
-        actor:buff_apply(Buff.find("aphelion-obeliskShard"), 2)
-
         -- Reduce equipment cooldown
         if actor:get_equipment_cooldown() > 0 then
             actor:reduce_equipment_cooldown(0.1 + (stack * 0.3))
@@ -23,7 +21,9 @@ end)
 
 -- Particle
 
-local sprite = Resources.sprite_load("aphelion", "effect/obeliskShard", PATH.."assets/sprites/effects/obeliskShard.png", 1, 16, 4)
+local sprite = Resources.sprite_load("aphelion", "pray", PATH.."assets/sprites/effects/pray.png", 1, 16, 4)
+local sound = Resources.sfx_load("aphelion", "pray", PATH.."assets/sounds/pray.ogg")
+
 local blue = Color(0x38d5ff)
 
 local part = Particle.new("aphelion", "pray")
@@ -41,8 +41,21 @@ part2:set_orientation(-25, -45, -1, 0.5, false)
 
 item:onPostDraw(function(actor, stack)
     if actor.RMT_object ~= "Player" then return end
+    if gm.variable_global_get("pause") then return end
+    
+    local actorData = actor:get_data("pray")
     if actor.still_timer >= 2 *60.0 then
-        if Helper.chance(0.05) then part:create(actor.x + gm.random_range(0, 10), actor.y + 6, 1, Particle.SYSTEM.above) end
-        if Helper.chance(0.05) then part2:create(actor.x + gm.random_range(-10, 0), actor.y + 6, 1, Particle.SYSTEM.below) end
+        if Helper.chance(0.04) then part:create(actor.x + gm.random_range(-4, 10), actor.y + 6, 1, Particle.SYSTEM.above) end
+        if Helper.chance(0.04) then part2:create(actor.x + gm.random_range(-10, 4), actor.y + 6, 1, Particle.SYSTEM.below) end
+
+        if not actorData.sfx then
+            actorData.sfx = gm.sound_loop(sound, 1.0)
+        end
+
+    else
+        if actorData.sfx then
+            gm._mod_sound_stop(actorData.sfx)
+            actorData.sfx = nil
+        end
     end
 end)
