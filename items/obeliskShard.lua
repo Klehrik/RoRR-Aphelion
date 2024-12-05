@@ -9,7 +9,6 @@ item:set_loot_tags(Item.LOOT_TAG.category_utility)
 
 item:onPostStep(function(actor, stack)
     if actor.RMT_object ~= "Player" then return end
-
     if actor.still_timer >= 2 *60.0 then
         actor:buff_apply(Buff.find("aphelion-obeliskShard"), 2)
 
@@ -22,9 +21,28 @@ end)
 
 
 
--- Buff
+-- Particle
 
-local sprite = Resources.sprite_load("aphelion", "buff/obeliskShard", PATH.."assets/sprites/buffs/obeliskShard.png", 1, 7, 8)
+local sprite = Resources.sprite_load("aphelion", "effect/obeliskShard", PATH.."assets/sprites/effects/obeliskShard.png", 1, 16, 4)
+local blue = Color(0x38d5ff)
 
-local buff = Buff.new("aphelion", "obeliskShard")
-buff.icon_sprite = sprite
+local part = Particle.new("aphelion", "pray")
+local part2 = Particle.new("aphelion", "pray2")
+for _, p in ipairs({part, part2}) do
+    p:set_sprite(sprite, false, false, false)
+    p:set_direction(90, 90, 0, 0)
+    p:set_speed(0.1, 0.3, 1/40, 0)
+    p:set_color_mix(Color.WHITE, blue)
+    p:set_alpha3(1, 0.8, 0)
+    p:set_life(35, 45)
+end
+part:set_orientation(25, 45, 1, 0.5, false)
+part2:set_orientation(-25, -45, -1, 0.5, false)
+
+item:onPostDraw(function(actor, stack)
+    if actor.RMT_object ~= "Player" then return end
+    if actor.still_timer >= 2 *60.0 then
+        if Helper.chance(0.05) then part:create(actor.x + gm.random_range(0, 10), actor.y + 6, 1, Particle.SYSTEM.above) end
+        if Helper.chance(0.05) then part2:create(actor.x + gm.random_range(-10, 0), actor.y + 6, 1, Particle.SYSTEM.below) end
+    end
+end)
