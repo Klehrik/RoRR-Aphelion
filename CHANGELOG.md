@@ -5,6 +5,7 @@
 * Explosive Spear : Is now thrown in the direction of the target hit instead of facing direction.
 * Obelisk Shard : Replaced buff indicator with new particle vfx and sfx.
 * Six Shooter : 6th shot damage bonus: +33% (+33% per stack); now applies on first stack
+* Shattered Glass : Now uses CurseHelper.
 * Spotter: BLAST : Explosion is now centered at the point of attack collision.
 
 ### v1.2.13
