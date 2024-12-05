@@ -33,7 +33,7 @@ local part2 = Particle.new("aphelion", "pray2")
 for _, p in ipairs({part, part2}) do
     p:set_sprite(sprite, false, false, false)
     p:set_direction(90, 90, 0, 0)
-    p:set_speed(0.1, 0.3, 1/40, 0)
+    p:set_speed(0.1, 0.2, 1/40, 0)
     p:set_color_mix(Color.WHITE, blue)
     p:set_alpha3(1, 0.8, 0)
     p:set_life(35, 45)

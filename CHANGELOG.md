@@ -2,7 +2,7 @@
 * Updated alongside RMT.
 * Added War Drum (common item)
 * Added Mystery Box (rare item)
-* Obelisk Shard : Replaced buff indicator with new vfx and sfx.
+* Obelisk Shard : Replaced buff indicator with new particle vfx and sfx.
 * Six Shooter : 6th shot damage bonus: +33% (+33% per stack); now applies on first stack
 * Spotter: BLAST : Explosion is now centered at the point of attack collision.
 
