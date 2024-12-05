@@ -26,20 +26,18 @@ local loops = {}    -- Sound loops do not automatically stop when exiting a run 
 local sprite = Resources.sprite_load("aphelion", "pray", PATH.."assets/sprites/effects/pray.png", 1, 16, 4)
 local sound = Resources.sfx_load("aphelion", "pray", PATH.."assets/sounds/pray.ogg")
 
-local blue = Color(0x38d5ff)
-
 local part = Particle.new("aphelion", "pray")
 local part2 = Particle.new("aphelion", "pray2")
 for _, p in ipairs({part, part2}) do
     p:set_sprite(sprite, false, false, false)
     p:set_direction(90, 90, 0, 0)
     p:set_speed(0.08, 0.15, 1/60, 0)
-    p:set_color_mix(Color.WHITE, blue)
+    p:set_color_mix(Color.WHITE, Color(0x38d5ff))
     p:set_alpha3(1, 0.8, 0)
     p:set_life(40, 50)
 end
-part:set_orientation(25, 45, 0.8, 0.5, false)
-part2:set_orientation(-25, -45, -0.8, 0.5, false)
+part:set_orientation(25, 45, 0.8, 0.4, false)
+part2:set_orientation(-25, -45, -0.8, 0.4, false)
 
 item:onPostDraw(function(actor, stack)
     if actor.RMT_object ~= "Player" then return end
