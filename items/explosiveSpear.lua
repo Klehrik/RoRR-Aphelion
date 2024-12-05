@@ -12,10 +12,10 @@ item:set_loot_tags(Item.LOOT_TAG.category_damage)
 item:onHitProc(function(actor, victim, stack, hit_info)
     if Cooldown.get(actor, "aphelion-explosiveSpear") > 0 then return end
     
-    -- Do not proc if the hit does not deal at least 200%
+    -- Do not proc if the hit does not deal at least 200% base damage
     if hit_info.damage < actor.damage * 2.0 then return end
 
-    local dir = actor:get_equipment_use_direction()
+    local dir = gm.sign(target.x - actor.x)
 
     -- Create object
     local obj = Object.find("aphelion-explosiveSpearObject")
