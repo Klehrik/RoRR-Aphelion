@@ -15,7 +15,7 @@ item:onHitProc(function(actor, victim, stack, hit_info)
     -- Do not proc if the hit does not deal at least 200%
     if hit_info.damage < actor.damage * 2.0 then return end
 
-    local dir = actor.image_xscale
+    local dir = actor:get_equipment_use_direction()
 
     -- Create object
     local obj = Object.find("aphelion-explosiveSpearObject")
