@@ -115,7 +115,7 @@ obj:onStep(function(self)
         if self:is_colliding(gm.constants.pSolidBulletCollision) then
             selfData.flag_hit = true
             selfData.hit_type = 1
-            self:sound_play_at(soundHit, 1.0, 1.0, self.x, self.y, nil)
+            self:sound_play_at(soundHit, 1.0, 1.0 + gm.random_range(-0.1, 0.1), self.x, self.y, nil)
         end
 
         -- Set image_angle
@@ -154,7 +154,7 @@ obj:onStep(function(self)
             attack_info:set_critical(false)
             attack_info:set_stun(2.5)
 
-            self:sound_play_at(soundExplode, 1.0, 1.0, self.x, self.y, nil)
+            self:sound_play_at(soundExplode, 1.0, 1.0 + gm.random_range(-0.2, 0.2), self.x, self.y, nil)
             self:destroy()
         end
     end
