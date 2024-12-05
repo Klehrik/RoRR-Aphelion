@@ -71,7 +71,7 @@
         "warDrum" : {
             "name" : "War Drum",
             "pickup" : "Become progressively empowered during combat.",
-            "description" : "Slowly increase <y>damage</c>, <y>attack speed</c>, <b>movement speed</c>, <y>critical chance</c>, <g>health regeneration</c>, and <g>armor</c> while in combat, up to <y>7% <c_stack>(+3.5% per stack) <y>multiplicatively</c> after <y>25</c> seconds. <r>Expires</c> after <r>not striking an enemy</c> for <y>5</c> seconds.",
+            "description" : "Slowly increase <y>damage</c>, <y>critical chance</c>, <y>attack speed</c>, and <b>movement speed</c> while in combat, up to <y>8% <c_stack>(+6% per stack) after <y>25</c> seconds. <r>Expires</c> after <r>not striking an enemy</c> for <y>5</c> seconds.",
             "destination" : "TBA",
             "date" : "TBA",
             "story" : "TBA",

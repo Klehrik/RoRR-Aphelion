@@ -67,6 +67,12 @@ local function pulse(actor)
     actorData.alarm = Alarm.create(pulse, 5 *60, actor)
 end
 
+local function calc_max(actor, stack)
+    local actorData = actor:get_data("warDrum")
+    local max = 0.02 + (actorData.item_stack * 0.06)
+    return stack/buff.max_stack * max
+end
+
 buff:onApply(function(actor, stack)
     local actorData = actor:get_data("warDrum")
     if stack == 1 then
@@ -75,19 +81,16 @@ buff:onApply(function(actor, stack)
     end
 end)
 
-buff:onPostStatRecalc(function(actor, stack)
-    local actorData = actor:get_data("warDrum")
-    local max = 0.035 + (actorData.item_stack * 0.035)
-    local val = 1 + (stack/buff.max_stack * max)
+buff:onStatRecalc(function(actor, stack)
+    local val = calc_max(actor, stack)
+    actor.critical_chance = actor.critical_chance + (val * 100)
+    actor.attack_speed = actor.attack_speed + val
+    actor.pHmax = actor.pHmax + (val * 2.8)
+end)
 
-    actor.damage = actor.damage * val
-    actor.attack_speed = actor.attack_speed * val
-    actor.pHmax = actor.pHmax * val
-    actor.critical_chance = actor.critical_chance * val
-    actor.hp_regen = actor.hp_regen * val
-    actor.armor = actor.armor * val
-    -- actor.maxhp = gm.round(actor.maxhp * val)    -- Removing these because goofy stuff happens
-    -- actor.maxshield = gm.round(actor.maxshield * val)
+buff:onPostStatRecalc(function(actor, stack)
+    local val = calc_max(actor, stack)
+    actor.damage = actor.damage * (1 + val)
 end)
 
 buff:onPostStep(function(actor, stack)
