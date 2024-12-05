@@ -1,4 +1,4 @@
--- War Drums
+-- War Drum
 
 local sprite = Resources.sprite_load("aphelion", "item/warDrum", PATH.."assets/sprites/items/warDrum.png", 1, 17, 16)
 
