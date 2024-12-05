@@ -23,7 +23,7 @@ item:onHitProc(function(actor, victim, stack, hit_info)
     local instData = inst:get_data()
     instData.parent = actor
     instData.hsp = 20.0 * dir
-    inst:sound_play_at(sound, 1.0, 1.0, inst.x, inst.y, nil)
+    inst:sound_play_at(sound, 1.0, 1.0 + gm.random_range(-0.2, 0.2), inst.x, inst.y, nil)
 
     -- Calculate damage
     instData.pop_damage = hit_info.damage * (0.06 + (actor:item_stack_count(item) * 0.06))
