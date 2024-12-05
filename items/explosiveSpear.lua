@@ -15,7 +15,7 @@ item:onHitProc(function(actor, victim, stack, hit_info)
     -- Do not proc if the hit does not deal at least 200% base damage
     if hit_info.damage < actor.damage * 2.0 then return end
 
-    local dir = gm.sign(target.x - actor.x)
+    local dir = gm.sign(hit_info.target.x - actor.x)
 
     -- Create object
     local obj = Object.find("aphelion-explosiveSpearObject")
