@@ -5,7 +5,7 @@ local sprite = Resources.sprite_load("aphelion", "item/warDrum", PATH.."assets/s
 local item = Item.new("aphelion", "warDrum")
 item:set_sprite(sprite)
 item:set_tier(Item.TIER.common)
-item:set_loot_tags(Item.LOOT_TAG.category_damage, Item.LOOT_TAG.category_healing, Item.LOOT_TAG.category_utility)
+item:set_loot_tags(Item.LOOT_TAG.category_damage, Item.LOOT_TAG.category_utility)
 
 item:onAcquire(function(actor, stack)
     if stack == 1 then actor:get_data("warDrum").alpha = 0 end
