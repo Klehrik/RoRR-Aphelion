@@ -83,7 +83,7 @@ Close this page if you would like to unlock and learn what everything does for y
             <td align="center"><img src=""></td>
             <td align="center"><b>War Drum</b></td>
             <td align="center">Become progressively empowered during combat.</td>
-            <td align="center"><p>Slowly increase $\color{#efd27b}\textsf{damage}$, $\color{#efd27b}\textsf{critical chance}$, $\color{#efd27b}\textsf{attack speed}$, and $\color{#319ad2}\textsf{movement speed}$ while in combat, up to $\color{#efd27b}\textsf{8\%}$ $\color{#555555}\textsf{(+6\% per stack) after}$ $\color{#efd27b}\textsf{25}$ seconds. $\color{#cf6666}\textsf{Expires}$ after $\color{#cf6666}\textsf{not striking an enemy}$ for $\color{#efd27b}\textsf{5}$ seconds. </p></td>
+            <td align="center"><p>Slowly increase $\color{#efd27b}\textsf{damage}$, $\color{#efd27b}\textsf{critical chance}$, $\color{#efd27b}\textsf{attack speed}$, and $\color{#319ad2}\textsf{movement speed}$ while in combat, up to $\color{#efd27b}\textsf{8\%}$ $\color{#555555}\textsf{(+6\% per stack)}$ after $\color{#efd27b}\textsf{25}$ seconds. $\color{#cf6666}\textsf{Expires}$ after $\color{#cf6666}\textsf{not striking an enemy}$ for $\color{#efd27b}\textsf{5}$ seconds.</p></td>
         </tr>
     </tbody>
     <tbody>
