@@ -30,11 +30,12 @@ local part = Particle.new("aphelion", "pray")
 local part2 = Particle.new("aphelion", "pray2")
 for _, p in ipairs({part, part2}) do
     p:set_sprite(sprite, false, false, false)
-    p:set_direction(90, 90, 0, 0)
+    p:set_direction(80, 100, 0, 0)
     p:set_speed(0.08, 0.15, 1/60, 0)
     p:set_color_mix(Color.WHITE, Color(0x38d5ff))
+    p:set_size(0.85, 1.1, -0.2/55, 0)
     p:set_alpha3(1, 0.8, 0)
-    p:set_life(40, 50)
+    p:set_life(50, 60)
 end
 part:set_orientation(25, 45, 0.8, 0.4, false)
 part2:set_orientation(-25, -45, -0.8, 0.4, false)
@@ -46,16 +47,16 @@ item:onPostDraw(function(actor, stack)
     if actor.still_timer >= 2 *60.0 then
         local actorData = actor:get_data("pray")
         if not actorData.part then actorData.part = 0 end
-        if not actorData.part2 then actorData.part2 = 12 end
+        if not actorData.part2 then actorData.part2 = 18 end
 
         if actorData.part > 0 then actorData.part = actorData.part - 1
         else
-            actorData.part = gm.irandom_range(15, 25)
+            actorData.part = gm.irandom_range(16, 20)
             part:create(actor.x + gm.random_range(-4, 8), actor.y + 6, 1, Particle.SYSTEM.above)
         end
         if actorData.part2 > 0 then actorData.part2 = actorData.part2 - 1
         else
-            actorData.part2 = gm.irandom_range(15, 25)
+            actorData.part2 = gm.irandom_range(16, 20)
             part2:create(actor.x + gm.random_range(-8, 4), actor.y + 6, 1, Particle.SYSTEM.middle)
         end
 
