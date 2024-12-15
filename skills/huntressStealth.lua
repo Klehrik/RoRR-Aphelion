@@ -71,11 +71,11 @@ Callback.add("onStageStart", "aphelion-huntressStealthUnlock", function(self, ot
     not_hit = true
 end)
 
-Player:onDamaged("aphelion-huntressStealthUnlock", function(actor, damager)
+Player:onDamagedProc("aphelion-huntressStealthUnlock", function(actor, attacker, hit_info)
     not_hit = false
 end)
 
-Player:onInteract("aphelion-huntressStealthUnlock", function(actor, interactable)
+Player:onInteractableActivate("aphelion-huntressStealthUnlock", function(actor, interactable)
     if not_hit
     and actor.class == 1.0
     and Helper.table_has(Instance.teleporters, interactable.object_index)

@@ -7,33 +7,31 @@ item:set_sprite(sprite)
 item:set_tier(Item.TIER.uncommon)
 item:set_loot_tags(Item.LOOT_TAG.category_damage)
 
-item:onPickup(function(actor, stack)
+item:onAcquire(function(actor, stack)
     local actorData = actor:get_data("sixShooter")
     if not actorData.count then actorData.count = 0 end
 end)
 
-item:onBasicUse(function(actor, stack)
+item:onPrimaryUse(function(actor, stack, active_skill)
+    if active_skill.skill_id == Skill.find("ror-sniperZReload").value then return end
     local actorData = actor:get_data("sixShooter")
     actorData.count = actorData.count + 1
 end)
 
-item:onAttack(function(actor, damager, stack)
+item:onAttackCreateProc(function(actor, stack, attack_info)
     local actorData = actor:get_data("sixShooter")
 
     -- Crit every 6 basic attacks
-    -- Additional stacks increase the attack's damage by 25%
+    -- Additional stacks increase the attack's damage
     if actorData.count >= 6 then
         actorData.count = actorData.count - 6
 
+        attack_info:set_damage(attack_info.damage * (1 + (0.33 * stack)))
+        attack_info:set_critical(true)
+
         -- For Stiletto
-        if not damager.bonus_crit then damager.bonus_crit = 0 end
-        damager.bonus_crit = damager.bonus_crit + 100
-
-        damager:set_critical(true)
-
-        if stack > 1 then
-            damager.damage = damager.damage * (0.5 + (0.5 * stack))
-        end
+        if not attack_info.bonus_crit then attack_info.bonus_crit = 0 end
+        attack_info.bonus_crit = attack_info.bonus_crit + 100
     end
 end)
 
@@ -42,7 +40,7 @@ end)
 -- Achievement
 item:add_achievement()
 
-Buff.find("ror-banditSkull"):onStep(function(actor, stack)
+Buff.find("ror-banditSkull"):onPostStep(function(actor, stack)
     local actorData = actor:get_data("sixShooter")
     if not actorData.achievement_counter then actorData.achievement_counter = 0 end
 

@@ -65,12 +65,12 @@ skill:onActivate(function(actor, struct, index)
         drone.tt = target
         actor:add_skill_override(index, Skill.find("ror-sniperVRecall"), 2)
     else
-        actor:sound_play_at(gm.constants.wError, 1.0, 1.0, actor.x, actor.y, 1.0)
+        actor:sound_play_at(gm.constants.wError, 1.0, 1.0, actor.x, actor.y, nil)
         actor:refresh_skill(index)
     end
 end)
 
-Player:onHit("aphelion-sniperBlastBoosted_onHit", function(actor, victim, damager)
+Player:onHitProc("aphelion-sniperBlastBoosted_onHit", function(actor, victim, hit_info)
     if actor:get_default_skill(Skill.SLOT.special).skill_id ~= Skill.find("aphelion-sniperBlast").value then return end
     if actor:item_stack_count(Item.find("ror-ancientScepter")) <= 0 then return end
     if Cooldown.get(actor, "aphelion-sniperBlast") > 0 then return end
@@ -78,20 +78,24 @@ Player:onHit("aphelion-sniperBlastBoosted_onHit", function(actor, victim, damage
     local drone = GM._survivor_sniper_find_drone(actor)
     if not Instance.exists(drone) then return end
     if Instance.exists(drone.tt) and drone.tt:same(victim) then
-        local damager2 = actor:fire_explosion(
-            victim.x, victim.y, -- change to damager hit location
-            250, 250,
-            damager.damage * 0.5,
-            explosive_256
-        )
-        damager2:use_raw_damage()
-        damager2:add_offset(damager)
-        damager2:set_color(Color(0xffbb59))
-        damager2:set_critical(false)
-        damager2:set_proc(false)
-        damager2:set_stun(1.7)
+        local hit_x = victim.bbox_left
+        if actor.x > victim.x then hit_x = victim.bbox_right end
+        local hit_y = actor.y
 
-        victim:sound_play_at(gm.constants.wExplosiveShot, 1.0, 1.0, victim.x, victim.y, 1.0)
+        local attack_info2 = actor:fire_explosion(
+            hit_x, hit_y,
+            250, 250,
+            hit_info.damage * 0.5,
+            explosive_256, nil,
+            false
+        ).attack_info
+        attack_info2:use_raw_damage()
+        attack_info2:add_climb(hit_info)
+        attack_info2:set_color(Color(0xffbb59))
+        attack_info2:set_critical(false)
+        attack_info2:set_stun(1.7)
+
+        victim:sound_play_at(gm.constants.wExplosiveShot, 1.0, 1.0, victim.x, victim.y, nil)
         
         -- Apply cooldown
         Cooldown.set(actor, "aphelion-sniperBlast", 5 *60, spriteCooldown, Color(0xffbb59))

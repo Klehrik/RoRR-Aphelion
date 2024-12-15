@@ -68,11 +68,20 @@
             "story" : "I mean sure, I get having to preserve food, but stuffing a hundred of these in the package container ain't it. I can't even use any of this, but you sent so much that I can't bear to throw them out.",
             "priority" : "Standard"
         },
+        "warDrum" : {
+            "name" : "War Drum",
+            "pickup" : "Become progressively empowered during combat.",
+            "description" : "Slowly increase <y>damage</c>, <y>critical chance</c>, <y>attack speed</c>, and <b>movement speed</c> while in combat, up to <y>8% <c_stack>(+6% per stack)</c> after <y>25</c> seconds. <r>Expires</c> after <r>not striking an enemy</c> for <y>5</c> seconds.",
+            "destination" : "TBA",
+            "date" : "TBA",
+            "story" : "TBA",
+            "priority" : "Standard"
+        },
 
         "sixShooter" : {
             "name" : "Six Shooter",
             "pickup" : "Every 6 basic attacks critically strike.",
-            "description" : "Every <b>6th basic attack</c> gains <y>+100% critical chance</c>. <c_stack>Increases 6th basic attack damage by 50% per stack.</c>",
+            "description" : "Every <b>6th basic attack</c> deals <y>33% <c_stack>(+33% per stack) <y>more damage</c> and gains <y>+100% critical chance</c>.",
             "destination" : "Apt. #302,\n12th District,\nNeo Metro,\nVenus",
             "date" : "8/13/2056",
             "story" : "An antique from days past. The cylinder is somewhat damaged, and black powder is pretty hard (and expensive!) to get nowadays, but regardless it should be a nice addition to your collection if you aren't planning on firing it.",
@@ -160,6 +169,15 @@
             "story" : "These prototype VF-12 high-density supercapacitors are currently the most powerful ones of their size in the solar system. Should suit your needs. Do NOT let them build up any charge past their cap; they have a stopping problem and WILL discharge any overflow.",
             "priority" : "<r>High Priority/Fragile</c>"
         },
+        "mysteryBox" : {
+            "name" : "Mystery Box",
+            "pickup" : "What's inside?",
+            "description" : "Spawns <y>2 <c_stack>(+1 per stack) <y>mystery boxes <b>upon entering a new stage</c>, each containing a <g>selection between 5 items</c>.",
+            "destination" : "\"The Bunker\",\nSilva Grove,\nVenus",
+            "date" : "11/08/2056",
+            "story" : "Thank you for ordering MYSTERY BOX. Open it and you'll find just the thing you need, no matter the sitation.\n\n<c_stack>Cipher Imaginative is not liable for any damages caused by use of the product. All sales final.</c>",
+            "priority" : "<r>High Priority</c>"
+        },
 
         "magicDagger" : {
             "name" : "Magic Dagger",
@@ -211,6 +229,14 @@
             "destination" : "",
             "date" : "",
             "story" : ""
+        },
+        "turretDeploy" : {
+            "name" : "Turret Assembly Kit",
+            "pickup" : "Deploy a turret which lasts for up to 40 seconds.",
+            "description" : "Deploy a <y>turret</c> which <b>inherits up to 5 items</c>. <r>Loses 2.5% health per second.</c>",
+            "destination" : "",
+            "date" : "",
+            "story" : ""
         }
     },
 
@@ -258,6 +284,10 @@
             "name" : "Oxygen Removal",
             "description" : "Drifter: Suffocate 50 enemies."
         },
+        "warDrum" : {
+            "name" : "Last Stand",
+            "description" : "Kill 25 enemies while under the same Warbanner buff."
+        },
 
         "sixShooter" : {
             "name" : "High Noon",
@@ -276,6 +306,10 @@
             "name" : "Spur",
             "description" : "Commando: Kill 9 enemies with a single use of Full Metal Jacket."
         },
+        "mysteryBox" : {
+            "name" : "Collector",
+            "description" : "Obtain every vanilla item and equipment at least once."
+        },
 
         "magicDagger" : {
             "name" : "A Space Between",
@@ -288,6 +322,10 @@
         "UNUSED_shatteredGlass" : {
             "name" : "Fragility",
             "description" : "Beat the game with Artifact of Glass enabled."
+        },
+        "WIP_turretDeploy" : {
+            "name" : "\"And if that don't work...\"",
+            "description" : "Engineer: Deploy a turret before activating the teleporter and have it survive the entire event."
         },
 
         "banditUnload" : {

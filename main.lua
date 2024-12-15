@@ -4,6 +4,7 @@ local envy = mods["MGReturns-ENVY"]
 envy.auto()
 mods["RoRRModdingToolkit-RoRR_Modding_Toolkit"].auto()
 Cooldown = mods["Klehrik-CooldownHelper"].setup()
+Curse = mods["Klehrik-CurseHelper"].setup()
 
 PATH = _ENV["!plugins_mod_folder_path"].."/"
 

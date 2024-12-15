@@ -7,7 +7,7 @@ item:set_sprite(sprite)
 item:set_tier(Item.TIER.uncommon)
 item:set_loot_tags(Item.LOOT_TAG.category_damage)
 
-item:add_callback("onKill", function(actor, victim, stack)
+item:onKillProc(function(actor, victim, stack)
     actor:buff_apply(Buff.find("aphelion-crimsonScarf"), 1)
 end)
 
@@ -31,7 +31,7 @@ buff:onApply(function(actor, stack)
     table.insert(actorData.timers, (4 + actor:item_stack_count(item)) * 60.0)
 end)
 
-buff:onStep(function(actor, stack)
+buff:onPostStep(function(actor, stack)
     local actorData = actor:get_data("crimsonScarf")
 
     -- Decrease stack timers

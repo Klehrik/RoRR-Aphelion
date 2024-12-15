@@ -7,7 +7,7 @@ item:set_sprite(sprite)
 item:set_tier(Item.TIER.uncommon)
 item:set_loot_tags(Item.LOOT_TAG.category_utility)
 
-item:onPickup(function(actor, stack)
+item:onAcquire(function(actor, stack)
     local actorData = actor:get_data("phiConstruct")
     if not actorData.inst then
         local obj = Object.find("aphelion", "phiConstructObject")
@@ -144,10 +144,9 @@ obj:onStep(function(self)
         else
             local damage_coeff = 0.45 + (0.15 * selfData.parent:item_stack_count(item))
             
-            local damager = selfData.parent:fire_direct(target, damage_coeff)
-            damager:set_color(blend)
-            damager:set_critical(false)
-            damager:set_proc(false)
+            local attack_info = selfData.parent:fire_direct(target, damage_coeff, nil, nil, nil, nil, false).attack_info
+            attack_info:set_color(blend)
+            attack_info:set_critical(false)
         end
 
     elseif selfData.charged then
