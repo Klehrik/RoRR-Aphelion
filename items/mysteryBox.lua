@@ -19,13 +19,14 @@ local function spawn_boxes(actor, stack)
             local tier = Item.TIER.common
             if      Helper.chance(0.29) then tier = Item.TIER.uncommon
             elseif  Helper.chance(0.03) then tier = Item.TIER.rare
+            elseif  Helper.chance(0.03) then tier = Item.TIER.boss
             end
 
             -- Pick unselected item
             local _item
             local items = Item.find_all(tier, Item.ARRAY.tier)
             while #items > 0 do
-                local pos = gm.random_range(1, #items)
+                local pos = gm.irandom_range(1, #items)
                 _item = items[pos]
 
                 if _item:is_loot()
@@ -40,7 +41,7 @@ local function spawn_boxes(actor, stack)
             end
 
             -- Add to choices
-            table.insert(choices, _item.value)
+            if _item then table.insert(choices, _item.value) end
         end
         local box = Item.spawn_crate(actor.x + x, actor.y, Item.TIER.common, choices)
         box.sprite_index = spriteObj
