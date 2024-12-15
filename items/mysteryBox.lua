@@ -23,12 +23,15 @@ local function spawn_boxes(actor, stack)
 
             -- Pick unselected item
             local _item = nil
+            local loop, loop_max = 0, 200
             repeat
                 _item = Item.get_random(tier)
-            until _item:is_loot()
+                loop = loop + 1
+            until (_item:is_loot()
               and _item:is_unlocked()
               and (not Helper.table_has(choices, _item.value))
-              and _item.value ~= item.value
+              and _item.value ~= item.value)
+              or loop >= loop_max
 
             -- Add to choices
             table.insert(choices, _item.value)
