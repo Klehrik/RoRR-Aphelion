@@ -22,16 +22,22 @@ local function spawn_boxes(actor, stack)
             end
 
             -- Pick unselected item
-            local _item = nil
-            local loop, loop_max = 0, 200
-            repeat
-                _item = Item.get_random(tier)
-                loop = loop + 1
-            until (_item:is_loot()
-              and _item:is_unlocked()
-              and (not Helper.table_has(choices, _item.value))
-              and _item.value ~= item.value)
-              or loop >= loop_max
+            local _item
+            local items = Item.find_all(tier, Item.ARRAY.tier)
+            while #items > 0 do
+                local pos = gm.random_range(1, #items)
+                _item = items[pos]
+
+                if _item:is_loot()
+                and _item:is_unlocked()
+                and (not Helper.table_has(choices, _item.value))
+                and _item.value ~= item.value
+                then
+                    break
+                end
+
+                table.remove(items, pos)
+            end
 
             -- Add to choices
             table.insert(choices, _item.value)
