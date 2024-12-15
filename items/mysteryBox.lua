@@ -37,6 +37,7 @@ local function spawn_boxes(actor, stack)
                     break
                 end
 
+                _item = nil
                 table.remove(items, pos)
             end
 
