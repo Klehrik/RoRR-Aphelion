@@ -9,7 +9,6 @@ item:set_sprite(sprite)
 item:set_tier(Item.TIER.rare)
 
 local function spawn_boxes(actor, stack)
-    -- WIP
     local spacing = 44
     local x = (stack - 1) * -spacing/2
     for i = 1, stack do
@@ -65,12 +64,18 @@ end)
 -- Achievement
 item:add_achievement()
 
-Player:onPickupCollected("aphelion-mysteryBoxUnlock", function(actor, pickup_object)
+Player:onPickupCollected("aphelion-mysteryBoxUnlock", function(actor, pickup_instance)
     if item:is_unlocked() then return end
+
+    local obj_index = pickup_instance.__object_index
+    if not obj_index then obj_index = pickup_instance.object_index end
 
     local items = Item.find_all("ror")
     for _, _item in ipairs(items) do
-        if _item.object_id and _item.tier <= 4 then
+        if  _item.object_id
+        and _item.object_id ~= obj_index
+        and _item.tier <= 4
+        then
             local key = gm.item_get_stat_key_total_collected(_item.object_id)
             local total = gm.save_stat_get(key)
             if total <= 0 then return end
@@ -79,7 +84,11 @@ Player:onPickupCollected("aphelion-mysteryBoxUnlock", function(actor, pickup_obj
 
     local equips = Equipment.find_all("ror")
     for _, equip in ipairs(equips) do
-        if equip.object_id and equip.tier <= 4 and equip.identifier ~= "strangeBattery" then
+        if  equip.object_id
+        and equip.object_id ~= obj_index
+        and equip.tier <= 4
+        and equip.identifier ~= "strangeBattery"
+        then
             local key = gm.equipment_get_stat_key_time_held(equip.object_id)
             local time = gm.save_stat_get(key)
             if time <= 0 then return end

@@ -80,7 +80,7 @@ Close this page if you would like to unlock and learn what everything does for y
     </tbody>
     <tbody>
         <tr>
-            <td align="center"><img src=""></td>
+            <td align="center"><img src="https://github.com/user-attachments/assets/cf9c251b-381e-4df5-8788-c60579ebe94e"></td>
             <td align="center"><b>War Drum</b></td>
             <td align="center">Become progressively empowered during combat.</td>
             <td align="center"><p>Slowly increase $\color{#efd27b}\textsf{damage}$, $\color{#efd27b}\textsf{critical chance}$, $\color{#efd27b}\textsf{attack speed}$, and $\color{#319ad2}\textsf{movement speed}$ while in combat, up to $\color{#efd27b}\textsf{8\%}$ $\color{#555555}\textsf{(+6\% per stack)}$ after $\color{#efd27b}\textsf{25}$ seconds. $\color{#cf6666}\textsf{Expires}$ after $\color{#cf6666}\textsf{not striking an enemy}$ for $\color{#efd27b}\textsf{5}$ seconds.</p></td>
@@ -144,7 +144,7 @@ Close this page if you would like to unlock and learn what everything does for y
     </tbody>
     <tbody>
         <tr>
-            <td align="center"><img src=""></td>
+            <td align="center"><img src="https://github.com/user-attachments/assets/aa3f5dee-f0e8-4839-beaf-cff63d31b635"></td>
             <td align="center"><p>$\color{#c9273d}\textsf{Mystery Box}$</p></td>
             <td align="center">What's inside?</td>
             <td align="center"><p>Spawns $\color{#efd27b}\textsf{2}$ $\color{#555555}\textsf{(+1 per stack)}$ $\color{#efd27b}\textsf{mystery boxes}$ $\color{#319ad2}\textsf{upon entering a new stage}$, each containing a $\color{#7eb686}\textsf{selection between 5 items}$.</p></td>

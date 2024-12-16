@@ -1,3 +1,6 @@
+### v1.2.15
+* Mystery Box : Fixed achievement unlock requiring another item to be pickup up after the last required one.
+
 ### v1.2.14
 * Updated alongside RMT.
 * Added War Drum (common item)
