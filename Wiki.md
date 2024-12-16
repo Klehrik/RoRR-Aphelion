@@ -147,7 +147,7 @@ Close this page if you would like to unlock and learn what everything does for y
             <td align="center"><img src="https://github.com/user-attachments/assets/aa3f5dee-f0e8-4839-beaf-cff63d31b635"></td>
             <td align="center"><p>$\color{#c9273d}\textsf{Mystery Box}$</p></td>
             <td align="center">What's inside?</td>
-            <td align="center"><p>Spawns $\color{#efd27b}\textsf{2}$ $\color{#555555}\textsf{(+1 per stack)}$ $\color{#efd27b}\textsf{mystery boxes}$ $\color{#319ad2}\textsf{upon entering a new stage}$, each containing a $\color{#7eb686}\textsf{selection between 5 items}$.</p></td>
+            <td align="center"><p>Spawns $\color{#efd27b}\textsf{2}$ $\color{#555555}\textsf{(+1 per stack)}$ $\color{#efd27b}\textsf{mystery boxes}$ $\color{#319ad2}\textsf{upon entering a new stage}$, each containing a $\color{#7eb686}\textsf{s​election between 5 items}$.</p></td>
         </tr>
     </tbody>
     <tbody>
