@@ -75,7 +75,7 @@ Close this page if you would like to unlock and learn what everything does for y
             <td align="center"><img src="https://github.com/user-attachments/assets/121b2144-121f-445f-a955-16c6ac6a241b"></td>
             <td align="center"><b>Silica Packet</b></td>
             <td align="center">Gain temporary items upon entering a new stage. Temporary items last longer.</td>
-            <td align="center"><p>Gain $\color{#efd27b}\textsf{2}$ $\color{#555555}\textsf{(+1 per stack)}$ $\color{#efd27b}\textsf{random temporary items}$ $\color{#319ad2}\textsf{upon entering a new stage}$. $\color{#efd27b}\textsf{Temporary items}$ last for $\color{#319ad2}\textsf{18\%}$ $\color{#555555}\textsf{(+12\% per stack)}$ $\color{#319ad2}\textsf{longer}$.</p></td>
+            <td align="center"><p>Gain $\color{#efd27b}\textsf{2}$ $\color{#555555}\textsf{(+1 per stack)}$ $\color{#efd27b}\textsf{random temporary items}$ $\color{#319ad2}\textsf{upon entering a new stage}$. $\color{#efd27b}\textsf{Temporary items}$ last for $\color{#319ad2}\textsf{10\%}$ $\color{#555555}\textsf{(+10\% per stack)}$ $\color{#319ad2}\textsf{longer}$.</p></td>
         </tr>
     </tbody>
     <tbody>
