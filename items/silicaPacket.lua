@@ -9,12 +9,12 @@ item:set_loot_tags(Item.LOOT_TAG.category_utility)
 
 item:onAcquire(function(actor, stack)
     local actorData = actor:get_data("silicaPacket")
-    actorData.increase = 0.06 + (0.12 * stack)
+    actorData.increase = 0.03 + (0.07 * stack)
 end)
 
 item:onRemove(function(actor, stack)
     local actorData = actor:get_data("silicaPacket")
-    actorData.increase = 0.06 + (0.12 * (stack - 1))
+    actorData.increase = 0.03 + (0.07 * (stack - 1))
     if stack <= 1 then actorData.increase = nil end
 end)
 
