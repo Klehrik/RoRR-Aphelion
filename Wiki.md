@@ -91,7 +91,7 @@ Close this page if you would like to unlock and learn what everything does for y
             <td align="center"><img src="https://github.com/user-attachments/assets/f298dcd3-e1f1-4de9-ade8-57d8701994e4"></td>
             <td align="center"><p>$\color{#75b458}\textsf{Bandana}$</p></td>
             <td align="center">Gain barrier out of combat. Deal increased damage while you have barrier.</td>
-            <td align="center"><p>Leaving combat for $\color{#efd27b}\textsf{5}$ seconds grants $\color{#7eb686}\textsf{barrier}$ equal to $\color{#7eb686}\textsf{8\% health}$. While barrier is active, your attacks deal $\color{#efd27b}\textsf{+18\%}$ $\color{#555555}\textsf{(+9\% per stack)}$ $\color{#efd27b}\textsf{damage}$.</p></td>
+            <td align="center"><p>Leaving combat for $\color{#efd27b}\textsf{5}$ seconds grants $\color{#7eb686}\textsf{barrier}$ equal to $\color{#7eb686}\textsf{8\% health}$. While barrier is active, your attacks deal $\color{#efd27b}\textsf{+18\%}$ $\color{#555555}\textsf{(+12\% per stack)}$ $\color{#efd27b}\textsf{damage}$.</p></td>
         </tr>
     </tbody>
     <tbody>
