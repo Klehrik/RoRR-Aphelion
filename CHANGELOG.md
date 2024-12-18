@@ -1,5 +1,5 @@
 ### v1.2.16
-* Silica Packet : Duration increase: 18% (+12% per stack) -> 10% (+7% per stack)
+* Silica Packet : Duration increase: 18% (+12% per stack) -> 10% (+10% per stack)
 
 ### v1.2.15
 * Mystery Box : Fixed achievement unlock requiring another item to be pickup up after the last required one.
