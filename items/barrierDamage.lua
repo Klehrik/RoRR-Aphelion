@@ -19,7 +19,7 @@ end)
 
 item:onAttackCreateProc(function(actor, stack, attack_info)
     if actor.barrier > 0 then
-        local bonus = 0.09 + (stack * 0.09)
+        local bonus = 0.06 + (stack * 0.12)
         attack_info:set_damage(attack_info.damage * (1 + bonus))
     end
 end)

@@ -158,7 +158,7 @@ end)
 -- Achievement
 equip:add_achievement()
 
-Callback.add("onStageStart", "aphelion-magicDaggerUnlock", function(self, other, result, args)
+Callback.add("onStageStart", "aphelion-magicDaggerUnlock", function()
     if gm.variable_global_get("stage_id") == 10.0 then
         equip:progress_achievement()
     end

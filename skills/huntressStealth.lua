@@ -67,7 +67,7 @@ skill:add_achievement()
 
 local not_hit = true
 
-Callback.add("onStageStart", "aphelion-huntressStealthUnlock", function(self, other, result, args)
+Callback.add("onStageStart", "aphelion-huntressStealthUnlock", function()
     not_hit = true
 end)
 

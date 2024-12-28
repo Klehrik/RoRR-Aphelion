@@ -52,6 +52,7 @@ end
 
 item:onAcquire(function(actor, stack)
     -- Spawn boxes immediately on first pickup
+    if actor.RMT_object ~= "Player" then return end
     if stack == 1 then spawn_boxes(actor, stack + 1) end
 end)
 
