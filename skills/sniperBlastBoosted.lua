@@ -16,7 +16,7 @@ skill:set_skill_settings(
 )
 skill.require_key_press = true
 
-skill:onActivate(function(actor, struct, index)
+skill:onActivate(function(actor, struct, slot)
     local drone = GM._survivor_sniper_find_drone(actor)
 
     -- Select target
@@ -63,12 +63,16 @@ skill:onActivate(function(actor, struct, index)
 
     if target then
         drone.tt = target
-        actor:add_skill_override(index, Skill.find("ror-sniperVRecall"), 2)
+        actor:add_skill_override(slot, Skill.find("ror-sniperVRecall"), 2)
     else
         actor:sound_play_at(gm.constants.wError, 1.0, 1.0, actor.x, actor.y, nil)
-        actor:refresh_skill(index)
+        actor:refresh_skill(slot)
     end
 end)
+
+-- Skill.find("ror-sniperVRecall"):onPreStep(function(actor, struct, slot)
+--     actor:freeze_default_skill(slot)
+-- end)
 
 Player:onHitProc("aphelion-sniperBlastBoosted_onHit", function(actor, victim, hit_info)
     if actor:get_default_skill(Skill.SLOT.special).skill_id ~= Skill.find("aphelion-sniperBlast").value then return end

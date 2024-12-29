@@ -1,3 +1,6 @@
+### v1.2.17
+* Updated alongside RMT.
+
 ### v1.2.16
 * Silica Packet : Duration increase: 18% (+12% per stack) -> 10% (+10% per stack)
 * Bandana : Additional stack damage: +9% -> +12%
