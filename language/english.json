@@ -72,9 +72,9 @@
             "name" : "War Drum",
             "pickup" : "Become progressively empowered during combat.",
             "description" : "Slowly increase <y>damage</c>, <y>critical chance</c>, <y>attack speed</c>, and <b>movement speed</c> while in combat, up to <y>8% <c_stack>(+6% per stack)</c> after <y>25</c> seconds. <r>Expires</c> after <r>not striking an enemy</c> for <y>5</c> seconds.",
-            "destination" : "TBA",
-            "date" : "TBA",
-            "story" : "TBA",
+            "destination" : "Jungle VII,\nMuseum of 2019,\nEarth",
+            "date" : "05/14/2056",
+            "story" : "Don. Don. Don. The thumps of feet on asphalt and concrete.\n\nKa. Ka. Ka. Bullets flying from red hot chambers.\n\nDon. Ka. Don. Ka. They blend together in a cacophony.\n\nBlood, screams of pain. But my senses are numb to all but the rhythm of war.\n\nThe tempo picks up. Adrenaline driving up the beats per minute.\n\nDon. Ka. Don. Ka. My body moves on its own in a dance of pure instinct. \n\nFingers glued to triggers going Ka, Ka, Ka. Don, Don, Don. \n\nI can't remember when the fighting ended, but it did. \n\nSenses fully returned, yet I am greeted only with silence.",
             "priority" : "Standard"
         },
 

@@ -70,7 +70,7 @@ skill:onActivate(function(actor, struct, slot)
     end
 end)
 
--- Skill.find("ror-sniperVRecall"):onPreStep(function(actor, struct, slot)
+-- Skill.find("ror-sniperVRecall"):onStep(function(actor, struct, slot)
 --     actor:freeze_default_skill(slot)
 -- end)
 
