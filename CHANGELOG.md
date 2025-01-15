@@ -1,3 +1,7 @@
+### v1.2.18
+* Updated skill onStep callback rename.
+* War Drum : Added logbook entry
+
 ### v1.2.17
 * Updated alongside RMT.
 
