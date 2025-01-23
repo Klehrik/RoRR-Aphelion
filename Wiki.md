@@ -35,7 +35,7 @@ Close this page if you would like to unlock and learn what everything does for y
             <td align="center"><img src="https://github.com/user-attachments/assets/c871e21c-6837-41f6-90ac-9f34424aae5f"></td>
             <td align="center"><b>Ballistic Vest</b></td>
             <td align="center">Reduce incoming damage by 5% and gain a small shield.</td>
-            <td align="center"><p>Increase $\color{#7eb686}\textsf{armor}$ by $\color{#7eb686}\textsf{5}$ $\color{#555555}\textsf{(+5 per stack)}$ and gain a $\color{#319ad2}\textsf{20}$ $\color{#555555}\textsf{(+15 per stack)}$ $\color{#319ad2}\textsf{health shield}$.</p></td>
+            <td align="center"><p>Increase $\color{#7eb686}\textsf{armor}$ by $\color{#7eb686}\textsf{5}$ $\color{#555555}\textsf{(+5 per stack)}$ and gain a $\color{#319ad2}\textsf{20}$ $\color{#555555}\textsf{(+20 per stack)}$ $\color{#319ad2}\textsf{health shield}$.</p></td>
         </tr>
     </tbody>
     <tbody>
@@ -67,7 +67,7 @@ Close this page if you would like to unlock and learn what everything does for y
             <td align="center"><img src="https://github.com/user-attachments/assets/dc794de4-e219-45f0-9b89-928c3f332294"></td>
             <td align="center"><b>Withered Branch</b></td>
             <td align="center">Chance to wither enemies on hit.</td>
-            <td align="center"><p>$\color{#efd27b}\textsf{15\%}$ $\color{#555555}\textsf{(+10\% per stack)}$ $\color{#efd27b}\textsf{chance}$ on hit to $\color{#cf6666}\textsf{wither}$ an enemy. Each stack of $\color{#cf6666}\textsf{wither}$ deals $\color{#efd27b}\textsf{15\% damage per 0.5 seconds}$.</p></td>
+            <td align="center"><p>$\color{#efd27b}\textsf{15\%}$ $\color{#555555}\textsf{(+15\% per stack)}$ $\color{#efd27b}\textsf{chance}$ on hit to $\color{#cf6666}\textsf{wither}$ an enemy. Each stack of $\color{#cf6666}\textsf{wither}$ deals $\color{#efd27b}\textsf{15\% damage per 0.5 seconds}$.</p></td>
         </tr>
     </tbody>
     <tbody>
@@ -163,7 +163,7 @@ Close this page if you would like to unlock and learn what everything does for y
             <td align="center"><img src="https://github.com/user-attachments/assets/507383a6-4ba0-4eab-9616-82e0aaf5be9f"></td>
             <td align="center"><p>$\color{#c9273d}\textsf{Stiletto}$</p></td>
             <td align="center">Critical chance increases critical damage.</td>
-            <td align="center"><p>Gain $\color{#efd27b}\textsf{10\%}$ $\color{#555555}\textsf{(+10\% per stack)}$ $\color{#efd27b}\textsf{critical chance}$. Every $\color{#efd27b}\textsf{1\% critical chance}$ increases $\color{#efd27b}\textsf{critical damage}$ by $\color{#efd27b}\textsf{1\%}$ $\color{#555555}\textsf{(+0.5\% per stack)}$.</p></td>
+            <td align="center"><p>Gain $\color{#efd27b}\textsf{10\%}$ $\color{#555555}\textsf{(+10\% per stack)}$ $\color{#efd27b}\textsf{critical chance}$. Every $\color{#efd27b}\textsf{1\% critical chance}$ increases $\color{#efd27b}\textsf{critical damage}$ by $\color{#efd27b}\textsf{1\%}$ $\color{#555555}\textsf{(+1\% per stack)}$.</p></td>
         </tr>
     </tbody>
     <tbody>

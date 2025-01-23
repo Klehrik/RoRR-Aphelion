@@ -3,7 +3,7 @@
         "ballisticVest" : {
             "name" : "Ballistic Vest",
             "pickup" : "Reduce incoming damage by 5% and gain a small shield.",
-            "description" : "Increase <g>armor</c> by <g>5 <c_stack>(+5 per stack)</c> and gain a <b>20 <c_stack>(+15 per stack)</c> <b>health shield</c>.",
+            "description" : "Increase <g>armor</c> by <g>5 <c_stack>(+5 per stack)</c> and gain a <b>20 <c_stack>(+20 per stack)</c> <b>health shield</c>.",
             "destination" : "1904,\nBaron County,\nMars",
             "date" : "9/03/2056",
             "story" : "Shipment of lightweight body armor, capable of absorbing on average up to twelve 9mm rounds. Anything larger will pierce right through them though.\n\nWe've tested it throughly this time before this batch was produced, so there shouldn't be another fatal incident.",
@@ -35,7 +35,7 @@
         "rottingBranch" : {
             "name" : "Withered Branch",
             "pickup" : "Chance to wither enemies on hit.",
-            "description" : "<y>15% <c_stack>(+10% per stack) <y>chance</c> on hit to <r>wither</c> an enemy. Each stack of <r>wither</c> deals <y>15% damage per 0.5 seconds</c>.",
+            "description" : "<y>15% <c_stack>(+15% per stack) <y>chance</c> on hit to <r>wither</c> an enemy. Each stack of <r>wither</c> deals <y>15% damage per 0.5 seconds</c>.",
             "destination" : "Saury Cosmo,\nBeacon Post,\nSpace",
             "date" : "9/16/2056",
             "story" : "Sample from an infected tree in the Io Shield Plantation. The disease's spread is beginning to accelerate, and the locals are starting to get on edge. Make the analysis quick - we really want to nip this in the bud before it gets out of control, but we also can't burn out the entire plantation.",
@@ -145,7 +145,7 @@
         "stiletto" : {
             "name" : "Stiletto",
             "pickup" : "Critical chance increases critical damage.",
-            "description" : "Gain <y>10% <c_stack>(+10% per stack) <y>critical chance</c>. Every <y>1% critical chance</c> increases <y>critical damage</c> by <y>1% <c_stack>(+0.5% per stack)</c>.",
+            "description" : "Gain <y>10% <c_stack>(+10% per stack) <y>critical chance</c>. Every <y>1% critical chance</c> increases <y>critical damage</c> by <y>1% <c_stack>(+1% per stack)</c>.",
             "destination" : "Violet Heights,\nElderly Home,\nVenus",
             "date" : "01/04/2057",
             "story" : "I might know why you want this, and if I am correct, I pray you ordered the wrong kind.",

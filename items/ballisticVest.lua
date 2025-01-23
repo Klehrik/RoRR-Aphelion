@@ -9,7 +9,7 @@ item:set_loot_tags(Item.LOOT_TAG.category_healing)
 
 item:onStatRecalc(function(actor, stack)
     actor.armor = actor.armor + (5 * stack)
-    actor.maxshield = actor.maxshield + 5 + (15 * stack)
+    actor.maxshield = actor.maxshield + (20 * stack)
 end)
 
 

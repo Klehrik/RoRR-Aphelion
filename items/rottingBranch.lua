@@ -9,7 +9,7 @@ item:set_loot_tags(Item.LOOT_TAG.category_damage)
 
 item:onHitProc(function(actor, victim, stack, hit_info)
     local victimData = victim:get_data("rottingBranch")
-    if Helper.chance(0.15 + (0.1 * (stack - 1))) then
+    if Helper.chance(0.15 * stack) then
         victim:buff_apply(Buff.find("aphelion-rottingBranch"), 1)
         victimData.attacker = actor
     end

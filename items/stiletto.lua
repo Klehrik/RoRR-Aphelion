@@ -16,7 +16,7 @@ item:onAttackCreate(function(actor, stack, attack_info)
     if attack_info.bonus_crit then total_crit = total_crit + attack_info.bonus_crit end
 
     if attack_info.critical then
-        if stack > 1 then total_crit = total_crit * (0.5 + (stack * 0.5)) end   -- Increase crit damage scaling with stacks
+        if stack > 1 then total_crit = total_crit * stack end   -- Increase crit damage scaling with stacks
         local bonus = (attack_info.damage / 2.0) * (total_crit / 100.0)
         attack_info.damage = attack_info.damage + bonus
     end

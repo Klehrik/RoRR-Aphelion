@@ -1,3 +1,8 @@
+### v1.2.19
+* Ballistic Vest : Additional stack shield gain: +15 -> +20
+* Withered Branch : Additional stack on-hit chance: +10% -> +15%
+* Stiletto : Additional stack crit damage scaling: +0.5% -> +1%
+
 ### v1.2.18
 * Updated skill onStep callback rename.
 * War Drum : Added logbook entry
@@ -19,7 +24,7 @@
 * Added Mystery Box (rare item)
 * Explosive Spear : Is now thrown in the direction of the target hit instead of facing direction.
 * Obelisk Shard : Replaced buff indicator with new particle vfx and sfx.
-* Six Shooter : 6th shot damage bonus: +33% (+33% per stack); now applies on first stack
+* Six Shooter : 6th shot damage bonus: 50% -> 33%; now applies on first stack
 * Shattered Glass : Now uses CurseHelper.
 * Spotter: BLAST : Explosion is now centered at the point of attack collision.
 
