@@ -1,22 +1,36 @@
 -- Overloaded Capacitor
 
-local sprite = Resources.sprite_load("aphelion", "item/overloadedCapacitor", PATH.."assets/sprites/items/overloadedCapacitor.png", 1, 16, 16)
+local sprite = Sprite.new("item/overloadedCapacitor", "~/assets/sprites/items/overloadedCapacitor.png", 1, 16, 16)
 
-local item = Item.new("aphelion", "overloadedCapacitor")
+local item = Item.new("overloadedCapacitor")
 item:set_sprite(sprite)
-item:set_tier(Item.TIER.rare)
-item:set_loot_tags(Item.LOOT_TAG.category_damage, Item.LOOT_TAG.category_healing)
+item:set_tier(ItemTier.RARE)
+item:set_loot_tags(
+    Item.LootTag.CATEGORY_DAMAGE,
+    Item.LootTag.CATEGORY_HEALING
+)
+ItemLog.new_from_item(item)
 
-item:onPostStatRecalc(function(actor, stack)
-    actor.maxshield = actor.maxshield + (actor.maxhp * Helper.mixed_hyperbolic(stack, 0.18, 0.18))
+RecalculateStats.add(function(actor, api)
+    -- Check item count
+    local stack = actor:item_count(item)
+    if stack <= 0 then return end
+    
+    -- Add stats
+    api.maxshield_from_maxhp(Util.mixed_hyperbolic(stack, 0.18))
 end)
 
-item:onHitProc(function(actor, victim, stack, hit_info)
+Callback.add(Callback.ON_HIT_PROC, function(actor, victim, hit_info)
+    -- Check item count
+    local stack = actor:item_count(item)
+    if stack <= 0 then return end
+
+    -- Fire chain lightning if shield is active
     if actor.shield > 0 then
-        local obj = Object.find("ror-chainLightning")
+        local obj = Object.find("chainLightning")
         local lightning = obj:create(victim.x, victim.y)
         lightning.damage = hit_info.damage * (stack * 0.3)
         lightning.bounce = 2
-        lightning.range = 150.0
+        lightning.range = 150
     end
 end)

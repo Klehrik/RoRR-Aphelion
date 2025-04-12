@@ -1,22 +1,19 @@
 -- Ballistic Vest
 
-local sprite = Resources.sprite_load("aphelion", "item/ballisticVest", PATH.."assets/sprites/items/ballisticVest.png", 1, 16, 16)
+local sprite = Sprite.new("item/ballisticVest", "~/assets/sprites/items/ballisticVest.png", 1, 16, 16)
 
-local item = Item.new("aphelion", "ballisticVest")
+local item = Item.new("ballisticVest")
 item:set_sprite(sprite)
-item:set_tier(Item.TIER.common)
-item:set_loot_tags(Item.LOOT_TAG.category_healing)
+item:set_tier(ItemTier.COMMON)
+item:set_loot_tags(Item.LootTag.CATEGORY_HEALING)
+ItemLog.new_from_item(item)
 
-item:onStatRecalc(function(actor, stack)
-    actor.armor = actor.armor + (5 * stack)
-    actor.maxshield = actor.maxshield + 5 + (15 * stack)
-end)
+RecalculateStats.add(function(actor, api)
+    -- Check item count
+    local stack = actor:item_count(item)
+    if stack <= 0 then return end
 
-
-
--- Achievement
-item:add_achievement(2000, true)
-
-Player:onDamagedProc("aphelion-ballisticVestUnlock", function(actor, attacker, hit_info)
-    item:progress_achievement(math.min(hit_info.damage, actor.hp))
+    -- Add stats
+    api.armor_add(5 * stack)
+    api.maxshield_add(20 * stack)
 end)
