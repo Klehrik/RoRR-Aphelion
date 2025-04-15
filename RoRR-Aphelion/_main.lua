@@ -12,7 +12,7 @@ PATH = _ENV["!plugins_mod_folder_path"].."/"
 
 -- ========== Main ==========
 
-Initialize(function()
+Initialize.add(function()
     -- Require all files in content folders
     local folders = {
         "items",
