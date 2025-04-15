@@ -33,10 +33,14 @@ Callback.add(Callback.ON_DAMAGED_PROC, function(actor, hit_info)
     else actor_data.shield_active = true
     end
 
-    -- Grant barrier
+    -- Grant barrier to all nearby allies
+    -- TODO actually check distance and grant to non-player allies
     if broken then
         local amount = actor.maxshield * (0.5 + (0.5 * stack))
-        GM.actor_heal_barrier(actor, amount)
+        local players = Instance.find_all(gm.constants.oP)
+        for _, p in ipairs(players) do
+            GM.actor_heal_barrier(p, amount)
+        end
     end
 end)
 
