@@ -136,7 +136,8 @@ Callback.add(object.on_step, function(self)
 
         -- Deal area damage on enemy collision
         for _, target in ipairs(actors) do
-            if GM.actor_canhit(self_data.parent, target) then
+            if (GM.actor_canhit(self_data.parent, target))
+            or (target.parent and GM.actor_canhit(self_data.parent, target.parent)) then
             -- if (actor.team and actor.team ~= self_data.parent.team)
             -- or (actor.parent and actor.parent.team and actor.parent.team ~= self_data.parent.team) then
                 local inst = self_data.parent:fire_explosion(self.x, self.y, self.bbox_right - self.bbox_left, self.bbox_bottom - self.bbox_top, self_data.damage_coeff, nil, nil, false)
