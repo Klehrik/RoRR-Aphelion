@@ -78,7 +78,7 @@ Callback.add(object.on_create, function(self)
     self_data.acceleration              = 0.15
     self_data.max_speed                 = 4
     
-    self_data.damage_coeff              = 0.5
+    self_data.damage_coeff              = 0.75
 
     self_data.intercept_range           = 350
     self_data.intercept_target          = Instance.wrap(-4)
@@ -139,3 +139,5 @@ Callback.add(object.on_step, function(self)
         -- attack_info:set_critical(false)
     end
 end)
+
+-- TODO make the stars tp to player on stage enter

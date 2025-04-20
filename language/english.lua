@@ -56,7 +56,7 @@ return {
         whimsicalStar = {
             name        = "Whimsical Star",
             pickup      = "Summon stars to protect you.",
-            description = "<y>3 <c_stack>(+2 per stack) <y>stars orbit erratically around you</c>, dealing <y>50% damage</c> every <y>0.25</c> seconds. Each star will also <b>intercept nearby projectiles</c>; this has a <b>1 second</c> cooldown.",
+            description = "<y>3 <c_stack>(+2 per stack) <y>stars orbit erratically around you</c>, dealing <y>75% damage</c> every <y>0.25</c> seconds. Each star will also <b>intercept nearby projectiles</c>; this has a <b>1 second</c> cooldown.",
             destination = "Complex B Unit 56,\nSand Zone,\nMars",
             date        = "12/20/2004",
             story       = "Here's a trinket I got at the famous Jovian Marketplace; thought I should send a little something back to you, y'know? Apparently if you wish upon it, your needs will come true, or something like that. Maybe you could make a wish for him.",
