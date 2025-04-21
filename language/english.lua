@@ -62,5 +62,25 @@ return {
             story       = "Here's a trinket I got at the famous Jovian Marketplace; thought I should send a little something back to you, y'know? Apparently if you wish upon it, your needs will come true, or something like that. Maybe you could make a wish for him.",
             priority    = "<r>Standard</c>"
         },
+
+
+        -- Equipment
+        adrenaline = {
+            name        = "Stimulants",
+            pickup      = "Provides a temporary feeling of invincibility.",
+            description = "Gain <g>65% barrier</c> and <b>+40% movement speed</c> for <y>5 seconds</c>.",
+            destination = "Backalley Place,\nUnit 4-72,\nVenus",
+            date        = "4/12/2056",
+            story       = "Fresh out of the sketchy labs we raided on [REDACTED]'s second moon, this unsettling mix of fluids really makes you feel bulletproof! Well, mostly. Barrett was left with a hell of a bruise; he might as well have gained a new birthmark."
+        },
+        shatteredGlass = {
+            name        = "Shattered Glass",
+            pickup      = "Gain strength and fragility when held.",
+            description = "<y>Increase damage by 50%</c> but <r>decrease maximum health by 33%</c> while held.",
+            destination = "Exhibit A,\nMuseum of Oddities,\nNeptune",
+            date        = "7/6/2056",
+            story       = "I was searching for another teleporter when I came across a twinkling that caught my eye. A piece of shattered glass, irregularly shaped but still pristine. I felt strangely vulnerable as I held it in my hands, but I could tell that it was another great source of power.",
+            priority    = "<or>Field-found/Fragile</c>"
+        },
     }
 }

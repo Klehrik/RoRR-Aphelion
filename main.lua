@@ -12,7 +12,8 @@ local fn = function()
     
     -- Require all files in content folders
     local folders = {
-        "items"
+        "items",
+        "equipment"
     }
     for _, folder in ipairs(folders) do
         local names = path.get_files(PATH..folder)
