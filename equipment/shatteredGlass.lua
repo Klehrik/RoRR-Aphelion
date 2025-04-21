@@ -9,7 +9,7 @@ equip:set_loot_tags(
     Item.LootTag.EQUIPMENT_BLACKLIST_ENIGMA,
     Item.LootTag.EQUIPMENT_BLACKLIST_ACTIVATOR
 )
--- equip:set_passive(true)
+equip:set_passive(true)
 ItemLog.new_from_equipment(equip)
 
 RecalculateStats.add(function(actor, api)

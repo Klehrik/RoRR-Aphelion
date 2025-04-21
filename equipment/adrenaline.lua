@@ -15,6 +15,7 @@ Callback.add(Callback.ON_EQUIPMENT_USE, function(player, equipment, bool, number
     -- Check equipment
     if equipment ~= equip then return end
 
+    -- Grant barrier and movement speed buff
     GM.actor_heal_barrier(player, player.maxbarrier * 0.65)
     player:buff_apply(buff, 5 *60)
 end)
