@@ -133,11 +133,117 @@ Callback.add(object.on_step, function(self)
     if self_data.hit_cooldown <= 0 then
         self_data.hit_cooldown = self_data.hit_cooldown_max
 
-        local inst = self_data.parent:fire_explosion(self.x, self.y, self.bbox_right - self.bbox_left, self.bbox_bottom - self.bbox_top, self_data.damage_coeff, nil, nil, false)
-        local attack_info = inst.attack_info
-        -- attack_info:set_color(Color(0xA5C28C))
-        -- attack_info:set_critical(false)
+        -- Fire explosion from the local player
+        -- (Star movement is a chaotic system so it's not worth syncing)
+        if Player.get_local() == self_data.parent then
+            local inst = self_data.parent:fire_explosion(self.x, self.y, self.bbox_right - self.bbox_left, self.bbox_bottom - self.bbox_top, self_data.damage_coeff, nil, nil, false)
+            local attack_info = inst.attack_info
+            attack_info.damage_color = Color("a5c28c")
+            attack_info:set_critical(false) -- Items cannot crit
+        end
     end
+
+
+    -- Projectile interception
+    if self_data.intercept_cooldown <= 0 then
+
+        -- Get nearest enemy projectile to intercept
+        if not self_data.intercept_target:exists() then
+            local found = false
+            local min_dist = self_data.intercept_range
+
+            -- Loop through all enemy projectile objects
+            local objs = Object.find_by_tag("enemy_projectile")
+            for _, obj in pairs(objs) do
+                
+                -- Loop through all instances of the object
+                local insts = Instance.find_all(obj)
+                for _, inst in ipairs(insts) do
+                    local inst_data = Instance.get_data(inst, "whimsicalStar")
+
+                    -- Check if instance is not already targeted
+                    if not inst_data.targeted then
+                    
+                        -- Check if distance is closer than stored
+                        local dist = self:distance_to(inst.x, inst.y)
+                        if (dist <= min_dist) then
+                            found = true
+                            min_dist = dist
+                            self_data.intercept_target = inst
+                        end
+                    end
+                end
+            end
+
+            -- Mark target projectile as "targeted"
+            if found then
+                local target_data = Instance.get_data(self_data.intercept_target, "whimsicalStar")
+                target_data.targeted = true
+
+                self_data.intercept_frame = 0
+                self_data.intercept_x_start = self.x
+                self_data.intercept_y_start = self.y
+
+            -- If no target is found, check again in a few frames
+            -- to lessen burden of this running every frame
+            else
+                self_data.intercept_target = Instance.wrap(-4)
+                self_data.intercept_cooldown = math.random(2, 3)
+
+            end
+
+        -- Move to intercept projectile
+        else
+            -- Increment interception ease time
+            self_data.intercept_frame = math.min(self_data.intercept_frame + 1, self_data.intercept_frame_max)
+
+            local target = self_data.intercept_target
+
+            -- Ease towards target
+            local ease = Util.ease_out(self_data.intercept_frame / self_data.intercept_frame_max, 0.5)
+            self.x = self_data.intercept_x_start + ((target.x - self_data.intercept_x_start) * ease)
+            self.y = self_data.intercept_y_start + ((target.y - self_data.intercept_y_start) * ease)
+
+            -- Check for collision
+            -- Many projectiles have no collision mask until they
+            -- reach their destination, so checking by distance instead
+            if self:distance_to(target.x, target.y) <= 12 then
+                target:destroy()
+                self_data.intercept_target = Instance.wrap(-4)
+                self_data.intercept_cooldown = self_data.intercept_cooldown_max
+            end
+        end
+    end
+
+
+    -- Darken sprite while on intercept cooldown
+    if self_data.intercept_cooldown > 3 then
+        self.image_blend = 12632256
+        self.image_alpha = 0.6
+
+    -- Restore normal sprite
+    elseif self_data.intercept_cooldown > 0 then
+        self.image_blend = Color.WHITE
+        self.image_alpha = 1
+    end
+
+
+    -- TODO projectile interception
+    -- visual: trail while moving
+        -- no trail while on intercept cd
+    -- maybe the stars can occasionally spin too :)
 end)
 
--- TODO make the stars tp to player on stage enter
+Callback.add(Callback.ON_STAGE_START, function(...)
+    for i, v in ipairs{...} do print(i, v) end
+
+    -- Teleport all stars to owner on stage transition
+    local insts = Instance.find_all(object)
+    for _, inst in ipairs(insts) do
+        local inst_data = Instance.get_data(inst)
+        if inst_data.parent:exists() then
+            inst.x = inst_data.parent.x
+            inst.y = inst_data.parent.y
+        end
+    end
+end)

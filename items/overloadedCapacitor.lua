@@ -31,6 +31,6 @@ Callback.add(Callback.ON_HIT_PROC, function(actor, victim, hit_info)
         local lightning = obj:create(victim.x, victim.y)
         lightning.damage = hit_info.damage * (stack * 0.3)
         lightning.bounce = 2
-        lightning.range = 150
+        lightning.range = 80
     end
 end)
