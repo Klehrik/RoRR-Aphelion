@@ -145,10 +145,8 @@ Callback.add(object.on_step, function(self)
         -- Set image_angle to be current velocity
         self.image_angle = GM.point_direction(0, 0, self_data.hsp * self_data.direction, self_data.vsp)
 
-        -- Destroy when falling out of map
-        -- TODO don't get Global.room_height every frame
-        -- print(Global.room_height, GM.variable_global_get("room_height"), gm.variable_global_get("room_height"))
-        if (self_y >= gm.variable_global_get("room_height")) and (self_data.hit_type == 0) then
+        -- Destroy when falling out of the map
+        if (self_y >= Global.room_height) and (self_data.hit_type == 0) then
             self:destroy()
         end
 
@@ -159,8 +157,9 @@ Callback.add(object.on_step, function(self)
 
         local c_red = Color("ff004d")
         local hit_actor = self_data.hit
+        local hit_exists = Instance.exists(hit_actor)
 
-        if Instance.exists(hit_actor) then
+        if hit_exists then
             -- Move with hit actor
             self_x = hit_actor.x + self_data.hit_offset_x
             self_y = hit_actor.y + self_data.hit_offset_y
@@ -169,33 +168,39 @@ Callback.add(object.on_step, function(self)
             self.y = self_y
 
             -- Deal pop damage every 25 ticks
-            if  (self_data.tick > 0)
-            and (self_data.tick % 25 == 0) then
-                -- Get actual actor (if this is just a segment or something)
-                if type(hit_actor) ~= "Actor" then hit_actor = hit_actor.parent end
+            -- (from local player)
+            if Player.get_local() == self_data.parent then
+                if  (self_data.tick > 0)
+                and (self_data.tick % 25 == 0) then
+                    -- Get actual actor (if this is just a segment or something)
+                    if type(hit_actor) ~= "Actor" then hit_actor = hit_actor.parent end
 
-                local damage = self_data.damage * self_data.damage_coeff_pop
-                local inst = self_data.parent:fire_direct(hit_actor, damage, nil, nil, nil, nil, false)
-                local attack_info = inst.attack_info
-                attack_info.damage_color = c_red
-                attack_info:use_raw_damage()
-                attack_info:set_critical(false)
-                -- attack_info:set_stun(1)  -- TODO
+                    local damage = self_data.damage * self_data.damage_coeff_pop
+                    local inst = self_data.parent:fire_direct(hit_actor, damage, nil, nil, nil, nil, false)
+                    local attack_info = inst.attack_info
+                    attack_info.damage_color = c_red
+                    attack_info:use_raw_damage()
+                    attack_info:set_critical(false)
+                    -- attack_info:set_stun(1)  -- TODO
+                end
             end
         end
 
         -- Explode
-        if self_data.tick <= 0 then
-            local damage = self_data.damage * self_data.damage_coeff_explosion
-            local inst = self_data.parent:fire_explosion(self_x, self_y, 200, 200, damage, nil, nil, false)
-            local attack_info = inst.attack_info
-            attack_info.damage_color = c_red
-            attack_info:use_raw_damage()
-            attack_info:set_critical(false)
-            -- attack_info:set_stun(2.5)    -- TODO
+        -- (from local player)
+        if Player.get_local() == self_data.parent then
+            if (self_data.tick <= 0) or (not hit_exists) then
+                local damage = self_data.damage * self_data.damage_coeff_explosion
+                local inst = self_data.parent:fire_explosion(self_x, self_y, 200, 200, damage, nil, nil, false)
+                local attack_info = inst.attack_info
+                attack_info.damage_color = c_red
+                attack_info:use_raw_damage()
+                attack_info:set_critical(false)
+                -- attack_info:set_stun(2.5)    -- TODO
 
-            self:sound_play_at(sound_explode, 1, 1 + gm.random_range(-0.2, 0.2), self_x, self_y, nil)
-            self:destroy()
+                self:sound_play_at(sound_explode, 1, 1 + gm.random_range(-0.2, 0.2), self_x, self_y, nil)
+                self:destroy()
+            end
         end
     end
 end)
