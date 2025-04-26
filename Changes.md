@@ -11,6 +11,11 @@ Relic Guard
 - Shield break barrier 60% (+20%/stack) -> 100% (+50%/stack)
 - Now grants barrier to all nearby allies
 
+Explosive Spear
+- Resprited
+- Now pops 3 times instead of 4; total pop damage unchanged
+- Explosion damage 250% (+150%/stack) -> 200% (+100%/stack)
+
 Stiletto
 - Stacking +0.5% -> +1%
 

@@ -131,7 +131,7 @@ Callback.add(object.on_step, function(self)
 
     -- Collision damage
     if self_data.hit_cooldown <= 0 then
-        self_data.hit_cooldown = self_data.hit_cooldown_max
+        self_data.hit_cooldown = math.random(self_data.hit_cooldown_max - 1, self_data.hit_cooldown_max + 1)
 
         -- Fire explosion from the local player
         -- (Star movement is a chaotic system so it's not worth syncing)
@@ -228,15 +228,14 @@ Callback.add(object.on_step, function(self)
     end
 
 
-    -- TODO projectile interception
+    -- TODO
     -- visual: trail while moving
         -- no trail while on intercept cd
     -- maybe the stars can occasionally spin too :)
+    -- also make particles on projectile interception
 end)
 
-Callback.add(Callback.ON_STAGE_START, function(...)
-    for i, v in ipairs{...} do print(i, v) end
-
+Callback.add(Callback.ON_STAGE_START, function()
     -- Teleport all stars to owner on stage transition
     local insts = Instance.find_all(object)
     for _, inst in ipairs(insts) do
