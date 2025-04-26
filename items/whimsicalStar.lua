@@ -200,7 +200,7 @@ Callback.add(object.on_step, function(self)
             local target = self_data.intercept_target
 
             -- Ease towards target
-            local ease = Util.ease_out(self_data.intercept_frame / self_data.intercept_frame_max, 0.5)
+            local ease = math.easeout(self_data.intercept_frame / self_data.intercept_frame_max, 0.5)
             self.x = self_data.intercept_x_start + ((target.x - self_data.intercept_x_start) * ease)
             self.y = self_data.intercept_y_start + ((target.y - self_data.intercept_y_start) * ease)
 

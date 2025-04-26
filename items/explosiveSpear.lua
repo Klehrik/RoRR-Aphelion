@@ -62,6 +62,7 @@ Callback.add(object.on_create, function(self)
     self_data.damage = 0
     self_data.damage_coeff_pop = 0
     self_data.damage_coeff_explosion = 0
+    self_data.explosion_radius = 100
 
     self_data.calculate_damage = function(stack)
         self_data.damage_coeff_pop = 0.08 + (0.08 * stack)
@@ -189,19 +190,27 @@ Callback.add(object.on_step, function(self)
         -- Explode
         -- (from local player)
         if Player.get_local() == self_data.parent then
-            if (self_data.tick <= 0) or (not hit_exists) then
+            if (self_data.tick <= 0) or ((not hit_exists) and (self_data.hit_type == 1)) then
                 local damage = self_data.damage * self_data.damage_coeff_explosion
-                local inst = self_data.parent:fire_explosion(self_x, self_y, 200, 200, damage, nil, nil, false)
+                local inst = self_data.parent:fire_explosion(self_x, self_y, self_data.explosion_radius * 2, self_data.explosion_radius * 2, damage, nil, nil, false)
                 local attack_info = inst.attack_info
                 attack_info.damage_color = c_red
                 attack_info:use_raw_damage()
                 attack_info:set_critical(false)
+                attack_info.aphelion_explosiveSpearExplosion = true
                 -- attack_info:set_stun(2.5)    -- TODO
 
                 sound_explode:play(self_x, self_y, 1, 1 + gm.random_range(-0.2, 0.2))
                 self:destroy()
             end
         end
+    end
+end)
+
+DamageCalculate.add(function(api)
+    -- Prevent crit on explosion
+    if api.hit_info.attack_info.aphelion_explosiveSpearExplosion then
+        api.set_critical(false)
     end
 end)
 
@@ -214,7 +223,7 @@ Callback.add(object.on_draw, function(self)
     local dir = self.image_angle
     local length = 34
     local tip = 6
-    local cols = {Color("424647"), Color("25272b")}
+    local cols = { Color("424647"), Color("25272b") }
     for i = 1, 0, -1 do
         local c = cols[i + 1]
         Draw.line(
@@ -226,59 +235,60 @@ Callback.add(object.on_draw, function(self)
         )
     end
 
-    -- -- Cloth : Move
-    -- for _, n in ipairs(self_data.nodes) do
-    --     -- Starting node
-    --     if not n.parent then
-    --         n.x = self.x
-    --         n.y = self.y
 
-    --     else
-    --         -- Calculate velocities
-    --         local vx = (n.x - n.xPrev) * 0.2
-    --         local vy = (n.y - n.yPrev) * 0.4
+    -- Cloth : Move
+    for _, n in ipairs(self_data.nodes) do
+        -- Starting node
+        if not n.parent then
+            n.x = self.x
+            n.y = self.y
 
-    --         -- Update saved previous position
-    --         n.xPrev = n.x
-    --         n.yPrev = n.y
+        else
+            -- Calculate velocities
+            local vx = (n.x - n.x_prev) * 0.2
+            local vy = (n.y - n.y_prev) * 0.4
 
-    --         -- Apply velocities
-    --         local wind = math.abs(gm.dsin(gm.variable_global_get("current_time")/10) * n.wind)
-    --         n.x = n.x + vx + wind
-    --         n.y = n.y + vy + n.grav
-    --     end
-    -- end
+            -- Update saved previous position
+            n.x_prev = n.x
+            n.y_prev = n.y
 
-    -- -- Cloth : Apply constraints
-	-- for _, n in ipairs(self_data.nodes) do
-    --     if n.parent then
-    --         local dist = gm.point_distance(n.x, n.y, n.parent.x, n.parent.y)
-    --         if dist > n.length then
-    --             local dir = gm.point_direction(n.parent.x, n.parent.y, n.x, n.y)
-    --             n.x = n.parent.x + (gm.dcos(dir) * n.length)
-    --             n.y = n.parent.y - (gm.dsin(dir) * n.length)
-    --         end
-    --     end
-	-- end
+            -- Apply velocities
+            local wind = math.abs(math.dsin(Global.current_time / 10) * n.wind)
+            n.x = n.x + vx + wind
+            n.y = n.y + vy + n.gravity
+        end
+    end
 
-    -- -- Cloth : Draw
-    -- local cols = {Color(0xff004d), Color(0xbe1250)}
-    -- for i = 1, 0, -1 do
-    --     for _, n in ipairs(self_data.nodes) do
-    --         local c = cols[i + 1]
-    --         gm.draw_circle_color(n.x, n.y + i, n.size, c, c, false)
-    --     end
-    -- end
+    -- Cloth : Apply constraints
+	for _, n in ipairs(self_data.nodes) do
+        if n.parent then
+            local dist = GM.point_distance(n.x, n.y, n.parent.x, n.parent.y)
+            if dist > n.length then
+                local dir = GM.point_direction(n.parent.x, n.parent.y, n.x, n.y)
+                n.x = n.parent.x + (math.dcos(dir) * n.length)
+                n.y = n.parent.y - (math.dsin(dir) * n.length)
+            end
+        end
+	end
 
-    -- -- Explosion Radius
-    -- if self_data.flag_hit then
-    --     -- Show explosion radius
-    --     local radius = Helper.ease_out(math.min(85.0 - self_data.tick, 45.0) / 45.0) * 100
-    --     gm.draw_set_circle_precision(64)
-    --     gm.draw_set_alpha(0.5)
-    --     local c = Color.WHITE
-    --     gm.draw_circle(self.x, self.y, radius, c, c, true)
-    --     gm.draw_set_alpha(1)
-    --     gm.draw_set_circle_precision(24)
-    -- end
+    -- Cloth : Draw
+    local cols = { Color("ff004d"), Color("be1250") }
+    for i = 1, 0, -1 do
+        for _, n in ipairs(self_data.nodes) do
+            Draw.circle(n.x, n.y + i, n.size, false, cols[i + 1])
+        end
+    end
+
+
+    -- Explosion Radius
+    if self_data.hit_type > 0 then
+        Draw.alpha(math.min(85 - self_data.tick, 75) / 75 * 0.4)
+        Draw.circle_precision(64)
+
+        local radius = math.easeout(math.min(85 - self_data.tick, 75) / 75, 3) * self_data.explosion_radius
+        Draw.circle(self.x, self.y, radius, true, Color.WHITE)
+
+        Draw.alpha(1)
+        Draw.circle_precision()
+    end
 end)
