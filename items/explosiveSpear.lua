@@ -31,7 +31,7 @@ Callback.add(Callback.ON_HIT_PROC, function(actor, victim, hit_info)
     inst_data.direction = dir
     inst_data.damage = hit_info.damage
     inst_data.calculate_damage(stack)
-    inst:sound_play_at(sound, 1, 1 + math.randomf(-0.2, 0.2), inst.x, inst.y, nil)
+    sound:play(self_x, self_y, 1, 1 + math.randomf(-0.2, 0.2))
 
     -- TODO add cooldown checking
 end)
@@ -131,7 +131,7 @@ Callback.add(object.on_step, function(self)
                 self_data.hit_type = 1
                 self_data.hit_offset_x = self_x - actor.x
                 self_data.hit_offset_y = self_y - actor.y
-                self:sound_play_at(sound_hit, 1, 1 + math.randomf(-0.1, 0.1), self_x, self_y, nil)
+                sound_hit:play(self_x, self_y, 1, 1 + math.randomf(-0.1, 0.1))
                 break
             end
         end
@@ -139,7 +139,7 @@ Callback.add(object.on_step, function(self)
         -- Wall collision
         if self:is_colliding(gm.constants.pSolidBulletCollision) then
             self_data.hit_type = 2
-            self:sound_play_at(sound_hit, 1, 1 + math.randomf(-0.1, 0.1), self_x, self_y, nil)
+            sound_hit:play(self_x, self_y, 1, 1 + math.randomf(-0.1, 0.1))
         end
 
         -- Set image_angle to be current velocity
@@ -198,7 +198,7 @@ Callback.add(object.on_step, function(self)
                 attack_info:set_critical(false)
                 -- attack_info:set_stun(2.5)    -- TODO
 
-                self:sound_play_at(sound_explode, 1, 1 + gm.random_range(-0.2, 0.2), self_x, self_y, nil)
+                sound_explode:play(self_x, self_y, 1, 1 + gm.random_range(-0.2, 0.2))
                 self:destroy()
             end
         end
