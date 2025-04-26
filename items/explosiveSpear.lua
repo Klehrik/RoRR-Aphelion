@@ -68,7 +68,7 @@ Callback.add(object.on_create, function(self)
         self_data.damage_coeff_explosion = 1 + (1 * stack)
     end
     
-    self_data.hit = Instance.wrap(-4)
+    self_data.hit = -4
     self_data.hit_type = 0  -- 1 is actor, 2 is terrain
     self_data.hit_offset_x = 0
     self_data.hit_offset_y = 0
@@ -100,7 +100,7 @@ Callback.add(object.on_step, function(self)
     local self_data = Instance.get_data(self)
 
     -- Destroy self if parent no longer exists
-    if not self_data.parent:exists() then
+    if not Instance.exists(self_data.parent) then
         self:destroy()
         return
     end
@@ -160,7 +160,7 @@ Callback.add(object.on_step, function(self)
         local c_red = Color("ff004d")
         local hit_actor = self_data.hit
 
-        if hit_actor:exists() then
+        if Instance.exists(hit_actor) then
             -- Move with hit actor
             self_x = hit_actor.x + self_data.hit_offset_x
             self_y = hit_actor.y + self_data.hit_offset_y

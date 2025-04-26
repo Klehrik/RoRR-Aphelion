@@ -52,7 +52,7 @@ Callback.add(item.on_removed, function(actor, stack)
     if stack >= 2 then count = 2 end
     for i = 1, count do
         local inst = actor_data[#actor_data]
-        if inst:exists() then inst:destroy() end
+        if Instance.exists(inst) then inst:destroy() end
         table.remove(actor_data, #actor_data)
     end
 end)
@@ -81,7 +81,7 @@ Callback.add(object.on_create, function(self)
     self_data.damage_coeff              = 0.75
 
     self_data.intercept_range           = 350
-    self_data.intercept_target          = Instance.wrap(-4)
+    self_data.intercept_target          = -4
     self_data.intercept_x_start         = 0
     self_data.intercept_y_start         = 0
     self_data.intercept_frame           = 0
@@ -97,7 +97,7 @@ Callback.add(object.on_step, function(self)
     local self_data = Instance.get_data(self)
 
     -- Destroy self if parent no longer exists
-    if not self_data.parent:exists() then
+    if not Instance.exists(self_data.parent) then
         self:destroy()
         return
     end
@@ -148,7 +148,7 @@ Callback.add(object.on_step, function(self)
     if self_data.intercept_cooldown <= 0 then
 
         -- Get nearest enemy projectile to intercept
-        if not self_data.intercept_target:exists() then
+        if not Instance.exists(self_data.intercept_target) then
             local found = false
             local min_dist = self_data.intercept_range
 
@@ -187,7 +187,7 @@ Callback.add(object.on_step, function(self)
             -- If no target is found, check again in a few frames
             -- to lessen burden of this running every frame
             else
-                self_data.intercept_target = Instance.wrap(-4)
+                self_data.intercept_target = -4
                 self_data.intercept_cooldown = math.random(2, 3)
 
             end
@@ -209,7 +209,7 @@ Callback.add(object.on_step, function(self)
             -- reach their destination, so checking by distance instead
             if self:distance_to(target.x, target.y) <= 12 then
                 target:destroy()
-                self_data.intercept_target = Instance.wrap(-4)
+                self_data.intercept_target = -4
                 self_data.intercept_cooldown = self_data.intercept_cooldown_max
             end
         end
@@ -240,7 +240,7 @@ Callback.add(Callback.ON_STAGE_START, function()
     local insts = Instance.find_all(object)
     for _, inst in ipairs(insts) do
         local inst_data = Instance.get_data(inst)
-        if inst_data.parent:exists() then
+        if Instance.exists(inst_data.parent) then
             inst.x = inst_data.parent.x
             inst.y = inst_data.parent.y
         end

@@ -14,7 +14,7 @@ RecalculateStats.add(function(actor, api)
     if stack <= 0 then return end
     
     -- Add stats
-    api.maxshield_add(20 + (20 * stack))
+    api.maxshield_add(20 * stack)
 end)
 
 Callback.add(Callback.ON_DAMAGED_PROC, function(actor, hit_info)

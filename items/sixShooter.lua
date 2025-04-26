@@ -29,7 +29,7 @@ end)
 DamageCalculate.add(function(api)
     -- Check if actor exists
     local actor = api.parent
-    if not actor:exists() then return end
+    if not Instance.exists(actor) then return end
 
     -- Check item count
     local stack = actor:item_count(item)

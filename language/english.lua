@@ -35,7 +35,7 @@ return {
         relicGuard = {
             name        = "Relic Guard",
             pickup      = "Gain a small shield. Fortify all nearby allies temporarily when it breaks.",
-            description = "Gain a <b>40 <c_stack>(+20 per stack) <b>health shield</c>. On shield break, grant all nearby allies <g>barrier</c> equal to <y>100% <c_stack>(+50% per stack)</c> of your <b>maximum shield</c>.",
+            description = "Gain a <b>20 <c_stack>(+20 per stack) <b>health shield</c>. On shield break, grant all nearby allies <g>barrier</c> equal to <y>100% <c_stack>(+50% per stack)</c> of your <b>maximum shield</c>.",
             destination = "Bldg. 1\n3 Wry Ave.\nTheworl,\nTitan",
             date        = "11/14/2056",
             story       = "Found this stashed in Thorton's attic - somehow he managed to hide a shield of this size from the rest of us during that expedition. I didn't find anything else in there, but regardless he is no longer a part of the team. The shield itself is surprisingly solid, at least compared to the other one, but I would still be careful with handling it.",
