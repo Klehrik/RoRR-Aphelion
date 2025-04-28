@@ -165,7 +165,7 @@ Callback.add(object.on_step, function(self)
                     if not inst_data.targeted then
                     
                         -- Check if distance is closer than stored
-                        local dist = self:distance_to(inst.x, inst.y)
+                        local dist = math.distance(self.x, self.y, inst.x, inst.y)
                         if (dist <= min_dist) then
                             found = true
                             min_dist = dist
@@ -207,7 +207,7 @@ Callback.add(object.on_step, function(self)
             -- Check for collision
             -- Many projectiles have no collision mask until they
             -- reach their destination, so checking by distance instead
-            if self:distance_to(target.x, target.y) <= 12 then
+            if math.distance(self.x, self.y, target.x, target.y) <= 12 then
                 target:destroy()
                 self_data.intercept_target = -4
                 self_data.intercept_cooldown = self_data.intercept_cooldown_max
