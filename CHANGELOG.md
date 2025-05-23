@@ -4,6 +4,7 @@ Now online compatible.
 * Explosive Spear
     * Now pops 3 times instead of 4; total pop damage unchanged.
     * Explosion no longer crits with Sniper's spotter drone.
+        * This had caused the explosion to deal 2x more damage than intended for Sniper specifically.
 * Relic Guard : Now grants barrier to all nearby allies.
 * Whimsical Star
     * Stars now hit every 0.25 seconds (for performance reasons).

@@ -24,11 +24,14 @@ Callback.add(Callback.ON_HIT_PROC, function(actor, victim, hit_info)
     local actor_x = actor.x
     local dir = math.sign(hit_info.target.x - actor_x)
 
-    -- Check cooldown
+    -- Check cooldown (10 seconds)
+    -- (current frame - last thrown frame)
     local actor_data = Instance.get_data(actor, "explosiveSpear")
-    if not actor_data.cooldown then actor_data.cooldown = 0 end
-    if actor_data.cooldown <= 0 then
-        actor_data.cooldown = 10 *60
+    if not actor_data.last_thrown_frame then actor_data.last_thrown_frame = 0 end
+    local current_frame = Global._current_frame
+    if current_frame - actor_data.last_thrown_frame >= 10 *60 then
+        -- Store current frame
+        actor_data.last_thrown_frame = current_frame
 
         -- Throw spear
         local inst = object:create(actor_x, actor.y)
@@ -37,14 +40,8 @@ Callback.add(Callback.ON_HIT_PROC, function(actor, victim, hit_info)
         inst_data.direction = dir
         inst_data.damage = hit_info.damage
         inst_data.calculate_damage(stack)
-        sound:play(self_x, self_y, 1, 1 + math.randomf(-0.2, 0.2))
+        sound:play(actor.x, actor.y, 1, 1 + math.randomf(-0.2, 0.2))
     end
-end)
-
-Hook.post("step_actor", function(self, other, result, args)
-    -- Decrement cooldown
-    local self_data = Instance.get_data(self, "explosiveSpear")
-    if self_data.cooldown then self_data.cooldown = math.max(self_data.cooldown - 1, 0) end
 end)
 
 
