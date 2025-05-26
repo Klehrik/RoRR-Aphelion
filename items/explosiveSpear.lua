@@ -31,7 +31,7 @@ Callback.add(Callback.ON_HIT_PROC, function(actor, victim, hit_info)
     local current_frame = Global._current_frame
     if current_frame - actor_data.last_thrown_frame >= 10 *60 then
         -- Store current frame
-        actor_data.last_thrown_frame = current_frame
+        -- actor_data.last_thrown_frame = current_frame -- DEBUG
 
         -- Throw spear
         local inst = object:create(actor_x, actor.y)
@@ -39,8 +39,8 @@ Callback.add(Callback.ON_HIT_PROC, function(actor, victim, hit_info)
         inst_data.parent = actor
         inst_data.direction = dir
         inst_data.damage = hit_info.damage
-        inst_data.calculate_damage(stack)
-        sound:play(actor.x, actor.y, 1, 1 + math.randomf(-0.2, 0.2))
+        inst_data.calculate_damage(stack)   -- Defined below in `on_create` callback
+        sound:play(actor_x, actor.y, 1, 1 + math.randomf(-0.2, 0.2))
     end
 end)
 
@@ -135,7 +135,7 @@ Callback.add(object.on_step, function(self)
 
             -- Check if actor is hittable
             if GM.actor_canhit(self_data.parent, actor)
-            or GM.actor_canhit(self_data.parent, actor.parent) then
+            or (actor.parent and GM.actor_canhit(self_data.parent, actor.parent)) then
                 self_data.hit = actor
                 self_data.hit_type = 1
                 self_data.hit_offset_x = self_x - actor.x
@@ -152,7 +152,7 @@ Callback.add(object.on_step, function(self)
         end
 
         -- Set image_angle to be current velocity
-        self.image_angle = GM.point_direction(0, 0, self_data.hsp * self_data.direction, self_data.vsp)
+        self.image_angle = math.direction(0, 0, self_data.hsp * self_data.direction, self_data.vsp)
 
         -- Destroy when falling out of the map
         if (self_y >= Global.room_height) and (self_data.hit_type == 0) then
@@ -190,7 +190,7 @@ Callback.add(object.on_step, function(self)
                     attack_info.damage_color = c_red
                     attack_info:use_raw_damage()
                     attack_info:set_critical(false)
-                    -- attack_info:set_stun(1)  -- TODO
+                    attack_info:set_knockback(math.sign(self_data.hsp), 30)
                 end
             end
         end
@@ -205,8 +205,8 @@ Callback.add(object.on_step, function(self)
                 attack_info.damage_color = c_red
                 attack_info:use_raw_damage()
                 attack_info:set_critical(false)
+                attack_info:set_knockback(math.sign(self_data.hsp), 2 *60)
                 attack_info.aphelion_explosiveSpearExplosion = true
-                -- attack_info:set_stun(2.5)    -- TODO
 
                 sound_explode:play(self_x, self_y, 1, 1 + gm.random_range(-0.2, 0.2))
                 self:destroy()
@@ -217,6 +217,7 @@ end)
 
 DamageCalculate.add(function(api)
     -- Prevent crit on explosion
+    -- TODO fix for mp (hit_info does not exist)
     if api.hit_info.attack_info.aphelion_explosiveSpearExplosion then
         api.set_critical(false)
     end
@@ -270,9 +271,9 @@ Callback.add(object.on_draw, function(self)
     -- Cloth : Apply constraints
 	for _, n in ipairs(self_data.nodes) do
         if n.parent then
-            local dist = GM.point_distance(n.x, n.y, n.parent.x, n.parent.y)
+            local dist = math.distance(n.x, n.y, n.parent.x, n.parent.y)
             if dist > n.length then
-                local dir = GM.point_direction(n.parent.x, n.parent.y, n.x, n.y)
+                local dir = math.direction(n.parent.x, n.parent.y, n.x, n.y)
                 n.x = n.parent.x + (math.dcos(dir) * n.length)
                 n.y = n.parent.y - (math.dsin(dir) * n.length)
             end
