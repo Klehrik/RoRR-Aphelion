@@ -1,11 +1,7 @@
 ### v1.3.0
 Now online compatible.
 * Heart Locket : Reworked
-* Explosive Spear
-    * Pop damage: 4x12% (+6% per stack) -> 3x30% (+30% per stack) *base* damage
-        * Now pops 3 times instead of 4 (i.e., faster explosion).
-    * Explosion damage: 200% (+100% per stack) -> 100% (+50% per stack)
-        * No longer crits with Sniper's spotter drone.
+* Explosive Spear : Explosion longer crits with Sniper's spotter drone.
 * Relic Guard : Now grants barrier to all nearby allies.
 * Whimsical Star
     * Stars now hit every 0.25 seconds (for performance reasons).
@@ -13,6 +9,13 @@ Now online compatible.
     * Stars now teleport to owner on stage start.
 
 ---
+
+### v1.2.21
+* Explosive Spear
+    * Pop damage: 4x12% (+6% per stack) -> 3x30% (+30% per stack) *base* damage
+        * Now pops 3 times instead of 4 (i.e., faster explosion).
+    * Explosion damage: 200% (+100% per stack) -> 100% (+50% per stack)
+        * Stun: 2.5s -> 2s
 
 ### v1.2.20
 Next update was intended to be released alongside ReturnsAPI, but I've "backported" the current changes so far.
