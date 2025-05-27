@@ -48,6 +48,10 @@ end)
 
 -- Object
 
+-- TODO
+-- make sure it doesn't hit the immediate wall on throw (if standing next to one)
+-- sync properly
+
 local sprite        = Sprite.new("object/explosiveSpear", "~/assets/sprites/objects/explosiveSpear.png", 1, 36, 3, 1, -20, -5, -3, 3)
 local sound_hit     = Sound.new("explosiveSpearHit", "~/assets/sounds/explosiveSpearHit.ogg")
 local sound_explode = Sound.new("explosiveSpearExplode", "~/assets/sounds/explosiveSpearExplode.ogg")
@@ -64,7 +68,7 @@ Callback.add(object.on_create, function(self)
 
     self_data.hsp = 16
     self_data.vsp = -1.6
-    self_data.direction = 0
+    self_data.direction = 0     -- -1 or 1
     self_data.gravity = 0.12
 
     self_data.damage = 0
@@ -103,6 +107,8 @@ Callback.add(object.on_create, function(self)
         prev = node
         table.insert(self_data.nodes, node)
     end
+
+    self:instance_sync()
 end)
 
 Callback.add(object.on_step, function(self)
@@ -177,8 +183,8 @@ Callback.add(object.on_step, function(self)
             self.y = self_y
 
             -- Deal pop damage every 25 ticks
-            -- (from local player)
-            if Player.get_local() == self_data.parent then
+            -- if Player.get_local() == self_data.parent then
+            if not Net.is_client() then
                 if  (self_data.tick > 0)
                 and (self_data.tick % 25 == 0) then
                     -- Get actual actor (if this is just a segment or something)
@@ -196,8 +202,8 @@ Callback.add(object.on_step, function(self)
         end
 
         -- Explode
-        -- (from local player)
-        if Player.get_local() == self_data.parent then
+        -- if Player.get_local() == self_data.parent then
+        if not Net.is_client() then
             if (self_data.tick <= 0) or ((not hit_exists) and (self_data.hit_type == 1)) then
                 local damage = self_data.damage * self_data.damage_coeff_explosion
                 local inst = self_data.parent:fire_explosion(self_x, self_y, self_data.explosion_radius * 2, self_data.explosion_radius * 2, damage, nil, nil, false)
@@ -206,7 +212,7 @@ Callback.add(object.on_step, function(self)
                 attack_info:use_raw_damage()
                 attack_info:set_critical(false)
                 attack_info:set_knockback(math.sign(self_data.hsp), 2 *60)
-                attack_info.aphelion_explosiveSpearExplosion = true
+                -- attack_info.aphelion_explosiveSpearExplosion = true
 
                 sound_explode:play(self_x, self_y, 1, 1 + gm.random_range(-0.2, 0.2))
                 self:destroy()
@@ -215,13 +221,14 @@ Callback.add(object.on_step, function(self)
     end
 end)
 
-DamageCalculate.add(function(api)
-    -- Prevent crit on explosion
-    -- TODO fix for mp (hit_info does not exist)
-    if api.hit_info.attack_info.aphelion_explosiveSpearExplosion then
-        api.set_critical(false)
-    end
-end)
+-- DamageCalculate.add(function(api)
+--     -- Prevent crit on explosion
+--     -- TODO fix for mp (hit_info does not exist)
+--     api.hit_info.attack_info:print()
+--     -- if api.hit_info.attack_info.aphelion_explosiveSpearExplosion then
+--     --     api.set_critical(false)
+--     -- end
+-- end)
 
 Callback.add(object.on_draw, function(self)
     local self_data = Instance.get_data(self)
@@ -301,3 +308,28 @@ Callback.add(object.on_draw, function(self)
         Draw.circle_precision()
     end
 end)
+
+Callback.add(object.on_destroy, function(self)
+    self:instance_destroy_sync()
+end)
+
+Object.add_serializers(object,
+    -- Serialize
+    function(self, buffer)
+        local inst_data = Instance.get_data(self)
+        buffer:write_instance(inst_data.parent)
+        buffer:write_short(inst_data.direction)
+        buffer:write_int(inst_data.damage)
+    end,
+
+    -- Deserialize
+    function(self, buffer)
+        local inst_data = Instance.get_data(self)
+        inst_data.parent = buffer:read_instance()
+        inst_data.direction = buffer:read_short()
+        inst_data.damage = buffer:read_int()
+        inst_data.calculate_damage(inst_data.parent:item_count(item))
+
+        sound:play(inst_data.parent.x, inst_data.parent.y, 1, 1 + math.randomf(-0.2, 0.2))
+    end
+)
