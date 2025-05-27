@@ -329,7 +329,6 @@ Object.add_serializers(object,
         inst_data.direction = buffer:read_short()
         inst_data.damage = buffer:read_int()
         inst_data.calculate_damage(inst_data.parent:item_count(item))
-
         sound:play(inst_data.parent.x, inst_data.parent.y, 1, 1 + math.randomf(-0.2, 0.2))
     end
 )
