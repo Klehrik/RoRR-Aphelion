@@ -77,7 +77,7 @@ Callback.add(object.on_create, function(self)
     self_data.explosion_radius = 100
 
     self_data.calculate_damage = function(stack)
-        self_data.damage_coeff_pop          = 0.15 + (0.15 * stack)
+        self_data.damage_coeff_pop          = 0.3 * stack
         self_data.damage_coeff_explosion    = 0.5 + (0.5 * stack)
     end
     

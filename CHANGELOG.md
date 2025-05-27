@@ -2,7 +2,7 @@
 Now online compatible.
 * Heart Locket : Reworked
 * Explosive Spear
-    * Pop damage: 4x12% (+6% per stack) -> 3x30% (+15% per stack) *base*
+    * Pop damage: 4x12% (+6% per stack) -> 3x30% (+30% per stack) *base* damage
         * Now pops 3 times instead of 4 (i.e., faster explosion).
     * Explosion damage: 200% (+100% per stack) -> 100% (+50% per stack)
         * No longer crits with Sniper's spotter drone.
