@@ -27,7 +27,7 @@ Callback.add(Callback.ON_HIT_PROC, function(actor, victim, hit_info)
     -- Check cooldown (10 seconds)
     -- (current frame - last thrown frame)
     local actor_data = Instance.get_data(actor, "explosiveSpear")
-    if not actor_data.last_thrown_frame then actor_data.last_thrown_frame = 0 end
+    if not actor_data.last_thrown_frame then actor_data.last_thrown_frame = -600 end
     local current_frame = Global._current_frame
     if current_frame - actor_data.last_thrown_frame >= 10 *60 then
         -- Store current frame
