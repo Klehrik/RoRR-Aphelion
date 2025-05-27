@@ -72,13 +72,13 @@ Callback.add(object.on_create, function(self)
     self_data.gravity = 0.12
 
     self_data.damage = 0
-    self_data.damage_coeff_pop = 0
-    self_data.damage_coeff_explosion = 0
+    self_data.damage_coeff_pop = 0          -- base
+    self_data.damage_coeff_explosion = 0    -- TOTAL
     self_data.explosion_radius = 100
 
     self_data.calculate_damage = function(stack)
-        self_data.damage_coeff_pop = 0.08 + (0.08 * stack)
-        self_data.damage_coeff_explosion = 1 + (1 * stack)
+        self_data.damage_coeff_pop          = 0.15 + (0.15 * stack)
+        self_data.damage_coeff_explosion    = 0.5 + (0.5 * stack)
     end
     
     self_data.hit = -4
@@ -183,26 +183,22 @@ Callback.add(object.on_step, function(self)
             self.y = self_y
 
             -- Deal pop damage every 25 ticks
-            -- if Player.get_local() == self_data.parent then
             if not Net.is_client() then
                 if  (self_data.tick > 0)
                 and (self_data.tick % 25 == 0) then
                     -- Get actual actor (if this is just a segment or something)
                     if type(hit_actor) ~= "Actor" then hit_actor = hit_actor.parent end
 
-                    local damage = self_data.damage * self_data.damage_coeff_pop
-                    local inst = self_data.parent:fire_direct(hit_actor, damage, nil, nil, nil, nil, false)
+                    local inst = self_data.parent:fire_direct(hit_actor, self_data.damage_coeff_pop, nil, nil, nil, nil, false)
                     local attack_info = inst.attack_info
                     attack_info.damage_color = c_red
-                    attack_info:use_raw_damage()
-                    attack_info:set_critical(false)
+                    attack_info:set_critical(false, true)
                     attack_info:set_knockback(math.sign(self_data.hsp), 30)
                 end
             end
         end
 
         -- Explode
-        -- if Player.get_local() == self_data.parent then
         if not Net.is_client() then
             if (self_data.tick <= 0) or ((not hit_exists) and (self_data.hit_type == 1)) then
                 local damage = self_data.damage * self_data.damage_coeff_explosion
@@ -210,7 +206,7 @@ Callback.add(object.on_step, function(self)
                 local attack_info = inst.attack_info
                 attack_info.damage_color = c_red
                 attack_info:use_raw_damage()
-                attack_info:set_critical(false)
+                attack_info:set_critical(false, true)
                 attack_info:set_knockback(math.sign(self_data.hsp), 2 *60)
                 -- attack_info.aphelion_explosiveSpearExplosion = true
 
@@ -224,10 +220,9 @@ end)
 -- DamageCalculate.add(function(api)
 --     -- Prevent crit on explosion
 --     -- TODO fix for mp (hit_info does not exist)
---     api.hit_info.attack_info:print()
---     -- if api.hit_info.attack_info.aphelion_explosiveSpearExplosion then
---     --     api.set_critical(false)
---     -- end
+--     if api.hit_info.attack_info.aphelion_explosiveSpearExplosion then
+--         api.set_critical(false)
+--     end
 -- end)
 
 Callback.add(object.on_draw, function(self)

@@ -2,9 +2,10 @@
 Now online compatible.
 * Heart Locket : Reworked
 * Explosive Spear
-    * Now pops 3 times instead of 4; total pop damage unchanged.
-    * Explosion no longer crits with Sniper's spotter drone.
-        * This had caused the explosion to deal 2x more damage than intended for Sniper specifically.
+    * Pop damage: 4x12% (+6% per stack) -> 3x30% (+15% per stack) *base*
+        * Now pops 3 times instead of 4 (i.e., faster explosion).
+    * Explosion damage: 200% (+100% per stack) -> 100% (+50% per stack)
+        * No longer crits with Sniper's spotter drone.
 * Relic Guard : Now grants barrier to all nearby allies.
 * Whimsical Star
     * Stars now hit every 0.25 seconds (for performance reasons).
