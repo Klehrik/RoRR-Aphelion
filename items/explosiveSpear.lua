@@ -31,7 +31,7 @@ Callback.add(Callback.ON_HIT_PROC, function(actor, victim, hit_info)
     local current_frame = Global._current_frame
     if current_frame - actor_data.last_thrown_frame >= 10 *60 then
         -- Store current frame
-        -- actor_data.last_thrown_frame = current_frame -- DEBUG
+        actor_data.last_thrown_frame = current_frame
 
         -- Throw spear
         local inst = object:create(actor_x, actor.y)
