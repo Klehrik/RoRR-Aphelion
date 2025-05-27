@@ -99,15 +99,15 @@ Close this page if you would like to unlock and learn what everything does for y
             <td align="center"><img src="https://github.com/user-attachments/assets/88e6fc5e-6629-4c2f-b276-fd34984bfa70"></td>
             <td align="center"><p>$\color{#75b458}\textsf{Crimson Scarf}$</p></td>
             <td align="center">Critical chance is temporarily increased on kill.</td>
-            <td align="center"><p>Killing an enemy increases $\color{#efd27b}\textsf{critical chance}$ by $\color{#efd27b}\textsf{6\%}$ for $\color{#319ad2}\textsf{5}$ $\color{#555555}\textsf{(+1 per stack)}$ $\color{#319ad2}\textsf{seconds}$.</p></td>
+            <td align="center"><p>Killing an enemy increases $\color{#efd27b}\textsf{critical chance}$ by $\color{#efd27b}\textsf{7\%}$ for $\color{#319ad2}\textsf{5}$ $\color{#555555}\textsf{(+1 per stack)}$ $\color{#319ad2}\textsf{seconds}$.</p></td>
         </tr>
     </tbody>
     <tbody>
         <tr>
-            <td align="center"><img src="https://github.com/user-attachments/assets/d46a10a5-e9fa-4a75-99dc-7423660c173a"></td>
+            <td align="center"><img src="https://github.com/user-attachments/assets/27bd3bda-ac82-4a92-9d75-de74b1f78782"></td>
             <td align="center"><p>$\color{#75b458}\textsf{Explosive Spear}$</p></td>
             <td align="center">Throw out an explosive spear on a high damage hit. Recharges over time.</td>
-            <td align="center"><p>Throw an $\color{#cf6666}\textsf{explosive spear}$ on a hit that deals $\color{#319ad2}\textsf{at least 200\% damage}$, $\color{#efd27b}\textsf{stunning}$ an enemy for $\color{#efd27b}\textsf{4x12\%}$ $\color{#555555}\textsf{(+6\% per stack)}$ $\color{#efd27b}\textsf{TOTAL damage}$ and $\color{#efd27b}\textsf{exploding}$ for $\color{#efd27b}\textsf{250\%}$ $\color{#555555}\textsf{(+150\% per stack)}$ $\color{#efd27b}\textsf{TOTAL damage}$ after a short delay. Has a $\color{#319ad2}\textsf{10 second}$ cooldown.</p></td>
+            <td align="center"><p>Throw an $\color{#cf6666}\textsf{explosive spear}$ on a hit that deals $\color{#319ad2}\textsf{at least 200\% damage}$, $\color{#efd27b}\textsf{stunning}$ an enemy for $\color{#efd27b}\textsf{3x30\%}$ $\color{#555555}\textsf{(+30\% per stack)}$ $\color{#efd27b}\textsf{damage}$ and $\color{#efd27b}\textsf{exploding}$ for $\color{#efd27b}\textsf{100\%}$ $\color{#555555}\textsf{(+50\% per stack)}$ $\color{#efd27b}\textsf{TOTAL damage}$ after a short delay. Has a $\color{#319ad2}\textsf{10 second}$ cooldown.</p></td>
         </tr>
     </tbody>
     <tbody>
@@ -115,7 +115,7 @@ Close this page if you would like to unlock and learn what everything does for y
             <td align="center"><img src="https://github.com/user-attachments/assets/3224db25-3d41-4ede-a699-7ec2dcb7c0a9"></td>
             <td align="center"><p>$\color{#75b458}\textsf{Obelisk Shard}$</p></td>
             <td align="center">Standing still accelerates your equipment cooldown.</td>
-            <td align="center"><p>Standing still for $\color{#efd27b}\textsf{2}$ seconds makes your $\color{#319ad2}\textsf{equipment cooldown}$ go down $\color{#319ad2}\textsf{40\%}$ $\color{#555555}\textsf{(+30\% per stack)}$ $\color{#319ad2}\textsf{faster}$.</p></td>
+            <td align="center"><p>Standing still for $\color{#efd27b}\textsf{2}$ seconds makes your $\color{#319ad2}\textsf{equipment cooldown}$ go down $\color{#319ad2}\textsf{50\%}$ $\color{#555555}\textsf{(+30\% per stack)}$ $\color{#319ad2}\textsf{faster}$.</p></td>
         </tr>
     </tbody>
     <tbody>
@@ -123,7 +123,7 @@ Close this page if you would like to unlock and learn what everything does for y
             <td align="center"><img src="https://github.com/user-attachments/assets/88bb5015-a2cd-4669-80f0-260ef5f0e293"></td>
             <td align="center"><p>$\color{#75b458}\textsf{Relic Guard}$</p></td>
             <td align="center">Gain a small shield. Fortify yourself temporarily when it breaks.</td>
-            <td align="center"><p>Gain a $\color{#319ad2}\textsf{20}$ $\color{#555555}\textsf{(+20 per stack)}$ $\color{#319ad2}\textsf{health shield}$. On shield break, gain $\color{#7eb686}\textsf{barrier}$ equal to $\color{#efd27b}\textsf{60\%}$ $\color{#555555}\textsf{(+20\% per stack)}$ of your $\color{#319ad2}\textsf{maximum shield}$.</p></td>
+            <td align="center"><p>Gain a $\color{#319ad2}\textsf{20}$ $\color{#555555}\textsf{(+20 per stack)}$ $\color{#319ad2}\textsf{health shield}$. On shield break, gain $\color{#7eb686}\textsf{barrier}$ equal to $\color{#efd27b}\textsf{100\%}$ $\color{#555555}\textsf{(+50\% per stack)}$ of your $\color{#319ad2}\textsf{maximum shield}$.</p></td>
         </tr>
     </tbody>
     <tbody>
@@ -139,7 +139,7 @@ Close this page if you would like to unlock and learn what everything does for y
             <td align="center"><img src="https://github.com/user-attachments/assets/828190c7-85bb-4198-8e7d-507fe02a0e06"></td>
             <td align="center"><p>$\color{#75b458}\textsf{Phi Construct}$</p></td>
             <td align="center">Gain a small shield and a defensive construct.</td>
-            <td align="center"><p>Gain a $\color{#319ad2}\textsf{20}$ $\color{#555555}\textsf{(+20 per stack)}$ $\color{#319ad2}\textsf{health shield}$ and a small $\color{#efd27b}\textsf{defensive construct}$ that $\color{#efd27b}\textsf{fires at nearby enemies}$ and $\color{#319ad2}\textsf{projectiles}$ for $\color{#efd27b}\textsf{60\%}$ $\color{#555555}\textsf{(+15\% per stack)}$ $\color{#efd27b}\textsf{damage}$ every $\color{#efd27b}\textsf{0.8}$ seconds; fire rate $\color{#319ad2}\textsf{scales with maximum shield}$ $\color{#555555}\textsf{(+0.5\% per point past 20 shield)}$.</p></td>
+            <td align="center"><p>Gain a $\color{#319ad2}\textsf{20}$ $\color{#555555}\textsf{(+20 per stack)}$ $\color{#319ad2}\textsf{health shield}$ and a small $\color{#efd27b}\textsf{defensive construct}$ that $\color{#efd27b}\textsf{fires at nearby enemies}$ and $\color{#319ad2}\textsf{projectiles}$ for $\color{#efd27b}\textsf{60\%}$ $\color{#555555}\textsf{(+15\% per stack)}$ $\color{#efd27b}\textsf{damage}$ every $\color{#efd27b}\textsf{1}$ second; fire rate $\color{#319ad2}\textsf{scales with maximum shield}$ $\color{#555555}\textsf{(+0.5\% per point past 20 shield)}$.</p></td>
         </tr>
     </tbody>
     <tbody>

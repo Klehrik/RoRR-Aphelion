@@ -26,8 +26,8 @@ item:onHitProc(function(actor, victim, stack, hit_info)
     inst:sound_play_at(sound, 1.0, 1.0 + gm.random_range(-0.2, 0.2), inst.x, inst.y, nil)
 
     -- Calculate damage
-    instData.pop_damage = hit_info.damage * (0.06 + (actor:item_stack_count(item) * 0.06))
-    instData.damage = hit_info.damage * (1.0 + (actor:item_stack_count(item) * 1.0))
+    instData.pop_damage = actor:item_stack_count(item) * 0.3
+    instData.damage = hit_info.damage * (0.5 + (actor:item_stack_count(item) * 0.5))
 
     -- Apply cooldown
     Cooldown.set(actor, "aphelion-explosiveSpear", 10 *60, spriteCooldown, Color(0xff004d))
@@ -59,7 +59,7 @@ obj:onCreate(function(self)
     selfData.hit_offset_x = 0
     selfData.hit_offset_y = 0
 
-    selfData.tick = 85
+    selfData.tick = 60
 
     -- Cloth physics
     selfData.nodes = {}
@@ -139,7 +139,6 @@ obj:onStep(function(self)
                 if actor.RMT_object ~= "Actor" then actor = actor.parent end
 
                 local attack_info = selfData.parent:fire_direct(actor, selfData.pop_damage, nil, nil, nil, nil, false).attack_info
-                attack_info:use_raw_damage()
                 attack_info:set_color(c_red)
                 attack_info:set_critical(false)
                 attack_info:set_stun(1)
@@ -147,12 +146,12 @@ obj:onStep(function(self)
         end
 
         -- Explode
-        if selfData.tick <= -20 or (selfData.hit_type == 0 and not selfData.hit:exists()) then
+        if selfData.tick <= -24 or (selfData.hit_type == 0 and not selfData.hit:exists()) then
             local attack_info = selfData.parent:fire_explosion(self.x, self.y, 200, 200, selfData.damage, explosive_192, false).attack_info
             attack_info:use_raw_damage()
             attack_info:set_color(c_red)
             attack_info:set_critical(false)
-            attack_info:set_stun(2.5)
+            attack_info:set_stun(2)
 
             self:sound_play_at(soundExplode, 1.0, 1.0 + gm.random_range(-0.2, 0.2), self.x, self.y, nil)
             self:destroy()
