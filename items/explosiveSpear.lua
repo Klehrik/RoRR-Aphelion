@@ -49,8 +49,9 @@ end)
 -- Object
 
 -- TODO
--- make sure it doesn't hit the immediate wall on throw (if standing next to one)
--- sync properly
+-- [ ] make sure it doesn't hit the immediate wall on throw (if standing next to one)
+-- [~] sync properly
+-- [ ] allow hitting magma worm properly (same with whimstar)
 
 local sprite        = Sprite.new("object/explosiveSpear", "~/assets/sprites/objects/explosiveSpear.png", 1, 36, 3, 1, -20, -5, -3, 3)
 local sound_hit     = Sound.new("explosiveSpearHit", "~/assets/sounds/explosiveSpearHit.ogg")
