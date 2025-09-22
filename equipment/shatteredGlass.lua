@@ -12,13 +12,13 @@ equip:set_loot_tags(
 equip:set_passive(true)
 ItemLog.new_from_equipment(equip)
 
-RecalculateStats.add(function(actor, api)
+RecalculateStats.add(Callback.Priority.AFTER, function(actor)
     -- Check equipment
     if actor:equipment_get() ~= equip then return end
 
     -- TODO remake cursehelper
-    api.maxhp_mult(0.67)
-    api.damage_mult(2)
+    actor.maxhp = actor.maxhp * 0.67
+    actor.damage = actor.damage * 2
 end)
 
 -- equip:onPickup(function(actor)

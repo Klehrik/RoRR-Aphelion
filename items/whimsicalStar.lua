@@ -138,8 +138,8 @@ Callback.add(object.on_step, function(self)
         if Player.get_local() == self_data.parent then
             local inst = self_data.parent:fire_explosion(self.x, self.y, self.bbox_right - self.bbox_left, self.bbox_bottom - self.bbox_top, self_data.damage_coeff, nil, nil, false)
             local attack_info = inst.attack_info
-            attack_info.damage_color = Color("a5c28c")
-            attack_info:set_critical(false) -- Items cannot crit
+            attack_info.damage_color = Color(0xa5c28c)
+            attack_info:set_critical(false)
         end
     end
 
@@ -153,7 +153,7 @@ Callback.add(object.on_step, function(self)
             local min_dist = self_data.intercept_range
 
             -- Loop through all enemy projectile objects
-            local objs = Object.find_by_tag("enemy_projectile")
+            local objs = Object.find_all_by_tag("enemy_projectile")
             for _, obj in pairs(objs) do
                 
                 -- Loop through all instances of the object

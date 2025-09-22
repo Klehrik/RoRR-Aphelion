@@ -34,18 +34,18 @@ buff.max_stack = -1 -- Stacks applied separately (own timer per stack)
 Callback.add(buff.on_apply, function(actor)
     -- Increment internal buff counter
     local actor_data = Instance.get_data(actor, "crimsonScarf")
-    if not actor_data.count then actor_data.count = 0 end
+    actor_data.count = actor_data.count or 0
     actor_data.count = actor_data.count + 1
 end)
 
 Callback.add(buff.on_remove, function(actor)
     -- Decrement internal buff counter
     local actor_data = Instance.get_data(actor, "crimsonScarf")
-    if not actor_data.count then actor_data.count = 0 end
+    actor_data.count = actor_data.count or 0
     actor_data.count = actor_data.count - 1
 end)
 
-RecalculateStats.add(function(actor, api)
+RecalculateStats.add(function(actor)
     -- Check buff count
     local stack = actor:buff_count(buff)
     if stack <= 0 then return end
@@ -57,5 +57,5 @@ RecalculateStats.add(function(actor, api)
     local count = actor_data.count or 0
     
     -- Add stats
-    api.critical_chance_add(7 * count)
+    actor.critical_chance = actor.critical_chance + (7 * count)
 end)

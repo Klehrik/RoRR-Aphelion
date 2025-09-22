@@ -49,9 +49,9 @@ end)
 -- Object
 
 -- TODO
--- [ ] make sure it doesn't hit the immediate wall on throw (if standing next to one)
+-- [v] make sure it doesn't hit the immediate wall on throw (if standing next to one)
 -- [~] sync properly
--- [ ] allow hitting magma worm properly (same with whimstar)
+-- [v] allow hitting magma worm properly
 
 local sprite        = Sprite.new("object/explosiveSpear", "~/assets/sprites/objects/explosiveSpear.png", 1, 36, 3, 1, -20, -5, -3, 3)
 local sound_hit     = Sound.new("explosiveSpearHit", "~/assets/sounds/explosiveSpearHit.ogg")
@@ -61,7 +61,7 @@ object:set_sprite(sprite)   -- This sprite is just to have a hitbox
 object:set_depth(-1)
 
 Callback.add(object.on_create, function(self)
-    -- Manually drawn in on_draw
+    -- Manually drawn in `on_draw`
     self.image_alpha = 0
 
     -- Variables
@@ -87,6 +87,8 @@ Callback.add(object.on_create, function(self)
     self_data.hit_offset_x = 0
     self_data.hit_offset_y = 0
     self_data.tick = 85     -- -1 per frame after hitting; explodes at 0
+
+    self_data.ignore_wall_collision = 2
 
     -- Cloth physics
     self_data.nodes = {}
@@ -141,7 +143,7 @@ Callback.add(object.on_step, function(self)
         for _, actor in ipairs(actors) do
 
             -- Check if actor is hittable
-            if GM.actor_canhit(self_data.parent, actor)
+            if (actor.RAPI ~= "Instance" and GM.actor_canhit(self_data.parent, actor))
             or (actor.parent and GM.actor_canhit(self_data.parent, actor.parent)) then
                 self_data.hit = actor
                 self_data.hit_type = 1
@@ -153,10 +155,12 @@ Callback.add(object.on_step, function(self)
         end
 
         -- Wall collision
-        if self:is_colliding(gm.constants.pSolidBulletCollision) then
+        if (self_data.ignore_wall_collision <= 0)
+        and self:is_colliding(gm.constants.pSolidBulletCollision) then
             self_data.hit_type = 2
             sound_hit:play(self_x, self_y, 1, 1 + math.randomf(-0.1, 0.1))
         end
+        self_data.ignore_wall_collision = self_data.ignore_wall_collision - 1
 
         -- Set image_angle to be current velocity
         self.image_angle = math.direction(0, 0, self_data.hsp * self_data.direction, self_data.vsp)
@@ -171,7 +175,7 @@ Callback.add(object.on_step, function(self)
     else
         self_data.tick = self_data.tick - 1
 
-        local c_red = Color("ff004d")
+        local c_red = Color(0xff004d)
         local hit_actor = self_data.hit
         local hit_exists = Instance.exists(hit_actor)
 
@@ -184,7 +188,7 @@ Callback.add(object.on_step, function(self)
             self.y = self_y
 
             -- Deal pop damage every 25 ticks
-            if not Net.is_client() then
+            if not Net.client then
                 if  (self_data.tick > 0)
                 and (self_data.tick % 25 == 0) then
                     -- Get actual actor (if this is just a segment or something)
@@ -200,7 +204,7 @@ Callback.add(object.on_step, function(self)
         end
 
         -- Explode
-        if not Net.is_client() then
+        if not Net.client then
             if (self_data.tick <= 0) or ((not hit_exists) and (self_data.hit_type == 1)) then
                 local damage = self_data.damage * self_data.damage_coeff_explosion
                 local inst = self_data.parent:fire_explosion(self_x, self_y, self_data.explosion_radius * 2, self_data.explosion_radius * 2, damage, nil, nil, false)
@@ -235,7 +239,7 @@ Callback.add(object.on_draw, function(self)
     local dir = self.image_angle
     local length = 34
     local tip = 6
-    local cols = { Color("424647"), Color("25272b") }
+    local cols = { Color(0x424647), Color(0x25272b) }
     for i = 1, 0, -1 do
         local c = cols[i + 1]
         Draw.line(
@@ -284,7 +288,7 @@ Callback.add(object.on_draw, function(self)
 	end
 
     -- Cloth : Draw
-    local cols = { Color("ff004d"), Color("be1250") }
+    local cols = { Color(0xff004d), Color(0xbe1250) }
     for i = 1, 0, -1 do
         for _, n in ipairs(self_data.nodes) do
             Draw.circle(n.x, n.y + i, n.size, false, cols[i + 1])

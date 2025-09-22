@@ -1,5 +1,9 @@
 -- Six Shooter
 
+if true then return end
+
+
+
 local sprite = Sprite.new("item/sixShooter", "~/assets/sprites/items/sixShooter.png", 1, 16, 16)
 
 local item = Item.new("sixShooter")

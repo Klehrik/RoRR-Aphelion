@@ -8,13 +8,13 @@ item:set_tier(ItemTier.UNCOMMON)
 item:set_loot_tags(Item.LootTag.CATEGORY_HEALING)
 ItemLog.new_from_item(item)
 
-RecalculateStats.add(function(actor, api)
+RecalculateStats.add(function(actor)
     -- Check item count
     local stack = actor:item_count(item)
     if stack <= 0 then return end
     
     -- Add stats
-    api.maxshield_add(20 * stack)
+    actor.maxshield = actor.maxshield + (20 * stack)
 end)
 
 Callback.add(Callback.ON_DAMAGED_PROC, function(actor, hit_info)
