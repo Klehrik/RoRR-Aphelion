@@ -1,9 +1,5 @@
 -- Six Shooter
 
-if true then return end
-
-
-
 local sprite = Sprite.new("item/sixShooter", "~/assets/sprites/items/sixShooter.png", 1, 16, 16)
 
 local item = Item.new("sixShooter")
@@ -17,16 +13,18 @@ Callback.add(item.on_acquired, function(actor, stack)
     if not actor_data.count then actor_data.count = 0 end
 end)
 
-Hook.post("skill_activate", function(self, other, result, args)
+gm.post_script_hook(gm.constants.skill_activate, function(self, other, result, args)
     -- Check if primary skill
-    if args[1] ~= 0 then return end
+    if args[1].value ~= 0 then return end
+
+    local actor = Instance.wrap(self)
 
     -- Check item count
-    local stack = self:item_count(item)
+    local stack = actor:item_count(item)
     if stack <= 0 then return end
 
     -- Increment counter
-    local actor_data = Instance.get_data(self, "sixShooter")
+    local actor_data = Instance.get_data(actor, "sixShooter")
     actor_data.count = actor_data.count + 1
 end)
 
