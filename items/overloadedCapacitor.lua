@@ -5,10 +5,9 @@ local sprite = Sprite.new("item/overloadedCapacitor", "~/assets/sprites/items/ov
 local item = Item.new("overloadedCapacitor")
 item:set_sprite(sprite)
 item:set_tier(ItemTier.RARE)
-item:set_loot_tags(
-    Item.LootTag.CATEGORY_DAMAGE,
-    Item.LootTag.CATEGORY_HEALING
-)
+item.loot_tags = Item.LootTag.CATEGORY_DAMAGE
+               + Item.LootTag.CATEGORY_HEALING
+
 ItemLog.new_from_item(item)
 
 RecalculateStats.add(Callback.Priority.AFTER, function(actor)

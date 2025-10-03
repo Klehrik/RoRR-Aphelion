@@ -4,8 +4,9 @@ local sprite = Sprite.new("equipment/adrenaline", "~/assets/sprites/equipment/ad
 
 local equip = Equipment.new("adrenaline")
 equip:set_sprite(sprite)
-equip:set_loot_tags(Item.LootTag.CATEGORY_HEALING)
+equip.loot_tags = Item.LootTag.CATEGORY_HEALING
 equip.cooldown = 30 *60
+
 ItemLog.new_from_equipment(equip)
 
 -- Doing Buff creation here to use the ID

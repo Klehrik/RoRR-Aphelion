@@ -4,12 +4,11 @@ local sprite = Sprite.new("equipment/shatteredGlass", "~/assets/sprites/equipmen
 
 local equip = Equipment.new("shatteredGlass")
 equip:set_sprite(sprite)
-equip:set_loot_tags(
-    Item.LootTag.CATEGORY_DAMAGE,
-    Item.LootTag.EQUIPMENT_BLACKLIST_ENIGMA,
-    Item.LootTag.EQUIPMENT_BLACKLIST_ACTIVATOR
-)
+equip.loot_tags = Item.LootTag.CATEGORY_DAMAGE
+                + Item.LootTag.EQUIPMENT_BLACKLIST_ENIGMA
+                + Item.LootTag.EQUIPMENT_BLACKLIST_ACTIVATOR
 equip:set_passive(true)
+
 ItemLog.new_from_equipment(equip)
 
 RecalculateStats.add(Callback.Priority.AFTER, function(actor)

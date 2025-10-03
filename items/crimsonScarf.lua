@@ -5,7 +5,8 @@ local sprite = Sprite.new("item/crimsonScarf", "~/assets/sprites/items/crimsonSc
 local item = Item.new("crimsonScarf")
 item:set_sprite(sprite)
 item:set_tier(ItemTier.UNCOMMON)
-item:set_loot_tags(Item.LootTag.CATEGORY_DAMAGE)
+item.loot_tags = Item.LootTag.CATEGORY_DAMAGE
+
 ItemLog.new_from_item(item)
 
 -- Doing Buff creation here to use the ID

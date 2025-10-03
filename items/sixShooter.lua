@@ -5,7 +5,8 @@ local sprite = Sprite.new("item/sixShooter", "~/assets/sprites/items/sixShooter.
 local item = Item.new("sixShooter")
 item:set_sprite(sprite)
 item:set_tier(ItemTier.UNCOMMON)
-item:set_loot_tags(Item.LootTag.CATEGORY_DAMAGE)
+item.loot_tags = Item.LootTag.CATEGORY_DAMAGE
+
 ItemLog.new_from_item(item)
 
 Callback.add(item.on_acquired, function(actor, stack)
@@ -15,7 +16,7 @@ end)
 
 gm.post_script_hook(gm.constants.skill_activate, function(self, other, result, args)
     -- Check if primary skill
-    if args[1].value ~= 0 then return end
+    if args[1].value ~= Skill.Slot.PRIMARY then return end
 
     local actor = Instance.wrap(self)
 

@@ -5,7 +5,8 @@ local sprite = Sprite.new("item/ballisticVest", "~/assets/sprites/items/ballisti
 local item = Item.new("ballisticVest")
 item:set_sprite(sprite)
 item:set_tier(ItemTier.COMMON)
-item:set_loot_tags(Item.LootTag.CATEGORY_HEALING)
+item.loot_tags = Item.LootTag.CATEGORY_HEALING
+
 ItemLog.new_from_item(item)
 
 RecalculateStats.add(function(actor)

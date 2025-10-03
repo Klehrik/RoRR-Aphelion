@@ -6,7 +6,8 @@ local sound     = Sound.new("explosiveSpearThrow", "~/assets/sounds/explosiveSpe
 local item = Item.new("explosiveSpear")
 item:set_sprite(sprite)
 item:set_tier(ItemTier.UNCOMMON)
-item:set_loot_tags(Item.LootTag.CATEGORY_DAMAGE)
+item.loot_tags = Item.LootTag.CATEGORY_DAMAGE
+
 ItemLog.new_from_item(item)
 
 -- Doing Object creation here to use the ID
@@ -241,13 +242,12 @@ Callback.add(object.on_draw, function(self)
     local tip = 6
     local cols = { Color(0x424647), Color(0x25272b) }
     for i = 1, 0, -1 do
-        local c = cols[i + 1]
-        Draw.line(
+        gm.draw_line_width_color(
             x + (math.dcos(dir) * tip) + (-4 * math.sign(self_data.hsp) * i),
             y - (math.dsin(dir) * tip) + i,
             x + (math.dcos(dir - 180) * length) + (-4 * math.sign(self_data.hsp) * i),
             y - (math.dsin(dir - 180) * length) + i,
-            2, c
+            2, cols[i + 1], cols[i + 1]
         )
     end
 
@@ -291,21 +291,21 @@ Callback.add(object.on_draw, function(self)
     local cols = { Color(0xff004d), Color(0xbe1250) }
     for i = 1, 0, -1 do
         for _, n in ipairs(self_data.nodes) do
-            Draw.circle(n.x, n.y + i, n.size, false, cols[i + 1])
+            gm.draw_circle_color(n.x, n.y + i, n.size, cols[i + 1], cols[i + 1], false)
         end
     end
 
 
     -- Explosion Radius
     if self_data.hit_type > 0 then
-        Draw.alpha(math.min(85 - self_data.tick, 75) / 75 * 0.4)
-        Draw.circle_precision(64)
+        gm.draw_set_alpha(math.min(85 - self_data.tick, 75) / 75 * 0.4)
+        gm.draw_set_circle_precision(64)
 
         local radius = math.easeout(math.min(85 - self_data.tick, 75) / 75, 3) * self_data.explosion_radius
-        Draw.circle(self.x, self.y, radius, true, Color.WHITE)
+        gm.draw_circle_color(self.x, self.y, radius, Color.WHITE, Color.WHITE, true)
 
-        Draw.alpha(1)
-        Draw.circle_precision()
+        gm.draw_set_alpha(1)
+        gm.draw_set_circle_precision(24)
     end
 end)
 

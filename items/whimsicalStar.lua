@@ -5,10 +5,9 @@ local sprite = Sprite.new("item/whimsicalStar", "~/assets/sprites/items/whimsica
 local item = Item.new("whimsicalStar")
 item:set_sprite(sprite)
 item:set_tier(ItemTier.RARE)
-item:set_loot_tags(
-    Item.LootTag.CATEGORY_DAMAGE,
-    Item.LootTag.CATEGORY_UTILITY
-)
+item.loot_tags = Item.LootTag.CATEGORY_DAMAGE
+               + Item.LootTag.CATEGORY_UTILITY
+
 ItemLog.new_from_item(item)
 
 -- Doing Object creation here to use the ID
