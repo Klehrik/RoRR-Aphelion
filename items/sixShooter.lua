@@ -14,18 +14,18 @@ Callback.add(item.on_acquired, function(actor, stack)
     if not actor_data.count then actor_data.count = 0 end
 end)
 
-gm.post_script_hook(gm.constants.skill_activate, function(self, other, result, args)
+Hook.add_post(gm.constants.skill_activate, function(self, other, result, args)
     -- Check if primary skill
-    if args[1].value ~= Skill.Slot.PRIMARY then return end
+    if args[1] ~= Skill.Slot.PRIMARY then return end
 
-    local actor = Instance.wrap(self)
+    -- `self` is the actor here
 
     -- Check item count
-    local stack = actor:item_count(item)
+    local stack = self:item_count(item)
     if stack <= 0 then return end
 
     -- Increment counter
-    local actor_data = Instance.get_data(actor, "sixShooter")
+    local actor_data = Instance.get_data(self, "sixShooter")
     actor_data.count = actor_data.count + 1
 end)
 
