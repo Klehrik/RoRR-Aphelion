@@ -16,7 +16,7 @@ end)
 
 Hook.add_post(gm.constants.skill_activate, function(self, other, result, args)
     -- Check if primary skill
-    if args[1] ~= Skill.Slot.PRIMARY then return end
+    if args[1].value ~= Skill.Slot.PRIMARY then return end
 
     -- `self` is the actor here
 
