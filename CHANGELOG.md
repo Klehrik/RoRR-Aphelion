@@ -7,7 +7,7 @@ Current items (and their changes)
 * Ballistic Vest : Adjusted sprite
 * Ration
     * Adjusted sprite
-    * Healing no longer scales.
+    * Healing no longer scales with stacks.
     * Refresh now only happens upon entering a new stage.
     * Only 1 stack is consumed per proc.
     * No longer procs at 0 health (i.e., no longer saves you from a lethal hit like Dio's Best Friend).
