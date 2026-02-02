@@ -30,7 +30,7 @@ Callback.add(Callback.ON_DAMAGED_PROC, function(actor, hit_info)
         sound:play_synced(actor.x, actor.y, 0.9)
 
         -- Use Medkit healing bar animation
-        actor:buff_apply(Buff.find("medkit"), 94 * 0.4)
+        actor:buff_apply(Buff.find("medkit"), 94 * 0.45)
 
         -- Remove 1 stack and give 1 used stack
         -- Take temporary stacks first
