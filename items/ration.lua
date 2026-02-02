@@ -52,11 +52,6 @@ Callback.add(Callback.ON_DAMAGED_PROC, function(actor, hit_info)
 end)
 
 
--- ===== Buff =====
-
-
-
-
 -- ===== Additional =====
 
 ItemLog.new_from_item(item)
