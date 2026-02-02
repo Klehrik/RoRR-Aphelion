@@ -2,10 +2,10 @@
 	"name": "Aphelion",
 	"version_number": "1.3.0",
 	"website_url": "https://github.com/Klehrik/RoRR-Aphelion/wiki/Content",
-	"description": "Content expansion mod for Risk of Rain Returns.",
+	"description": "Content expansion mod adding new items.",
 	"dependencies": [
-		"ReturnOfModding-ReturnOfModding-1.1.5",
-		"ReturnsAPI-ReturnsAPI-1.0.0",
+		"ReturnOfModding-ReturnOfModding-1.1.14",
+		"ReturnsAPI-ReturnsAPI-0.1.44",
 		"LuaENVY-ENVY-1.2.0"
 	]
 }

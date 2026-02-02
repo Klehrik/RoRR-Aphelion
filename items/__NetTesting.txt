@@ -1,7 +1,0 @@
-Ballistic Vest          Pass
-Crimson Scarf           Pass
-Explosive Spear         Object not created properly for clients
-Overloaded Capacitor    Pass
-Relic Guard             Ally barrier gain applying multiple times? (need testing)
-Six Shooter             Pass
-Whimsical Star          Object-related error somewhere

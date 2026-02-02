@@ -1,12 +1,16 @@
 ### v1.3.0
-Now online compatible.
-* Heart Locket : Reworked
-* Explosive Spear : Explosion longer crits with Sniper's spotter drone.
-* Relic Guard : Now grants barrier to all nearby allies.
-* Whimsical Star
-    * Stars now hit every 0.25 seconds (for performance reasons).
-        * This shouldn't change much though since they move fast.
-    * Stars now teleport to owner on stage start.
+This update marks the beginning of a rework of the mod.  
+Many items have been removed for now and may be gradually brought back.  
+The mod is also now multiplayer compatible.  
+
+Current items (and their changes)
+* Ballistic Vest : Adjusted sprite
+* Ration
+    * Adjusted sprite
+    * Healing no longer scales.
+    * Refresh now only happens upon entering a new stage.
+    * Only 1 stack is consumed per proc.
+    * No longer procs at 0 health (i.e., no longer saves you from a lethal hit like Dio's Best Friend).
 
 ---
 
