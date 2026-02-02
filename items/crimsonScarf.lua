@@ -46,7 +46,7 @@ Callback.add(buff.on_remove, function(actor)
     actor_data.count = actor_data.count - 1
 end)
 
-RecalculateStats.add(function(actor)
+RecalculateStats.add(function(actor, api)
     -- Check buff count
     local stack = actor:buff_count(buff)
     if stack <= 0 then return end
@@ -58,5 +58,5 @@ RecalculateStats.add(function(actor)
     local count = actor_data.count or 0
     
     -- Add stats
-    actor.critical_chance = actor.critical_chance + (7 * count)
+    api.critical_chance_add(7 * count)
 end)

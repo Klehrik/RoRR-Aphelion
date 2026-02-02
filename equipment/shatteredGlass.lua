@@ -11,13 +11,13 @@ equip:set_passive(true)
 
 ItemLog.new_from_equipment(equip)
 
-RecalculateStats.add(Callback.Priority.AFTER, function(actor)
+RecalculateStats.add(function(actor, api)
     -- Check equipment
     if actor:equipment_get() ~= equip then return end
 
     -- TODO remake cursehelper
-    actor.maxhp = actor.maxhp * 0.67
-    actor.damage = actor.damage * 2
+    api.maxhp_mult(0.67)
+    api.damage_mult(2)
 end)
 
 -- equip:onPickup(function(actor)

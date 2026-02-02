@@ -10,13 +10,13 @@ item.loot_tags = Item.LootTag.CATEGORY_DAMAGE
 
 ItemLog.new_from_item(item)
 
-RecalculateStats.add(Callback.Priority.AFTER, function(actor)
+RecalculateStats.add(function(actor, api)
     -- Check item count
     local stack = actor:item_count(item)
     if stack <= 0 then return end
     
     -- Add stats
-    actor.maxshield = actor.maxshield + (Util.mixed_hyperbolic(stack, 0.18) * actor.maxhp)
+    api.maxshield_add_from_maxhp(Util.mixed_hyperbolic(stack, 0.18))
 end)
 
 Callback.add(Callback.ON_HIT_PROC, function(actor, victim, hit_info)

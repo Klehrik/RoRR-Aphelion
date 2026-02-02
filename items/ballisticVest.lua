@@ -9,12 +9,12 @@ item.loot_tags = Item.LootTag.CATEGORY_HEALING
 
 ItemLog.new_from_item(item)
 
-RecalculateStats.add(function(actor)
+RecalculateStats.add(function(actor, api)
     -- Check item count
     local stack = actor:item_count(item)
     if stack <= 0 then return end
 
     -- Add stats
-    actor.armor = actor.armor + (5 * stack)
-    actor.maxshield = actor.maxshield + (20 * stack)
+    api.armor_add(5 * stack)
+    api.maxshield_add(20 * stack)
 end)

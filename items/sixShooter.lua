@@ -14,20 +14,33 @@ Callback.add(item.on_acquired, function(actor, stack)
     if not actor_data.count then actor_data.count = 0 end
 end)
 
-Hook.add_post(gm.constants.skill_activate, function(self, other, result, args)
-    -- Check if primary skill
-    if args[1].value ~= Skill.Slot.PRIMARY then return end
-
-    -- `self` is the actor here
+Callback.add(Callback.ON_SKILL_ACTIVATE, function(actor, slot)
+    -- Ignore non-primary skills
+    if slot ~= Skill.Slot.PRIMARY then return end
 
     -- Check item count
-    local stack = self:item_count(item)
+    local stack = actor:item_count(item)
     if stack <= 0 then return end
 
     -- Increment counter
-    local actor_data = Instance.get_data(self, "sixShooter")
+    local actor_data = Instance.get_data(actor, "sixShooter")
     actor_data.count = actor_data.count + 1
 end)
+
+-- Hook.add_post(gm.constants.skill_activate, function(self, other, result, args)
+--     -- Check if primary skill
+--     if args[1].value ~= Skill.Slot.PRIMARY then return end
+
+--     -- `self` is the actor here
+
+--     -- Check item count
+--     local stack = self:item_count(item)
+--     if stack <= 0 then return end
+
+--     -- Increment counter
+--     local actor_data = Instance.get_data(self, "sixShooter")
+--     actor_data.count = actor_data.count + 1
+-- end)
 
 DamageCalculate.add(function(api)
     -- Check if actor exists

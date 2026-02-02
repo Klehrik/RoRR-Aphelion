@@ -4,7 +4,7 @@
 	"website_url": "https://github.com/Klehrik/RoRR-Aphelion/wiki/Content",
 	"description": "Content expansion mod for Risk of Rain Returns.",
 	"dependencies": [
-		"ReturnOfModding-ReturnOfModding-1.1.4",
+		"ReturnOfModding-ReturnOfModding-1.1.5",
 		"ReturnsAPI-ReturnsAPI-1.0.0",
 		"LuaENVY-ENVY-1.2.0"
 	]

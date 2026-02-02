@@ -30,11 +30,11 @@ local sprite = Sprite.new("buff/adrenaline", "~/assets/sprites/buffs/adrenaline.
 buff.icon_sprite = sprite
 buff.icon_stack_subimage = false
 
-RecalculateStats.add(function(actor)
+RecalculateStats.add(function(actor, api)
     -- Check buff count
     local stack = actor:buff_count(buff)
     if stack <= 0 then return end
 
     -- Increase movement speed by 40% (character base is 2.8)
-    actor.pHmax = actor.pHmax + (0.4 *2.8)
+    api.pHmax_add(0.4 *2.8)
 end)

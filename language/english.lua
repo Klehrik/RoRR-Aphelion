@@ -88,8 +88,13 @@ return {
             description = "<y>Increase damage by 50%</c> but <r>decrease maximum health by 33%</c> while held.",
             destination = "Exhibit A,\nMuseum of Oddities,\nNeptune",
             date        = "7/6/2056",
-            story       = "I was searching for another teleporter when I came across a twinkling that caught my eye. A piece of shattered glass, irregularly shaped but still pristine. I felt strangely vulnerable as I held it in my hands, but I could tell that it was another great source of power.",
+            story       = "I was in search of another teleporter when I came across a twinkling that caught my eye. A piece of shattered glass, irregularly shaped but still pristine, glistening with a faint pearlescence. As I clapsed my hand around it, I felt a strange and sudden sense of... vulnerability, but also a great feeling of power.",
             priority    = "<or>Field-found/Fragile</c>"
         },
     }
+
+    -- Achievement name changes
+    -- Oxygen Removal   -> DO NOT BREATHE
+    -- A Space Between  -> Far Shores (?)
+    --      "Enter the hidden stage on Ancient Valley." -> "Enter the hidden stage."
 }
