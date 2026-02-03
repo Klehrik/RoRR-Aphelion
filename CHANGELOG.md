@@ -1,16 +1,26 @@
 ### v1.3.0
-This update marks the beginning of a rework of the mod.  
+This update adds **multiplayer compatibility** and **polishes/reworks items**.  
 Many items have been removed for now and may be gradually brought back.  
-The mod is also now multiplayer compatible.  
 
-Current items (and their changes)
-* Ballistic Vest : Adjusted sprite
+Current items (and their changes):
+* Ballistic Vest
+    * Adjusted sprite
 * Ration
     * Adjusted sprite
-    * Healing no longer scales with stacks.
-    * Refresh now only happens upon entering a new stage.
-    * Only 1 stack is consumed per proc.
-    * No longer procs at 0 health (i.e., no longer saves you from a lethal hit like Dio's Best Friend).
+    * Displays small healing vfx
+    * Healing no longer scales with stacks
+    * Refresh now happens only upon entering a new stage
+    * Now only consumes 1 stack per proc
+    * No longer procs at 0 health (i.e., does not save you from a lethal hit like Dio's Best Friend)
+* Overloaded Capacitor
+    * Adjusted sprite slightly
+    * Changed lightning and damage number color
+    * Emits sparks vfx when active
+    * Now procs when hitting walls (just like Ukulele)
+* War Drum
+    * Reworked into an activated equipment
+        * On use, beats 3 times, empowering nearby allies and stunning nearby enemies
+        * Has a 60 second cooldown
 
 ---
 
