@@ -90,12 +90,7 @@ Callback.add(Callback.ON_STEP, function()
 end)
 
 
--- ===== Additional =====
-
-ItemLog.new_from_item(item)
-
-
--- ===== Packet =====
+-- ===== Packets =====
 
 packet = Packet.new("overloadedCapacitor")
 packet:set_serializers(
@@ -113,3 +108,8 @@ packet:set_serializers(
         end
     end
 )
+
+
+-- ===== Additional =====
+
+ItemLog.new_from_item(item)
