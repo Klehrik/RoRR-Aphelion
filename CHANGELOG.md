@@ -13,13 +13,14 @@ Current items (and their changes):
     * Now only consumes 1 stack per proc
     * No longer procs at 0 health (i.e., does not save you from a lethal hit like Dio's Best Friend)
 * Phi Construct
-    * Made animation and movement behavior more dynamic
-    * Emits particle vfx when active and shooting
-    * Base fire rate is now every 1.1 seconds
-        * Although in practice it is actually every 1 second given the +20 shield per stack
-    * Damage no longer scales with stacks
-        * Base damage: 60% -> 75%
-    * Fire rate shield multiplier now scales with stacks
+    * Made movement behavior and animation more dynamic
+    * Emits sparks vfx generally, and other particles when firing
+    * Added sfx when firing
+    * Base fire rate: 0.8s -> 0.7s
+    * Base damage: 60% -> 70%
+        * Damage no longer scales with stacks
+    * Fire rate multiplier now scales with stacks
+        * Scaling now works non-linearly (less % gain per max shield point at higher values)
 * Overloaded Capacitor
     * Adjusted sprite slightly
     * Changed lightning and damage number color

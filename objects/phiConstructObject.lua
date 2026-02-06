@@ -7,6 +7,8 @@ local object = Object.new("phiConstructObject")
 
 local sprite_body = Sprite.new("object/phiConstructBody", "~/assets/sprites/objects/phiConstructBody.png", 4, 8, 8)
 local sprite_face = Sprite.new("object/phiConstructFace", "~/assets/sprites/objects/phiConstructFace.png", 4, 8, 8)
+local sound       =  Sound.new("object/phiConstructShoot", "~/assets/sounds/objects/phiConstructShoot.ogg")
+
 local color = Color(0x40E0D0)
 
 
@@ -19,9 +21,10 @@ local speed_div         = 20    -- speed = distance from destination / speed_div
 local max_wander_range  = 64    -- If outside this range (in pixels), move directly towards parent
 local max_fire_range    = 256   -- Always centered at parent position
 
-local base_fire_rate    = 1.1   -- Base delay (in seconds) between shots
-local fire_rate_scaling = 0.5   -- % per max shield point
-local damage_coeff      = 0.75  -- Base damage coefficient
+local base_fire_rate            = 0.7   -- Base delay (in seconds) between shots
+local fire_rate_base_scaling    = 1.0   -- Base % per max shield point
+local fire_rate_stack_scaling   = 0.5   -- Additional % per max shield point
+local damage_coeff              = 0.7   -- Base damage coefficient
 
 
 -- ===== Hooks =====
@@ -42,6 +45,9 @@ Callback.add(object.on_create, function(inst)
     inst_data.force_direction_timer = Timer()
 
     inst_data.charge = 0
+
+    inst_data.part_spark_timer = Timer()
+    inst_data.part_move_timer = Timer()
 end)
 
 
@@ -82,6 +88,12 @@ Callback.add(object.on_step, function(inst)
     local vec = pos - parent_pos
     local length = vec.length
 
+    -- Avoid null vector (i.e., positions are the same)
+    if length == 0 then
+        vec = Vector.RIGHT
+        length = 1
+    end
+
     -- Set destination
     -- Move towards parent if too far
     if length > max_wander_range then
@@ -107,9 +119,32 @@ Callback.add(object.on_step, function(inst)
     end
     inst.x, inst.y = pos.x, pos.y
 
+    local xscale = inst.image_xscale
+
+    -- Create spark particles (rate scaling with move speed)
+    if inst_data.part_spark_timer.finished then
+        inst_data.part_spark_timer:start(math.random(90, 120) / math.max(speed * 1.5, 1))
+
+        local part = Particle.find("SparkB")
+        part:create(pos.x + (xscale * 4), pos.y + 2)
+    end
+
+    -- Create particles when moving (rate scaling with move speed)
+    if  inst_data.part_move_timer.finished
+    and speed > 1 then
+        inst_data.part_move_timer:start(math.random(30, 45) / math.max(speed * 1.5, 1))
+
+        local part = Particle.find("PixelDust")
+        local dir = vec.direction - 180 + math.random(-25, 25)
+        part:set_direction(dir, dir, 0, 0)
+        part:create(pos.x - (xscale * 6), pos.y, 1, Particle.System.BELOW)
+    end
+
 
     -- Increment charge
-    local required_charge = base_fire_rate / (1 + (fire_rate_scaling/100 * stack * inst_data.parent.maxshield))
+    local x = (fire_rate_base_scaling + (fire_rate_stack_scaling * (stack - 1))) * inst_data.parent.maxshield
+    local scaling = ( (35 * math.sqrt(0.3 * (x + 50))) - 135 )/100
+    local required_charge = base_fire_rate / (1 + scaling)
     inst_data.charge = math.min(inst_data.charge + 1/60, required_charge)
 
     -- Get nearest enemy projectile (prioritized) or enemy actor
@@ -118,10 +153,12 @@ Callback.add(object.on_step, function(inst)
     local target_pos = Vector.ZERO
     local dist = max_fire_range
 
+    local frame = Global._current_frame
+
     if inst_data.charge >= required_charge then
         -- Get nearest enemy projectile
         -- Check only half the "enemy_projectile" objs on any given frame
-        local parity = Global._current_frame % 2
+        local parity = frame % 2
         local i = 0
         for _, obj in pairs(Object.find_all_by_tag("enemy_projectile")) do
             i = i + 1
@@ -163,19 +200,26 @@ Callback.add(object.on_step, function(inst)
 
         -- Create tracer line and sparks
         local obj = Object.find("efLineTracer", "ror")
-        local tracer = obj:create(pos.x + (inst.image_xscale * 4), pos.y - 1)
+        local tracer = obj:create(pos.x + (xscale * 4), pos.y - 1)
         tracer.xend = target_pos.x
         tracer.yend = target_pos.y
         tracer.bm = 1
-        tracer.rate = 0.11
+        tracer.rate = 0.07
         tracer.width = 2
         tracer.image_blend = color
         tracer.depth = -2
 
-        local obj = Object.find("efSparks", "ror")
-        local sparks = obj:create(target_pos.x, target_pos.y)
-        sparks.sprite_index = gm.constants.sSparks1
-        sparks.image_blend = color
+        -- Create firing particles
+        local part = Particle.find("FireIce")
+        part:create(pos.x + (xscale * 8), pos.y, 4)
+
+        -- Create particles on target
+        local part = Particle.find("JellyBrain")
+        for i = 1, 4 do
+            local dir = math.random(0, 359)
+            part:set_direction(dir, dir, 0, 0)
+            part:create(target_pos.x + math.random(-4, 4), target_pos.y + math.random(-4, 4))
+        end
 
         -- Act on target
         -- Notes: Online, clients can destroy NoSync projectiles
@@ -183,11 +227,15 @@ Callback.add(object.on_step, function(inst)
         -- them since that damage is handled client-side
         if target_type == 0 then target:destroy()
         else
+            -- Deal damage (done by local player)
             if Util.bool(inst_data.following.is_local) then
                 local attack_info = inst_data.following:fire_direct(target, damage_coeff, nil, nil, nil, nil, false).attack_info
                 attack_info:set_critical(false)
                 attack_info.damage_color = color
             end
+
+            -- Play sfx
+            sound:play(pos.x + (xscale * 4), pos.y, 0.5, math.randomf(0.5, 0.8))
         end
 
         -- Set facing direction and prevent
@@ -203,6 +251,7 @@ Callback.add(object.on_draw, function(inst)
     if inst_data.destroy then return end
 
     local inst_x = inst.x
+    local inst_y = inst.y
 
     -- Set facing direction
     if inst_data.force_direction_timer.finished then
@@ -226,7 +275,7 @@ Callback.add(object.on_draw, function(inst)
         sprite_face,
         inst.image_index,
         inst_x + inst_data.face_offset,
-        inst.y,
+        inst_y,
         -- Cubic easeout is a good enough approximation for a circle
         (1 + (math.easeout(1 - math.abs(inst_data.face_offset / 4), 3) * 0.5)) * offset_direction,
         1,

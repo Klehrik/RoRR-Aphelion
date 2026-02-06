@@ -18,6 +18,16 @@ item.loot_tags = Item.LootTag.CATEGORY_DAMAGE
 
 -- ===== Callbacks =====
 
+RecalculateStats.add(function(actor, api)
+    -- Check item count
+    local stack = actor:item_count(item)
+    if stack <= 0 then return end
+
+    -- Add stats
+    api.maxshield_add(20 * stack)
+end)
+
+
 local create_construct = function(actor)
     local obj = Object.find("phiConstructObject")
     if not obj then log.error("Could not find phiConstructObject") end

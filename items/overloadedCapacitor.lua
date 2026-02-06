@@ -7,6 +7,7 @@ local packet
 -- ===== Assets =====
 
 local sprite = Sprite.new("item/overloadedCapacitor", "~/assets/sprites/items/overloadedCapacitor.png", 1, 16, 16)
+
 local color = Color(0x29adff)
 
 -- Seems to get garbage collected unless stored GM side
