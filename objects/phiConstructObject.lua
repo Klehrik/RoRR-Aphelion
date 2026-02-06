@@ -118,17 +118,23 @@ Callback.add(object.on_step, function(inst)
     local target_pos = Vector.ZERO
     local dist = max_fire_range
 
-    if  inst_data.charge >= required_charge then
+    if inst_data.charge >= required_charge then
         -- Get nearest enemy projectile
+        -- Check only half the "enemy_projectile" objs on any given frame
+        local parity = Global._current_frame % 2
+        local i = 0
         for _, obj in pairs(Object.find_all_by_tag("enemy_projectile")) do
-            local near = Instance.nearest(parent_pos.x, parent_pos.y, obj)
-            if Instance.exists(near) then
-                local t_pos = Vector(near.x, near.y)
-                local length = (t_pos - parent_pos).length
-                if length <= dist then
-                    target      = near
-                    target_pos  = t_pos
-                    dist        = length
+            i = i + 1
+            if i % 2 == parity then
+                local near = Instance.nearest(parent_pos.x, parent_pos.y, obj)
+                if Instance.exists(near) then
+                    local t_pos = Vector(near.x, near.y)
+                    local length = (t_pos - parent_pos).length
+                    if length <= dist then
+                        target      = near
+                        target_pos  = t_pos
+                        dist        = length
+                    end
                 end
             end
         end
