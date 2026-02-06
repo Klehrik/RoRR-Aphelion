@@ -12,7 +12,8 @@ Initialize.add_hotloadable(function()
     -- Require all files in content folders
     local folders = {
         "items",
-        "equipment"
+        -- "equipment",
+        "objects",
     }
     for _, folder in ipairs(folders) do
         local names = path.get_files(path.combine(PATH, folder))

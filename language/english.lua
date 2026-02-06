@@ -25,6 +25,18 @@ return {
         },
 
 
+        -- Uncommon
+        phiConstruct = {
+            name        = "Phi Construct",
+            pickup      = "Gain a small shield and a defensive construct.",
+            description = "Gain a <b>20 <c_stack>(+20 per stack) <b>health shield</c> and a small <y>defensive construct</c> that <y>fires at nearby enemies</c> and <b>projectiles</c> for <y>75% damage</c> every <y>1.1</c> seconds; <y>fire rate </c>increases by <y>0.5% <c_stack>(+0.5% per stack) </c>per <b>maximum shield point</c>.",
+            destination = "Complex 3B,\nSaturn,\n???",
+            date        = "6/4/2056",
+            story       = "...?\n\nBOOTING...\n\nSCANNING SURROUNDINGS\n\nUNKNOWN PRESCENCE DETECTED\n\n...\n\nFAILED TO LOAD DIRECTIVES\n\n...\n\nRESETTING...\n\nESTABLISHING NEW DIRECTIVES\n\n...\n\nESCORTING FRIENDLY LIFEFORM",
+            priority    = "<g>Field-found</c>"
+        },
+
+
         -- Rare
         overloadedCapacitor = {
             name        = "Overloaded Capacitor",

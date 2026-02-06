@@ -13,7 +13,7 @@ local sprite = Sprite.new("item/rationUsed", "~/assets/sprites/items/rationUsed.
 item:set_sprite(sprite)
 
 
--- ===== Hooks =====
+-- ===== Callbacks =====
 
 Callback.add(Callback.ON_STAGE_START, function()
     local actors = item:get_holding_actors()

@@ -16,7 +16,7 @@ item:set_tier(ItemTier.COMMON)
 item.loot_tags = Item.LootTag.CATEGORY_HEALING
 
 
--- ===== Hooks =====
+-- ===== Callbacks =====
 
 Callback.add(Callback.ON_DAMAGED_PROC, function(actor, hit_info)
     if actor:item_count(item) <= 0 then return end

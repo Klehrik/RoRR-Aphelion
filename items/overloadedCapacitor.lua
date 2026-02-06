@@ -22,7 +22,7 @@ item.loot_tags = Item.LootTag.CATEGORY_DAMAGE
                + Item.LootTag.CATEGORY_HEALING
 
 
--- ===== Hooks =====
+-- ===== Callbacks =====
 
 Callback.add(item.on_acquired, function(actor, stack)
     -- Attach effect display
@@ -42,7 +42,9 @@ end)
 
 Hook.add_post(gm.constants.damager_proc_onaoe, function(self, other, result, args)
     local attack_info = args[1].value
-    local actor       = attack_info.parent
+    if not Util.bool(attack_info.proc) then return end
+
+    local actor = attack_info.parent
     if not Instance.exists(actor) then return end
 
     -- Check item count

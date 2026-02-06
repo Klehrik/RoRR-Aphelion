@@ -15,7 +15,7 @@ item:set_tier(ItemTier.COMMON)
 item.loot_tags = Item.LootTag.CATEGORY_HEALING
 
 
--- ===== Hooks =====
+-- ===== Callbacks =====
 
 RecalculateStats.add(function(actor, api)
     -- Check item count
