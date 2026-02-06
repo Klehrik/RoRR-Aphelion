@@ -209,9 +209,11 @@ Callback.add(object.on_draw, function(inst)
         inst_data.facing_direction = math.sign(inst_data.destination.x - inst_x)
     end
 
-    -- Rotate
+    -- Rotate (i.e., slide face over to other side)
     local face_offset_to = inst_data.facing_direction * 4
-    inst_data.face_offset = inst_data.face_offset + math.sign(face_offset_to - inst_data.face_offset) / 2.5
+    if math.abs(inst_data.face_offset - face_offset_to) > 0.0001 then
+        inst_data.face_offset = inst_data.face_offset + math.sign(face_offset_to - inst_data.face_offset) / 2.5
+    end
 
     -- Set body direction
     local offset_direction = math.sign(inst_data.face_offset)
@@ -226,7 +228,7 @@ Callback.add(object.on_draw, function(inst)
         inst_x + inst_data.face_offset,
         inst.y,
         -- Cubic easeout is a good enough approximation for a circle
-        (1 + math.easeout((4 - math.abs(inst_data.face_offset)) * 0.1, 3)) * offset_direction,
+        (1 + (math.easeout(1 - math.abs(inst_data.face_offset / 4), 3) * 0.5)) * offset_direction,
         1,
         0,
         Color.WHITE,
