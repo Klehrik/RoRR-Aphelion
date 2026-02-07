@@ -26,11 +26,16 @@ Callback.add(Callback.ON_DAMAGED_PROC, function(actor, hit_info)
     local maxhp = actor.maxhp
     if  hp > 0
     and hp <= maxhp * 0.25 then
-        actor:heal(maxhp * 0.5)
-        sound:play_synced(actor.x, actor.y, 0.85)
+        local pos = Vector(actor.x, actor.y)
 
-        -- Use Medkit healing bar animation
-        actor:buff_apply(Buff.find("medkit"), 94 * 0.45)
+        actor:heal(maxhp * 0.5)
+        sound:play_synced(pos.x, pos.y, 0.85)
+
+        -- Create particles
+        local part = Particle.find("Heal_64")
+        for i = 1, 8 do
+            part:create(pos.x + math.random(-12, 12), actor.bbox_bottom - (i * 3))
+        end
 
         -- Remove 1 stack and give 1 used stack
         -- Take temporary stacks first

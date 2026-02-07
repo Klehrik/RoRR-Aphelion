@@ -7,7 +7,7 @@ Current items (and their changes):
     * Adjusted sprite
 * Ration
     * Adjusted sprite
-    * Displays small healing vfx
+    * Emits healing vfx on use
     * Healing no longer scales with stacks
     * Refresh now happens only upon entering a new stage
     * Now only consumes 1 stack per proc
