@@ -12,7 +12,7 @@ local color = Color(0x29adff)
 
 -- Seems to get garbage collected unless stored GM side
 Global.aphelion_effectdisplay_overloadedCapacitor
-= EffectDisplay.particles(Particle.find("Spark"), 8, 2, Particle.System.ABOVE, 0, 0, color)
+= EffectDisplay.particles(Particle.find("Spark"), 6, 2, Particle.System.ABOVE, 0, 0, color)
 
 
 -- ===== Properties =====
@@ -37,7 +37,7 @@ RecalculateStats.add(function(actor, api)
     if stack <= 0 then return end
 
     -- Add stats
-    api.maxshield_add_from_maxhp(Util.mixed_hyperbolic(stack, 0.18))
+    api.maxshield_add_from_maxhp(stack * 0.18)
 end)
 
 
@@ -83,11 +83,17 @@ Callback.add(Callback.ON_STEP, function()
     local actors = item:get_holding_actors()
 
     -- Reattach effect display
+    -- Check only one holding actor each frame
+    local mod = Global._current_frame % #actors
+    local i = -1
     for _, actor in ipairs(actors) do
-        local actor_data = Instance.get_data(actor, "overloadedCapacitor")
-        if actor_data.shield_broken and actor.shield > 0 then
-            actor_data.shield_broken = nil
-            GM.actor_effectdisplay_attach(actor, Global.aphelion_effectdisplay_overloadedCapacitor)
+        i = i + 1
+        if i == mod then
+            local actor_data = Instance.get_data(actor, "overloadedCapacitor")
+            if actor_data.shield_broken and actor.shield > 0 then
+                actor_data.shield_broken = nil
+                GM.actor_effectdisplay_attach(actor, Global.aphelion_effectdisplay_overloadedCapacitor)
+            end
         end
     end
 end)

@@ -26,6 +26,7 @@ Current items (and their changes):
     * Changed lightning and damage number color
     * Emits sparks vfx when active
     * Now procs when hitting walls (just like Ukulele)
+    * Shield gain per stack is now linear
 * War Drum
     * Reworked into an activated equipment
         * On use, beats 3 times, empowering nearby allies and stunning nearby enemies

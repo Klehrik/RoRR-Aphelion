@@ -27,7 +27,7 @@ Callback.add(Callback.ON_DAMAGED_PROC, function(actor, hit_info)
     if  hp > 0
     and hp <= maxhp * 0.25 then
         actor:heal(maxhp * 0.5)
-        sound:play_synced(actor.x, actor.y, 0.9)
+        sound:play_synced(actor.x, actor.y, 0.85)
 
         -- Use Medkit healing bar animation
         actor:buff_apply(Buff.find("medkit"), 94 * 0.45)
