@@ -97,7 +97,7 @@ Callback.add(object.on_step, function(inst)
     -- Set destination
     -- Move towards parent if too far
     if length > max_wander_range then
-        inst_data.destination = parent_pos + (vec/length * (max_wander_range * 0.95))
+        inst_data.destination = parent_pos + (vec:normalized() * (max_wander_range * 0.95))
         inst_data.max_speed = math.huge
 
     -- Otherwise move randomly
@@ -106,7 +106,7 @@ Callback.add(object.on_step, function(inst)
        and inst_data.force_direction_timer.finished then
         vec.direction = vec.direction + math.random(0, 359)
         inst_data.wander_timer:start(math.random(60, 120))
-        inst_data.destination = parent_pos + (vec/length * math.random(16, max_wander_range * 0.5))
+        inst_data.destination = parent_pos + (vec:normalized() * math.random(16, max_wander_range * 0.5))
         inst_data.max_speed = 2
     end
 
@@ -115,7 +115,7 @@ Callback.add(object.on_step, function(inst)
     local length = vec.length
     local speed = math.min(length / speed_div, inst_data.max_speed)
     if length > math.max(speed, 2) then
-        pos = pos + (vec/length * speed)
+        pos = pos + (vec:normalized() * speed)
     end
     inst.x, inst.y = pos.x, pos.y
 

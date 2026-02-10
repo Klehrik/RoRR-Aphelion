@@ -109,7 +109,7 @@ Callback.add(Callback.ON_DRAW, function()
 
         -- Rotate
         local delta = actor_data.rotation_to - actor_data.rotation
-        local speed_div = 8
+        local speed_div = 4
         if delta < 1 then
             actor_data.rotation = actor_data.rotation_to
         else
@@ -130,8 +130,8 @@ Callback.add(Callback.ON_DRAW, function()
         -- Center
         gm.draw_circle(24, 24, 4, false)
 
-        local v = Vector.UP
-        v.direction = actor_data.rotation
+        local vec = Vector.UP
+        vec.direction = actor_data.rotation
 
         for i = 1, 6 do
             -- Cylinder
@@ -140,21 +140,22 @@ Callback.add(Callback.ON_DRAW, function()
             -- Loaded round
             if actor_data.count < i then
                 for r = 5, 6, 0.5 do
-                    gm.draw_circle(24 + v.x * offset, 24 + v.y * offset, r, true)
+                    gm.draw_circle(24 + vec.x * offset, 24 + vec.y * offset, r, true)
                 end
-                gm.draw_circle(24 + v.x * offset, 24 + v.y * offset, 1, false)
+                gm.draw_circle(24 + vec.x * offset, 24 + vec.y * offset, 2, true)
 
             -- Spent casing
             else
-                gm.draw_circle(24 + v.x * offset, 24 + v.y * offset, 6, false)
+                gm.draw_circle(24 + vec.x * offset, 24 + vec.y * offset, 6, false)
 
             end
-            v.direction = v.direction - 30
 
             -- Groove
             local offset = 28
+            local v = vec:rotated(-30)
             gm.draw_circle(24 + v.x * offset, 24 + v.y * offset, 6, false)
-            v.direction = v.direction - 30
+
+            vec.direction = vec.direction - 60
         end
 
         gm.gpu_set_blendmode(0)
