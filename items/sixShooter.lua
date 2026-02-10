@@ -61,7 +61,9 @@ Callback.add(Callback.ON_SKILL_ACTIVATE, function(actor, slot)
 end)
 
 
+-- This callback only runs for the local player
 Callback.add(Callback.ON_ATTACK_CREATE, function(attack_info)
+
     -- Check if this is a procing attack
     if not Util.bool(attack_info.proc) then return end
 
