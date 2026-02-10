@@ -33,7 +33,15 @@ return {
             destination = "Complex 3B,\nSaturn,\n???",
             date        = "6/4/2056",
             story       = "...?\n\nBOOTING...\n\nSCANNING SURROUNDINGS\n\nUNKNOWN PRESCENCE DETECTED\n\n...\n\nFAILED TO LOAD DIRECTIVES\n\n...\n\nRESETTING...\n\nESTABLISHING NEW DIRECTIVES\n\n...\n\nESCORTING FRIENDLY LIFEFORM",
-            priority    = "<g>Field-found</c>"
+            priority    = "<g>Field-found</c>",
+        },
+        sixShooter = {
+            name        = "Six Shooter",
+            pickup      = "Every 6 basic attacks critically strike.",
+            description = "Every <b>6th basic attack</c> deals <y>33% <c_stack>(+33% per stack) <y>more damage</c> and is <y>guaranteed to critically strike</c>.",
+            destination = "Apt. #302,\n12th District,\nNeo Metro,\nVenus",
+            date        = "8/13/2056",
+            story       = "An antique from days past. The cylinder is somewhat damaged, and black powder is pretty hard (and expensive!) to get nowadays, but regardless it should be a nice addition to your collection if you aren't planning on firing it.",
         },
 
 
