@@ -15,7 +15,7 @@ item:set_sprite(sprite)
 item:set_tier(ItemTier.UNCOMMON)
 item.loot_tags = Item.LootTag.CATEGORY_DAMAGE
 
-local fade_speed   = 6      -- Time (in frames) to fully fade-in/out the display
+local fade_speed   = 8      -- Time (in frames) to fully fade-in/out the display
 local damage_bonus = 0.33   -- 6th shot damage bonus per stack
 
 
