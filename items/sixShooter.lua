@@ -54,7 +54,10 @@ Callback.add(Callback.ON_SKILL_ACTIVATE, function(actor, slot)
     local stack = actor:item_count(item)
     if stack <= 0 then return end
 
-    if slot == Skill.Slot.PRIMARY then
+    -- Check if primary was used
+    -- and was NOT Sniper's Reload
+    if  (slot == Skill.Slot.PRIMARY)
+    and (actor:get_active_skill(slot).skill_id ~= 70) then
         local actor_data = Instance.get_data(actor, "sixShooter")
         actor_data.primary_use = true
     end
@@ -121,6 +124,7 @@ Callback.add(Callback.ON_DRAW, function()
             actor_data.surface = gm.surface_create(49, 49)
         end
         gm.surface_set_target(actor_data.surface)
+        gm.draw_set_color(Color.LTGRAY)
 
         -- Cylinder body
         gm.draw_circle(24, 24, 24, false)
@@ -164,7 +168,7 @@ Callback.add(Callback.ON_DRAW, function()
         -- Draw surface
         local flash = math.max(actor_data.flash.time_left / actor_data.flash.duration, 0)
         local color = gm.merge_color(Color.WHITE, Color.YELLOW, flash)
-        gm.draw_surface_ext(actor_data.surface, actor.x - 24, actor.y - 66, 1, 1, 0, color, (actor_data.alpha * 0.4) + (flash * 0.6))
+        gm.draw_surface_ext(actor_data.surface, actor.x - 24, actor.y - 66, 1, 1, 0, color, (actor_data.alpha * 0.5) + (flash * 0.5))
     end
 end)
 

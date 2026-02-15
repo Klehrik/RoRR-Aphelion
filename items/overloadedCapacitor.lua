@@ -37,7 +37,7 @@ RecalculateStats.add(function(actor, api)
     if stack <= 0 then return end
 
     -- Add stats
-    api.maxshield_add_from_maxhp(stack * 0.18)
+    api.maxshield_add_from_maxhp(0.18 * stack)
 end)
 
 
@@ -70,31 +70,21 @@ Callback.add(Callback.ON_SHIELD_BREAK, function(actor, hit_info)
     if stack <= 0 then return end
 
     -- Remove effect display
-    local actor_data = Instance.get_data(actor, "overloadedCapacitor")
-    if not actor_data.shield_broken then
-        actor_data.shield_broken = true
-        GM.actor_effectdisplay_remove(actor, Global.aphelion_effectdisplay_overloadedCapacitor)
-        packet:send_to_all(actor)
-    end
+    GM.actor_effectdisplay_remove(actor, Global.aphelion_effectdisplay_overloadedCapacitor)
+    packet:send_to_all(actor, false)
 end)
 
 
-Callback.add(Callback.ON_STEP, function()
-    local actors = item:get_holding_actors()
+Callback.add(Callback.ON_SHIELD_RESTORE, function(actor)
+    -- Check item count
+    local stack = actor:item_count(item)
+    if stack <= 0 then return end
 
     -- Reattach effect display
-    -- Check only one holding actor each frame
-    local mod = Global._current_frame % #actors
-    local i = -1
-    for _, actor in ipairs(actors) do
-        i = i + 1
-        if i == mod then
-            local actor_data = Instance.get_data(actor, "overloadedCapacitor")
-            if actor_data.shield_broken and actor.shield > 0 then
-                actor_data.shield_broken = nil
-                GM.actor_effectdisplay_attach(actor, Global.aphelion_effectdisplay_overloadedCapacitor)
-            end
-        end
+    -- (if shield had fully broken)
+    if actor.shield <= 0 then
+        GM.actor_effectdisplay_attach(actor, Global.aphelion_effectdisplay_overloadedCapacitor)
+        packet:send_to_all(actor, true)
     end
 end)
 
@@ -103,17 +93,18 @@ end)
 
 packet = Packet.new("overloadedCapacitor")
 packet:set_serializers(
-    function(buffer, actor)
+    function(buffer, actor, op_attach)
         buffer:write_instance(actor)
+        buffer:write_bool(op_attach)
     end,
 
     function(buffer, player)
-        -- Remove effect display
+        -- Add/remove effect display
         local actor = buffer:read_instance()
+        local op_attach = buffer:read_bool()
+
         if Instance.exists(actor) then
-            local actor_data = Instance.get_data(actor, "overloadedCapacitor")
-            actor_data.shield_broken = true
-            GM.actor_effectdisplay_remove(actor, Global.aphelion_effectdisplay_overloadedCapacitor)
+            GM["actor_effectdisplay_"..(op_attach and "attach" or "remove")](actor, Global.aphelion_effectdisplay_overloadedCapacitor)
         end
     end
 )

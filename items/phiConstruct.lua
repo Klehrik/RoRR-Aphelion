@@ -16,17 +16,7 @@ item.loot_tags = Item.LootTag.CATEGORY_DAMAGE
                + Item.LootTag.CATEGORY_UTILITY
 
 
--- ===== Callbacks =====
-
-RecalculateStats.add(function(actor, api)
-    -- Check item count
-    local stack = actor:item_count(item)
-    if stack <= 0 then return end
-
-    -- Add stats
-    api.maxshield_add(20 * stack)
-end)
-
+-- ===== Functions =====
 
 local create_construct = function(actor)
     local obj = Object.find("phiConstructObject")
@@ -45,6 +35,18 @@ local create_construct = function(actor)
     local inst = obj:create(actor.x, actor.y)
     Instance.get_data(inst).parent = actor
 end
+
+
+-- ===== Callbacks =====
+
+RecalculateStats.add(function(actor, api)
+    -- Check item count
+    local stack = actor:item_count(item)
+    if stack <= 0 then return end
+
+    -- Add stats
+    api.maxshield_add(20 * stack)
+end)
 
 
 Callback.add(item.on_acquired, function(actor, stack)
