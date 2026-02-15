@@ -72,13 +72,6 @@ Callback.add(Callback.ON_SHIELD_BREAK, function(actor, hit_info)
 end)
 
 
-Callback.add(Callback.ON_DRAW, function()
-    for _, actor in ipairs(item:get_holding_actors()) do
-        gm.draw_text(actor.x, actor.y + 32, actor.armor)
-    end
-end)
-
-
 -- ===== Packets =====
 
 packet = Packet.new("relicGuard")
