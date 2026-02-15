@@ -4,8 +4,8 @@
 	"website_url": "https://github.com/Klehrik/RoRR-Aphelion/wiki/Content",
 	"description": "Content expansion mod adding new items.",
 	"dependencies": [
-		"ReturnOfModding-ReturnOfModding-1.1.14",
-		"ReturnsAPI-ReturnsAPI-0.1.44",
+		"ReturnOfModding-ReturnOfModding-1.1.16",
+		"ReturnsAPI-ReturnsAPI-0.1.45",
 		"LuaENVY-ENVY-1.2.0"
 	]
 }

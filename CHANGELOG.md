@@ -21,6 +21,15 @@ Current items (and their changes):
         * Damage no longer scales with stacks
     * Fire rate multiplier now scales with stacks
         * Scaling now works non-linearly (less % gain per max shield point at higher values)
+* Relic Guard
+    * Adjusted sprite slightly
+    * Shield gain: 20 flat -> 5%
+    * Barrier gain on shield break: 60% (+20% per stack) -> 100% (+50% per stack)
+    * Now grants an armor bonus equal to barrier gain for a brief time
+    * Now affects all nearby allies
+* Six Shooter
+    * Adjusted sprite slightly
+    * Added visual display for shot count
 * Overloaded Capacitor
     * Adjusted sprite slightly
     * Changed lightning and damage number color

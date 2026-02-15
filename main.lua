@@ -13,6 +13,7 @@ Initialize.add_hotloadable(function()
     local folders = {
         "items",
         -- "equipment",
+        "buffs",
         "objects",
     }
     for _, folder in ipairs(folders) do

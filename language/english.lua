@@ -10,13 +10,21 @@ return {
             date        = "9/03/2056",
             story       = "Shipment of lightweight body armor, capable of absorbing on average up to twelve 9mm rounds. Anything larger will pierce right through them though.\n\nWe've tested it throughly this time before this batch was produced, so there shouldn't be another fatal incident.",
         },
+        -- ballisticVest = {
+        --     name        = "Reactive Vest",
+        --     pickup      = "Reduce incoming damage by 5% and gain a small shield.",
+        --     description = "Increase <g>armor</c> by <g>5 <c_stack>(+5 per stack)</c>. On taking damage, gain <g>barrier</c> equal to <y>50% <c_stack>(+30% per stack) <y>of health lost</c>.",
+        --     destination = "1904,\nBaron County,\nMars",
+        --     date        = "9/03/2056",
+        --     story       = "Shipment of lightweight body armor, capable of absorbing on average up to twelve 9mm rounds. Anything larger will pierce right through them though.\n\nWe've tested it throughly this time before this batch was produced, so there shouldn't be another fatal incident.",
+        -- },
         ration = {
             name        = "Ration",
             pickup      = "Receive a large heal when in peril. Recharges upon entering a new stage.",
             description = "Falling below <r>25% health</c> heals you for <g>50% health</c>. Recharges <b>upon entering a new stage</c>. <c_stack>Gain 1 extra use per stack.",
             destination = "Fort Shell,\nManhattan, NY,\nEarth",
             date        = "4/30/2009",
-            story       = "12 boxes of quality-grade MREs for your boys, as requested. \n\nBe warned, they don't taste too good, or even passable -- they don't have any flavor at all actually. It's basically a large bland cookie, loaded up with all the nutrients you'll ever need.",
+            story       = "12 boxes of quality-grade MREs for your boys, as requested. \n\nBe warned, they don't taste too good, or even passable - they don't have any flavor at all actually. It's basically a large bland cookie, loaded up with all the nutrients you'll ever need.",
         },
         rationUsed = {
             name        = "Ration",
@@ -34,6 +42,15 @@ return {
             date        = "6/4/2056",
             story       = "...?\n\nBOOTING...\n\nSCANNING SURROUNDINGS\n\nUNKNOWN PRESCENCE DETECTED\n\n...\n\nFAILED TO LOAD DIRECTIVES\n\n...\n\nRESETTING...\n\nESTABLISHING NEW DIRECTIVES\n\n...\n\nESCORTING FRIENDLY LIFEFORM",
             priority    = "<g>Field-found</c>",
+        },
+        relicGuard = {
+            name        = "Relic Guard",
+            pickup      = "Gain a small shield. Fortify nearby allies temporarily when it breaks.",
+            description = "Gain a <b>5% <c_stack>(+5% per stack) <b>health shield</c>. On shield break, <y>all nearby allies</c> gain <g>barrier</c> and <g>armor</c> equal to <y>100% <c_stack>(+50% per stack)</c> of your <b>maximum shield</c>; <g>armor</c> bonus lasts for <y>5</c> seconds.",
+            destination = "Bldg. 1\n3 Wry Ave.\nTheworl,\nTitan",
+            date        = "11/14/2056",
+            story       = "Found this stashed in Thorton's attic - somehow he managed to hide a shield of this size from the rest of us during that expedition. I didn't find anything else in there, but regardless he is no longer a part of the team. The shield itself is surprisingly solid, at least compared to the other one, although I would still be careful with handling it.",
+            priority    = "<g>Priority/Fragile</c>",
         },
         sixShooter = {
             name        = "Six Shooter",
