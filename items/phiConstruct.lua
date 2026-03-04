@@ -20,7 +20,7 @@ item.loot_tags = Item.LootTag.CATEGORY_DAMAGE
 
 local create_construct = function(actor)
     local obj = Object.find("phiConstructObject")
-    if not obj then log.error("Could not find phiConstructObject") end
+    if not obj then log.error("Could not find 'phiConstructObject'") end
 
     -- Find construct
     local insts = Instance.find_all(obj)

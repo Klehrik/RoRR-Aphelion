@@ -54,7 +54,7 @@ Hook.add_post(gm.constants.damager_proc_onaoe, function(self, other, result, arg
 
     -- Fire chain lightning if shield is active
     if actor.shield > 0 then
-        local obj = Object.find("chainLightning")
+        local obj = Object.find("ChainLightning")
         local lightning = obj:create(args[2].value, args[3].value)
         lightning.damage = attack_info.damage * (stack * 0.3)
         lightning.bounce = 2

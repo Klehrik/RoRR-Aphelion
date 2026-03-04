@@ -199,7 +199,7 @@ Callback.add(object.on_step, function(inst)
         inst_data.charge = 0
 
         -- Create tracer line and sparks
-        local obj = Object.find("efLineTracer", "ror")
+        local obj = Object.find("EfLineTracer", "ror")
         local tracer = obj:create(pos.x + (xscale * 4), pos.y - 1)
         tracer.xend = target_pos.x
         tracer.yend = target_pos.y
