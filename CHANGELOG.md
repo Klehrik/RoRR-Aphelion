@@ -1,3 +1,6 @@
+### v1.2.21
+* Prevent adding items already added by Lost in Orbit
+
 ### v1.2.20
 Next update was intended to be released alongside ReturnsAPI,
 but I've "backported" the current changes so far.

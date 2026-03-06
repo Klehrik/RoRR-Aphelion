@@ -1,3 +1,7 @@
+### This mod is OLD; reworked as [Lost in Orbit](https://thunderstore.io/c/risk-of-rain-returns/p/Klehrik/Lost_in_Orbit/)
+
+---
+
 [**Thunderstore**](https://thunderstore.io/c/risk-of-rain-returns/p/Klehrik/Aphelion/)
 
 Content mod that currently adds 18 items, 4 equipment, and 3 skills.  

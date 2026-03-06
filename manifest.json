@@ -1,13 +1,14 @@
 ﻿{
 	"name": "Aphelion",
-	"version_number": "1.2.20",
+	"version_number": "1.2.21",
 	"website_url": "https://github.com/Klehrik/RoRR-Aphelion/wiki/Content",
-	"description": "Content mod that currently adds 18 items, 4 equipment, and 3 skills.",
+	"description": "[OLD; reworked as Lost in Orbit] Content mod that currently adds 18 items, 4 equipment, and 3 skills.",
 	"dependencies": [
 		"ReturnOfModding-ReturnOfModding-1.0.67",
 		"RoRRModdingToolkit-RoRR_Modding_Toolkit-1.2.18",
 		"LuaENVY-ENVY-1.2.0",
 		"Klehrik-CooldownHelper-1.0.3",
-		"Klehrik-CurseHelper-1.0.7"
+		"Klehrik-CurseHelper-1.0.7",
+		"Klehrik-Lost_in_Orbit-0.1.0"
 	]
 }
